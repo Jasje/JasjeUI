@@ -3544,6 +3544,7 @@ end
 				if not InCombatLockdown() then
 					WorldMapFrame:SetScale(1)
 					WorldMapFrameSizeDownButton:Show()
+					WorldMapFrame:SetFrameLevel(10)
 				else
 					WorldMapFrameSizeDownButton:Disable()
 					WorldMapFrameSizeUpButton:Disable()
@@ -3557,7 +3558,7 @@ end
 				WorldMapFrameAreaDescription:SetShadowOffset(2, -2)	
 
 				WorldMapZoneInfo:SetFont(C["media"].font, 27, "OUTLINE")
-				WorldMapZoneInfo:SetShadowOffset(2, -2)		
+				WorldMapZoneInfo:SetShadowOffset(2, -2)					
 			end
 
 			WorldMapFrame:HookScript("OnShow", FixSkin)
