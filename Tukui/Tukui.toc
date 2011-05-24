@@ -1,0 +1,14 @@
+## Interface: 40100
+## Author: Tukz
+## Project Collaborators: Elv22, Nightcracker
+## Credits to: Caith, Caellian, Shestak, Haste, Tekkub, Alza, Roth, P3lim, Tulla, Hungtar, hankthetank, Ishtara, Haleth and others...
+## Special Thanks to: Admins, Moderator and VIP's from tukui.org
+## Version: 13.12
+## Title: |cffC495DDTukui|r
+## Notes: UI of awesomeness!
+## SavedVariables: TukuiData
+## SavedVariablesPerCharacter: TukuiDataPerChar
+## OptionalDeps: Tukui_ConfigUI, !ClassColors, Clique
+## X-oUF: oUFTukui
+
+Tukui.xml 

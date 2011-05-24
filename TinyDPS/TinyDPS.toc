@@ -1,0 +1,9 @@
+## Interface: 40100
+## Title: TinyDPS
+## Notes: Lightweight Damage Meter
+## Author: Sideshow @ Draenor EU
+## SavedVariables: tdps, tdpsPosition, tdpsFont, tdpsNumberOfFights, tdpsF, tdpsV, tdpsTextOffset, tdpsColorAlpha, tdpsVisibleBars, tdpsReportLength
+## SavedVariablesPerCharacter: tdpsVersion, tdpsPlayer, tdpsLink, tdpsPet, tdpsFight, tdpsPartySize, tdpsCombat, tdpsNewFight
+## RequiredDeps: Tukui
+## Version: 0.937
+TinyDPS.lua
