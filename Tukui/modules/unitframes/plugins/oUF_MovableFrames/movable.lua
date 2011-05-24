@@ -528,11 +528,7 @@ end
 
 -- reset data
 local function RESETUF()
-	if C["unitframes"].positionbychar == true then
-		TukuiUFpos = {}
-	else
-		TukuiDataPerChar.ufpos = {}
-	end
+	TukuiDataPerChar.ufpos = {}
 	ReloadUI()
 end
 SLASH_RESETUF1 = "/resetuf"
