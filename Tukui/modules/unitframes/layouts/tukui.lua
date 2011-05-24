@@ -1385,7 +1385,7 @@ end
 	--	Main tanks and Main Assists layout (both mirror'd)
 	------------------------------------------------------------------------
 	
-	if(self:GetParent():GetName():match"TukuiMainTank" or self:GetParent():GetName():match"TukuiMainAssist") then
+	if unit == "maintank" or unit == "mainassist" or unit == "maintanktarget" or unit == "mainassisttarget" then
 		-- Right-click focus on maintank or mainassist units
 		self:SetAttribute("type2", "focus")
 		
