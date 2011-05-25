@@ -286,12 +286,10 @@ local function Shared(self, unit)
 				if T.myclass == "DRUID" then							
 				local eclipseBar = CreateFrame('Frame', nil, self)
 				eclipseBar:Point("LEFT", health, "TOPLEFT", 10, 2)
-				eclipseBar:Size(100, 5)
+				eclipseBar:Size(200, 5)
 				eclipseBar:SetFrameStrata("MEDIUM")
 				eclipseBar:SetFrameLevel(4)
-				eclipseBar:SetTemplate("Hydra")
-				eclipseBar:SetBackdropBorderColor(0,0,0,0)
-				eclipseBar:SetBackdropColor(0,0,0,1)
+
 				eclipseBar:SetScript("OnShow", function() T.EclipseDisplay(self, false) end)
 				eclipseBar:SetScript("OnUpdate", function() T.EclipseDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
 				eclipseBar:SetScript("OnHide", function() T.EclipseDisplay(self, false) end)
@@ -320,8 +318,10 @@ local function Shared(self, unit)
 				eclipseBar.border = CreateFrame("Frame", nil,eclipseBar)
 				eclipseBar.border:SetPoint("TOPLEFT", eclipseBar, "TOPLEFT", T.Scale(-2), T.Scale(2))
 				eclipseBar.border:SetPoint("BOTTOMRIGHT", eclipseBar, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
-				eclipseBar.border:SetFrameStrata("BACKGROUND")
+				eclipseBar.border:SetFrameStrata("MEDIUM")
+				eclipseBar.border:SetFrameLevel(4)
 				eclipseBar.border:SetTemplate("Hydra")
+				eclipseBar.border:CreateShadow("Hydra")
 
 				-- hide "low mana" text on load if eclipseBar is show
 				if eclipseBar and eclipseBar:IsShown() then FlashInfo.ManaLevel:SetAlpha(0) end

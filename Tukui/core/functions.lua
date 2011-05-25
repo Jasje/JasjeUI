@@ -767,7 +767,6 @@ T.EclipseDisplay = function(self, login)
 	if eb:IsShown() then
 		txt:Show()
 		self.FlashInfo:Hide()
-		self.shadow:Point("TOPLEFT", -4, 12)
 		if T.lowversion then
 			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 34) end
 		else
@@ -776,7 +775,6 @@ T.EclipseDisplay = function(self, login)
 	else
 		txt:Hide()
 		self.FlashInfo:Show()
-		self.shadow:Point("TOPLEFT", -4, 4)
 		if T.lowversion then
 			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 26) end
 		else
