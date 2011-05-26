@@ -839,13 +839,13 @@ local function Shared(self, unit)
 			local debuffs = CreateFrame("Frame", nil, health)
 			debuffs:SetHeight(20)
 			debuffs:SetWidth(127)
-			debuffs.size = 20
+			debuffs.size = 19
 			debuffs.spacing = 2
-			debuffs.num = 6
+			debuffs.num = 5
 
-			debuffs:SetPoint("TOPLEFT", health, "TOPLEFT", -0.5, 24)
-			debuffs.initialAnchor = "TOPLEFT"
-			debuffs["growth-y"] = "UP"
+			debuffs:SetPoint("BOTTOMLEFT", health, "BOTTOMLEFT", -1, -28)
+			debuffs.initialAnchor = "BOTTOMLEFT"
+			debuffs["growth-y"] = "DOWN"
 			debuffs.PostCreateIcon = T.PostCreateAura
 			debuffs.PostUpdateIcon = T.PostUpdateAura
 			self.Debuffs = debuffs
