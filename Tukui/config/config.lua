@@ -134,7 +134,6 @@ C["datatext"] = {
 	["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = true,                                  -- set time to 24h format.
 	["localtime"] = false,                              -- set time to local time instead of server time.
-	["fontsize"] = 12,                                  -- font size for panels.
 
 	-- Color Datatext
 	["classcolor"] = true,                -- classcolored datatexts 

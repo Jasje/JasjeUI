@@ -41,7 +41,7 @@ local function SkinButton(f, strip)
 
 	if strip then f:StripTextures() end
 
-	f:SetTemplate("Default", true)
+	f:SetTemplate("Default")
 	f:HookScript("OnEnter", SetModifiedBackdrop)
 	f:HookScript("OnLeave", SetOriginalBackdrop)
 end
