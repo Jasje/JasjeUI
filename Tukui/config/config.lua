@@ -63,6 +63,8 @@ C["unitframes"] = {
 	
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
+	
+	["swingbar"] = true,                                -- enable swingbar over player unit
 }
 
 C["arena"] = {

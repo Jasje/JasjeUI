@@ -31,6 +31,7 @@
     <Script file="modules\unitframes\plugins\oUF_ClassIcons\oUF_ClassIcons.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_RaidDebuffs\oUF_RaidDebuffs.lua"/>	
 	<Script file="modules\unitframes\plugins\oUF_WeakenedSoul\oUF_WeakenedSoul.lua"/>
+	<Script file="modules\unitframes\plugins\oUF_Swing\oUF_Swing.lua"/>
 	<Script file="modules\unitframes\templates\colors.lua"/>
 	
 	<Script file="core\uiscale.lua"/>

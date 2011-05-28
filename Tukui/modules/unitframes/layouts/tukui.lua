@@ -20,6 +20,8 @@ local normTex = C["media"].normTex
 local glowTex = C["media"].glowTex
 local bubbleTex = C["media"].bubbleTex
 
+local color = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+
 local backdrop = {
 	bgFile = C["media"].blank,
 	insets = {top = -T.mult, left = -T.mult, bottom = -T.mult, right = -T.mult},
@@ -705,6 +707,31 @@ local function Shared(self, unit)
 			self.CombatFeedbackText = CombatFeedbackText
 		end
 		
+			if C["unitframes"].swingbar then
+            -- SwingTimer
+			local Swing =  CreateFrame('Frame', nil, self)
+	    	Swing:Point("LEFT", health, "TOPLEFT", 10, 2)
+			Swing.texture = (C["media"].normTex)
+			Swing:SetFrameLevel(8)
+			Swing:SetFrameStrata("MEDIUM")
+			Swing:Hide()
+			Swing.color = {color.r,color.g,color.b}
+
+			local SwingBG = CreateFrame("Frame", "TukuiSwingtimer", Swing)
+			SwingBG:CreatePanel("Default", 200, 10, "LEFT", health, "TOPLEFT", 10, 2)
+			Swing:Point("TOPLEFT", SwingBG, 2, -2)
+	    	Swing:Point("BOTTOMRIGHT", SwingBG, -2, 2)
+			SwingBG:SetParent(Swing)
+			SwingBG:SetFrameStrata("MEDIUM")
+			SwingBG:SetFrameLevel(4)
+
+            Swing.bg = Swing:CreateTexture(nil, 'BORDER')
+		    Swing.bg:SetAllPoints(Swing)
+			Swing.hideOoc = true
+
+			self.Swing = Swing
+			end
+			
 		if C["unitframes"].healcomm then
 			local mhpb = CreateFrame('StatusBar', nil, self.Health)
 			mhpb:SetPoint('TOPLEFT', self.Health:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
