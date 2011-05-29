@@ -1109,6 +1109,30 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		for i=1, 4 do
 			SkinTab(_G["GuildBankFrameTab"..i])
 		end
+
+		--Popup
+		GuildBankPopupFrame:StripTextures()
+		GuildBankPopupScrollFrame:StripTextures()
+		GuildBankPopupFrame:SetTemplate("Transparent")
+		GuildBankPopupFrame:Point("TOPLEFT", GuildBankFrame, "TOPRIGHT", 1, -30)
+		SkinButton(GuildBankPopupOkayButton)
+		SkinButton(GuildBankPopupCancelButton)
+		SkinEditBox(GuildBankPopupEditBox)
+		GuildBankPopupNameLeft:Kill()
+		GuildBankPopupNameRight:Kill()
+		GuildBankPopupNameMiddle:Kill()
+
+		for i=1, 16 do
+			local button = _G["GuildBankPopupButton"..i]
+			local icon = _G[button:GetName().."Icon"]
+			button:StripTextures()
+			button:SetTemplate("Default")
+			button:StyleButton(true)
+			icon:ClearAllPoints()
+			icon:Point("TOPLEFT", 2, -2)
+			icon:Point("BOTTOMRIGHT", -2, 2)
+			icon:SetTexCoord(.08, .92, .08, .92)
+		end
 	end
 
 	--Archaeology
@@ -1119,6 +1143,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		ArchaeologyFrame:CreateShadow("Default")
 
 		SkinButton(ArchaeologyFrameArtifactPageSolveFrameSolveButton, true)
+		SkinButton(ArchaeologyFrameArtifactPageBackButton, true)
 		SkinDropDownBox(ArchaeologyFrameRaceFilter, 125)
 
 		ArchaeologyFrameRankBar:StripTextures()
@@ -1643,16 +1668,9 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			_G[object]:StripTextures()
 		end
 
-		local function raidskinupdate()
-			nummembers = GetNumRaidMembers();
-
-			for i=1,nummembers do
-				SkinButton(_G["RaidGroupButton"..i])
-			end
-		end
-		raidskinupdate()
-		RaidFrame:HookScript("OnShow", raidskinupdate)
-		hooksecurefunc("RaidGroupFrame_OnEvent", raidskinupdate)
+        for i=1, MAX_RAID_GROUPS*5 do
+            SkinButton(_G["RaidGroupButton"..i], true)
+        end
 
 		for i=1,8 do
 			for j=1,5 do
@@ -2141,7 +2159,7 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		AuctionProgressBarText:SetPoint("CENTER")
 
 		AuctionProgressBar:StripTextures()
-		AuctionProgressBar:CreateBackdrop("Transparent")
+		AuctionProgressBar:CreateBackdrop("Default")
 		AuctionProgressBar:SetStatusBarTexture(C["media"].normTex)
 		AuctionProgressBar:SetStatusBarColor(1, 1, 0)
 
@@ -2327,11 +2345,20 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			button:GetPushedTexture():SetAllPoints(button:GetHighlightTexture())			
 		end
 
+		--[[for i=1, AuctionFrameBrowse:GetNumRegions() do 
+			local region = select(i, AuctionFrameBrowse:GetRegions());
+			if region:GetObjectType() == "FontString" then 
+				print(region:GetText(), region:GetName()) 
+			end 
+		end]]
+
 		--Custom Backdrops
 		AuctionFrameBrowse.bg1 = CreateFrame("Frame", nil, AuctionFrameBrowse)
 		AuctionFrameBrowse.bg1:SetTemplate("Default")
 		AuctionFrameBrowse.bg1:Point("TOPLEFT", 20, -103)
 		AuctionFrameBrowse.bg1:Point("BOTTOMRIGHT", -575, 40)
+		BrowseNoResultsText:SetParent(AuctionFrameBrowse.bg1)
+		BrowseSearchCountText:SetParent(AuctionFrameBrowse.bg1)
 		BrowseFilterScrollFrame:Height(300) --Adjust scrollbar height a little off
 
 		AuctionFrameBrowse.bg2 = CreateFrame("Frame", nil, AuctionFrameBrowse)
@@ -2357,8 +2384,8 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		AuctionFrameAuctions.bg2:SetTemplate("Default")
 		AuctionFrameAuctions.bg2:Point("TOPLEFT", AuctionFrameAuctions.bg1, "TOPRIGHT", 3, 0)
 		AuctionFrameAuctions.bg2:Point("BOTTOMRIGHT", AuctionFrame, -8, 35)  
-		AuctionFrameAuctions.bg2:SetFrameLevel(AuctionFrameAuctions.bg2:GetFrameLevel() - 2)
-end
+		AuctionFrameAuctions.bg2:SetFrameLevel(AuctionFrameAuctions.bg2:GetFrameLevel() - 2)		
+	end
 
 	--BarberShop
 	if addon == "Blizzard_BarbershopUI" then
@@ -3767,10 +3794,65 @@ end
 				"LFDQueueFrameRoleButtonLeader",
 			}
 
-			for _, object in pairs(checkButtons) do
-				_G[object]:GetChildren():SetFrameLevel(_G[object]:GetChildren():GetFrameLevel() + 2)
-				SkinCheckBox(_G[object]:GetChildren())
+            for _, object in pairs(checkButtons) do
+				_G[object].checkButton:SetFrameLevel(_G[object].checkButton:GetFrameLevel() + 2)
+				SkinCheckBox(_G[object].checkButton)
 			end
+
+			hooksecurefunc("LFDQueueFrameRandom_UpdateFrame", function()
+				local dungeonID = LFDQueueFrame.type
+				local _, _, _, _, _, numRewards = GetLFGDungeonRewards(dungeonID)
+
+				for i=1, LFD_MAX_REWARDS do
+					local button = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i]
+					local icon = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i.."IconTexture"]
+					local count = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i.."Count"]
+					local role1 = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i.."RoleIcon1"]
+					local role2 = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i.."RoleIcon2"]
+					local role3 = _G["LFDQueueFrameRandomScrollFrameChildFrameItem"..i.."RoleIcon3"]
+
+					if button then
+						local __texture = _G[button:GetName().."IconTexture"]:GetTexture()
+						button:StripTextures()
+						icon:SetTexture(__texture)
+						icon:SetTexCoord(.08, .92, .08, .92)
+						icon:Point("TOPLEFT", 2, -2)
+						icon:SetDrawLayer("OVERLAY")
+						count:SetDrawLayer("OVERLAY")
+						if not button.backdrop then
+							button:CreateBackdrop("Default")
+							button.backdrop:Point("TOPLEFT", icon, "TOPLEFT", -2, 2)
+							button.backdrop:Point("BOTTOMRIGHT", icon, "BOTTOMRIGHT", 2, -2)
+							icon:SetParent(button.backdrop)
+							icon.SetPoint = T.dummy
+
+							if count then
+								count:SetParent(button.backdrop)
+							end
+							if role1 then
+								role1:SetParent(button.backdrop)
+							end
+							if role2 then
+								role2:SetParent(button.backdrop)
+							end
+							if role3 then
+								role3:SetParent(button.backdrop)
+							end							
+						end
+					end
+				end				
+			end)
+
+			hooksecurefunc("LFDQueueFrameSpecificListButton_SetDungeon", function(button, dungeonID, mode, submode)
+				for _, object in pairs(checkButtons) do
+					local button = _G[object]
+					if not ( button.checkButton:GetChecked() ) then
+						button.checkButton:SetDisabledTexture(nil)	
+					else
+						button.checkButton:SetDisabledTexture("Interface\\Buttons\\UI-CheckBox-Check-Disabled")	
+					end
+				end
+			end)
 
 			for _, object in pairs(StripAllTextures) do
 				_G[object]:StripTextures()
