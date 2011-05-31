@@ -14,8 +14,9 @@ local function CreateUtilities(self, event, addon)
 
 		--Create main frame
 		local TukuiRaidUtility = CreateFrame("Frame", "TukuiRaidUtility", UIParent)
-		TukuiRaidUtility:CreatePanel("Default", TukuiMinimap:GetWidth(), panel_height, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -2)
+		TukuiRaidUtility:CreatePanel("Transparent", TukuiMinimap:GetWidth(), panel_height, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -20) --set to -2 if your not using TinyDps
 		TukuiRaidUtility:Hide()
+		TukuiRaidUtility:SetBorder()
 
 		--Check if We are Raid Leader or Raid Officer
 		local function CheckRaidStatus()
@@ -47,7 +48,8 @@ local function CreateUtilities(self, event, addon)
 			b:HookScript("OnEnter", ButtonEnter)
 			b:HookScript("OnLeave", ButtonLeave)
 			b:EnableMouse(true)
-			b:SetTemplate("Default")
+			--b:SetTemplate("Default")
+			b:SetBorder()
 			if text then
 				local t = b:CreateFontString(nil,"OVERLAY",b)
 				t:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
@@ -64,20 +66,20 @@ local function CreateUtilities(self, event, addon)
 		end
 
 		--Show Button
-		CreateButton("TukuiRaidUtilityShowButton", UIParent, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -2, RAID_ASSISTANT, nil)
+		CreateButton("TukuiRaidUtilityShowButton", UIParent, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -20, hexa..RAID_ASSISTANT..hexb, nil) --set to -2 if your not using TinyDps
 		TukuiRaidUtilityShowButton:SetFrameRef("TukuiRaidUtility", TukuiRaidUtility)
 		TukuiRaidUtilityShowButton:SetAttribute("_onclick", [=[self:Hide(); self:GetFrameRef("TukuiRaidUtility"):Show();]=])
 		TukuiRaidUtilityShowButton:SetScript("OnMouseUp", function(self) TukuiRaidUtility.toggled = true end)
 		TukuiRaidUtilityShowButton:Hide()
 
 		--Close Button
-		CreateButton("TukuiRaidUtilityCloseButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOP", TukuiRaidUtility, "BOTTOM", 0, -2, CLOSE, nil)
+		CreateButton("TukuiRaidUtilityCloseButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOP", TukuiRaidUtility, "BOTTOM", 0, -2, hexa..CLOSE..hexb, nil)
 		TukuiRaidUtilityCloseButton:SetFrameRef("TukuiRaidUtilityShowButton", TukuiRaidUtilityShowButton)
 		TukuiRaidUtilityCloseButton:SetAttribute("_onclick", [=[self:GetParent():Hide(); self:GetFrameRef("TukuiRaidUtilityShowButton"):Show();]=])
 		TukuiRaidUtilityCloseButton:SetScript("OnMouseUp", function(self) TukuiRaidUtility.toggled = false end)
 
 		--Disband Raid button
-		CreateButton("TukuiRaidUtilityDisbandRaidButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtility:GetWidth() * 0.95, T.Scale(21), "TOP", TukuiRaidUtility, "TOP", 0, T.Scale(-5), "Disband Group", nil)
+		CreateButton("TukuiRaidUtilityDisbandRaidButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtility:GetWidth() * 0.95, T.Scale(21), "TOP", TukuiRaidUtility, "TOP", 0, T.Scale(-5), hexa.."Disband Group"..hexb, nil)
 		TukuiRaidUtilityDisbandRaidButton:SetScript("OnMouseUp", function(self)
 			if CheckRaidStatus() then
 				StaticPopup_Show("TUKUIDISBAND_RAID")
@@ -85,7 +87,7 @@ local function CreateUtilities(self, event, addon)
 		end)
 
 		--Role Check button
-		CreateButton("TukuiRaidUtilityRoleCheckButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtility:GetWidth() * 0.95, T.Scale(21), "TOP", TukuiRaidUtilityDisbandRaidButton, "BOTTOM", 0, T.Scale(-5), ROLE_POLL, nil)
+		CreateButton("TukuiRaidUtilityRoleCheckButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtility:GetWidth() * 0.95, T.Scale(21), "TOP", TukuiRaidUtilityDisbandRaidButton, "BOTTOM", 0, T.Scale(-5), hexa..ROLE_POLL..hexb, nil)
 		TukuiRaidUtilityRoleCheckButton:SetScript("OnMouseUp", function(self)
 			if CheckRaidStatus() then
 				InitiateRolePoll()
@@ -93,19 +95,19 @@ local function CreateUtilities(self, event, addon)
 		end)
 
 		--MainTank Button
-		CreateButton("TukuiRaidUtilityMainTankButton", TukuiRaidUtility, "SecureActionButtonTemplate, UIMenuButtonStretchTemplate", (TukuiRaidUtilityDisbandRaidButton:GetWidth() / 2) - T.Scale(2), T.Scale(21), "TOPLEFT", TukuiRaidUtilityRoleCheckButton, "BOTTOMLEFT", 0, T.Scale(-5), MAINTANK, nil)
+		CreateButton("TukuiRaidUtilityMainTankButton", TukuiRaidUtility, "SecureActionButtonTemplate, UIMenuButtonStretchTemplate", (TukuiRaidUtilityDisbandRaidButton:GetWidth() / 2) - T.Scale(2), T.Scale(21), "TOPLEFT", TukuiRaidUtilityRoleCheckButton, "BOTTOMLEFT", 0, T.Scale(-5), hexa..MAINTANK..hexb, nil)
 		TukuiRaidUtilityMainTankButton:SetAttribute("type", "maintank")
 		TukuiRaidUtilityMainTankButton:SetAttribute("unit", "target")
 		TukuiRaidUtilityMainTankButton:SetAttribute("action", "set")
 
 		--MainAssist Button
-		CreateButton("TukuiRaidUtilityMainAssistButton", TukuiRaidUtility, "SecureActionButtonTemplate, UIMenuButtonStretchTemplate", (TukuiRaidUtilityDisbandRaidButton:GetWidth() / 2) - T.Scale(2), T.Scale(21), "TOPRIGHT", TukuiRaidUtilityRoleCheckButton, "BOTTOMRIGHT", 0, T.Scale(-5), MAINASSIST, nil)
+		CreateButton("TukuiRaidUtilityMainAssistButton", TukuiRaidUtility, "SecureActionButtonTemplate, UIMenuButtonStretchTemplate", (TukuiRaidUtilityDisbandRaidButton:GetWidth() / 2) - T.Scale(2), T.Scale(21), "TOPRIGHT", TukuiRaidUtilityRoleCheckButton, "BOTTOMRIGHT", 0, T.Scale(-5), hexa..MAINASSIST..hexb, nil)
 		TukuiRaidUtilityMainAssistButton:SetAttribute("type", "mainassist")
 		TukuiRaidUtilityMainAssistButton:SetAttribute("unit", "target")
 		TukuiRaidUtilityMainAssistButton:SetAttribute("action", "set")
 
 		--Ready Check button
-		CreateButton("TukuiRaidUtilityReadyCheckButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtilityRoleCheckButton:GetWidth() * 0.75, T.Scale(21), "TOPLEFT", TukuiRaidUtilityMainTankButton, "BOTTOMLEFT", 0, T.Scale(-5), READY_CHECK, nil)
+		CreateButton("TukuiRaidUtilityReadyCheckButton", TukuiRaidUtility, "UIMenuButtonStretchTemplate", TukuiRaidUtilityRoleCheckButton:GetWidth() * 0.75, T.Scale(21), "TOPLEFT", TukuiRaidUtilityMainTankButton, "BOTTOMLEFT", 0, T.Scale(-5), hexa..READY_CHECK..hexb, nil)
 		TukuiRaidUtilityReadyCheckButton:SetScript("OnMouseUp", function(self)
 			if CheckRaidStatus() then
 				DoReadyCheck()
@@ -150,7 +152,7 @@ local function CreateUtilities(self, event, addon)
 				f:SetDisabledTexture("")
 				f:HookScript("OnEnter", ButtonEnter)
 				f:HookScript("OnLeave", ButtonLeave)
-				f:SetTemplate("Default", true)
+				f:SetTemplate("Transparent")
 			end
 		end
 
@@ -160,8 +162,8 @@ local function CreateUtilities(self, event, addon)
 				return
 			end
 
-			if not TukuiRaidUtility.toggled and CheckRaidStatus() then
-				TukuiRaidUtilityShowButton:Show()
+			if CheckRaidStatus() then
+				if not TukuiRaidUtility.toggled then TukuiRaidUtilityShowButton:Show() end
 			else
 				TukuiRaidUtilityShowButton:Hide()
 				if TukuiRaidUtility:IsShown() then TukuiRaidUtility:Hide() end
