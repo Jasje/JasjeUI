@@ -66,7 +66,11 @@ C["unitframes"] = {
 	
 	["swingbar"] = true,                                -- enable swingbar over player unit
 }
-
+   -- credit Elv
+C["interruptanncounce"] = {
+	["enable"] = true,		       -- enable/disable interrupt announce
+}
+	
 C["arena"] = {
 	["unitframes"] = true,                              -- enable tukz arena unitframes (requirement : tukui unitframes enabled)
 }

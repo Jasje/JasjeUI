@@ -820,19 +820,6 @@ for i=1, NUM_CHAT_WINDOWS do
 	orig2[frame] = frame:GetScript("OnHyperlinkLeave")
 	frame:SetScript("OnHyperlinkLeave", OnHyperlinkLeave)
 end	
------------------------------------------------
--- Elv interrupt anncounce
------------------------------------------------
-
-local announce = CreateFrame("Frame")
-announce:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-announce:SetScript("OnEvent", function(self, _, _, event, _, _, sourceName, _, _, destName, _, _, _, _, spellID, spellName)
-	if not (event == "SPELL_INTERRUPT" and sourceName == T.myname) then return end
-	
-		--if GetRealNumRaidMembers() > 0 then
-			SendChatMessage(INTERRUPTED.." "..destName.."'s \124cff71d5ff\124Hspell:"..spellID.."\124h["..spellName.."]\124h\124r!", "YELL", nil, nil)		
-		--end		
-	end)
 
 -----------------------------------
 -- Drink announce by Duffed
@@ -842,7 +829,7 @@ local function Update(self, event, ...)
 	if event == "UNIT_SPELLCAST_SUCCEEDED" then
 		local unit, spellName, spellrank, spelline, spellID = ...
 		if GetZonePVPInfo() == "arena" then
-			if UnitIsEnemy("player", unit) and (spellID == 80167 or spellID == 94468 or spellID == 43183 or spellID == 57073 or spellName == "Trinken") then
+			if UnitIsEnemy("player", unit) and (spellID == 80167 or spellID == 94468 or spellID == 43183 or spellID == 57073 or spellName == "Drinking") then
 				SendChatMessage(UnitName(unit).." is drinking.", "PARTY")
 			end
 		end
