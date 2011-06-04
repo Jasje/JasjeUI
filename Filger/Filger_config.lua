@@ -82,85 +82,71 @@ ns.Filger_Spells = {
 	["PRIEST"] = { -------------------------------------------------------------------------------------------------------- Priest
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "UP",
+			Direction = "LEFT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "LEFT", TukuiPlayer, -43, 28},
+			setPoint = { "CENTER", UIParent, -100, -86},
 
 
 			-- Prayer of Mending
-			{ spellID = 41635, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 41635, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Guardian Spirit
-			{ spellID = 47788, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 47788, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Pain Suppression
-			{ spellID = 33206, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 33206, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Renew
-			{ spellID = 139, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 139, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Power Word: Shield
-			{ spellID = 17, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
-			
-			-- Chakra: Serenity
-			{ spellID = 81208, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Chakra: Sanctuary
-			{ spellID = 81206, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Chakra: Chastise
-			{ spellID = 81209, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 17, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 	    {
 			Name = "Priest Procs",
-			Direction = "UP",
+			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "LEFT", TukuiPlayer, -82, 28},
+			setPoint = { "CENTER", UIParent, 106, -85 },
 
 			-- Surge of Light
-			{ spellID = 88688, size = 27, unitId = "player", caster = "all", filter = "BUFF" },
+			{ spellID = 88688, size = 36, unitId = "player", caster = "all", filter = "BUFF" },
 			-- Serendipity
-			{ spellID = 63735, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 63735, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Shadow Orb
-			{ spellID = 77487, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 77487, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Archangel
-			{ spellID = 81700, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 81700, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Evangelism
-			{ spellID = 81662, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 81662, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Dispersion
-			{ spellID = 47585, size = 27, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 47585, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 		},	
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "RIGHT", TukuiTarget, 42, 28},
 
-			-- Prayer of Mending
-			{ spellID = 41635, size = 27, unitId = "target", caster = "player", filter = "BUFF" },
-			-- Guardian Spirit
-			{ spellID = 47788, size = 27, unitId = "target", caster = "player", filter = "BUFF" },
-			-- Pain Suppression
-			{ spellID = 33206, size = 27, unitId = "target", caster = "player", filter = "BUFF" },
-			-- Power Word: Shield
-			{ spellID = 17, size = 27, unitId = "target", caster = "player", filter = "BUFF" },
-			-- Renew
-			{ spellID = 139, size = 27, unitId = "target", caster = "player", filter = "BUFF" },
-		},
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "UP",
+			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "RIGHT", TukuiTarget, 82, 28},
+			setPoint = { "CENTER", UIParent, 106, -43 },
 
 			-- Shackle undead
-			{ spellID = 9484, size = 27, unitId = "target", caster = "all", filter = "DEBUFF" },
+			{ spellID = 9484, size = 36, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Psychic Scream
-			{ spellID = 8122, size = 27, unitId = "target", caster = "all", filter = "DEBUFF" },
+			{ spellID = 8122, size = 36, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Shadow Word: Pain
-			{ spellID = 589, size = 27, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 589, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Devouring Plague
-			{ spellID = 2944, size = 27, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 2944, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Vampiric Touch
-			{ spellID = 34914, size = 27, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 34914, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+						-- Prayer of Mending
+			{ spellID = 41635, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
+			-- Guardian Spirit
+			{ spellID = 47788, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
+			-- Pain Suppression
+			{ spellID = 33206, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
+			-- Power Word: Shield
+			{ spellID = 17, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
+			-- Renew
+			{ spellID = 139, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
 		},
 	},
 	["WARLOCK"] = { -------------------------------------------------------------------------------------------------------- Warlock
@@ -591,6 +577,56 @@ ns.Filger_Spells = {
 			{ spellID = 702, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 		},
     },		
+	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
+		{
+			Name = "Deathknight Procs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 106, -85 },
+
+			-- Blood Shield
+			{ spellID = 77513, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Unholy Force
+			{ spellID = 67383, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Unholy Strength
+			{ spellID = 53365, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Unholy Might
+			{ spellID = 67117, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dancing Rune Weapon
+			{ spellID = 49028, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Icebound Fortitude
+			{ spellID = 48792, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Anti-Magic Shell
+			{ spellID = 48707, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Killing machine
+			{ spellID = 51124, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Freezing fog
+			{ spellID = 59052, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Bone Shield
+			{ spellID = 49222, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 106, -43 },
+
+			-- Strangulate
+			{ spellID = 47476, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Blood Plague
+			{ spellID = 59879, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Frost Fever
+			{ spellID = 59921, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Unholy Blight
+			{ spellID = 49194, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Summon Gargoyle
+			{ spellID = 49206, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Death and Decay/
+			{ spellID = 43265, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+	},
 -----------------------------------------------------------------------------------------------------------------------
 -- dont touch anything below or else ill ass rape you aight!
 -----------------------------------------------------------------------------------------------------------------------	
@@ -600,7 +636,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -106, -43 },
+			setPoint = { "CENTER", UIParent, -105, -40 },
 			
 -- Baradin Hold
 			-- Consuming Darkness

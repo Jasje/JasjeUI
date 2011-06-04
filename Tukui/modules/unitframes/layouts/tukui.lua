@@ -232,7 +232,7 @@ local function Shared(self, unit)
 			ws:SetStatusBarTexture(C.media.normTex)
 			ws:GetStatusBarTexture():SetHorizTile(false)
 			--ws:SetBackdrop(backdrop)
-			ws:SetAlpha(.8)
+			ws:SetAlpha(.5)
 			ws:SetBackdropColor(unpack(C.media.backdropcolor))
 			ws:SetStatusBarColor(191/255, 10/255, 10/255)
 			
