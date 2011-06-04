@@ -64,7 +64,7 @@ C["unitframes"] = {
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
 	
-	["swingbar"] = true,                                -- enable swingbar over player unit
+	["swingbar"] = false,                                -- enable swingbar over player unit disabled by default
 }
    -- credit Elv
 C["interruptanncounce"] = {
@@ -96,7 +96,7 @@ C["actionbar"] = {
 
 C["castbar"] = { 
 	["classcolor"] = true, -- classcolor
-	["castbarcolor"] = { .2,.2,.2,1 }, -- color if classcolor = false
+	["castbarcolor"] = { .0, 0.6, 1,1 }, -- color if classcolor = false
 	["nointerruptcolor"] = { 1,.2,.2,1 }, -- color of casts which can't be interrupted
 }
 
@@ -143,7 +143,7 @@ C["datatext"] = {
 
 	-- Color Datatext
 	["classcolor"] = true,                -- classcolored datatexts 
-	["color"] = "|cff808080",              -- datatext color if classcolor = false
+	["color"] = "|cff00AAFF",              -- datatext color if classcolor = false
 
 	["fontsize"] = 14,                     -- font size for panels.
 	["fontflag"] = "OUTLINEMONOCHROME",             -- font ouline   
@@ -156,6 +156,15 @@ C["chat"] = {
 	["tabcolor"] = {150/255, 150/255, 150/255},              -- color of chat tabs, disabled if classcolor is true
 	["tabmouseover"] = {1,1,1,1},          -- color of tabs on mouse-over
 	["classcolortab"] = true,             -- color chat tabs based on class
+	-- credit Hydra
+	["names"] = { -- name alert in chat change to your own names
+	    "Jásje", 
+		"Jasje", 
+	    "Jasjè",  
+	    "Noshì",
+	    "Noshi", 
+	    "Tom",
+	},              
 }
 
 C["nameplate"] = {
