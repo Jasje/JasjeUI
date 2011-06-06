@@ -344,3 +344,5 @@ init:SetScript("OnEvent", function(self, event)
 		DrPepper(TukuiBar5ButtonTop, TukuiBar5)
 	end
 end)
+
+TukuiExitVehicleButtonLeft:SetBackdropBorderColor(color.r,color.g,color.b)
