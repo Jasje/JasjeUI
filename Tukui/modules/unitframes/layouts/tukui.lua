@@ -1467,37 +1467,41 @@ oUF:RegisterStyle('Tukui', Shared)
 
 -- player
 local player = oUF:Spawn('player', "TukuiPlayer")
-if (C["actionbar"].sidebarWidth == 4) or (C["actionbar"].sidebarWidth == 5) or (C["actionbar"].sidebarWidth == 6) then
-player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 65)
-else
-player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", -127, 55)
-end
 	player:Size(220, 26)
+	
+-- target
+local target = oUF:Spawn('target', "TukuiTarget")
+	target:Size(220, 26)
 
+-- tot
+local tot = oUF:Spawn('targettarget', "TukuiTargetTarget")
+	tot:Size(100, 26)
+
+-- pet
+local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
+	pet:SetSize(100, 26)
+	
+local AddonLayout = CreateFrame("Frame")
+AddonLayout:RegisterEvent("ADDON_LOADED")
+AddonLayout:SetScript("OnEvent", function(self, event, addon)
+	if addon == "Tukui_Raid" then
+		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", 120, 55)
+		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", -120, 55)
+		tot:SetPoint("RIGHT", TukuiTarget, "LEFT", -17, -0)
+		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 25)
+	elseif addon == "Tukui_Raid_Healing" then
+		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 55)
+		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 55)
+		tot:SetPoint("LEFT", TukuiTarget, "RIGHT", -100, -45)
+		pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", 100, -45)
+	end
+end)
+	
 -- focus
 local focus = oUF:Spawn('focus', "TukuiFocus")
 focus:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 25)
     focus:Size(220, 26)
 	
--- target
-local target = oUF:Spawn('target', "TukuiTarget")
-if (C["actionbar"].sidebarWidth == 4) or (C["actionbar"].sidebarWidth == 5) or (C["actionbar"].sidebarWidth == 6) then
-target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 65)
-else
-target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 127, 55)
-end
-	target:Size(220, 26)
-
--- tot
-local tot = oUF:Spawn('targettarget', "TukuiTargetTarget")
-tot:SetPoint("LEFT", TukuiTarget, "RIGHT", -100, -45)
-	tot:Size(100, 26)
-
--- pet
-local pet = oUF:Spawn('pet', "oUF_Tukz_pet")
-pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", 100, -45)
-	pet:SetSize(100, 26)
-
 -- focus target
 if C.unitframes.showfocustarget then	
 local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
