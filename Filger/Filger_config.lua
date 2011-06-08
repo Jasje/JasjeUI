@@ -99,6 +99,16 @@ ns.Filger_Spells = {
 			-- Power Word: Shield
 			{ spellID = 17, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 		},
+		{
+			Name = "Cooldown",
+			Direction = "LEFT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, -55, 5 },
+
+			-- Mind Blast
+			{ spellID = 8092, size = 36, filter = "CD" },
+		},	
 	    {
 			Name = "Priest Procs",
 			Direction = "RIGHT",
@@ -132,12 +142,12 @@ ns.Filger_Spells = {
 			-- Psychic Scream
 			{ spellID = 8122, size = 36, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Shadow Word: Pain
-			{ spellID = 589, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			--{ spellID = 589, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Devouring Plague
-			{ spellID = 2944, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			--{ spellID = 2944, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Vampiric Touch
-			{ spellID = 34914, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
-						-- Prayer of Mending
+			--{ spellID = 34914, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Prayer of Mending
 			{ spellID = 41635, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
 			-- Guardian Spirit
 			{ spellID = 47788, size = 36, unitId = "target", caster = "player", filter = "BUFF" },
