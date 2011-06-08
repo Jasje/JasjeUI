@@ -6,8 +6,11 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 local TukuiMinimap = CreateFrame("Frame", "TukuiMinimap", UIParent)
 TukuiMinimap:CreatePanel("Default", 1, 1, "CENTER", UIParent, "CENTER", 0, 0)
 TukuiMinimap:RegisterEvent("ADDON_LOADED")
-TukuiMinimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", T.Scale(-10), T.Scale(-15))
-TukuiMinimap:SetSize(T.Scale(144), T.Scale(144))
+TukuiMinimap:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES")
+TukuiMinimap:RegisterEvent("UPDATE_PENDING_MAIL")
+TukuiMinimap:RegisterEvent("PLAYER_ENTERING_WORLD")
+TukuiMinimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -24, -22)
+TukuiMinimap:Size(144)
 TukuiMinimap:SetClampedToScreen(true)
 TukuiMinimap:SetMovable(true)
 TukuiMinimap.text = T.SetFontString(TukuiMinimap, C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
@@ -50,7 +53,7 @@ GameTimeFrame:Hide()
 MiniMapMailFrame:ClearAllPoints()
 MiniMapMailFrame:Point("TOPRIGHT", Minimap, 3, 3)
 MiniMapMailBorder:Hide()
-MiniMapMailIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\Jmail") -- made my own mail icon 
+MiniMapMailIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\mail")
 
 -- Move battleground icon
 MiniMapBattlefieldFrame:ClearAllPoints()
@@ -79,8 +82,7 @@ end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- reskin LFG dropdown
-LFDSearchStatus:SetTemplate("Transparent")
-LFDSearchStatus:SetBorder()
+LFDSearchStatus:SetTemplate("Default")
 
 -- for t13+, if we move map we need to point LFDSearchStatus according to our Minimap position.
 local function UpdateLFGTooltip()
@@ -114,14 +116,48 @@ Minimap:SetMaskTexture(C.media.blank)
 function GetMinimapShape() return "SQUARE" end
 
 -- do some stuff on addon loaded or player login event
-TukuiMinimap:RegisterEvent("PLAYER_LOGIN")
-TukuiMinimap:RegisterEvent("ADDON_LOADED")
 TukuiMinimap:SetScript("OnEvent", function(self, event, addon)
 	if event == "PLAYER_LOGIN" then
 		UpdateLFGTooltip()
 	elseif addon == "Blizzard_TimeManager" then
 		-- Hide Game Time
 		TimeManagerClockButton:Kill()
+	else
+		local inv = CalendarGetNumPendingInvites()
+		local mail = HasNewMail()
+		if inv > 0 and mail then -- New invites and mail
+			TukuiMinimap:SetBackdropBorderColor(1, .5, 0)
+			if TukuiMinimapStatsLeft then
+				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, .5, 0)
+			end
+			if TukuiMinimapStatsRight then
+				TukuiMinimapStatsRight:SetBackdropBorderColor(1, .5, 0)
+			end
+		elseif inv > 0 and not mail then -- New invites and no mail
+			TukuiMinimap:SetBackdropBorderColor(1, 30/255, 60/255)
+			if TukuiMinimapStatsLeft then
+				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, 30/255, 60/255)
+			end
+			if TukuiMinimapStatsRight then
+				TukuiMinimapStatsRight:SetBackdropBorderColor(1, 30/255, 60/255)
+			end
+		elseif inv==0 and mail then -- No invites and new mail
+			TukuiMinimap:SetBackdropBorderColor(0, 1, 0)
+			if TukuiMinimapStatsLeft then
+				TukuiMinimapStatsLeft:SetBackdropBorderColor(0, 1, 0)
+			end
+			if TukuiMinimapStatsRight then
+				TukuiMinimapStatsRight:SetBackdropBorderColor(0, 1, 0)
+			end
+		else -- None of the above
+			TukuiMinimap:SetBackdropBorderColor(unpack(C.media.bordercolor))
+			if TukuiMinimapStatsLeft then
+				TukuiMinimapStatsLeft:SetBackdropBorderColor(unpack(C.media.bordercolor))
+			end
+			if TukuiMinimapStatsRight then
+				TukuiMinimapStatsRight:SetBackdropBorderColor(unpack(C.media.bordercolor))
+			end
+		end
 	end
 end)
 
@@ -129,48 +165,61 @@ end)
 -- Right click menu, used to show micro menu
 ----------------------------------------------------------------------------------------
 
---Hax so i don't have to localize this word, remove '/' and capitalize first letter
-local calendar_string = string.gsub(SLASH_CALENDAR1, "/", "")
-calendar_string = string.gsub(calendar_string, "^%l", string.upper)
-
 local menuFrame = CreateFrame("Frame", "TukuiMinimapMiddleClickMenu", TukuiMinimap, "UIDropDownMenuTemplate")
 local menuList = {
-    {text = CHARACTER_BUTTON,
-    func = function() ToggleCharacter("PaperDollFrame") end},
-    {text = SPELLBOOK_ABILITIES_BUTTON,
-    func = function() ToggleFrame(SpellBookFrame) end},
-    {text = TALENTS_BUTTON,
-    func = function() if not PlayerTalentFrame then LoadAddOn("Blizzard_TalentUI") end if not GlyphFrame then LoadAddOn("Blizzard_GlyphUI") end PlayerTalentFrame_Toggle() end},
-    {text = ACHIEVEMENT_BUTTON,
-    func = function() ToggleAchievementFrame() end},
-    {text = QUESTLOG_BUTTON,
-    func = function() ToggleFrame(QuestLogFrame) end},
-    {text = SOCIAL_BUTTON,
-    func = function() ToggleFriendsFrame(1) end},
-	{text = calendar_string,
-	func = function() GameTimeFrame:Click() end},
-    {text = PLAYER_V_PLAYER,
-    func = function() ToggleFrame(PVPFrame) end},
-    {text = ACHIEVEMENTS_GUILD_TAB,
-    func = function() if IsInGuild() then if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end GuildFrame_Toggle() end end},
-    {text = LFG_TITLE,
-    func = function() ToggleFrame(LFDParentFrame) end},
-    {text = LOOKING_FOR_RAID,
-    func = function() ToggleFrame(LFRParentFrame) end},
-    {text = HELP_BUTTON,
-    func = function() ToggleHelpFrame() end},
-    {text = CALENDAR_VIEW_EVENT,
-    func = function()
-    if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
-        Calendar_Toggle()
-    end},
+	{text = CHARACTER_BUTTON,
+	func = function() ToggleCharacter("PaperDollFrame") end},
+	{text = SPELLBOOK_ABILITIES_BUTTON,
+	func = function() ToggleFrame(SpellBookFrame) end},
+	{text = TALENTS_BUTTON,
+	func = function() 
+		if not PlayerTalentFrame then 
+			LoadAddOn("Blizzard_TalentUI") 
+		end 
+
+		if not GlyphFrame then 
+			LoadAddOn("Blizzard_GlyphUI") 
+		end 
+		PlayerTalentFrame_Toggle() 
+	end},
+	{text = ACHIEVEMENT_BUTTON,
+	func = function() ToggleAchievementFrame() end},
+	{text = QUESTLOG_BUTTON,
+	func = function() ToggleFrame(QuestLogFrame) end},
+	{text = SOCIAL_BUTTON,
+	func = function() ToggleFriendsFrame(1) end},
+	{text = PLAYER_V_PLAYER,
+	func = function() ToggleFrame(PVPFrame) end},
+	{text = ACHIEVEMENTS_GUILD_TAB,
+	func = function() 
+		if IsInGuild() then 
+			if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end 
+			GuildFrame_Toggle() 
+		else 
+			if not LookingForGuildFrame then LoadAddOn("Blizzard_LookingForGuildUI") end 
+			LookingForGuildFrame_Toggle() 
+		end
+	end},
+	{text = LFG_TITLE,
+	func = function() ToggleFrame(LFDParentFrame) end},
+	{text = LOOKING_FOR_RAID,
+	func = function() ToggleFrame(LFRParentFrame) end},
+	{text = HELP_BUTTON,
+	func = function() ToggleHelpFrame() end},
+	{text = CALENDAR_VIEW_EVENT,
+	func = function()
+	if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
+		Calendar_Toggle()
+	end},
+	{text = ENCOUNTER_JOURNAL,
+	func = function() if T.toc >= 40200 then ToggleFrame(EncounterJournal) end end}, 
 }
 
 Minimap:SetScript("OnMouseUp", function(self, btn)
 	local position = TukuiMinimap:GetPoint()
 	if btn == "RightButton" then
 		local xoff = 0
-		
+
 		if position:match("RIGHT") then xoff = T.Scale(-16) end
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, TukuiMinimap, xoff, T.Scale(-2))
 	elseif btn == "MiddleButton" then
@@ -183,9 +232,6 @@ Minimap:SetScript("OnMouseUp", function(self, btn)
 		Minimap_OnClick(self)
 	end
 end)
-
--- eyefinity fix to not show tracking behind bezel
---MiniMapTrackingDropDown:SetParent(TukuiMinimap)
 
 ----------------------------------------------------------------------------------------
 -- Mouseover map, displaying zone and coords
@@ -213,7 +259,7 @@ m_coord:SetAlpha(0)
 
 local m_coord_text = m_coord:CreateFontString(nil,"Overlay")
 m_coord_text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-m_coord_text:Point("Center",0,0)
+m_coord_text:Point("Center",-1,0)
 m_coord_text:SetAlpha(0)
 m_coord_text:SetText("00,00")
 
@@ -240,7 +286,7 @@ local coord_Update = function(self,t)
 	x = math.floor(100 * x)
 	y = math.floor(100 * y)
 	if x == 0 and y == 0 then
-		m_coord_text:SetText("-_ 0")
+		m_coord_text:SetText("<(-_-)>")
 	else
 		if x < 10 then
 			xt = "0"..x
