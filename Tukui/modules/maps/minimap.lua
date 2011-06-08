@@ -9,7 +9,7 @@ TukuiMinimap:RegisterEvent("ADDON_LOADED")
 TukuiMinimap:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES")
 TukuiMinimap:RegisterEvent("UPDATE_PENDING_MAIL")
 TukuiMinimap:RegisterEvent("PLAYER_ENTERING_WORLD")
-TukuiMinimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -24, -22)
+TukuiMinimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", T.Scale(-10), T.Scale(-15))
 TukuiMinimap:Size(144)
 TukuiMinimap:SetClampedToScreen(true)
 TukuiMinimap:SetMovable(true)
@@ -53,7 +53,7 @@ GameTimeFrame:Hide()
 MiniMapMailFrame:ClearAllPoints()
 MiniMapMailFrame:Point("TOPRIGHT", Minimap, 3, 3)
 MiniMapMailBorder:Hide()
-MiniMapMailIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\mail")
+MiniMapMailIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\Jmail") -- made my own mail icon 
 
 -- Move battleground icon
 MiniMapBattlefieldFrame:ClearAllPoints()
@@ -82,7 +82,7 @@ end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
 
 -- reskin LFG dropdown
-LFDSearchStatus:SetTemplate("Default")
+LFDSearchStatus:SetTemplate("Transparent")
 
 -- for t13+, if we move map we need to point LFDSearchStatus according to our Minimap position.
 local function UpdateLFGTooltip()

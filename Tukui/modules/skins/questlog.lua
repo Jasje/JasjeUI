@@ -2,7 +2,7 @@ local T, C, L = unpack(select(2, ...))
 local function LoadSkin()
 	T.SkinCloseButton(QuestLogFrameCloseButton)
 	QuestLogFrame:StripTextures()
-	QuestLogFrame:SetTemplate("Default")
+	QuestLogFrame:SetTemplate("Transparent")
 	QuestLogFrame:CreateShadow("Default")
 	QuestLogCount:StripTextures()
 

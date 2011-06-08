@@ -132,7 +132,7 @@ local function LoadSkin()
 	hooksecurefunc("FriendsFrame_OnEvent", UpdateWhoSkins)
 
 	ChannelFrameDaughterFrame:CreateBackdrop("Transparent")
-	FriendsFrame:CreateBackdrop("Default")
+	FriendsFrame:CreateBackdrop("Transparent")
 	FriendsFrame.backdrop:Point( "TOPLEFT", FriendsFrame, "TOPLEFT", 11,-12)
 	FriendsFrame.backdrop:Point( "BOTTOMRIGHT", FriendsFrame, "BOTTOMRIGHT", -35, 76)
 	T.SkinCloseButton(ChannelFrameDaughterFrameDetailCloseButton,ChannelFrameDaughterFrame)
