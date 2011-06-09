@@ -5,11 +5,17 @@
 
 	* written by: Sideshow, Draenor EU
 	* initial release: May 21th, 2010
-	* last updated: April 27th, 2011
+	* last updated: June 9th, 2011
 
 ---------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
+
+	Version 0.938
+	* updated bossIds (author: elsia)
+	* added option "Hide In Combat" (Options -> Various)
+	* using the "/tdps" command has now permanent effect
+	* middle clicking the frame resets all data which is now also the case for the minimap button
 
 	Version 0.937
 	* fixes for WoW 4.1
@@ -280,6 +286,7 @@
 		tdpsL.various = '전환'
 		tdpsL.hideInPvP = '전장/투기장에서 숨김'
 		tdpsL.hideWhenSolo = '솔로잉시 숨김'
+		tdpsL.hideInCombat = 'Hide In Combat (needs translatation)'
 		tdpsL.hideOutOfCombat = '비전투시 숨김'
 		tdpsL.growUpwards = '하단을 기준으로'
 		tdpsL.minimapButton = '미니맵 버튼 보기'
@@ -384,6 +391,7 @@
 		tdpsL.various = 'Дополнительно'
 		tdpsL.hideInPvP = 'Скрывать в PvP'
 		tdpsL.hideWhenSolo = 'Скрывать вне группы'
+		tdpsL.hideInCombat = 'Hide In Combat (needs translatation)'
 		tdpsL.hideOutOfCombat = 'Показывать только в бою'
 		tdpsL.growUpwards = 'Отображать новые полосы над предыдущими'
 		tdpsL.minimapButton = 'Кнопка у миникарты'
@@ -488,6 +496,7 @@
 		tdpsL.various = 'Verschiedenes'
 		tdpsL.hideInPvP = 'In PvP verstecken'
 		tdpsL.hideWhenSolo = 'Wenn solo, verstecken'
+		tdpsL.hideInCombat = 'Hide In Combat (needs translatation)'
 		tdpsL.hideOutOfCombat = 'Außerhalb des Kampfes verstecken'
 		tdpsL.growUpwards = 'Aufwärts auflisten'
 		tdpsL.minimapButton = 'Minimap Button'
@@ -590,8 +599,10 @@
 		tdpsL.keepOnlyBossFights = 'Keep Only Boss Fights'
 
 		tdpsL.various = 'Various'
+		tdpsL.hideAlways = 'Hide Always'
 		tdpsL.hideInPvP = 'Hide In PvP'
 		tdpsL.hideWhenSolo = 'Hide When Solo'
+		tdpsL.hideInCombat = 'Hide In Combat'
 		tdpsL.hideOutOfCombat = 'Hide Out Of Combat'
 		tdpsL.growUpwards = 'Grow Upwards'
 		tdpsL.minimapButton = 'Minimap Button'
@@ -722,7 +733,8 @@
 	}
 
 
-	local isBoss = { -- LibBossIDs-1.0 r55 (Author: Elsia) http://www.wowace.com/addons/libbossids-1-0
+
+	local isBoss = { -- LibBossIDs-1.0 r65 (Author: Elsia) http://www.wowace.com/addons/libbossids-1-0
 
 	   -------------------------------------------------------------------------------
 	   -- Abyssal Maw: Throne of the Tides
@@ -731,7 +743,8 @@
 	   [40765]	= true,	-- Commander Ulthok
 	   [40825]	= true,	-- Erunak Stonespeaker
 	   [40788]	= true,	-- Mindbender Ghur'sha
-	   [42172]	= true,	-- Ozumat
+	   [42172]	= true,	-- Ozumat? Not in heroic! /Mikk
+	   [44566]  = true, -- Ozumat - confirmed in heroic! /Mikk
 
 	   -------------------------------------------------------------------------------
 	   -- Ahn'kahet: The Old Kingdom
@@ -896,6 +909,9 @@
 	   -- Blackrock Mountain: Blackwing Descent
 	   -------------------------------------------------------------------------------
 	   [41570]	= true,	-- Magmaw
+	   [42166]	= true,	-- Arcanotron
+	   [42178]	= true,	-- Magmatron
+	   [42179]	= true,	-- Electron
 	   [42180]	= true,	-- Toxitron
 	   [41378]	= true,	-- Maloriak
 	   [41442]	= true,	-- Atramedes
@@ -1034,13 +1050,24 @@
 	   [27483]	= true,	-- King Dred
 	   [26632]	= true,	-- The Prophet Tharon'ja
 	   [27696]	= true,	-- The Prophet Tharon'ja
-
+	   
+	   -------------------------------------------------------------------------------
+	   -- Firelands 4.2 PTR
+	   -------------------------------------------------------------------------------
+	   [52530]	= true,	-- Alysrazor
+	   [53494]	= true,	-- Baleroc
+	   [52498]	= true,	-- Bethtilac
+	   [52571]	= true,	-- FandralStaghelm
+	   [52409]	= true,	-- Ragnaros
+	   [52558]	= true,	-- Rhyolith
+	   [53691]	= true,	-- Shannox
+	   
 	   -------------------------------------------------------------------------------
 	   -- Forge of Souls
 	   -------------------------------------------------------------------------------
 	   [36497]	= true,	-- Bronjahm
 	   [36502]	= true,	-- Devourer of Souls
-
+		  
 	   -------------------------------------------------------------------------------
 	   -- Gnomeregan
 	   -------------------------------------------------------------------------------
@@ -1517,6 +1544,10 @@
 	   [1666]	= true,	-- Kam Deepfury
 	   [1696]	= true,	-- Targorr the Dread
 	   [1720]	= true,	-- Bruegal Ironknuckle
+	   -- Cata:
+	   [46383]  = true, -- Randolph Moloch
+	   [46264]  = true, -- Lord Overheat
+	   [46254]  = true, -- Hogger
 
 	   -------------------------------------------------------------------------------
 	   -- Stratholme: Scarlet Stratholme
@@ -1666,6 +1697,10 @@
 	   [45992]	= true,	-- Valiona
 	   [45993]	= true,	-- Theralion
 	   [44600]	= true,	-- Halfus Wyrmbreaker
+	   [43686]	= true,	-- Ignacious
+	   [43687]	= true,	-- Feludius
+	   [43688]	= true,	-- Arion
+	   [43689]	= true,	-- Terrastra
 	   [43735]	= true,	-- Elementium Monstrosity
 	   [43324]	= true, -- Cho'gall
 	   [45213]	= true,	-- Sinestra (heroic) drycoded from http://db.mmo-champion.com/c/45213/sinestra/
@@ -2005,21 +2040,18 @@
 	   [10081]	= true,	-- Dustwraith
 
 	   -------------------------------------------------------------------------------
-	   -- Zul'Gurub
+	   -- Zul'Gurub - 4.1
 	   -------------------------------------------------------------------------------
-	   [14517]	= true,	-- High Priestess Jeklik
-	   [14507]	= true,	-- High Priest Venoxis
-	   [14510]	= true,	-- High Priestess Mar'li
-	   [11382]	= true,	-- Bloodlord Mandokir
-	   [15114]	= true,	-- Gahz'ranka
-	   [14509]	= true,	-- High Priest Thekal
-	   [14515]	= true,	-- High Priestess Arlokk
-	   [11380]	= true,	-- Jin'do the Hexxer
-	   [14834]	= true,	-- Hakkar
-	   [15082]	= true,	-- Gri'lek
-	   [15083]	= true,	-- Hazza'rah
-	   [15084]	= true,	-- Renataki
-	   [15085]	= true,	-- Wushoolay
+	   [52053]	=true,	-- Zanzil
+	   [52059]	=true,	-- High Priestess Kilnara
+	   [52148]	=true,	-- Jin'do the Godbreaker
+	   [52151]	=true,	-- Bloodlord Mandokir
+	   [52155]	=true,	-- High Priest Venoxis
+	   -- [52157]	=true,	-- Ohgan (Mandokirs Raptor)  disabled by Mikk- this is an add, not a boss.
+	   [52269]	=true,	-- Renataki
+	   [52258]	=true,	-- Gri'lek
+	   [52271]	=true,	-- Hazza'rah
+	   [52286]	=true,	-- Wushoolay
 
 	}
 
@@ -2201,7 +2233,7 @@
 
 
 
-	-- copy global functions (faster)
+	-- make local copy of global functions (faster)
 	local toNum, select, band = tonumber, select, bit.band
 	local floor, abs = math.floor, abs
 	local t_sort, t_remove, t_insert, t_wipe = table.sort, table.remove, table.insert, table.wipe
@@ -2213,6 +2245,7 @@
 
 
 
+	-- some random functions
 	local function round(num, idp) return floor(num * (10^(idp or 0)) + .5) / (10^(idp or 0)) end
 	local function echo(str) print('|cfffef00fTinyDPS |cff82e2eb' .. (str or '')) end
 	local function getClass(name) return select(2,UnitClass(name)) or 'UNKNOWN' end
@@ -2293,7 +2326,8 @@
 
 		if (tdps.hidePvP and isPvpZone()) -- hide in pvp is true and we are in pvp zone
 				or (tdps.hideSolo and math.max(GetNumPartyMembers(), GetNumRaidMembers()) == 0) -- hide when solo is true and we are alone
-				or (tdps.hideOOC and not UnitAffectingCombat('player')) then -- hide when ooc is true and we are not fighting
+				or (tdps.hideOOC and not UnitAffectingCombat('player')) -- hide when ooc is true and we are not fighting
+				or (tdps.hideIC and UnitAffectingCombat('player')) then -- hide when in combat is true and we are fighting
 			tdpsFrame:Hide()
 		else
 			tdpsFrame:Show()
@@ -2618,7 +2652,7 @@
 
 
 	local function reset()
-		-- hide all bars
+		-- hide all bars in the GUI
 		for i=1,#bar do bar[i]:ClearAllPoints() bar[i]:Hide() end
 		-- delete data
 		tdpsPlayer, tdpsPet, tdpsLink, tdpsFight, bar = {}, {}, {}, {}, {}
@@ -2641,6 +2675,22 @@
 
 
 
+	local function toggle()
+		if tdpsFrame:IsVisible() then
+			CloseDropDownMenus()
+			tdps.hidePvP, tdps.hideSolo, tdps.hideIC, tdps.hideOOC = true, true, true, true
+			tdpsFrame:Hide() 
+		else
+			CloseDropDownMenus()
+			tdps.hidePvP, tdps.hideSolo, tdps.hideIC, tdps.hideOOC = nil, nil, nil, nil
+			tdpsRefresh()
+			tdpsFrame:Show()
+		end
+		PlaySound('gsTitleOptionExit')
+	end
+
+
+
 	SLASH_TINYDPS1, SLASH_TINYDPS2 = '/tinydps', '/tdps'
 	function SlashCmdList.TINYDPS(msg, editbox)
 		msg = strlower(msg)
@@ -2651,7 +2701,7 @@
 		elseif tok(' ',msg) == 'visiblebars' and tonumber(select(2,tok(' ',msg))) then tdpsVisibleBars = min(40, max(1, tonumber(select(2,tok(' ',msg))))) scrollPos = 1 tdpsRefresh()
 		elseif tok(' ',msg) == 'whisper' and select(2,tok(' ',msg)) then report(nil, 'WHISPER', select(2,tok(' ',msg)))
 		elseif msg == 'help' or msg == '?' then help()
-		elseif msg == '' then if tdpsFrame:IsVisible() then tdpsFrame:Hide() else tdpsRefresh() tdpsFrame:Show() end
+		elseif msg == '' then toggle()
 		else slashhelp() end
 	end
 
@@ -2666,6 +2716,7 @@
 
 
 
+	-- function for adding buttons in the context menu
 	local function newBu(...) -- level, text, title, notCheckable, hasArrow, value, keepShownOnClick, func, arg1, arg2, checked, disabled, isNotRadio, hasColorSwatch, swatchFunc, hasOpacity, opacityFunc, r, g, b, opacity, notClickable
 		level, bu.text, bu.isTitle, bu.notCheckable, bu.hasArrow, bu.value, bu.keepShownOnClick, bu.func, bu.arg1, bu.arg2, bu.checked, bu.disabled, bu.isNotRadio, bu.hasColorSwatch, bu.swatchFunc, bu.hasOpacity, bu.opacityFunc, bu.r, bu.g, bu.b, bu.opacity, bu.notClickable = ...
 		UIDropDownMenu_AddButton(bu, level)
@@ -2802,6 +2853,7 @@
 
 			newBu(level, tdpsL.hideInPvP, nil, nil, nil, nil, 1, function() tdps.hidePvP = not tdps.hidePvP visibilityEvent() end, nil, nil, tdps.hidePvP, nil, 1)
 			newBu(level, tdpsL.hideWhenSolo, nil, nil, nil, nil, 1, function() tdps.hideSolo = not tdps.hideSolo visibilityEvent() end, nil, nil, tdps.hideSolo, nil, 1)
+			newBu(level, tdpsL.hideInCombat, nil, nil, nil, nil, 1, function() tdps.hideIC = not tdps.hideOOC visibilityEvent() end, nil, nil, tdps.hideIC, nil, 1)
 			newBu(level, tdpsL.hideOutOfCombat, nil, nil, nil, nil, 1, function() tdps.hideOOC = not tdps.hideOOC visibilityEvent() end, nil, nil, tdps.hideOOC, nil, 1)
 			newBu(level, '', nil, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 			newBu(level, tdpsL.growUpwards, nil, nil, nil, nil, 1, function() if tdps.anchor == 'TOPLEFT' then tdps.anchor = 'BOTTOMLEFT' else tdps.anchor = 'TOPLEFT' end tdpsFrame:ClearAllPoints() tdpsFrame:SetPoint(tdps.anchor, tdpsAnchor, tdps.anchor) end, nil, nil, function() if tdps.anchor == 'BOTTOMLEFT' then return true end end, nil, 1)
@@ -2810,8 +2862,8 @@
 			newBu(level, tdpsL.refreshEverySecond, nil, nil, nil, nil, 1, function() if tdps.speed == 2 then tdps.speed = 1 else tdps.speed = 2 end end, nil, nil, function() if tdps.speed == 1 then return true end end, nil, 1)
 			newBu(level, '', nil, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 			newBu(level, tdpsL.trackSpellDetails, nil, nil, nil, nil, 1, function() tdps.trackSpells = not tdps.trackSpells if not tdps.trackSpells then deleteSpellData() end end, nil, nil, tdps.trackSpells, nil, 1)
-			newBu(level, fmt(tdpsL.spells, tdps.tooltipSpells), nil, 1, nil, nil, 1, function() if tdps.tooltipSpells == 10 then tdps.tooltipSpells = 0 else tdps.tooltipSpells = tdps.tooltipSpells + 1 end DropDownList3Button11:SetFormattedText(tdpsL.spells, tdps.tooltipSpells) end)
-			newBu(level, fmt(tdpsL.targets, tdps.tooltipTargets), nil, 1, nil, nil, 1, function() if tdps.tooltipTargets == 10 then tdps.tooltipTargets = 0 else tdps.tooltipTargets = tdps.tooltipTargets + 1 end DropDownList3Button12:SetFormattedText(tdpsL.targets, tdps.tooltipTargets) end)
+			newBu(level, fmt(tdpsL.spells, tdps.tooltipSpells), nil, 1, nil, nil, 1, function() if tdps.tooltipSpells == 10 then tdps.tooltipSpells = 0 else tdps.tooltipSpells = tdps.tooltipSpells + 1 end DropDownList3Button12:SetFormattedText(tdpsL.spells, tdps.tooltipSpells) end)
+			newBu(level, fmt(tdpsL.targets, tdps.tooltipTargets), nil, 1, nil, nil, 1, function() if tdps.tooltipTargets == 10 then tdps.tooltipTargets = 0 else tdps.tooltipTargets = tdps.tooltipTargets + 1 end DropDownList3Button13:SetFormattedText(tdpsL.targets, tdps.tooltipTargets) end)
 			newBu(level, '', nil, 1, nil, nil, nil, nil, nil, nil, nil, 1)
 			newBu(level, tdpsL.keepOnlyBossFights, nil, nil, nil, nil, 1, function() tdps.onlyBossSegments = not tdps.onlyBossSegments end, nil, nil, tdps.onlyBossSegments, nil, 1)
 			newBu(level, fmt(tdpsL.history, tdpsNumberOfFights - 2), nil, 1, nil, nil, 1, changeNumberOfFights)
@@ -3061,16 +3113,20 @@
 
 		local arg1, arg2, arg4, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14 = ...
 
-		-- return on outsider
+		-- return when source is an outsider
 		if arg6%8 == 0 then return end
 
-		-- track absorbs or do fake healing event
+		-- track absorbs
 		if arg2 == 'SPELL_AURA_APPLIED' and arg9%8>0 and isAbsorb[arg10] then tdpsShield[arg4..arg10..arg7] = arg14 return
 		elseif arg2 == 'SPELL_AURA_REFRESH' and arg9%8>0 and isAbsorb[arg10] and tdpsShield[arg4..arg10..arg7] then
-			if tdpsShield[arg4..arg10..arg7] - arg14 > 0 then tdpsCombatEvent(self, event, arg1, 'SPELL_HEAL', arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, tdpsShield[arg4..arg10..arg7] - arg14, 0, 0, 0) end
+			-- launch a fake healing event
+			if tdpsShield[arg4..arg10..arg7] - arg14 > 0 then tdpsCombatEvent(self, event, arg1, 'SPELL_HEAL', arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, tdpsShield[arg4..arg10..arg7] - arg14, 0, 0, 0) end
+			-- add the new value to the shield
 			tdpsShield[arg4..arg10..arg7] = arg14 return
 		elseif arg2 == 'SPELL_AURA_REMOVED' and arg9%8>0 and isAbsorb[arg10] and tdpsShield[arg4..arg10..arg7] then
-			if tdpsShield[arg4..arg10..arg7] - arg14 > 0 then tdpsCombatEvent(self, event, arg1, 'SPELL_HEAL', arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, tdpsShield[arg4..arg10..arg7] - arg14, 0, 0, 0) end
+			-- launch a fake healing event
+			if tdpsShield[arg4..arg10..arg7] - arg14 > 0 then tdpsCombatEvent(self, event, arg1, 'SPELL_HEAL', arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, tdpsShield[arg4..arg10..arg7] - arg14, 0, 0, 0) end
+			-- delete the shield
 			tdpsShield[arg4..arg10..arg7] = nil return end
 
 		-- return on invalid event, vehicle, friendly fire, hostile healing, evaded
@@ -3171,7 +3227,7 @@
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
---- scripts ---------------------------------------------------------------------------------------------------------------------
+--- addon scripts ---------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -3187,13 +3243,13 @@
 		ver()
 
 		-- global version mismatch
-		if curVer ~= tdps.version and '0.935' ~= tdps.version and '0.936' ~= tdps.version then
+		if curVer ~= tdps.version and '0.935' ~= tdps.version and '0.936' ~= tdps.version and '0.937' ~= tdps.version then
 			initialiseSavedVariables()
 			echo('Global variables have been reset to version ' .. curVer)
 		end
 
 		-- character version mismatch
-		if curVer ~= tdpsVersion and '0.935' ~= tdpsVersion and '0.936' ~= tdpsVersion then
+		if curVer ~= tdpsVersion and '0.935' ~= tdpsVersion and '0.936' ~= tdpsVersion and '0.937' ~= tdpsVersion then
 			initialiseSavedVariablesPerCharacter()
 			echo('Character variables have been reset to version ' .. curVer)
 			tdpsFrame:SetHeight(tdps.barHeight + 4)
@@ -3246,6 +3302,7 @@
 
 
 
+	-- all events that can show or hide the main window
 	tdpsAnchor:RegisterEvent('PLAYER_REGEN_ENABLED')
 	tdpsAnchor:RegisterEvent('PLAYER_REGEN_DISABLED')
 	tdpsAnchor:RegisterEvent('PARTY_MEMBERS_CHANGED')
@@ -3265,6 +3322,7 @@
 
 
 
+	-- onupdate
 	local sec = 2
 	function tdpsOnUpdate(self, elapsed)
 		sec = sec + elapsed
@@ -3272,8 +3330,9 @@
 			checkCombat()
 			if not tdpsInCombat then
 				tdpsStartNewFight = true
-				tdpsAnchor:SetScript('OnUpdate', nil)
+				tdpsAnchor:SetScript('OnUpdate', nil) -- this onupdate function is automatically halted if we go out of combat. It's restarted when a combat event happens (see function tdpsCombatEvent)
 			end
+			-- conditional refresh of the main window
 			if tdpsFrame:IsVisible() and not isMovingOrSizing and not tdpsAnimationGroup:IsPlaying() then tdpsRefresh() end
 			sec = 0
 		end
@@ -3327,16 +3386,13 @@
 
 	tdpsButtonFrame:SetScript('OnMouseDown', function(self, button)
 		if button == 'RightButton' then ToggleDropDownMenu(1, nil, tdpsDropDown, 'cursor', 0, 0) end
+		if button == 'MiddleButton' then reset() end
 	end)
 
 
 
 	tdpsButtonFrame:SetScript('OnMouseUp', function(self, button)
-		if button == 'LeftButton' then
-			if tdpsFrame:IsVisible() then tdpsFrame:Hide()
-			else tdpsRefresh() tdpsFrame:Show() end
-			PlaySound('gsTitleOptionExit')
-		end
+		if button == 'LeftButton' then toggle() end
 	end)
 
 
