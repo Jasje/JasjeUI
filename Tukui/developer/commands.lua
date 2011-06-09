@@ -8,31 +8,31 @@ SlashCmdList["FRAME"] = function(arg)
 	end
 	if arg ~= nil and arg:GetName() ~= nil then
 		local point, relativeTo, relativePoint, xOfs, yOfs = arg:GetPoint()
-		ChatFrame1:AddMessage("|cffCC0000~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-		ChatFrame1:AddMessage("Name: |cffFFD100"..arg:GetName())
+		ChatFrame1:AddMessage(hexa.."~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+		ChatFrame1:AddMessage(hexa.."Name: "..hexb..arg:GetName())
 		if arg:GetParent() then
-			ChatFrame1:AddMessage("Parent: |cffFFD100"..arg:GetParent():GetName())
+			ChatFrame1:AddMessage(hexa.."Parent: "..hexb..arg:GetParent():GetName())
 		end
  
-		ChatFrame1:AddMessage("Width: |cffFFD100"..format("%.2f",arg:GetWidth()))
-		ChatFrame1:AddMessage("Height: |cffFFD100"..format("%.2f",arg:GetHeight()))
-		ChatFrame1:AddMessage("Strata: |cffFFD100"..arg:GetFrameStrata())
-		ChatFrame1:AddMessage("Level: |cffFFD100"..arg:GetFrameLevel())
+		ChatFrame1:AddMessage(hexa.."Width: "..hexb..format("%.2f",arg:GetWidth()))
+		ChatFrame1:AddMessage(hexa.."Height: "..hexb..format("%.2f",arg:GetHeight()))
+		ChatFrame1:AddMessage(hexa.."Strata: "..hexb..arg:GetFrameStrata())
+		ChatFrame1:AddMessage(hexa.."Level: "..hexb..arg:GetFrameLevel())
  
 		if xOfs then
-			ChatFrame1:AddMessage("X: |cffFFD100"..format("%.2f",xOfs))
+			ChatFrame1:AddMessage(hexa.."X: "..hexb..format("%.2f",xOfs))
 		end
 		if yOfs then
-			ChatFrame1:AddMessage("Y: |cffFFD100"..format("%.2f",yOfs))
+			ChatFrame1:AddMessage(hexa.."Y: "..hexb..format("%.2f",yOfs))
 		end
 		if relativeTo then
-			ChatFrame1:AddMessage("Point: |cffFFD100"..point.."|r anchored to "..relativeTo:GetName().."'s |cffFFD100"..relativePoint)
+			ChatFrame1:AddMessage(hexa.."Point: "..hexb..point.." anchored to "..relativeTo:GetName().."'s "..hexa..relativePoint)
 		end
-		ChatFrame1:AddMessage("|cffCC0000~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+		ChatFrame1:AddMessage(hexa.."~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 	elseif arg == nil then
-		ChatFrame1:AddMessage("Invalid frame name")
+		ChatFrame1:AddMessage(hexa.."Invalid frame name")
 	else
-		ChatFrame1:AddMessage("Could not find frame info")
+		ChatFrame1:AddMessage(hexa.."Could not find frame info")
 	end
 end
 
