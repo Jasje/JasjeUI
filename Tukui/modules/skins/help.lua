@@ -127,6 +127,15 @@ local function LoadSkin()
 
 		navButtonFrameLevel(self)
 	end)
-end
 
-tinsert(T.SkinFuncs["Tukui"], LoadSkin)
+    T.SkinButton(HelpFrameGM_ResponseNeedMoreHelp)
+	    T.SkinButton(HelpFrameGM_ResponseCancel)
+	    for i=1, HelpFrameGM_Response:GetNumChildren() do
+		    local child = select(i, HelpFrameGM_Response:GetChildren())
+		    if child and child:GetObjectType() == "Frame" and not child:GetName() then
+			    child:SetTemplate("Default")
+		    end
+	    end
+    end
+
+    tinsert(T.SkinFuncs["Tukui"], LoadSkin)
