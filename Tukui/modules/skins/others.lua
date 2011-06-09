@@ -27,11 +27,10 @@ local function LoadSkin()
 
 	for i = 1, getn(skins) do
 		_G[skins[i]]:SetTemplate("Transparent")
-		if _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
+		if _G[skins[i]] ~= _G["GhostFrameContentsFrame"] or _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
 			_G[skins[i]]:CreateShadow("Default")
 		end
 	end
-
 
 	local ChatMenus = {
 		"ChatMenu",
@@ -108,6 +107,29 @@ local function LoadSkin()
 		T.SkinButton(GameMenuButtonOptionHouse)
 	end
 
+	-- skin return to graveyard button
+	do
+		T.SkinButton(GhostFrame)
+		GhostFrame:SetBackdropColor(0,0,0,0)
+		GhostFrame:SetBackdropBorderColor(0,0,0,0)
+		GhostFrame.SetBackdropColor = T.dummy
+		GhostFrame.SetBackdropBorderColor = T.dummy
+		GhostFrame:ClearAllPoints()
+		GhostFrame:SetPoint("TOP", UIParent, "TOP", 0, -150)
+		T.SkinButton(GhostFrameContentsFrame)
+		GhostFrameContentsFrameIcon:SetTexture(nil)
+		local x = CreateFrame("Frame", nil, GhostFrame)
+		x:SetFrameStrata("MEDIUM")
+		x:SetTemplate("Default")
+		x:SetPoint("TOPLEFT", GhostFrameContentsFrameIcon, "TOPLEFT", T.Scale(-2), T.Scale(2))
+		x:SetPoint("BOTTOMRIGHT", GhostFrameContentsFrameIcon, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
+		local tex = x:CreateTexture(nil, "OVERLAY")
+		tex:SetTexture("Interface\\Icons\\spell_holy_guardianspirit")
+		tex:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+		tex:SetPoint("TOPLEFT", x, "TOPLEFT", T.Scale(2), T.Scale(-2))
+		tex:SetPoint("BOTTOMRIGHT", x, "BOTTOMRIGHT", T.Scale(-2), T.Scale(2))
+	end
+	
 	-- hide header textures and move text/buttons.
 	local BlizzardHeader = {
 		"GameMenuFrame", 
