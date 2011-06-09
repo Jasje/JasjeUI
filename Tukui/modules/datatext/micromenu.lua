@@ -15,7 +15,7 @@ local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, vari
 if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 	local Stat = CreateFrame("Frame")
 	Stat:EnableMouse(true)
-	Stat:SetFrameStrata("BACKGROUND")
+	Stat:SetFrameStrata("HIGH")
 	Stat:SetFrameLevel(3)
 
 	local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
@@ -23,18 +23,18 @@ if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 	T.PP(C["datatext"].micromenu, Text)
 
 	local function OnEvent(self, event, ...)
-		Text:SetText(MAINMENU_BUTTON)
+		Text:SetText(hexa..MAINMENU_BUTTON..hexb)
 		self:SetAllPoints(Text)
 	end
 
 	local function OpenMenu()
 		local menuFrame = CreateFrame("Frame", "TukuiDataTextMicroMenu", UIParent, "UIDropDownMenuTemplate")
 		local menuList = {
-			{text = CHARACTER_BUTTON,
+			{text = hexa..CHARACTER_BUTTON..hexb,
 			func = function() ToggleCharacter("PaperDollFrame") end},
-			{text = SPELLBOOK_ABILITIES_BUTTON,
+			{text = hexa..SPELLBOOK_ABILITIES_BUTTON..hexb,
 			func = function() ToggleFrame(SpellBookFrame) end},
-			{text = TALENTS_BUTTON,
+			{text = hexa..TALENTS_BUTTON..hexb,
 			func = function() 
 				if not PlayerTalentFrame then 
 					LoadAddOn("Blizzard_TalentUI") 
@@ -45,15 +45,15 @@ if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 				end 
 				PlayerTalentFrame_Toggle() 
 			end},
-			{text = ACHIEVEMENT_BUTTON,
+			{text = hexa..ACHIEVEMENT_BUTTON..hexb,
 			func = function() ToggleAchievementFrame() end},
-			{text = QUESTLOG_BUTTON,
+			{text = hexa..QUESTLOG_BUTTON..hexb,
 			func = function() ToggleFrame(QuestLogFrame) end},
-			{text = SOCIAL_BUTTON,
+			{text = hexa..SOCIAL_BUTTON..hexb,
 			func = function() ToggleFriendsFrame(1) end},
-			{text = PLAYER_V_PLAYER,
+			{text = hexa..PLAYER_V_PLAYER..hexb,
 			func = function() ToggleFrame(PVPFrame) end},
-			{text = ACHIEVEMENTS_GUILD_TAB,
+			{text = hexa..ACHIEVEMENTS_GUILD_TAB..hexb,
 			func = function() 
 				if IsInGuild() then 
 					if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end 
@@ -63,13 +63,13 @@ if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 					LookingForGuildFrame_Toggle() 
 				end
 			end},
-			{text = LFG_TITLE,
+			{text = hexa..LFG_TITLE..hexb,
 			func = function() ToggleFrame(LFDParentFrame) end},
-			{text = LOOKING_FOR_RAID,
+			{text = hexa..LOOKING_FOR_RAID..hexb,
 			func = function() ToggleFrame(LFRParentFrame) end},
-			{text = HELP_BUTTON,
+			{text = hexa..HELP_BUTTON..hexb,
 			func = function() ToggleHelpFrame() end},
-			{text = CALENDAR_VIEW_EVENT,
+			{text = hexa..CALENDAR_VIEW_EVENT..hexb,
 			func = function()
 			if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
 				Calendar_Toggle()

@@ -167,11 +167,11 @@ end)
 
 local menuFrame = CreateFrame("Frame", "TukuiMinimapMiddleClickMenu", TukuiMinimap, "UIDropDownMenuTemplate")
 local menuList = {
-	{text = CHARACTER_BUTTON,
+	{text = hexa..CHARACTER_BUTTON..hexb,
 	func = function() ToggleCharacter("PaperDollFrame") end},
-	{text = SPELLBOOK_ABILITIES_BUTTON,
+	{text = hexa..SPELLBOOK_ABILITIES_BUTTON..hexb,
 	func = function() ToggleFrame(SpellBookFrame) end},
-	{text = TALENTS_BUTTON,
+	{text = hexa..TALENTS_BUTTON..hexb,
 	func = function() 
 		if not PlayerTalentFrame then 
 			LoadAddOn("Blizzard_TalentUI") 
@@ -182,15 +182,15 @@ local menuList = {
 		end 
 		PlayerTalentFrame_Toggle() 
 	end},
-	{text = ACHIEVEMENT_BUTTON,
+	{text = hexa..ACHIEVEMENT_BUTTON..hexb,
 	func = function() ToggleAchievementFrame() end},
-	{text = QUESTLOG_BUTTON,
+	{text = hexa..QUESTLOG_BUTTON..hexb,
 	func = function() ToggleFrame(QuestLogFrame) end},
-	{text = SOCIAL_BUTTON,
+	{text = hexa..SOCIAL_BUTTON..hexb,
 	func = function() ToggleFriendsFrame(1) end},
-	{text = PLAYER_V_PLAYER,
+	{text = hexa..PLAYER_V_PLAYER..hexb,
 	func = function() ToggleFrame(PVPFrame) end},
-	{text = ACHIEVEMENTS_GUILD_TAB,
+	{text = hexa..ACHIEVEMENTS_GUILD_TAB..hexb,
 	func = function() 
 		if IsInGuild() then 
 			if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end 
@@ -200,13 +200,13 @@ local menuList = {
 			LookingForGuildFrame_Toggle() 
 		end
 	end},
-	{text = LFG_TITLE,
+	{text = hexa..LFG_TITLE..hexb,
 	func = function() ToggleFrame(LFDParentFrame) end},
-	{text = LOOKING_FOR_RAID,
+	{text = hexa..LOOKING_FOR_RAID..hexb,
 	func = function() ToggleFrame(LFRParentFrame) end},
-	{text = HELP_BUTTON,
+	{text = hexa..HELP_BUTTON..hexb,
 	func = function() ToggleHelpFrame() end},
-	{text = CALENDAR_VIEW_EVENT,
+	{text = hexa..CALENDAR_VIEW_EVENT..hexb,
 	func = function()
 	if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
 		Calendar_Toggle()
@@ -286,7 +286,7 @@ local coord_Update = function(self,t)
 	x = math.floor(100 * x)
 	y = math.floor(100 * y)
 	if x == 0 and y == 0 then
-		m_coord_text:SetText("<(-_-)>")
+		m_coord_text:SetText(hexa.."<(-_-)>")
 	else
 		if x < 10 then
 			xt = "0"..x
@@ -298,17 +298,18 @@ local coord_Update = function(self,t)
 		else
 			yt = y
 		end
-		m_coord_text:SetText(xt..","..yt)
+		m_coord_text:SetText(hexa..xt..","..yt)
 	end
 	ela = .2
 end
 m_coord:SetScript("OnUpdate",coord_Update)
  
+local color = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 local zone_Update = function()
 	local pvp = GetZonePVPInfo()
 	m_zone_text:SetText(GetMinimapZoneText())
 	if pvp == "friendly" then
-		m_zone_text:SetTextColor(0.1, 1.0, 0.1)
+		m_zone_text:SetTextColor(color.r,color.g,color.b)
 	elseif pvp == "sanctuary" then
 		m_zone_text:SetTextColor(0.41, 0.8, 0.94)
 	elseif pvp == "arena" or pvp == "hostile" then
