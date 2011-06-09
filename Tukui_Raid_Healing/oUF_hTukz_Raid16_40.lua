@@ -175,7 +175,7 @@ local function Shared(self, unit)
 		health.Smooth = true
 		power.Smooth = true
 	end
-
+	
 	------------------------------------------------------------------------
 	--      Debuff Highlight
 	------------------------------------------------------------------------
@@ -268,6 +268,17 @@ local function Shared(self, unit)
 
 	return self
 end
+    -- switch layout
+	local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
+	swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
+	swlicon:SetFrameStrata("BACKGROUND")
+	swlicon:SetFrameLevel(2)
+	swlicon:CreateShadow("Hydra")
+
+	local tex = swlicon:CreateTexture(nil, "OVERLAY")
+	tex:SetTexture(C.media.switchlayoutheal)
+	tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT", 2, -2)
+	tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 
 oUF:RegisterStyle('TukuiHealRaid', Shared)
 oUF:Factory(function(self)

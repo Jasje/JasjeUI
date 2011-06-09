@@ -196,3 +196,24 @@ end
 local dataFrame = CreateFrame("Frame")
 dataFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 dataFrame:SetScript("OnEvent", OnEvent)
+
+-- switch layout
+local swl = CreateFrame("Button", "TukuiSwitchLayoutButton", UIParent, "SecureActionButtonTemplate")
+	swl:Size(20, 20)
+	swl:Point("LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
+	swl:SetFrameStrata("BACKGROUND")
+	swl:SetFrameLevel(2)
+	swl:RegisterForClicks("AnyUp") swl:SetScript("OnClick", function()
+		if IsAddOnLoaded("Tukui_Raid") then
+			DisableAddOn("Tukui_Raid")
+			EnableAddOn("Tukui_Raid_Healing")
+			ReloadUI()
+		elseif IsAddOnLoaded("Tukui_Raid_Healing") then
+			DisableAddOn("Tukui_Raid_Healing")
+			EnableAddOn("Tukui_Raid")
+			ReloadUI()
+		elseif not IsAddOnLoaded("Tukui_Raid_Healing") and not IsAddOnLoaded("Tukui_Raid") then
+			EnableAddOn("Tukui_Raid")
+			ReloadUI()
+		end
+end)

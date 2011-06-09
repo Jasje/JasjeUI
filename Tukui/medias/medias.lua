@@ -49,6 +49,9 @@ C["media"] = {
 	["backdropcolor"] = { .075,.075,.075,1 }, -- background color of tukui panels
 	["altbackdropcolor"] = { .075,.075,.075,.7 }, -- this is the color to be used in HydraDB.SetBorder()
 	["buttonhover"] = [[Interface\AddOns\Tukui\medias\textures\button_hover]],
+	-- taken from Asphyxia
+	["switchlayoutheal"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_heal]], -- switch layout texture
+	["switchlayoutdd"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_dd]], -- switch layout texture
 	
 	-- sound
 	["whisper"] = [[Interface\AddOns\Tukui\medias\sounds\whisper.mp3]],
