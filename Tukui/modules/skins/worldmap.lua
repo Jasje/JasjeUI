@@ -2,7 +2,7 @@ local T, C, L = unpack(select(2, ...))
 
 local function LoadSkin()
 	WorldMapFrame:CreateBackdrop("Transparent")
-	WorldMapDetailFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 1)
+	--WorldMapDetailFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 1)
 	WorldMapDetailFrame.backdrop = CreateFrame("Frame", nil, WorldMapFrame)
 	WorldMapDetailFrame.backdrop:SetTemplate("Default")
 	WorldMapDetailFrame.backdrop:Point("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -2, 2)
