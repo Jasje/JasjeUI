@@ -38,7 +38,7 @@ chatFind:SetScript("OnEvent", function(event, msg, sender)
 
 	for _, v in pairs(C["chat"].names) do
 		if strfind(sender, strlower(UnitName("player"))) or strfind(sender, strlower(v)) then
-			PlaySoundFile(C["media"].whisper)
+			PlaySoundFile(C["media"].namealert)
 			return
 		end
 	end

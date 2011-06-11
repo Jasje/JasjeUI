@@ -56,6 +56,7 @@ C["media"] = {
 	-- sound
 	["whisper"] = [[Interface\AddOns\Tukui\medias\sounds\whisper.mp3]],
 	["warning"] = [[Interface\AddOns\Tukui\medias\sounds\warning.mp3]],
+	["namealert"] = [[Interface\AddOns\Tukui\medias\sounds\neobeep.mp3]], -- sound taken from DXE
 }
     -- pet action icons
     PET_DEFENSIVE_TEXTURE = [[Interface\AddOns\Tukui\medias\textures\icon_defensive]]
