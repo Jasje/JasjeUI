@@ -76,6 +76,19 @@ local function LoadSkin()
 
 	CalendarCreateEventDescriptionContainer:StripTextures()
 	CalendarCreateEventDescriptionContainer:SetTemplate("Default")
+	
+	CalendarEventPickerFrame:StripTextures()
+	CalendarEventPickerFrame:SetTemplate("Transparent")
+	CalendarEventPickerTitleFrame:StripTextures()
+	
+	CalendarEventPickerScrollFrame:StripTextures()
+	CalendarEventPickerScrollFrame:Height(160)
+	CalendarEventPickerScrollFrame:SetTemplate("Default")
+
+	T.SkinScrollBar(CalendarEventPickerScrollBar)
+
+	CalendarEventPickerCloseButton:StripTextures()
+	T.SkinButton(CalendarEventPickerCloseButton, true)
 
 	T.SkinCloseButton(CalendarCreateEventCloseButton)
 
