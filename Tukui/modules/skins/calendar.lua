@@ -45,7 +45,8 @@ local function LoadSkin()
 	bg:Point("TOPLEFT", 10, -72)
 	bg:Point("BOTTOMRIGHT", -8, 3)
 
-	CalendarContextMenu:SetTemplate("Default")
+	CalendarInviteStatusContextMenu:SetTemplate("Transparent")
+	CalendarContextMenu:SetTemplate("Transparent")
 	CalendarContextMenu.SetBackdropColor = T.dummy
 	CalendarContextMenu.SetBackdropBorderColor = T.dummy
 
