@@ -286,7 +286,7 @@ local function LoadSkin()
 	PetPaperDollPetInfo:CreateBackdrop("Default")
 	PetPaperDollPetInfo:Size(24, 24)
 	
-	--color item by rarity on character frame
+	-- a request to color item by rarity on character frame.
 	local function ColorItemBorder()
 		for _, slot in pairs(slots) do
 			-- Colour the equipment slots by rarity
@@ -296,7 +296,7 @@ local function LoadSkin()
 
 			if itemId then
 				local _, _, rarity, _, _, _, _, _, _, _, _ = GetItemInfo(itemId)
-				if rarity then
+				if rarity then				
 					target.backdrop:SetBackdropBorderColor(GetItemQualityColor(rarity))
 				end
 			else
@@ -309,7 +309,6 @@ local function LoadSkin()
 	CheckItemBorderColor:RegisterEvent("PLAYER_ENTERING_WORLD")
 	CheckItemBorderColor:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	CheckItemBorderColor:SetScript("OnEvent", ColorItemBorder)
-	
 end
 
 tinsert(T.SkinFuncs["Tukui"], LoadSkin)

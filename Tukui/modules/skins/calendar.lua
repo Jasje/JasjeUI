@@ -49,6 +49,10 @@ local function LoadSkin()
 	CalendarContextMenu:SetTemplate("Transparent")
 	CalendarContextMenu.SetBackdropColor = T.dummy
 	CalendarContextMenu.SetBackdropBorderColor = T.dummy
+	
+	CalendarInviteStatusContextMenu:SetTemplate("Default")
+	CalendarInviteStatusContextMenu.SetBackdropColor = T.dummy
+	CalendarInviteStatusContextMenu.SetBackdropBorderColor = T.dummy
 
 	--Boost frame levels
 	for i=1, 42 do
