@@ -164,7 +164,7 @@ oUF:Factory(function(self)
 			self:SetHeight(header:GetAttribute('initial-height'))
 		]],
 		'initial-width', T.Scale(145),
-		'initial-height', T.Scale(16),	
+		'initial-height', T.Scale(13),	
 		"showSolo", C.unitframes.showplayersolo and true or false,
 		"showParty", true,
 		"showPlayer", C["unitframes"].showplayerinparty,
