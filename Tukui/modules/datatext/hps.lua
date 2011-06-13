@@ -57,8 +57,8 @@ if C["datatext"].hps_text and C["datatext"].hps_text > 0 then
 				amount_healed = select(13, ...)
 				amount_over_healed = select(14, ...)
 			else
-				amount_healed = select(14, ...)
-				amount_over_healed = select(15, ...)			
+				amount_healed = select(15, ...)
+				amount_over_healed = select(16, ...)			
 			end
 			-- add to the total the healed amount subtracting the overhealed amount
 			actual_heals_total = actual_heals_total + math.max(0, amount_healed - amount_over_healed)

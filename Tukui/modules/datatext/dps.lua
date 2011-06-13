@@ -64,13 +64,13 @@ if C["datatext"].dps_text and C["datatext"].dps_text > 0 then
 				if T.toc < 40200 then
 					last_dmg_amount = select(10, ...)
 				else
-					last_dmg_amount = select(11, ...)
+					last_dmg_amount = select(12, ...)
 				end
 			else
 				if T.toc < 40200 then
 					last_dmg_amount = select(13, ...)
 				else
-					last_dmg_amount = select(14, ...)
+					last_dmg_amount = select(15, ...)
 				end
 			end
 			dmg_total = dmg_total + last_dmg_amount
