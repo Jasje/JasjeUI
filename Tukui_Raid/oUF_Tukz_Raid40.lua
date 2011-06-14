@@ -25,7 +25,7 @@ local function Shared(self, unit)
 
 	local health = CreateFrame('StatusBar', nil, self)
     health:SetAllPoints(self)
-	health:SetStatusBarTexture(C["media"].normTex)
+	health:SetStatusBarTexture(C["media"].Glamour)
 	self.Health = health
 
 	health.bg = self.Health:CreateTexture(nil, 'BORDER')

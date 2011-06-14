@@ -16,7 +16,7 @@ local font1 = C["media"].uffont
 local font2 = C["media"].font
 local pixelfont = C["media"].pixelfont -- other font
 local CBpixelfont = C["media"].pixelfont -- castbar font
-local normTex = C["media"].normTex
+local normTex = C["media"].Glamour
 local glowTex = C["media"].glowTex
 local bubbleTex = C["media"].bubbleTex
 
@@ -102,7 +102,7 @@ local function Shared(self, unit)
 	    Healthbg:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
 	    Healthbg:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-8))
 	    Healthbg:SetTemplate("Hydra")
-		Healthbg:CreateShadow("Hydra")
+		Healthbg:SetBorder()
 	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 	    Healthbg:SetFrameLevel(2)
 	    self.Healthbg = Healthbg		
@@ -156,7 +156,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
-		powerborder:CreateShadow("Hydra")
+		powerborder:SetBorder()
 		self.powerborder = powerborder
 		
 		local powerBG = power:CreateTexture(nil, 'BORDER')
@@ -323,7 +323,7 @@ local function Shared(self, unit)
 				eclipseBar.border:SetFrameStrata("MEDIUM")
 				eclipseBar.border:SetFrameLevel(4)
 				eclipseBar.border:SetTemplate("Hydra")
-				eclipseBar.border:CreateShadow("Hydra")
+				eclipseBar.border:SetBorder()
 
 				-- hide "low mana" text on load if eclipseBar is show
 				if eclipseBar and eclipseBar:IsShown() then FlashInfo.ManaLevel:SetAlpha(0) end
@@ -367,7 +367,7 @@ local function Shared(self, unit)
 					    bars[i].border:SetFrameStrata("MEDIUM")
 						bars[i].border:SetFrameLevel(4)
 					    bars[i].border:SetTemplate("Hydra")
-					    bars[i].border:CreateShadow("Hydra")
+					    bars[i].border:SetBorder()
 					    bars[i].border:SetBackdropColor( 0,0,0)
 					end
 					
@@ -418,7 +418,7 @@ local function Shared(self, unit)
                     Runes[i].border:SetFrameLevel(4)					
 					Runes[i].border:SetBackdropColor( 0,0,0,1 )
 					Runes[i].border:SetTemplate("Hydra")
-					Runes[i].border:CreateShadow("Hydra")
+					Runes[i].border:SetBorder()
                 end
 
                     self.Runes = Runes
@@ -454,7 +454,7 @@ local function Shared(self, unit)
 					TotemBar[i].border:SetFrameStrata("MEDIUM")
 					TotemBar[i].border:SetFrameLevel(4)
 					TotemBar[i].border:SetBackdropColor( 0,0,0,1 )
-					TotemBar[i].border:CreateShadow("Hydra")
+					TotemBar[i].border:SetBorder()
 					TotemBar[i].border:SetTemplate("Hydra")
 				end
 				self.TotemBar = TotemBar
@@ -785,7 +785,7 @@ local function Shared(self, unit)
 	    Healthbg:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
 	    Healthbg:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-8))
 	    Healthbg:SetTemplate("Hydra")
-		Healthbg:CreateShadow("Hydra")
+		Healthbg:SetBorder()
 	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 	    Healthbg:SetFrameLevel(2)
 	    self.Healthbg = Healthbg
@@ -828,7 +828,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
-		powerborder:CreateShadow("Hydra")
+		powerborder:SetBorder()
 
 		local powerBG = power:CreateTexture(nil, 'BORDER')
 		powerBG:SetAllPoints(power)
@@ -896,7 +896,7 @@ local function Shared(self, unit)
 	    Healthbg:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
 	    Healthbg:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-8))
 	    Healthbg:SetTemplate("Hydra")
-		Healthbg:CreateShadow("Hydra")
+		Healthbg:SetBorder()
 	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 	    Healthbg:SetFrameLevel(2)
 	    self.Healthbg = Healthbg
@@ -944,7 +944,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
-		powerborder:CreateShadow("Hydra")
+		powerborder:SetBorder()
 		
 		power.frequentUpdates = true
 		power.colorPower = true
@@ -1023,7 +1023,7 @@ local function Shared(self, unit)
 	    Healthbg:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
 	    Healthbg:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-8))
 	    Healthbg:SetTemplate("Hydra")
-		Healthbg:CreateShadow("Hydra")
+		Healthbg:SetBorder()
 	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 	    Healthbg:SetFrameLevel(2)
 	    self.Healthbg = Healthbg
@@ -1077,7 +1077,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
-		powerborder:CreateShadow("Hydra")
+		powerborder:SetBorder()
 		self.powerborder = powerborder
 		
 		local powerBG = power:CreateTexture(nil, 'BORDER')
@@ -1202,7 +1202,7 @@ end
 	    Healthbg:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
 	    Healthbg:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
 	    Healthbg:SetTemplate("Hydra")
-		Healthbg:CreateShadow("Hydra")
+		Healthbg:SetBorder()
 	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
 	    Healthbg:SetFrameLevel(2)
 	    self.Healthbg = Healthbg
@@ -1256,7 +1256,7 @@ end
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
-		powerborder:CreateShadow("Hydra")
+		powerborder:SetBorder()
 		
 		power.frequentUpdates = true
 		power.colorPower = true

@@ -286,7 +286,7 @@ local function LoadSkin()
 	PetPaperDollPetInfo:CreateBackdrop("Default")
 	PetPaperDollPetInfo:Size(24, 24)
 	
-	-- a request to color item by rarity on character frame.
+	-- color item by rarity on character frame.
 	local function ColorItemBorder()
 		for _, slot in pairs(slots) do
 			-- Colour the equipment slots by rarity
@@ -305,8 +305,11 @@ local function LoadSkin()
 		end
 	end
 
+	-- execute item coloring everytime we open character frame
+	CharacterFrame:HookScript("OnShow", ColorItemBorder)
+
+	-- execute item coloring everytime an item is changed
 	local CheckItemBorderColor = CreateFrame("Frame")
-	CheckItemBorderColor:RegisterEvent("PLAYER_ENTERING_WORLD")
 	CheckItemBorderColor:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 	CheckItemBorderColor:SetScript("OnEvent", ColorItemBorder)
 end

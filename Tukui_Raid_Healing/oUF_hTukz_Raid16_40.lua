@@ -11,7 +11,7 @@ if not C["unitframes"].enable == true then return end
 local font2 = C["media"].uffont
 local font1 = C["media"].font
 local pixelfont = C["media"].pixelfont
-local normTex = C["media"].normTex
+local normTex = C["media"].Glamour
 
 local function Shared(self, unit)
 	self.colors = T.oUF_colors

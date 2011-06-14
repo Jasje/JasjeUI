@@ -34,6 +34,7 @@
 	<Script file="modules\unitframes\plugins\oUF_Swing\oUF_Swing.lua"/>
 	<Script file="modules\unitframes\templates\colors.lua"/>
 	
+	<Script file="modules\datatext\colors.lua"/>
 	<Script file="core\uiscale.lua"/>
 	<Script file="core\deprecated.lua"/>
 	<Script file="core\api.lua"/>
@@ -42,7 +43,6 @@
 	<Script file="core\disable.lua"/>
 	<Script file="core\clientfonts.lua"/>
 	
-	<Script file="modules\datatext\colors.lua"/>
 	<Script file="modules\blizzard\watchframe.lua"/>
 	<Script file="modules\blizzard\durability.lua"/>
 	<Script file="modules\blizzard\vehicle.lua"/>

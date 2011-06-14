@@ -188,7 +188,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		self.text:Show()
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
-			local hp = ShortValue(min).." / "..ShortValue(max)
+			local hp = ShortValue(min).." | "..ShortValue(max)
 			if UnitIsGhost(unit) then
 				self.text:SetText(L.unitframes_ouf_ghost)
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
@@ -201,7 +201,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		if unit then
 			min, max = UnitHealth(unit), UnitHealthMax(unit)
 			self.text:Show()
-			local hp = ShortValue(min).." / "..ShortValue(max)
+			local hp = ShortValue(min).." | "..ShortValue(max)
 			if UnitIsGhost(unit) then
 				self.text:SetText(L.unitframes_ouf_ghost)
 			elseif min == 0 or UnitIsDead(unit) or UnitIsGhost(unit) then
@@ -220,7 +220,7 @@ healthBar:ClearAllPoints()
 healthBar:Height(6)
 healthBar:Point("BOTTOMLEFT", healthBar:GetParent(), "TOPLEFT", 2, 5)
 healthBar:Point("BOTTOMRIGHT", healthBar:GetParent(), "TOPRIGHT", -2, 5)
-healthBar:SetStatusBarTexture(C.media.normTex)
+healthBar:SetStatusBarTexture(C.media.Glamour)
 
 local healthBarBG = CreateFrame("Frame", "StatusBarBG", healthBar)
 healthBarBG:SetFrameLevel(healthBar:GetFrameLevel() - 1)
@@ -419,7 +419,6 @@ local total, item = 0, 0;
     return 0;
 end
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
-    if (IsShiftKeyDown()) then
         local _, unit = GameTooltip:GetUnit();
         if (unit and CanInspect(unit)) then
             if (not ((InspectFrame and InspectFrame:IsShown()) or (Examiner and Examiner:IsShown()))) then
@@ -429,5 +428,4 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
                 GameTooltip:Show();
             end
         end
-    end
 end)
