@@ -47,8 +47,10 @@ C["media"] = {
 	["bordercolor"] = { .2,.2,.2,1 }, -- border color of tukui panels
 	["altbordercolor"] = { .2,.2,.2,1 }, -- alternative border color, mainly for unitframes text panels.
 	["backdropcolor"] = { .075,.075,.075,1 }, -- background color of tukui panels
-	["altbackdropcolor"] = { .075,.075,.075,.7 }, -- this is the color to be used in HydraDB.SetBorder()
+	["altbackdropcolor"] = { .075,.075,.075,.7 }, -- this is the color to be used in SetBorder()
 	["buttonhover"] = [[Interface\AddOns\Tukui\medias\textures\button_hover]],
+	["jasjeicon"] = [[Interface\AddOns\Tukui\medias\textures\JasjeUI]],
+	["Glamour"] = [[Interface\AddOns\Tukui\medias\textures\Glamour4]], -- Caithlyn texture
 	-- taken from Asphyxia
 	["switchlayoutheal"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_heal]], -- switch layout texture
 	["switchlayoutdd"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_dd]], -- switch layout texture
