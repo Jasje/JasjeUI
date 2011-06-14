@@ -217,3 +217,68 @@ local swl = CreateFrame("Button", "TukuiSwitchLayoutButton", UIParent, "SecureAc
 			ReloadUI()
 		end
 end)
+
+-- Hydra Spec Button!
+if UnitLevel("player") <= 10 then return end
+
+local frame = CreateFrame("Frame", "CorinnaTalent", UIParent)
+frame:CreatePanel(nil, 20, 20, "RIGHT", TukuiInfoRight, "LEFT", -3, 0)
+frame:EnableMouse(true)
+
+frame.tex = frame:CreateTexture(nil, "ARTWORK")
+frame.tex:Point("TOPLEFT", 2, -2)
+frame.tex:Point("BOTTOMRIGHT", -2, 2)
+frame.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+frame.highlight = frame:CreateTexture(nil, "ARTWORK")
+frame.highlight:Point("TOPLEFT", 2, -2)
+frame.highlight:Point("BOTTOMRIGHT", -2, 2)
+frame.highlight:SetTexture(1,1,1,.3)
+frame.highlight:Hide()
+
+local UpdateTexture = function(self)
+	local primary = GetPrimaryTalentTree()
+	local tex = select(4, GetTalentTabInfo(primary))
+	
+	self.tex:SetTexture(tex)
+end
+
+local ChangeSpec = function()
+	local spec = GetActiveTalentGroup()
+	
+	if spec == 1 then
+		SetActiveTalentGroup(2)
+	else
+		SetActiveTalentGroup(1)
+	end
+end
+
+local StyleTooltip = function(self)
+	if not InCombatLockdown() then
+		local p1 = select(5, GetTalentTabInfo(1))
+		local p2 = select(5, GetTalentTabInfo(2))
+		local p3 = select(5, GetTalentTabInfo(3))
+		local name = select(2, GetTalentTabInfo(GetPrimaryTalentTree()))
+		local spec = GetActiveTalentGroup()
+		
+		GameTooltip:SetOwner(self, "ANCHOR_NONE", 0, 0)
+		GameTooltip:ClearLines()
+		
+		if spec == 1 then
+			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, PRIMARY))
+		else
+			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, SECONDARY))
+		end
+		
+		self.highlight:Show()
+		GameTooltip:Show()
+	end
+end
+
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+frame:RegisterEvent("PLAYER_TALENT_UPDATE")
+frame:SetScript("OnEvent", UpdateTexture)
+frame:SetScript("OnMouseDown", ChangeSpec)
+frame:SetScript("OnEnter", StyleTooltip)
+frame:SetScript("OnLeave", function(self) GameTooltip:Hide() self.highlight:Hide() end)
