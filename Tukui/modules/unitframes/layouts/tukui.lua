@@ -156,6 +156,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
+		powerborder:SetTemplate("Hydra")
 		powerborder:SetBorder()
 		self.powerborder = powerborder
 		
@@ -828,6 +829,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
+		powerborder:SetTemplate("Hydra")
 		powerborder:SetBorder()
 
 		local powerBG = power:CreateTexture(nil, 'BORDER')
@@ -944,6 +946,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
+		powerborder:SetTemplate("Hydra")
 		powerborder:SetBorder()
 		
 		power.frequentUpdates = true
@@ -1077,6 +1080,7 @@ local function Shared(self, unit)
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
+		powerborder:SetTemplate("Hydra")
 		powerborder:SetBorder()
 		self.powerborder = powerborder
 		
@@ -1256,6 +1260,7 @@ end
 		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
 		powerborder:SetFrameStrata("MEDIUM")
 		powerborder:SetFrameLevel(4)
+		powerborder:SetTemplate("Hydra")
 		powerborder:SetBorder()
 		
 		power.frequentUpdates = true
