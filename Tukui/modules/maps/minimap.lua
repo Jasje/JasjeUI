@@ -57,7 +57,7 @@ MiniMapMailIcon:SetTexture("Interface\\AddOns\\Tukui\\medias\\textures\\Jmail") 
 
 -- Move battleground icon
 MiniMapBattlefieldFrame:ClearAllPoints()
-MiniMapBattlefieldFrame:Point("BOTTOMRIGHT", Minimap, 3, 0)
+MiniMapBattlefieldFrame:Point("BOTTOMRIGHT", Minimap, 3, 15)
 MiniMapBattlefieldBorder:Hide()
 
 -- Hide world map button
@@ -76,7 +76,7 @@ GuildInstanceDifficulty:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, 0)
 -- Reposition lfg icon at bottom-left
 local function UpdateLFG()
 	MiniMapLFGFrame:ClearAllPoints()
-	MiniMapLFGFrame:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, 1)
+	MiniMapLFGFrame:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, 15)
 	MiniMapLFGFrameBorder:Hide()
 end
 hooksecurefunc("MiniMapLFG_UpdateIsShown", UpdateLFG)
@@ -89,13 +89,13 @@ local function UpdateLFGTooltip()
 	local position = TukuiMinimap:GetPoint()
 	LFDSearchStatus:ClearAllPoints()
 	if position:match("BOTTOMRIGHT") then
-		LFDSearchStatus:SetPoint("BOTTOMRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 0)
+		LFDSearchStatus:SetPoint("BOTTOMRIGHT", MiniMapLFGFrame, "BOTTOMLEFT", 0, 15)
 	elseif position:match("BOTTOM") then
-		LFDSearchStatus:SetPoint("BOTTOMLEFT", MiniMapLFGFrame, "BOTTOMRIGHT", 4, 0)
+		LFDSearchStatus:SetPoint("BOTTOMLEFT", MiniMapLFGFrame, "BOTTOMRIGHT", 4, 15)
 	elseif position:match("LEFT") then		
-		LFDSearchStatus:SetPoint("TOPLEFT", MiniMapLFGFrame, "TOPRIGHT", 4, 0)
+		LFDSearchStatus:SetPoint("TOPLEFT", MiniMapLFGFrame, "TOPRIGHT", 4, 15)
 	else
-		LFDSearchStatus:SetPoint("TOPRIGHT", MiniMapLFGFrame, "TOPLEFT", 0, 0)	
+		LFDSearchStatus:SetPoint("TOPRIGHT", MiniMapLFGFrame, "TOPLEFT", 0, 15)	
 	end
 end
 
