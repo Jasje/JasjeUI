@@ -30,12 +30,11 @@ local _, pClass = UnitClass("player")
 local total = 0
 local delay = 0.01
 
--- In the order, fire, earth, water, air
-local colors = {
-	[1] = {.58,.23,.10},
-	[2] = {.23,.45,.13},		
-	[3] = {.19,.48,.60},
-	[4] = {.42,.18,.74},	
+local colors = { -- lets make it bright!
+	[1] = {11,0,0}, -- fire
+	[2] = {0,11,.0}, -- earth		
+	[3] = {0,0,11}, -- water
+	[4] = {11,0,55}, -- air	
 }
 
 local GetTotemInfo, SetValue, GetTime = GetTotemInfo, SetValue, GetTime
