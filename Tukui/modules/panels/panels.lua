@@ -253,6 +253,8 @@ local ChangeSpec = function()
 	end
 end
 
+local color = RAID_CLASS_COLORS[T.myclass]
+
 local StyleTooltip = function(self)
 	if not InCombatLockdown() then
 		local p1 = select(5, GetTalentTabInfo(1))
@@ -271,8 +273,15 @@ local StyleTooltip = function(self)
 		end
 		
 		self.highlight:Show()
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
 		GameTooltip:Show()
 	end
+end
+
+local OnLeave = function(self)
+	GameTooltip:Hide()
+	self.highlight:Hide()
+	self:SetBackdropBorderColor(unpack(C.media.bordercolor))
 end
 
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -281,4 +290,4 @@ frame:RegisterEvent("PLAYER_TALENT_UPDATE")
 frame:SetScript("OnEvent", UpdateTexture)
 frame:SetScript("OnMouseDown", ChangeSpec)
 frame:SetScript("OnEnter", StyleTooltip)
-frame:SetScript("OnLeave", function(self) GameTooltip:Hide() self.highlight:Hide() end)
+frame:SetScript("OnLeave", OnLeave)

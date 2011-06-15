@@ -2156,7 +2156,9 @@
 	tdpsAnimation:SetDuration(.2)
 	tdpsAnimation:SetScript('OnFinished', function(self, requested) tdpsRefresh() end)
 
-
+    local color = RAID_CLASS_COLORS[T.myclass]
+    tdpsFrame:SetScript("OnEnter", function(self) self:SetBackdropBorderColor(color.r, color.g, color.b) end)
+	tdpsFrame:SetScript("OnLeave", function(self) self:SetBackdropBorderColor(unpack(C.media.bordercolor)) end)
 
 	-- title font string
 	tdpsFrame:CreateFontString('noData', 'OVERLAY')
