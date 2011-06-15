@@ -238,7 +238,7 @@ end)
 ----------------------------------------------------------------------------------------
 
 local m_zone = CreateFrame("Frame",nil,UIParent)
-m_zone:CreatePanel("Default", 0, 20, "TOPLEFT", Minimap, "TOPLEFT", 2,-2)
+m_zone:CreatePanel("Default", 0, 18, "TOPLEFT", Minimap, "TOPLEFT", 2,-2)
 m_zone:SetFrameLevel(5)
 m_zone:SetFrameStrata("LOW")
 m_zone:Point("TOPRIGHT",Minimap,-2,-2)
@@ -253,7 +253,7 @@ m_zone_text:Width(m_zone:GetWidth()-6)
 m_zone_text:SetAlpha(0)
 
 local m_coord = CreateFrame("Frame",nil,UIParent)
-m_coord:CreatePanel("Default", 40, 20, "BOTTOMLEFT", Minimap, "BOTTOMLEFT", 2,2)
+m_coord:CreatePanel("Default", 40, 18, "BOTTOMLEFT", Minimap, "BOTTOMLEFT", 2,2)
 m_coord:SetFrameStrata("LOW")
 m_coord:SetAlpha(0)
 
@@ -263,20 +263,40 @@ m_coord_text:Point("Center",-1,0)
 m_coord_text:SetAlpha(0)
 m_coord_text:SetText("00,00")
 
+-- reload button on mouseover in minimap
+local reloadbutton = CreateFrame("Button", "TukuiReloadUIButton", UIParent, "SecureActionButtonTemplate")
+reloadbutton:CreatePanel("Default", 90, 18, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -2,2)
+reloadbutton:SetFrameStrata("LOW")
+reloadbutton:SetAlpha(0)
+reloadbutton:SetAttribute("type", "macro")
+reloadbutton:SetAttribute("macrotext", "/rl")
+
+local reloadbutton_text = reloadbutton:CreateFontString(nil,"Overlay")
+reloadbutton_text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+reloadbutton_text:Point("Center",-1,0)
+reloadbutton_text:SetAlpha(0)
+reloadbutton_text:SetText(hexa.."Reload UI")
+
 Minimap:SetScript("OnEnter",function()
 	m_zone:SetAlpha(1)
-	m_zone_text:SetAlpha(1)
+    m_zone_text:SetAlpha(1)
 	m_coord:SetAlpha(1)
-	m_coord_text:SetAlpha(1)
+    m_coord_text:SetAlpha(1)
+	reloadbutton:SetAlpha(1)
+    reloadbutton_text:SetAlpha(1)
 end)
 
 Minimap:SetScript("OnLeave",function()
-	m_zone:SetAlpha(0)
-	m_zone_text:SetAlpha(0)
-	m_coord:SetAlpha(0)
-	m_coord_text:SetAlpha(0)
+    if not MouseIsOver(reloadbutton) then
+	    m_zone:SetAlpha(0)
+	    m_zone_text:SetAlpha(0)
+	    m_coord:SetAlpha(0)
+    	m_coord_text:SetAlpha(0)
+	    reloadbutton:SetAlpha(0)
+	    reloadbutton_text:SetAlpha(0)	
+	end	
 end)
- 
+
 local ela = 0
 local coord_Update = function(self,t)
 	ela = ela - t
@@ -286,7 +306,7 @@ local coord_Update = function(self,t)
 	x = math.floor(100 * x)
 	y = math.floor(100 * y)
 	if x == 0 and y == 0 then
-		m_coord_text:SetText(hexa.."<(-_-)>")
+		m_coord_text:SetText(hexa.."(-_-)")
 	else
 		if x < 10 then
 			xt = "0"..x
@@ -303,7 +323,7 @@ local coord_Update = function(self,t)
 	ela = .2
 end
 m_coord:SetScript("OnUpdate",coord_Update)
- 
+
 local color = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
 local zone_Update = function()
 	local pvp = GetZonePVPInfo()
