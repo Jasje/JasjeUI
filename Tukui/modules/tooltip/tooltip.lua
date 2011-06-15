@@ -419,6 +419,7 @@ local total, item = 0, 0;
     return 0;
 end
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
+    if (IsModifierKeyDown()) then
         local _, unit = GameTooltip:GetUnit();
         if (unit and CanInspect(unit)) then
             if (not ((InspectFrame and InspectFrame:IsShown()) or (Examiner and Examiner:IsShown()))) then
@@ -428,4 +429,5 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
                 GameTooltip:Show();
             end
         end
+	end
 end)
