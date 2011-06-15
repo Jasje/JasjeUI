@@ -33,7 +33,7 @@ local delay = 0.01
 local colors = { -- lets make it bright!
 	[1] = {11,0,0}, -- fire
 	[2] = {0,11,.0}, -- earth		
-	[3] = {0,0,11}, -- water
+	[3] = {.0,0.6,1}, -- water
 	[4] = {11,0,55}, -- air	
 }
 
