@@ -820,7 +820,9 @@ ns.Filger_Spells = {
 			--Crippling Poison
             { spellID = 3409, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },		
 			--Deadly Throw
-            { spellID = 26679, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },	
+            { spellID = 26679, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
+            --Smoke Bomb			
+            { spellID = 76577, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },	
 			
 			--[[ Paladin ]]--
 			--Hammer of Justice
