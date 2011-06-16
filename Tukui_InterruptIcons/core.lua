@@ -41,8 +41,8 @@ function tInterruptIcons.CreateIcon()
 	local i = (#tInterruptIcons.Icons)+1
    
 	tInterruptIcons.Icons[i] = CreateFrame("frame","tInterruptIconsIcon"..i,anchor)
-	tInterruptIcons.Icons[i]:Height(30)
-	tInterruptIcons.Icons[i]:Width(30)
+	tInterruptIcons.Icons[i]:Height(40)
+	tInterruptIcons.Icons[i]:Width(40)
 	tInterruptIcons.Icons[i]:SetFrameStrata("HIGH")
 	tInterruptIcons.Icons[i]:SetFrameLevel(20)
 	  

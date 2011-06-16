@@ -19,4 +19,5 @@ T.interrupt = {
 	[96231] = 10, -- rebuke
 	[80964] = 10, -- feral skull bash (cat)
 	[80965] = 10, -- feral skull bash (bear)
+	[85388] = 45, -- throwdown warrior
 }
