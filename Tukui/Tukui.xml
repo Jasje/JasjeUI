@@ -27,9 +27,10 @@
 	<Script file="modules\unitframes\plugins\oUF_Smooth\oUF_Smooth.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_TotemBar\oUF_TotemBar.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_Trinkets\oUF_Trinkets.lua"/>
-	<Script file="modules\unitframes\plugins\oUF_Talents\oUF_Talents.lua"/>
+	<Script file="modules\unitframes\plugins\oUF_RaidDebuffs\oUF_RaidDebuffs.lua"/>
     <Script file="modules\unitframes\plugins\oUF_ClassIcons\oUF_ClassIcons.lua"/>
-	<Script file="modules\unitframes\plugins\oUF_RaidDebuffs\oUF_RaidDebuffs.lua"/>	
+	<Script file="modules\unitframes\plugins\oUF_AuraTracker\oUF_AuraTracker.lua"/>
+	<Script file="modules\unitframes\plugins\oUF_Talents\oUF_Talents.lua"/>	
 	<Script file="modules\unitframes\plugins\oUF_WeakenedSoul\oUF_WeakenedSoul.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_Swing\oUF_Swing.lua"/>
 	<Script file="modules\unitframes\templates\colors.lua"/>

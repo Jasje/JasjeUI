@@ -1196,7 +1196,7 @@ end
 		
 		-- health 
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(35)
+		health:Height(45)
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -1331,7 +1331,7 @@ end
 		if (C.arena.unitframes) and (unit and unit:find('arena%d')) then
 		-- trinket feature via trinket plugin
 		local Trinketbg = CreateFrame("Frame", nil, self)
-		Trinketbg:Size(39)
+		Trinketbg:Size(49)
 		Trinketbg:SetPoint("LEFT", self, "RIGHT", 4, 0)				
 		Trinketbg:SetTemplate("Hydra")
 		Trinketbg:SetFrameLevel(0)
@@ -1342,28 +1342,37 @@ end
 		Trinket:SetPoint("TOPLEFT", Trinketbg, T.Scale(2), T.Scale(-2))
 		Trinket:SetPoint("BOTTOMRIGHT", Trinketbg, T.Scale(-2), T.Scale(2))
 		Trinket:SetFrameLevel(1)
-		Trinket.trinketUseAnnounce = true
+		--Trinket.trinketUseAnnounce = true
 		self.Trinket = Trinket
+		
+		-- Auratracker Frame
+		local AuraTracker = CreateFrame("Frame", nil, self)
+		AuraTracker:Size(49)
+		AuraTracker:Point("RIGHT", health, "LEFT", -4, 0)
+		AuraTracker:SetTemplate("Default")
+		AuraTracker:CreateShadow("Default")
+		self.AuraTracker = AuraTracker
+			
+		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
+		AuraTracker.icon:SetAllPoints(AuraTracker)
+		AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
+		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
+		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
+			
+		AuraTracker.text = T.SetFontString(AuraTracker,  pixelfont, 8, "OUTLINEMONOCHROME")
+		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
+		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		
+		-- ClassIcon			
+		local class = AuraTracker:CreateTexture(nil, "ARTWORK")
+		class:SetAllPoints(AuraTracker.icon)
+		self.ClassIcon = class
 		
 		-- Spec info
 		Talents = T.SetFontString(health, pixelfont, 8, "OUTLINEMONOCHROME")
 		Talents:Point("CENTER", health, 0, 0)
 		Talents:SetTextColor(1,1,1,.6)
 		self.Talents = Talents
-		
-		-- class icons
-		local Classbg = CreateFrame("Frame", nil, self)
-		Classbg:Size(39)
-		Classbg:SetPoint("RIGHT", self, "LEFT", -4, 0)				
-		Classbg:SetTemplate("Hydra")
-		Classbg:SetFrameLevel(0)
-		self.Classbg = Classbg
-		
-	    local class = self:CreateTexture("Frame", nil, Classbg)
-		class:SetAllPoints(Classbg)
-		class:SetPoint("TOPLEFT", Classbg, T.Scale(2), T.Scale(-2))
-		class:SetPoint("BOTTOMRIGHT", Classbg, T.Scale(-2), T.Scale(2))
-        self.ClassIcon = class
 		end
 		
         -- boss & arena frames cast bar!
@@ -1523,7 +1532,7 @@ if C.arena.unitframes then
 		else
 			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 40)
 		end
-		arena[i]:SetSize(T.Scale(200), T.Scale(35))
+		arena[i]:SetSize(T.Scale(200), T.Scale(45))
 	end
 end
 
