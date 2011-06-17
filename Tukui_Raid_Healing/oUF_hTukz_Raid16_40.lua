@@ -259,8 +259,8 @@ local function Shared(self, unit)
 		RaidDebuffs.count:SetPoint('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
 		RaidDebuffs.count:SetTextColor(1, .9, 0)
 	if C["unitframes"].raiddebuffstime == true then
-		RaidDebuffs:FontString('time', C["media"].pixelfont, 9, "MONOCHROMEOUTLINE")
-		RaidDebuffs.time:SetPoint('CENTER')
+		RaidDebuffs:FontString('time', C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
+		RaidDebuffs.time:SetPoint('CENTER', 2, 0)
 		RaidDebuffs.time:SetTextColor(1, .9, 0)
 	end
 		self.RaidDebuffs = RaidDebuffs
@@ -283,7 +283,7 @@ end
 oUF:RegisterStyle('TukuiHealRaid', Shared)
 oUF:Factory(function(self)
 	oUF:SetActiveStyle("TukuiHealRaid")	
-        local raid = self:SpawnHeader("TukuiHealGrid", nil, "raid,party",
+        local raid = self:SpawnHeader("TukuiHealGrid", nil, "solo,raid,party",
 			'oUF-initialConfigFunction', [[
 				local header = self:GetParent()
 				self:SetWidth(header:GetAttribute('initial-width'))
@@ -293,7 +293,8 @@ oUF:Factory(function(self)
 			'initial-height', T.Scale(40.3),
 			"showRaid", true,
 			"showParty", true,
-			"showPlayer", C["unitframes"].showplayerinparty,	
+			"showPlayer", C["unitframes"].showplayerinparty,
+            "showSolo", C["unitframes"].showsolo,		
 			"xoffset", T.Scale(7),
 			"yOffset", T.Scale(-7),
 			"point", "LEFT",

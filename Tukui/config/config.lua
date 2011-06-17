@@ -46,6 +46,7 @@ C["unitframes"] = {
 	["raiddebuffstime"] = false,                     -- enable time on center debuff icons
 	["gridhealthvertical"] = true,                      -- enable vertical grow on health bar for grid mode.
 	["showplayerinparty"] = true,                      -- show my player frame in party
+	["showsolo"] = false,                      -- show raid when solo.
 	["gridscale"] = 1,                                  -- set the healing grid scaling
 	-- thanks Hydra!
 	["gradienthealth"] = true,                          -- change raid health color based on health percent.
