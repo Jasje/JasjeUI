@@ -900,7 +900,7 @@ ns.Filger_Spells = {
 			--Pounce
 	        { spellID = 9005, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Solar Beam
-	        { spellID = 81261, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
+	        { spellID = 97547, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Entangling Roots
 	        { spellID = 339, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Feral Charge Effect
