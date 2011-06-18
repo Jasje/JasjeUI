@@ -670,6 +670,13 @@ T.PostUpdateAura = function(icons, unit, icon, index, offset, filter, isDebuff, 
 	icon.duration = duration
 	icon.timeLeft = expirationTime
 	icon.first = true
+	
+	if T.ReverseTimer and T.ReverseTimer[spellID] then 
+		icon.reverse = true 
+	else
+		icon.reverse = false
+	end	
+	
 	icon:SetScript("OnUpdate", CreateAuraTimer)
 end
 
@@ -1012,6 +1019,9 @@ if C["unitframes"].raidunitdebuffwatch == true then
 		end
 
 		T.debuffids = {
+		-- Test debuff
+		    --SpellName(25771), --Forbearance
+		
 		-- Other debuff
 			SpellName(67479), -- Impale
 
@@ -1088,13 +1098,12 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			SpellName(93295), -- Lightning Rod
 		}
 
-		T.ReverseTimer = {
-			[92956] = true, -- Sinestra (Wrack)
-			[89435] = true, -- Sinestra (Wrack)
-	        [92955] = true, -- Sinestra (Wrack)
-	        [89421] = true, -- Sinestra (Wrack)
-
-		},
+	T.ReverseTimer = {
+ 	    [92956] = true, -- Sinestra (Wrack)
+	    [89435] = true, -- Sinestra (Wrack)
+	    [92955] = true, -- Sinestra (Wrack)
+    	[89421] = true, -- Sinestra (Wrack)
+    },
 		
 		ORD:RegisterDebuffs(T.debuffids)
 	end
