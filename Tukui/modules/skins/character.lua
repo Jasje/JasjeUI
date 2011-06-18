@@ -248,7 +248,11 @@ local function LoadSkin()
 		end
 		ReputationDetailFrame:StripTextures()
 		ReputationDetailFrame:SetTemplate("Transparent")
-		ReputationDetailFrame:Point("TOPLEFT", ReputationFrame, "TOPRIGHT", 4, -28)			
+		ReputationDetailFrame:Point("TOPLEFT", ReputationFrame, "TOPRIGHT", 4, -28)		
+       	T.SkinCheckBox(ReputationDetailAtWarCheckBox)
+		T.SkinCheckBox(ReputationDetailInactiveCheckBox)
+		T.SkinCheckBox(ReputationDetailMainScreenCheckBox)
+		T.SkinCloseButton(ReputationDetailCloseButton)
 	end	
 	ReputationFrame:HookScript("OnShow", UpdateFactionSkins)
 	hooksecurefunc("ReputationFrame_OnEvent", UpdateFactionSkins)
@@ -271,7 +275,10 @@ local function LoadSkin()
 		end
 		TokenFramePopup:StripTextures()
 		TokenFramePopup:SetTemplate("Transparent")
-		TokenFramePopup:Point("TOPLEFT", TokenFrame, "TOPRIGHT", 4, -28)				
+		TokenFramePopup:Point("TOPLEFT", TokenFrame, "TOPRIGHT", 4, -28)	
+        T.SkinCheckBox(TokenFramePopupInactiveCheckBox)
+		T.SkinCheckBox(TokenFramePopupBackpackCheckBox)
+		T.SkinCloseButton(TokenFramePopupCloseButton)
 	end)
 
 	--Pet
