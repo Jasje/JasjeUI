@@ -8,9 +8,12 @@ ns._Headers = {}
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if not C["unitframes"].enable == true then return end
 
-local font2 = C["media"].uffont
 local font1 = C["media"].font
-local pixelfont = C["media"].pixelfont
+
+local raidframefont = C["unitframes"].raidframefont -- raidframe font
+local raidframefontsize = C["unitframes"].raidframefontsize -- raidframe fontsize
+local raidframefontflag = C["unitframes"].raidframefontflag -- raidframe fontflag
+
 local normTex = C["media"].Glamour
 
 local function Shared(self, unit)
@@ -44,7 +47,7 @@ local function Shared(self, unit)
 		
 	health.value = health:CreateFontString(nil, "OVERLAY")
 	health.value:Point("CENTER", health, 1, -8)
-	health.value:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+	health.value:SetFont(raidframefont, raidframefontsize, raidframefontflag)
 	self.Health.value = health.value
 	
 	health.PostUpdate = T.PostUpdateHealthRaid
@@ -127,7 +130,7 @@ local function Shared(self, unit)
 	
 	local name = health:CreateFontString(nil, "OVERLAY")
     name:SetPoint("CENTER", health, "CENTER", 1, 8)
-	name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+	name:SetFont(raidframefont, raidframefontsize, raidframefontflag)
 	self:Tag(name, "[Tukui:getnamecolor][Tukui:nameshort]")
 	self.Name = name
 	
@@ -181,7 +184,7 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 		local dbh = self.Health:CreateTexture(nil, "OVERLAY", Healthbg)
 		dbh:SetAllPoints(self)
-		dbh:SetTexture(C["media"].normTex)
+		dbh:SetTexture(normTex)
 		dbh:SetBlendMode("ADD")
 		dbh:SetVertexColor(0,0,0,0)
 		self.DebuffHighlight = dbh
@@ -255,11 +258,11 @@ local function Shared(self, unit)
 		--]]
 		
 		RaidDebuffs.count = RaidDebuffs:CreateFontString(nil, 'OVERLAY')
-		RaidDebuffs.count:SetFont(C["media"].pixelfont, 9, "MONOCHROMEOUTLINE")
+		RaidDebuffs.count:SetFont(raidframefont, raidframefontsize+1, raidframefontflag)
 		RaidDebuffs.count:SetPoint('BOTTOMRIGHT', RaidDebuffs, 'BOTTOMRIGHT', 0, 2)
 		RaidDebuffs.count:SetTextColor(1, .9, 0)
 	if C["unitframes"].raiddebuffstime == true then
-		RaidDebuffs:FontString('time', C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
+		RaidDebuffs:FontString('time', raidframefont, raidframefontsize, raidframefontflag)
 		RaidDebuffs.time:SetPoint('CENTER', 2, 0)
 		RaidDebuffs.time:SetTextColor(1, .9, 0)
 	end

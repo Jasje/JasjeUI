@@ -3,10 +3,10 @@
 --Base code by Dawn (dNameplates), rewritten by Elv22
 if not C["nameplate"].enable == true then return end
 
-local TEXTURE = C["media"].normTex
-local FONT = C["media"].pixelfont2
-local FONTSIZE = 10
-local FONTFLAG =  "OUTLINEMONOCHROME"
+local TEXTURE = C["media"].Glamour
+local FONT = C["nameplate"].font
+local FONTSIZE = C["nameplate"].fontsize
+local FONTFLAG =  C["nameplate"].fontflag
 local hpHeight = 12
 local hpWidth = 110
 local iconSize = 25		--Size of all Icons, RaidIcon/ClassIcon/Castbar Icon

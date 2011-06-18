@@ -13,7 +13,7 @@ Stat:EnableMouse(true)
 Stat.tooltip = false
 
 local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-Text:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 T.PP(C["datatext"].system, Text)
 
 local bandwidthString = "%.2f Mbps"

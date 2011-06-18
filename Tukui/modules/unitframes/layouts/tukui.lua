@@ -12,10 +12,13 @@ if not C["unitframes"].enable == true then return end
 --	local variables
 ------------------------------------------------------------------------
 
-local font1 = C["media"].uffont
 local font2 = C["media"].font
-local pixelfont = C["media"].pixelfont -- other font
-local CBpixelfont = C["media"].pixelfont -- castbar font
+
+local unitframefont = C["unitframes"].unitframefont -- other font
+local castbarfont = C["unitframes"].castbarfont -- castbar font
+local unitframefontflag = C["unitframes"].unitframefontflag -- unitframe fontflag
+local unitframefontsize = C["unitframes"].unitframefontsize -- unitframe fontflag
+
 local normTex = C["media"].Glamour
 local glowTex = C["media"].glowTex
 local bubbleTex = C["media"].bubbleTex
@@ -112,7 +115,7 @@ local function Shared(self, unit)
 		healthBG:SetAllPoints()
 		healthBG:SetTexture(.1, .1, .1)
 	
-		health.value = T.SetFontString(health, pixelfont, 8, "MONOCHROMEOUTLINE")
+		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		health.value:Point("RIGHT", -2, 0)
 		health.PostUpdate = T.PostUpdateHealth
 		
@@ -165,7 +168,7 @@ local function Shared(self, unit)
 		powerBG:SetTexture(normTex)
 		powerBG.multiplier = 0.3
 		
-		power.value = T.SetFontString(health, pixelfont, 8, "MONOCHROMEOUTLINE")
+		power.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		power.value:Point("LEFT", health, "LEFT", T.Scale(2), T.Scale(0))
 		power.PreUpdate = T.PreUpdatePower
 		power.PostUpdate = T.PostUpdatePower
@@ -246,12 +249,12 @@ local function Shared(self, unit)
 			FlashInfo:SetScript("OnUpdate", T.UpdateManaLevel)
 			FlashInfo.parent = self
 			FlashInfo:SetAllPoints(panel)
-			FlashInfo.ManaLevel = T.SetFontString(FlashInfo, pixelfont, 8, "OUTLINEMONOCHROME")
+			FlashInfo.ManaLevel = T.SetFontString(FlashInfo, unitframefont, unitframefontsize, unitframefontflag)
 			FlashInfo.ManaLevel:SetPoint("CENTER", panel, "CENTER", 0, 0)
 			self.FlashInfo = FlashInfo
 			
 			-- pvp status text
-			local status = T.SetFontString(panel, pixelfont, 8, "OUTLINEMONOCHROME")
+			local status = T.SetFontString(panel, unitframefont, unitframefontsize, unitframefontflag)
 			status:SetPoint("CENTER", panel, "CENTER", 0, 0)
 			status:SetTextColor(0.69, 0.31, 0.31)
 			status:Hide()
@@ -280,7 +283,7 @@ local function Shared(self, unit)
 			-- show druid mana when shapeshifted in bear, cat or whatever
 			if T.myclass == "DRUID" then
 				CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateDruidMana(self) end)
-				local DruidMana = T.SetFontString(health, pixelfont, 8, "OUTLINEMONOCHROME")
+				local DruidMana = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 				DruidMana:SetTextColor(1, 0.49, 0.04)
 				self.DruidMana = DruidMana
 			end
@@ -314,7 +317,7 @@ local function Shared(self, unit)
 				local eclipseBarText = solarBar:CreateFontString(nil, 'OVERLAY')
 				eclipseBarText:SetPoint('TOP', panel)
 				eclipseBarText:SetPoint('BOTTOM', panel)
-				eclipseBarText:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+				eclipseBarText:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 				eclipseBar.Text = eclipseBarText
 				
 				-- border 
@@ -486,7 +489,7 @@ local function Shared(self, unit)
 			local Name = health:CreateFontString(nil, "OVERLAY")
 			Name:Point("CENTER", panel, "CENTER", 4, 2)
 			Name:SetJustifyH("CENTER")
-			Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+			Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 
 			self:Tag(Name, '[Tukui:getnamecolor][Tukui:targetname] [Tukui:diffcolor][level] [shortclassification]')
 			self.Name = Name
@@ -616,12 +619,12 @@ local function Shared(self, unit)
             castbar.PostCastStart = T.PostCastStart
             castbar.PostChannelStart = T.PostCastStart
 			
-			castbar.time = T.SetFontString(castbar, CBpixelfont, 8, "MONOCHROMEOUTLINE")
+			castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 			castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), T.Scale(1))
 			castbar.time:SetTextColor(0.84, 0.75, 0.65)
 			castbar.time:SetJustifyH("RIGHT")
 
-			castbar.Text = T.SetFontString(castbar, CBpixelfont, 8, "MONOCHROMEOUTLINE")
+			castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 			castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 1)
 			castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 			
@@ -683,7 +686,7 @@ local function Shared(self, unit)
 		-- add combat feedback support
 		if C["unitframes"].combatfeedback == true then
 			local CombatFeedbackText 
-			CombatFeedbackText = T.SetFontString(health, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+			CombatFeedbackText = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 			if (C["unitframes"].charportrait == true) then
 			CombatFeedbackText:SetPoint("CENTER", self.Portrait, "CENTER", 0, 0)
 			else
@@ -858,7 +861,7 @@ local function Shared(self, unit)
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", health, "CENTER", 0, 0)
-		Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 		Name:SetJustifyH("CENTER")
 
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
@@ -966,7 +969,7 @@ local function Shared(self, unit)
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", health, "CENTER", 0, 0)
-		Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 		Name:SetJustifyH("CENTER")
 
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:targetname] [Tukui:diffcolor][level]')
@@ -992,12 +995,12 @@ local function Shared(self, unit)
 				castbar.PostCastStart = T.CheckCast
 				castbar.PostChannelStart = T.CheckChannel
 
-				castbar.time = T.SetFontString(castbar, CBpixelfont, 8, "MONOCHROMEOUTLINE")
+				castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 				castbar.time:SetPoint("RIGHT", power, "RIGHT", T.Scale(-0), T.Scale(-0))
 				castbar.time:SetTextColor(0.84, 0.75, 0.65)
 				castbar.time:SetJustifyH("RIGHT")
 
-				castbar.Text = T.SetFontString(castbar, CBpixelfont, 8, "MONOCHROMEOUTLINE")
+				castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 				castbar.Text:Point("LEFT", power, "LEFT", 4, 0)
 				castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 				
@@ -1042,7 +1045,7 @@ local function Shared(self, unit)
 		healthBG:SetAllPoints()
 		healthBG:SetTexture(.1, .1, .1)
 
-		health.value = T.SetFontString(health, pixelfont,8, "MONOCHROMEOUTLINE")
+		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		health.value:Point("RIGHT", -2, 0)
 		health.PostUpdate = T.PostUpdateHealth
 				
@@ -1089,7 +1092,7 @@ local function Shared(self, unit)
 		powerBG:SetTexture(normTex)
 		powerBG.multiplier = 0.3
 		
-		power.value = T.SetFontString(health, pixelfont, 8, "MONOCHROMEOUTLINE")
+		power.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		power.value:Point("LEFT", 2, 0)
 		power.PreUpdate = T.PreUpdatePower
 		power.PostUpdate = T.PostUpdatePower
@@ -1129,7 +1132,7 @@ local function Shared(self, unit)
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", health, 0, 0)
 		Name:SetJustifyH("LEFT")
-		Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:targetname]')
 		self.Name = Name
@@ -1154,13 +1157,13 @@ local function Shared(self, unit)
 		castbar.bg:Point("BOTTOMRIGHT", 2, -2)
 		castbar.bg:SetFrameLevel(5)
 		
-		castbar.time = T.SetFontString(castbar, CBpixelfont, 8, "OUTLINEMONOCHROME")
+		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
 		castbar.time:SetTextColor(0.84, 0.75, 0.65)
 		castbar.time:SetJustifyH("RIGHT")
 		castbar.CustomTimeText = T.CustomCastTimeText
 
-		castbar.Text = T.SetFontString(castbar, CBpixelfont, 8, "OUTLINEMONOCHROME")
+		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
 		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 		
@@ -1222,7 +1225,7 @@ end
 		healthBG:SetAllPoints()
 		healthBG:SetTexture(.1, .1, .1)
 
-		health.value = T.SetFontString(health, pixelfont, 8, "OUTLINEMONOCHROME")
+		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		health.value:Point("RIGHT", -2, 2)
 		health.PostUpdate = T.PostUpdateHealth
 				
@@ -1281,7 +1284,7 @@ end
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("LEFT", health, "LEFT", 4, 0)
 		Name:SetJustifyH("LEFT")
-		Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 		Name.frequentUpdates = 0.2
 		
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
@@ -1359,7 +1362,7 @@ end
 		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
 		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
 			
-		AuraTracker.text = T.SetFontString(AuraTracker,  pixelfont, 8, "OUTLINEMONOCHROME")
+		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize, unitframefontflag)
 		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
 		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
 		
@@ -1369,7 +1372,7 @@ end
 		self.ClassIcon = class
 		
 		-- Spec info
-		Talents = T.SetFontString(health, pixelfont, 8, "OUTLINEMONOCHROME")
+		Talents = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		Talents:Point("CENTER", health, 0, 0)
 		Talents:SetTextColor(1,1,1,.6)
 		self.Talents = Talents
@@ -1392,13 +1395,13 @@ end
 		castbar.bg:SetPoint("BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
 		castbar.bg:SetFrameLevel(5)
 		
-		castbar.time = T.SetFontString(castbar, CBpixelfont, 8, "OUTLINEMONOCHROME")
+		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), 0)
 		castbar.time:SetTextColor(0.84, 0.75, 0.65)
 		castbar.time:SetJustifyH("RIGHT")
 		castbar.CustomTimeText = T.CustomCastTimeText
 
-		castbar.Text = T.SetFontString(castbar, CBpixelfont, 8, "OUTLINEMONOCHROME")
+		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.Text:Point("LEFT", castbar, "LEFT", 4, 0)
 		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 		
@@ -1464,7 +1467,7 @@ end
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", health, "CENTER", 0, 0)
 		Name:SetJustifyH("CENTER")
-		Name:SetFont(pixelfont, 8, "OUTLINEMONOCHROME")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
 		
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:nameshort]')
 		self.Name = Name

@@ -70,7 +70,7 @@ local function SetChatStyle(frame)
 	tab.SetAlpha = UIFrameFadeRemoveFrame
 	
 	-- here we set the tab font,size and outline
-	_G[chat.."TabText"]:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+	_G[chat.."TabText"]:SetFont(C["chat"].font, C["chat"].fontsize, C["chat"].fontflag)
 	
 	-- color chat tabs, original by Elv, edited by Hydra
 	local classcolortab = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[select(2,UnitClass("player"))]

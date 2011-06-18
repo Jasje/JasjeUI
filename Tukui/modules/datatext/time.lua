@@ -21,7 +21,7 @@ Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local Text = Stat:CreateFontString(nil, "OVERLAY")
-Text:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 T.PP(C["datatext"].wowtime, Text)
 
 local APM = { TIMEMANAGER_PM, TIMEMANAGER_AM }

@@ -10,7 +10,7 @@ if C["datatext"].gold and C["datatext"].gold > 0 then
 	Stat:SetFrameLevel(3)
 
 	local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-	Text:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+	Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 	T.PP(C["datatext"].gold, Text)
 
 	local Profit	= 0

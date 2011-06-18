@@ -8,9 +8,13 @@ ns._Headers = {}
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if not C["unitframes"].enable == true then return end
 
-local font2 = C["media"].uffont
 local font1 = C["media"].font
-local pixelfont = C["media"].pixelfont
+
+local raidframefont = C["unitframes"].raidframefont -- raidframe font
+local raidframefontsize = C["unitframes"].raidframefontsize -- raidframe fontsize
+local raidframefontflag = C["unitframes"].raidframefontflag -- raidframe fontflag
+
+local normTex = C["media"].Glamour
 
 local function Shared(self, unit)
 	self.colors = T.oUF_colors
@@ -25,7 +29,7 @@ local function Shared(self, unit)
 
 	local health = CreateFrame('StatusBar', nil, self)
     health:SetAllPoints(self)
-	health:SetStatusBarTexture(C["media"].Glamour)
+	health:SetStatusBarTexture(normTex)
 	self.Health = health
 
 	health.bg = self.Health:CreateTexture(nil, 'BORDER')
@@ -79,7 +83,7 @@ local function Shared(self, unit)
 	-- end hydra glow
 
 	local name = health:CreateFontString(nil, 'OVERLAY')
-	name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+	name:SetFont(raidframefont, raidframefontsize, raidframefontflag)
 	name:Point("LEFT", self, "RIGHT", 5, 0)
 	self:Tag(name, '[Tukui:getnamecolor][Tukui:namemedium] [Tukui:dead][Tukui:afk]')
 	self.Name = name
@@ -126,7 +130,7 @@ local function Shared(self, unit)
 	------------------------------------------------------------------------
 		local dbh = self.Health:CreateTexture(nil, "OVERLAY", Healthbg)
 		dbh:SetAllPoints(self)
-		dbh:SetTexture(C["media"].normTex)
+		dbh:SetTexture(normTex)
 		dbh:SetBlendMode("ADD")
 		dbh:SetVertexColor(0,0,0,0)
 		self.DebuffHighlight = dbh
@@ -168,6 +172,7 @@ oUF:Factory(function(self)
 		"showSolo", C.unitframes.showplayersolo and true or false,
 		"showParty", true,
 		"showPlayer", C["unitframes"].showplayerinparty,
+        "showSolo", C["unitframes"].showsolo,			
 		"showRaid", true,
 		"groupFilter", "1,2,3,4,5,6,7,8",
 		"groupingOrder", "1,2,3,4,5,6,7,8",

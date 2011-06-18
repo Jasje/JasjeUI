@@ -61,7 +61,7 @@ if C["datatext"].friends and C["datatext"].friends > 0 then
 	local ttsubh = {r=0.75,g=0.9,b=1}
 
 	local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-    Text:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+    Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 	T.PP(C["datatext"].friends, Text)
 
 	local friendMenuFrame = nil

@@ -35,6 +35,12 @@ C["unitframes"] = {
 	["healcomm"] = false,                               -- enable healprediction support.
 	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
 	["bordercolor"] = { .4,.4,.4 },                     -- unit frames panel border color
+	
+	-- unitframe font fontsize and fontflag
+	["unitframefont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global unitframe font
+	["castbarfont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global castbar font
+	["unitframefontsize"] = 8, -- size used for all unitframe&castbars 
+	["unitframefontflag"] = "OUTLINEMONOCHROME", -- outline used for all unitframe&castbars
 
 	-- raid layout (if one of them is enabled)
 	["showrange"] = true,                               -- show range opacity on raidframes
@@ -48,7 +54,12 @@ C["unitframes"] = {
 	["showplayerinparty"] = true,                      -- show my player frame in party
 	["showsolo"] = false,                      -- show raid when solo.
 	["gridscale"] = 1,                                  -- set the healing grid scaling
-	-- thanks Hydra!
+	
+	-- unitframe font fontsize and fontflag
+	["raidframefont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global unitframe font
+	["raidframefontsize"] = 8, -- size used for all unitframe&castbars 
+	["raidframefontflag"] = "OUTLINEMONOCHROME", -- outline used for all unitframe&castbars
+
 	["gradienthealth"] = true,                          -- change raid health color based on health percent.
 	["gradient"] = {                                    -- health gradient color if unicolor is true.
 		1.0, 0.3, 0.3, -- R, G, B (low HP)
@@ -92,7 +103,7 @@ C["actionbar"] = {
 	-- taken from Asphyxia edit
 	["mainbarWidth"] = 12,								-- amount of buttons per row on main bar (set between 1-12)
 	["sidebarWidth"] = 3,								-- amount of buttons per row on side bars (set between 0-6, 0 = disabled)
-	["bgPanel"] = true,									-- enable background panels for actionbars NOTE: rightbar and pet bar are a bit buggy when set on false
+	["bgPanel"] = true,									-- enable background panels for actionbars
 }
 
 C["castbar"] = { 
@@ -145,9 +156,11 @@ C["datatext"] = {
 	-- Color Datatext
 	["classcolor"] = true,                -- classcolored datatexts 
 	["color"] = "|cff00AAFF",              -- datatext color if classcolor = false
-
-	["fontsize"] = 14,                     -- font size for panels.
-	["fontflag"] = "OUTLINEMONOCHROME",             -- font ouline   
+   
+    -- datatext font
+	["font"] = [[Interface\AddOns\Tukui\medias\fonts\visitor2.ttf]], -- font used for all datatext	
+	["fontsize"] = 14, -- size used for all datatext
+	["fontflag"] = "OUTLINEMONOCHROME", -- outline used for all datatext
 }
 
 C["chat"] = {
@@ -157,6 +170,12 @@ C["chat"] = {
 	["tabcolor"] = {150/255, 150/255, 150/255},              -- color of chat tabs, disabled if classcolor is true
 	["tabmouseover"] = {1,1,1,1},          -- color of tabs on mouse-over
 	["classcolortab"] = true,             -- color chat tabs based on class
+	
+	-- chat tab font
+	["font"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- font used chattabs	
+	["fontsize"] = 8, -- size used for chattabs
+	["fontflag"] = "OUTLINEMONOCHROME", -- outline used chattabs
+	
 	-- credit Hydra
 	["names"] = { -- name alert in chat change to your own names
 	    "Jásje", 
@@ -176,6 +195,11 @@ C["nameplate"] = {
 	["goodcolor"] = {75/255,  175/255, 76/255},	        -- good threat color (tank shows this with threat, everyone else without)
 	["badcolor"] = {0.78, 0.25, 0.25},			        -- bad threat color (opposite of above)
 	["transitioncolor"] = {218/255, 197/255, 92/255},	-- threat color when gaining threat
+	
+	-- nameplate font
+	["font"] = [[Interface\AddOns\Tukui\medias\fonts\visitor2.ttf]], -- font used nameplates
+	["fontsize"] = 10, -- size used for nameplates
+	["fontflag"] = "OUTLINEMONOCHROME", -- outline used nameplates
 }
 
 C["tooltip"] = {

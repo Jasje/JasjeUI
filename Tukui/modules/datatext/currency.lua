@@ -10,7 +10,7 @@ if C["datatext"].currency and C["datatext"].currency > 0 then
 	Stat:SetFrameLevel(3)
 
 	local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-	Text:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+	Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 	T.PP(C["datatext"].currency, Text)
 	
 	local function update()

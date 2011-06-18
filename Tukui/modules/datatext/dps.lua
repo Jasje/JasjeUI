@@ -13,7 +13,7 @@ if C["datatext"].dps_text and C["datatext"].dps_text > 0 then
 	local pet_id = UnitGUID("pet")
      
 	local dText = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-	dText:SetFont(C.media.pixelfont2, C["datatext"].fontsize,C["datatext"].fontflag)
+	dText:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 	dText:SetText("0.0 ",L.datatext_dps)
 
 	T.PP(C["datatext"].dps_text, dText)
