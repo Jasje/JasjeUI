@@ -60,24 +60,6 @@ ns.Filger_Spells = {
 			--Fingers Of Frost
             { spellID = 83074, size = 47, unitId = "player", caster = "player", filter = "BUFF"},
 		},
-		{
-			Name = "Focus",  
-			Direction = "LEFT",
-			Interval = 2,
-			Mode = "ICON",
-			setPoint = { "LEFT", TukuiPlayer, -42, -3 },
-			
-			-- Sheep mage
-            { spellID = 118, size = 36, unitId = "focus", caster = "player", filter = "DEBUFF" },
-			-- Pig mage
-            { spellID = 28272, size = 36, unitId = "focus", caster = "player", filter = "DEBUFF" },
-			-- Turtle mage
-            { spellID = 28271, size = 36, unitId = "focus", caster = "player", filter = "DEBUFF" },	
-			-- Remedy - Maloriak 
-			{ spellID = 92967, size = 36, unitId = "focus", caster = "all", filter = "BUFF" },	
-			-- Converted Power - Arcanotron
-            { spellID = 79735, size = 36, unitId = "focus", caster = "all", filter = "BUFF" },
-		},
 	},
 	["PRIEST"] = { -------------------------------------------------------------------------------------------------------- Priest
 		{
@@ -746,7 +728,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = {  "CENTER", UIParent ,140,150 },
+			setPoint = {  "CENTER", UIParent ,100,150 },
 			
 			--[[ Druid ]]--
 			--Innervate
@@ -798,7 +780,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = {  "CENTER", UIParent ,-140,150 },			
+			setPoint = {  "CENTER", UIParent ,-100,150 },			
 			
 			--[[ Rouge ]]--
 			--Kidney Shot
@@ -1043,6 +1025,28 @@ ns.Filger_Spells = {
 	        { spellID = 676, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Piercing Howl
 	        { spellID = 12323, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
+			},
+			{ -- Here we track all cc on focus target -- not finished
+			Name = "Focus",  
+			Direction = "LEFT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "BOTTOM", TukuiFocus, 92, 37 },
+			
+            --Innervate -- I also wanna see innervate on focus
+			{ spellID = 29166, size = 40, unitId = "focus", caster = "all", filter = "BUFF"},			
+			--Hungering Cold
+	        { spellID = 51209, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
+			--Chains of Ice
+	        { spellID = 45524, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },			
+			--Hex
+	        { spellID = 51514, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },			
+			--Polymorph
+	        { spellID = 118, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
+			--Improved Polymorph
+	        { spellID = 83047, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
+			--Cyclone
+	        { spellID = 33786, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
 		},
 	},
 }	
