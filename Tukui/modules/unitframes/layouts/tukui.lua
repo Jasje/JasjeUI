@@ -1110,7 +1110,7 @@ local function Shared(self, unit)
 		else
 			power.colorPower = true
 		end
-		
+		--[[ Filger takes this for the most part
 		-- only showing debuffs on focus
 		local debuffs = CreateFrame("Frame", nil, self)
 		debuffs:SetPoint("TOPLEFT", self, "TOPLEFT", -2, 30)
@@ -1127,7 +1127,7 @@ local function Shared(self, unit)
 		debuffs.PostUpdateIcon = T.PostUpdateAura
 		
 		self.Debuffs = debuffs
-		
+		]]--
 		-- names
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", health, 0, 0)
@@ -1557,7 +1557,7 @@ if C["unitframes"].showboss then
 		else
 			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 40)             
 		end
-		boss[i]:SetSize(T.Scale(200), T.Scale(35))
+		boss[i]:SetSize(T.Scale(200), T.Scale(45))
 	end
 end
 
