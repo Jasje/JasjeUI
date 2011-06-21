@@ -134,7 +134,7 @@ oUF.Tags['Tukui:nameshort'] = function(unit)
 	return utf8sub(name, 10, false)
 end
 
-oUF.TagEvents['Tukui:nameshort'] = 'UNIT_NAME_UPDATE'
+oUF.TagEvents['Tukui:targetname'] = 'UNIT_NAME_UPDATE'
 oUF.Tags['Tukui:targetname'] = function(unit)
 	local name = UnitName(unit)
 	return utf8sub(name, 12, false)

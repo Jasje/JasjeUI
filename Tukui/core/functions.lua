@@ -28,7 +28,7 @@ T.PP = function(p, obj)
 	local tabright = TukuiTabsRightBackground
 	local pvedl = PveDatatextl
 	local pvedr = PveDatatextr
-	
+
 	if p == 1 then
 		obj:SetParent(left)
 		obj:SetHeight(left:GetHeight())
@@ -81,7 +81,7 @@ T.DataTextTooltipAnchor = function(self)
 	local anchor = "ANCHOR_TOP"
 	local xoff = 0
 	local yoff = T.Scale(5)
-	
+
 	if panel == TukuiInfoLeft then
 		anchor = "ANCHOR_TOPLEFT"
 	elseif panel == TukuiInfoRight then
@@ -101,7 +101,7 @@ T.DataTextTooltipAnchor = function(self)
 			yoff = T.Scale(-6)
 		end
 	end
-	
+
 	return anchor, panel, xoff, yoff
 end
 
@@ -116,17 +116,17 @@ T.TukuiShiftBarUpdate = function()
 		if i <= numForms then
 			texture, name, isActive, isCastable = GetShapeshiftFormInfo(i)
 			icon:SetTexture(texture)
-			
+
 			cooldown = _G["ShapeshiftButton"..i.."Cooldown"]
 			if texture then
 				cooldown:SetAlpha(1)
 			else
 				cooldown:SetAlpha(0)
 			end
-			
+
 			start, duration, enable = GetShapeshiftFormCooldown(i)
 			CooldownFrame_SetTimer(cooldown, start, duration, enable)
-			
+
 			if isActive then
 				ShapeshiftBarFrame.lastSelected = button:GetID()
 				button:SetChecked(1)
@@ -152,7 +152,7 @@ T.TukuiPetBarUpdate = function(self, event)
 		petAutoCastableTexture = _G[buttonName.."AutoCastable"]
 		petAutoCastShine = _G[buttonName.."Shine"]
 		local name, subtext, texture, isToken, isActive, autoCastAllowed, autoCastEnabled = GetPetActionInfo(i)
-		
+
 		if not isToken then
 			petActionIcon:SetTexture(texture)
 			petActionButton.tooltipName = name
@@ -160,7 +160,7 @@ T.TukuiPetBarUpdate = function(self, event)
 			petActionIcon:SetTexture(_G[texture])
 			petActionButton.tooltipName = _G[name]
 		end
-		
+
 		petActionButton.isToken = isToken
 		petActionButton.tooltipSubtext = subtext
 
@@ -175,19 +175,19 @@ T.TukuiPetBarUpdate = function(self, event)
 				PetActionButton_StopFlash(petActionButton)
 			end			
 		end
-		
+
 		if autoCastAllowed then
 			petAutoCastableTexture:Show()
 		else
 			petAutoCastableTexture:Hide()
 		end
-		
+
 		if autoCastEnabled then
 			AutoCastShine_AutoCastStart(petAutoCastShine)
 		else
 			AutoCastShine_AutoCastStop(petAutoCastShine)
 		end
-		
+
 		-- grid display
 		if name then
 			if not C["actionbar"].showgrid then
@@ -198,7 +198,7 @@ T.TukuiPetBarUpdate = function(self, event)
 				petActionButton:SetAlpha(0)
 			end
 		end
-		
+
 		if texture then
 			if GetPetActionSlotUsable(i) then
 				SetDesaturation(petActionIcon, nil)
@@ -209,7 +209,7 @@ T.TukuiPetBarUpdate = function(self, event)
 		else
 			petActionIcon:Hide()
 		end
-		
+
 		-- between level 1 and 10 on cata, we don't have any control on Pet. (I lol'ed so hard)
 		-- Setting desaturation on button to true until you learn the control on class trainer.
 		-- you can at least control "follow" button.
@@ -382,7 +382,7 @@ T.PostUpdateHealth = function(health, unit, min, max)
 		end
 	else
 		local r, g, b
-		
+
 		-- overwrite healthbar color for enemy player (a tukui option if enabled), target vehicle/pet too far away returning unitreaction nil and friend unit not a player. (mostly for overwrite tapped for friendly)
 		-- I don't know if we really need to call C["unitframes"].unicolor but anyway, it's safe this way.
 		if (C["unitframes"].unicolor ~= true and C["unitframes"].enemyhcolor and unit == "target" and UnitIsEnemy(unit, "player") and UnitIsPlayer(unit)) or (C["unitframes"].unicolor ~= true and unit == "target" and not UnitIsPlayer(unit) and UnitIsFriend(unit, "player")) then
@@ -405,13 +405,13 @@ T.PostUpdateHealth = function(health, unit, min, max)
 				if C["unitframes"].showtotalhpmp == true then
 					health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r", ShortValue(min), ShortValue(max))
 				else
-					health.value:SetFormattedText("|cffAF5050%d|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", min, r * 255, g * 255, b * 255, floor(min / max * 100))
+					health.value:SetFormattedText("|cffAF5050%d|r |cffD7BEA5|||r |cff%02x%02x%02x%d%%|r", min, r * 255, g * 255, b * 255, floor(min / max * 100))
 				end
 			elseif unit == "target" or (unit and unit:find("boss%d")) then
 				if C["unitframes"].showtotalhpmp == true then
 					health.value:SetFormattedText("|cff559655%s|r |cffD7BEA5|||r |cff559655%s|r", ShortValue(min), ShortValue(max))
 				else
-					health.value:SetFormattedText("|cffAF5050%s|r |cffD7BEA5-|r |cff%02x%02x%02x%d%%|r", ShortValue(min), r * 255, g * 255, b * 255, floor(min / max * 100))
+					health.value:SetFormattedText("|cffAF5050%s|r |cffD7BEA5|||r |cff%02x%02x%02x%d%%|r", ShortValue(min), r * 255, g * 255, b * 255, floor(min / max * 100))
 				end
 			elseif (unit and unit:find("arena%d")) or unit == "focus" or unit == "focustarget" then
 				health.value:SetText("|cff559655"..ShortValue(min).."|r")
@@ -448,7 +448,7 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 			health:SetStatusBarColor(r, g, b)
 			health.bg:SetTexture(.1, .1, .1)
 		end
-		
+
 		if C.unitframes.gradienthealth and C.unitframes.unicolor then
 			if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then return end
 			if not health.classcolored then
@@ -456,7 +456,7 @@ T.PostUpdateHealthRaid = function(health, unit, min, max)
 				health:SetStatusBarColor(r, g, b)
 			end
 		end
-		
+
 		if min ~= max then
 			health.value:SetText("|cff559655-"..ShortValueNegative(max-min).."|r")
 		else
@@ -482,14 +482,19 @@ T.PostNamePosition = function(self)
 	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and C["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and C["unitframes"].targetpowerpvponly == false) then
 		self.Name:SetPoint("CENTER", self.panel, "CENTER", 0, 0)
 	else
-		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("LEFT", self.panel, "LEFT", 20, -0)
+		if C["unitframes"].style == "Tukui" then
+			self.Power.value:SetAlpha(0)
+			self.Name:SetPoint("LEFT", self.Health, "LEFT", 4, 1)
+		else		
+			self.Power.value:SetAlpha(0)
+			self.Name:SetPoint("LEFT", self.Health, "LEFT", 4, 1)
+		end	
 	end
 end
 
 T.PreUpdatePower = function(power, unit)
 	local _, pType = UnitPowerType(unit)
-	
+
 	local color = T.oUF_colors.power[pType]
 	if color then
 		power:SetStatusBarColor(color[1], color[2], color[3])
@@ -516,7 +521,7 @@ T.PostUpdatePower = function(power, unit, min, max)
 					if C["unitframes"].showtotalhpmp == true then
 						power.value:SetFormattedText("%s |cffD7BEA5|||r %s", ShortValue(max - (max - min)), ShortValue(max))
 					else
-						power.value:SetFormattedText("%d%% |cffD7BEA5-|r %s", floor(min / max * 100), ShortValue(max - (max - min)))
+						power.value:SetFormattedText("%d%% |cffD7BEA5|||r %s", floor(min / max * 100), ShortValue(max - (max - min)))
 					end
 				elseif unit == "player" and self:GetAttribute("normalUnit") == "pet" or unit == "pet" then
 					if C["unitframes"].showtotalhpmp == true then
@@ -530,7 +535,7 @@ T.PostUpdatePower = function(power, unit, min, max)
 					if C["unitframes"].showtotalhpmp == true then
 						power.value:SetFormattedText("%s |cffD7BEA5|||r %s", ShortValue(max - (max - min)), ShortValue(max))
 					else
-						power.value:SetFormattedText("%d%% |cffD7BEA5-|r %d", floor(min / max * 100), max - (max - min))
+						power.value:SetFormattedText("%d%% |cffD7BEA5|||r %d", floor(min / max * 100), max - (max - min))
 					end
 				end
 			else
@@ -600,24 +605,24 @@ end
 
 T.PostCreateAura = function(element, button)
 	button:SetTemplate("Default")
-	
+
 	button.remaining = T.SetFontString(button, C.media.pixelfont, C.unitframes.auratextscale, "OUTLINEMONOCHROME")
 	button.remaining:Point("CENTER", 1, 0)
-	
+
 	button.cd.noOCC = true		 	-- hide OmniCC CDs
 	button.cd.noCooldownCount = true	-- hide CDC CDs
-	
+
 	button.cd:SetReverse()
 	button.icon:Point("TOPLEFT", 2, -2)
 	button.icon:Point("BOTTOMRIGHT", -2, 2)
 	button.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 	button.icon:SetDrawLayer('ARTWORK')
-	
+
 	button.count:Point("TOPLEFT", 1, 18)
 	button.count:SetJustifyH("LEFT")
 	button.count:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 	button.count:SetTextColor(0.84, 0.75, 0.65)
-	
+
 	button.overlayFrame = CreateFrame("frame", nil, button, nil)
 	button.cd:SetFrameLevel(button:GetFrameLevel() + 1)
 	button.cd:ClearAllPoints()
@@ -627,7 +632,7 @@ T.PostCreateAura = function(element, button)
 	button.overlay:SetParent(button.overlayFrame)
 	button.count:SetParent(button.overlayFrame)
 	button.remaining:SetParent(button.overlayFrame)
-			
+
 	button.Glow = CreateFrame("Frame", nil, button)
 	button.Glow:Point("TOPLEFT", button, "TOPLEFT", -3, 3)
 	button.Glow:Point("BOTTOMRIGHT", button, "BOTTOMRIGHT", 3, -3)
@@ -656,7 +661,7 @@ T.PostUpdateAura = function(icons, unit, icon, index, offset, filter, isDebuff, 
 			icon:SetBackdropBorderColor(unpack(C.media.bordercolor))
 		end
 	end
-	
+
 	if duration and duration > 0 then
 		if C["unitframes"].auratimer == true then
 			icon.remaining:Show()
@@ -670,13 +675,13 @@ T.PostUpdateAura = function(icons, unit, icon, index, offset, filter, isDebuff, 
 	icon.duration = duration
 	icon.timeLeft = expirationTime
 	icon.first = true
-	
+
 	if T.ReverseTimer and T.ReverseTimer[spellID] then 
 		icon.reverse = true 
 	else
 		icon.reverse = false
 	end	
-	
+
 	icon:SetScript("OnUpdate", CreateAuraTimer)
 end
 
@@ -769,7 +774,7 @@ T.EclipseDisplay = function(self, login)
 	if login then
 		eb:SetScript("OnUpdate", nil)
 	end
-	
+
 	if eb:IsShown() then
 		txt:Show()
 		self.FlashInfo:Hide()
@@ -966,7 +971,7 @@ T.createAuraWatch = function(self, unit)
 			auras.icons[spell[1]] = icon
 		end
 	end
-	
+
 	self.AuraWatch = auras
 end
 
@@ -1008,11 +1013,11 @@ if C["unitframes"].raidunitdebuffwatch == true then
 		local ORD = ns.oUF_RaidDebuffs or oUF_RaidDebuffs
 
 		if not ORD then return end
-		
+
 		ORD.ShowDispelableDebuff = true
 		ORD.FilterDispellableDebuff = true
 		ORD.MatchBySpellName = true
-		
+
 		local function SpellName(id)
 			local name, _, _, _, _, _, _, _, _ = GetSpellInfo(id) 	
 			return name	
@@ -1021,7 +1026,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 		T.debuffids = {
 		-- Test debuff
 		    --SpellName(25771), --Forbearance
-		
+
 		-- Other debuff
 			SpellName(67479), -- Impale
 
@@ -1104,7 +1109,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 	    [92955] = true, -- Sinestra (Wrack)
     	[89421] = true, -- Sinestra (Wrack)
     },
-		
+
 		ORD:RegisterDebuffs(T.debuffids)
 	end
 end

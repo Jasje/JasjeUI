@@ -41,7 +41,6 @@ local function Shared(self, unit)
 	health.bg = health:CreateTexture(nil, 'BORDER')
 	health.bg:SetAllPoints(health)
 	health.bg:SetTexture(normTex)
-	health.bg:SetTexture(0.3, 0.3, 0.3)
 	health.bg.multiplier = (0.3)
 	self.Health.bg = health.bg
 		
@@ -51,18 +50,19 @@ local function Shared(self, unit)
 	self.Health.value = health.value
 	
 	health.PostUpdate = T.PostUpdateHealthRaid
-	
 	health.frequentUpdates = true
 	
 	if C.unitframes.unicolor == true then
 		health.colorDisconnected = false
 		health.colorClass = false
-		health:SetStatusBarColor(.3, .3, .3, 1)
-		health.bg:SetVertexColor(.1, .1, .1, 1)		
+		health:SetStatusBarColor(.2, .2, .2, 1)
+		health.bg:SetTexture(.6, .6, .6)
+		health.bg:SetVertexColor(0, 0, 0)		
 	else
 		health.colorDisconnected = true
 		health.colorClass = true
-		health.colorReaction = true			
+		health.colorReaction = true	
+        health.bg:SetTexture(.1, .1, .1)		
 	end
 	
 	-- border
@@ -197,12 +197,12 @@ local function Shared(self, unit)
 		if C["unitframes"].gridhealthvertical then
 			mhpb:SetOrientation("VERTICAL")
 			mhpb:SetPoint('BOTTOM', self.Health:GetStatusBarTexture(), 'TOP', 0, 0)
-			mhpb:Width(66*C["unitframes"].gridscale*T.raidscale)
-			mhpb:Height(50*C["unitframes"].gridscale*T.raidscale)		
+			mhpb:Width(68*C["unitframes"].gridscale*T.raidscale)
+			mhpb:Height(40.3*C["unitframes"].gridscale*T.raidscale)		
 		else
 			mhpb:SetPoint('TOPLEFT', self.Health:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
 			mhpb:SetPoint('BOTTOMLEFT', self.Health:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
-			mhpb:Width(66*C["unitframes"].gridscale*T.raidscale)
+			mhpb:Width(68*C["unitframes"].gridscale*T.raidscale)
 		end				
 		mhpb:SetStatusBarTexture(normTex)
 		mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
@@ -211,8 +211,8 @@ local function Shared(self, unit)
 		if C["unitframes"].gridhealthvertical then
 			ohpb:SetOrientation("VERTICAL")
 			ohpb:SetPoint('BOTTOM', mhpb:GetStatusBarTexture(), 'TOP', 0, 0)
-			ohpb:Width(66*C["unitframes"].gridscale*T.raidscale)
-			ohpb:Height(50*C["unitframes"].gridscale*T.raidscale)
+			ohpb:Width(68*C["unitframes"].gridscale*T.raidscale)
+			ohpb:Height(40.3*C["unitframes"].gridscale*T.raidscale)
 		else
 			ohpb:SetPoint('TOPLEFT', mhpb:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
 			ohpb:SetPoint('BOTTOMLEFT', mhpb:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
@@ -309,5 +309,5 @@ oUF:Factory(function(self)
 			"columnSpacing", T.Scale(10),
 			"columnAnchorPoint", "TOP"		
 		)
-		raid:SetPoint("BOTTOM", InvTukuiActionBarBackground, 0, 107) 
+		raid:SetPoint("BOTTOM", TukuiBar1, 0, 109) 
     end)

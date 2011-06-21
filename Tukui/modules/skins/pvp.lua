@@ -146,6 +146,9 @@ local function LoadSkin()
 		WarGamesFrameDescription:SetTextColor(1, 1, 1)
 	end
 
+	--WorldStateCaptureBar1:StripTextures()
+	--WorldStateCaptureBar1:CreateBackdrop("Transparent")
+	
 	--Freaking gay Cancel Button FFSlocal
 	local f = PVPBannerFrameCancelButton
 	local l = _G[f:GetName().."Left"]

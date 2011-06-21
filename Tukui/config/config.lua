@@ -10,6 +10,10 @@ C["general"] = {
 }
 
 C["unitframes"] = {
+
+    -- layout
+	["style"] = "Jasje",                           		-- unitframe style, choose from ("Jasje" or "Tukui")
+
 	-- general options
 	["enable"] = true,                                  -- do i really need to explain this?
 	["enemyhcolor"] = false,                            -- enemy target (players) color by hostility, very useful for healer.
@@ -32,7 +36,7 @@ C["unitframes"] = {
 	["unicolor"] = true,                               -- enable unicolor theme
 	["combatfeedback"] = true,                          -- enable combattext on player and target.
 	["playeraggro"] = true,                             -- color player border to red if you have aggro on current target.
-	["healcomm"] = false,                               -- enable healprediction support.
+	["healcomm"] = true,                               -- enable healprediction support.
 	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
 	["bordercolor"] = { .4,.4,.4 },                     -- unit frames panel border color
 	

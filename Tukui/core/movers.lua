@@ -25,7 +25,6 @@ local function exec(self, enable)
 			self:Hide()
 		end
 	end
-	
 	if self == TukuiMinimap then
 		if enable then 
 			Minimap:Hide()

@@ -8,10 +8,10 @@ local parent, ns = ...
 local oUF = ns.oUF
 
 oUF.colors.runes = {
-	{1, 0, 0};
-	{0, .5, 0};
-	{0, 1, 1};
-	{.9, .1, 1};
+	{11, 0, 0};
+	{0, 11, 0};
+	{11,0,55};
+	{.0,0.6,1};
 }
 
 local OnUpdate = function(self, elapsed)

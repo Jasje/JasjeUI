@@ -35,7 +35,6 @@ local function Shared(self, unit)
 	health.bg = self.Health:CreateTexture(nil, 'BORDER')
 	health.bg:SetAllPoints(self.Health)
 	health.bg:SetTexture(C["media"].blank)
-	health.bg:SetTexture(0.3, 0.3, 0.3)
 	health.bg.multiplier = (0.3)
 
 	self.Health.bg = health.bg
@@ -46,8 +45,9 @@ local function Shared(self, unit)
 	if C.unitframes.unicolor == true then
 		health.colorDisconnected = false
 		health.colorClass = false
-		health:SetStatusBarColor(.3, .3, .3, 1)
-		health.bg:SetVertexColor(.1, .1, .1, 1)		
+		health:SetStatusBarColor(.2, .2, .2, 1)
+		health.bg:SetTexture(.6, .6, .6)
+		health.bg:SetVertexColor(0, 0, 0)		
 	else
 		health.colorDisconnected = true
 		health.colorClass = true
