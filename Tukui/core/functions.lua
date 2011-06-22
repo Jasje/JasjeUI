@@ -487,7 +487,7 @@ T.PostNamePosition = function(self)
 			self.Name:SetPoint("LEFT", self.Health, "LEFT", 4, 1)
 		else		
 			self.Power.value:SetAlpha(0)
-			self.Name:SetPoint("LEFT", self.Health, "LEFT", 4, 1)
+			self.Name:SetPoint("LEFT", self.panel, "LEFT", 4, 0)
 		end	
 	end
 end
@@ -1025,7 +1025,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 
 		T.debuffids = {
 		-- Test debuff
-		    --SpellName(25771), --Forbearance
+		    --SpellName(57724), --sated
 
 		-- Other debuff
 			SpellName(67479), -- Impale
@@ -1108,6 +1108,7 @@ if C["unitframes"].raidunitdebuffwatch == true then
 	    [89435] = true, -- Sinestra (Wrack)
 	    [92955] = true, -- Sinestra (Wrack)
     	[89421] = true, -- Sinestra (Wrack)
+    	--[57724] = true, -- test sated
     },
 
 		ORD:RegisterDebuffs(T.debuffids)
