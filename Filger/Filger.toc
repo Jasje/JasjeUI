@@ -1,4 +1,4 @@
-## Interface: 40000
+## Interface: 40100
 ## Title: Filger
 ## Notes: Minimal buff/debuff/proc tracking
 ## Author: Nils Ruesch, Affli
