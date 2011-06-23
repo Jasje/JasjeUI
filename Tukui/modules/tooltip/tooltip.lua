@@ -36,8 +36,8 @@ if C.chat.background and TukuiChatBackgroundRight then
 else
 	anchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight)
 end
-anchor:SetTemplate("Default")
-anchor:SetBackdropBorderColor(1, 0, 0, 1)
+anchor:SetTemplate("Hydra")
+anchor:SetBackdropBorderColor(C.media.backdropcolor)
 anchor:SetMovable(true)
 anchor.text = T.SetFontString(anchor, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
 anchor.text:SetPoint("CENTER")
@@ -252,7 +252,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local race = UnitRace(unit)
 	local class = UnitClass(unit)
 	local level = UnitLevel(unit)
-	local guild = GetGuildInfo(unit)
+    local guildName, guildRankName, guildRankIndex = GetGuildInfo(unit)
 	local name, realm = UnitName(unit)
 	local crtype = UnitCreatureType(unit)
 	local classif = UnitClassification(unit)
@@ -360,7 +360,7 @@ local BorderColor = function(self)
 end
 
 local SetStyle = function(self)
-	self:SetTemplate("Default")
+	self:SetTemplate("Hydra")
 	BorderColor(self)
 end
 
@@ -374,7 +374,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 
 		ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
 		ItemRefTooltip:HookScript("OnShow", SetStyle)	
-		FriendsTooltip:SetTemplate("Default")
+		FriendsTooltip:SetTemplate("Hydra")
 
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
@@ -405,7 +405,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 			FrameStackTooltip:SetScale(C.general.uiscale)
 
 			-- Skin it
-			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Hydra") end)
 		end
 
 		if EventTraceTooltip then
