@@ -6,5 +6,4 @@
 ## X-Category: UnitFrame
 ## RequiredDeps: Tukui
 
-oUF_hTukz_AuraWatch.lua
 oUF_hTukz_Raid16_40.lua
