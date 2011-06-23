@@ -349,9 +349,9 @@ local BorderColor = function(self)
 			local r, g, b = GetItemQualityColor(quality)
 			self:SetBackdropBorderColor(r, g, b)
 		else
-			self:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-			healthBarBG:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-			healthBar:SetStatusBarColor(unpack(C["media"].bordercolor))
+			self:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+			healthBarBG:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+			healthBar:SetStatusBarColor(unpack(C["media"].altbordercolor))
 		end
 	end
 
@@ -409,7 +409,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 		end
 
 		if EventTraceTooltip then
-			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Hydra") end)
 		end
 	end
 end)
