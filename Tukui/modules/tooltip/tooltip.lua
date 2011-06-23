@@ -36,8 +36,8 @@ if C.chat.background and TukuiChatBackgroundRight then
 else
 	anchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight)
 end
-anchor:SetTemplate("Hydra")
-anchor:SetBackdropBorderColor(C.media.backdropcolor)
+anchor:SetTemplate("Default")
+anchor:SetBackdropBorderColor(1, 0, 0, 1)
 anchor:SetMovable(true)
 anchor.text = T.SetFontString(anchor, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
 anchor.text:SetPoint("CENTER")
@@ -49,10 +49,10 @@ local function UpdateTooltip(self)
 	local owner = self:GetOwner()
 	if not owner then return end	
 	local name = owner:GetName()
-	
+
 	-- fix X-offset or Y-offset
 	local x = T.Scale(5)
-	
+
 	-- mouseover
 	if self:GetAnchorType() == "ANCHOR_CURSOR" then
 		-- h4x for world object tooltip border showing last border color 
@@ -67,19 +67,19 @@ local function UpdateTooltip(self)
 	elseif self:GetAnchorType() == "ANCHOR_NONE" and InCombatLockdown() and C["tooltip"].hidecombat == true then
 		self:Hide()
 	end
-	
+
 	if name and (TukuiPlayerBuffs or TukuiPlayerDebuffs) then
 		if (TukuiPlayerBuffs:GetPoint():match("LEFT") or TukuiPlayerDebuffs:GetPoint():match("LEFT")) and (name:match("TukuiPlayerBuffs") or name:match("TukuiPlayerDebuffs")) then
 			self:SetAnchorType("ANCHOR_BOTTOMRIGHT", x, -x)
 		end
 	end
-		
+
 	if (owner == MiniMapBattlefieldFrame or owner == MiniMapMailFrame) and TukuiMinimap then
 		if TukuiMinimap:GetPoint():match("LEFT") then 
 			self:SetAnchorType("ANCHOR_TOPRIGHT", x, -x)
 		end
 	end
-	
+
 	if self:GetAnchorType() == "ANCHOR_NONE" and TukuiTooltipAnchor then
 		local point = TukuiTooltipAnchor:GetPoint()
 		if point == "TOPLEFT" then
@@ -163,12 +163,12 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		return
 	end
 	local min, max = self:GetMinMaxValues()
-	
+
 	if (value < min) or (value > max) then
 		return
 	end
 	local _, unit = GameTooltip:GetUnit()
-	
+
 	-- fix target of target returning nil
 	if (not unit) then
 		local GMF = GetMouseFocus()
@@ -183,7 +183,7 @@ GameTooltipStatusBar:SetScript("OnValueChanged", function(self, value)
 		else
 			self.text:Point("CENTER", GameTooltipStatusBar, 0, 6)
 		end
-		
+
 		self.text:SetFont(C["media"].pixelfont2, 14, "MONOCHROMEOUTLINE")
 		self.text:Show()
 		if unit then
@@ -232,18 +232,18 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local lines = self:NumLines()
 	local GMF = GetMouseFocus()
 	local unit = (select(2, self:GetUnit())) or (GMF and GMF:GetAttribute("unit"))
-	
+
 	-- A mage's mirror images sometimes doesn't return a unit, this would fix it
 	if (not unit) and (UnitExists("mouseover")) then
 		unit = "mouseover"
 	end
-	
+
 	-- Sometimes when you move your mouse quicky over units in the worldframe, we can get here without a unit
 	if not unit then self:Hide() return end
-	
+
 	-- for hiding tooltip on unitframes
 	if (self:GetOwner() ~= UIParent and C["tooltip"].hideuf) then self:Hide() return end
-	
+
 	-- A "mouseover" unit is better to have as we can then safely say the tip should no longer show when it becomes invalid.
 	if (UnitIsUnit(unit,"mouseover")) then
 		unit = "mouseover"
@@ -252,7 +252,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 	local race = UnitRace(unit)
 	local class = UnitClass(unit)
 	local level = UnitLevel(unit)
-	local guildName, guildRankName, guildRankIndex = GetGuildInfo(unit)
+	local guild = GetGuildInfo(unit)
 	local name, realm = UnitName(unit)
 	local crtype = UnitCreatureType(unit)
 	local classif = UnitClassification(unit)
@@ -313,7 +313,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self)
 		if not r and not g and not b then r, g, b = 1, 1, 1 end
 		GameTooltip:AddLine(UnitName(unit.."target"), r, g, b)
 	end
-	
+
 	-- Sometimes this wasn't getting reset, the fact a cleanup isn't performed at this point, now that it was moved to "OnTooltipCleared" is very bad, so this is a fix
 	self.fadeOut = nil
 end)
@@ -321,7 +321,7 @@ end)
 local BorderColor = function(self)
 	local GMF = GetMouseFocus()
 	local unit = (select(2, self:GetUnit())) or (GMF and GMF:GetAttribute("unit"))
-		
+
 	local reaction = unit and UnitReaction(unit, "player")
 	local player = unit and UnitIsPlayer(unit)
 	local tapped = unit and UnitIsTapped(unit)
@@ -354,50 +354,66 @@ local BorderColor = function(self)
 			healthBar:SetStatusBarColor(unpack(C["media"].bordercolor))
 		end
 	end
-	
+
 	-- need this
 	NeedBackdropBorderRefresh = true
 end
 
 local SetStyle = function(self)
-	self:SetTemplate("Hydra", true)
+	self:SetTemplate("Default")
 	BorderColor(self)
 end
 
 TukuiTooltip:RegisterEvent("PLAYER_ENTERING_WORLD")
-TukuiTooltip:SetScript("OnEvent", function(self)
-	for _, tt in pairs(Tooltips) do
-		tt:HookScript("OnShow", SetStyle)
-	end
-	
-	ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
-	ItemRefTooltip:HookScript("OnShow", SetStyle)	
-	FriendsTooltip:SetTemplate("Hydra", true)
-		
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	self:SetScript("OnEvent", nil)
-	
-	-- move health status bar if anchor is found at top
-	local position = TukuiTooltipAnchor:GetPoint()
-	if position:match("TOP") then
-		healthBar:ClearAllPoints()
-		healthBar:Point("TOPLEFT", healthBar:GetParent(), "BOTTOMLEFT", 2, -5)
-		healthBar:Point("TOPRIGHT", healthBar:GetParent(), "BOTTOMRIGHT", -2, -5)
-	end
-	
-	-- Hide tooltips in combat for actions, pet actions and shapeshift
-	if C["tooltip"].hidebuttons == true then
-		local CombatHideActionButtonsTooltip = function(self)
-			if not IsShiftKeyDown() then
-				self:Hide()
-			end
+TukuiTooltip:RegisterEvent("ADDON_LOADED")
+TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
+	if event == "PLAYER_ENTERING_WORLD" then
+		for _, tt in pairs(Tooltips) do
+			tt:HookScript("OnShow", SetStyle)
 		end
-	 
-		hooksecurefunc(GameTooltip, "SetAction", CombatHideActionButtonsTooltip)
-		hooksecurefunc(GameTooltip, "SetPetAction", CombatHideActionButtonsTooltip)
-		hooksecurefunc(GameTooltip, "SetShapeshift", CombatHideActionButtonsTooltip)
+
+		ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
+		ItemRefTooltip:HookScript("OnShow", SetStyle)	
+		FriendsTooltip:SetTemplate("Default")
+
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+
+		-- move health status bar if anchor is found at top
+		local position = TukuiTooltipAnchor:GetPoint()
+		if position:match("TOP") then
+			healthBar:ClearAllPoints()
+			healthBar:Point("TOPLEFT", healthBar:GetParent(), "BOTTOMLEFT", 2, -5)
+			healthBar:Point("TOPRIGHT", healthBar:GetParent(), "BOTTOMRIGHT", -2, -5)
+		end
+
+		-- Hide tooltips in combat for actions, pet actions and shapeshift
+		if C["tooltip"].hidebuttons == true then
+			local CombatHideActionButtonsTooltip = function(self)
+				if not IsShiftKeyDown() then
+					self:Hide()
+				end
+			end
+
+			hooksecurefunc(GameTooltip, "SetAction", CombatHideActionButtonsTooltip)
+			hooksecurefunc(GameTooltip, "SetPetAction", CombatHideActionButtonsTooltip)
+			hooksecurefunc(GameTooltip, "SetShapeshift", CombatHideActionButtonsTooltip)
+		end
+	else
+		if addon ~= "Blizzard_DebugTools" then return end
+
+		if FrameStackTooltip then
+			FrameStackTooltip:SetScale(C.general.uiscale)
+
+			-- Skin it
+			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+		end
+
+		if EventTraceTooltip then
+			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+		end
 	end
 end)
+
 -- ilvl on tooltip by Gsuz
 local SlotName = {
         "Head","Neck","Shoulder","Back","Chest","Wrist",
