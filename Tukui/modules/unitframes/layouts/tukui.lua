@@ -711,40 +711,11 @@ local function Shared(self, unit)
 			self.CombatFeedbackText = CombatFeedbackText
 		end
 
-			if C["unitframes"].swingbar then
-            -- SwingTimer
-			local Swing =  CreateFrame('Frame', nil, self)
-	    	Swing:Point("LEFT", health, "TOPLEFT", 10, 2)
-			Swing.texture = (C["media"].normTex)
-			Swing:SetFrameLevel(8)
-			Swing:SetFrameStrata("MEDIUM")
-			Swing:Hide()
-			Swing.color = {color.r,color.g,color.b}
-
-			local SwingBG = CreateFrame("Frame", "TukuiSwingtimer", Swing)
-			SwingBG:CreatePanel("Default", 200, 10, "LEFT", health, "TOPLEFT", 10, 2)
-			Swing:Point("TOPLEFT", SwingBG, 2, -2)
-	    	Swing:Point("BOTTOMRIGHT", SwingBG, -2, 2)
-			SwingBG:SetParent(Swing)
-			SwingBG:SetFrameStrata("MEDIUM")
-			SwingBG:SetFrameLevel(4)
-
-            Swing.bg = Swing:CreateTexture(nil, 'BORDER')
-		    Swing.bg:SetAllPoints(Swing)
-			Swing.hideOoc = true
-
-			self.Swing = Swing
-			end
-
 		if C["unitframes"].healcomm then
 			local mhpb = CreateFrame('StatusBar', nil, self.Health)
 			mhpb:SetPoint('TOPLEFT', self.Health:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)
 			mhpb:SetPoint('BOTTOMLEFT', self.Health:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
-			if T.lowversion then
-				mhpb:SetWidth(186)
-			else
-				mhpb:SetWidth(250)
-			end
+			mhpb:SetWidth(250)
 			mhpb:SetStatusBarTexture(normTex)
 			mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
 			mhpb:SetMinMaxValues(0,1)
@@ -1353,7 +1324,6 @@ end
 		AuraTracker:Size(49)
 		AuraTracker:Point("RIGHT", health, "LEFT", -4, 0)
 		AuraTracker:SetTemplate("Default")
-		AuraTracker:CreateShadow("Default")
 		self.AuraTracker = AuraTracker
 
 		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")

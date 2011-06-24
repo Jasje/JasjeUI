@@ -80,8 +80,6 @@ C["unitframes"] = {
 	
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
-	
-	["swingbar"] = false,                                -- enable swingbar over player unit disabled by default
 }
    -- credit Elv
 C["interruptanncounce"] = {
