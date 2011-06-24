@@ -1031,7 +1031,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "BOTTOM", TukuiFocus, 92, 37 },
+			setPoint = { "BOTTOM", TukuiFocus, 92, 44 },
 			
             --Innervate -- I also wanna see innervate on focus
 			{ spellID = 29166, size = 40, unitId = "focus", caster = "all", filter = "BUFF"},			
