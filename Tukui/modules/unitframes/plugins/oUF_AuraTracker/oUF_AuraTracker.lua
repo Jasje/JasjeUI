@@ -25,13 +25,13 @@ local function GetAuras()
 		[GetSpellInfo(61025)] 	= 3,	-- Polymorph serpent
 		[GetSpellInfo(51514)]	= 3,	-- Hex
 		[GetSpellInfo(710)]		= 3,	-- Banish
-		
+
 		-- Roots
 		[GetSpellInfo(339)] 	= 3, 	-- Entangling Roots
 		[GetSpellInfo(122)]		= 3,	-- Frost Nova
 		[GetSpellInfo(16979)] 	= 3, 	-- Feral Charge
 		[GetSpellInfo(13809)] 	= 1, 	-- Frost Trap
-		
+
 		-- Stuns and incapacitates
 		[GetSpellInfo(5211)] 	= 3, 	-- Bash
 		[GetSpellInfo(1833)] 	= 3,	-- Cheap Shot
@@ -49,18 +49,18 @@ local function GetAuras()
 		[GetSpellInfo(47481)]	= 3,	-- Gnaw (dk pet stun)
 		[GetSpellInfo(88625)]	= 3,	-- Holy Word: Chastise
 		[GetSpellInfo(85388)]	= 3,	-- Warrior stun
-		
+
 		-- Silences
 		[GetSpellInfo(18469)] 	= 1,	-- Improved Counterspell
 		[GetSpellInfo(15487)] 	= 1, 	-- Silence
 		[GetSpellInfo(34490)] 	= 1, 	-- Silencing Shot	
 		[GetSpellInfo(18425)]	= 1,	-- Improved Kick
 		[GetSpellInfo(47476)]	= 1,	-- Strangulate
-		
+
 		-- Disarms
 		[GetSpellInfo(676)] 	= 1, 	-- Disarm
 		[GetSpellInfo(51722)] 	= 1,	-- Dismantle			
-		
+
 		-- Buffs
 		[GetSpellInfo(1022)] 	= 1,	-- Blessing of Protection
 		[GetSpellInfo(1044)] 	= 1, 	-- Blessing of Freedom
@@ -71,13 +71,13 @@ local function GetAuras()
 		[GetSpellInfo(18708)]  	= 1,	-- Fel Domination
 		[GetSpellInfo(54428)]	= 1,	-- Divine Plea
 		[GetSpellInfo(31821)]	= 1,	-- Aura mastery
-		
+
 		-- Turtling abilities
 		[GetSpellInfo(871)]		= 1,	-- Shield Wall
 		[GetSpellInfo(48707)]	= 1,	-- Anti-Magic Shell
 		[GetSpellInfo(31224)]	= 1,	-- Cloak of Shadows
 		[GetSpellInfo(19263)]	= 1,	-- Deterrence
-		
+
 		-- Immunities
 		[GetSpellInfo(34692)] 	= 2, 	-- The Beast Within
 		[GetSpellInfo(45438)] 	= 2, 	-- Ice Block
@@ -98,34 +98,34 @@ local function Update(object, event, unit)
 	while ( true ) do
 		local name, rank, icon, count, debuffType, duration, expirationTime, unitCaster, isStealable = UnitAura(unit, index, "HELPFUL")
 		if ( not name ) then break end
-		
+
 		if ( auraList[name] and auraList[name] >= priority ) then
 			priority = auraList[name]
 			auraName = name
 			auraIcon = icon
 			auraExpTime = expirationTime
 		end
-		
+
 		index = index+1
 	end
-	
+
 	index = 1
-	
+
 	--Debuffs 
 	while ( true ) do
 		local name, rank, icon, count, debuffType, duration, expirationTime, unitCaster, isStealable = UnitAura(unit, index, "HARMFUL")
 		if ( not name ) then break end
-		
+
 		if ( auraList[name] and auraList[name] >= priority ) then
 			priority = auraList[name]
 			auraName = name
 			auraIcon = icon
 			auraExpTime = expirationTime
 		end
-		
+
 		index = index+1	
 	end
-	
+
 	if ( auraName ) then -- If an aura is found, display it and set the time left!
 		object.AuraTracker.icon:SetTexture(auraIcon)
 		object.AuraTracker.timeleft = (auraExpTime-GetTime())
