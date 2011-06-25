@@ -262,7 +262,7 @@ local StyleTooltip = function(self)
 		local name = select(2, GetTalentTabInfo(GetPrimaryTalentTree()))
 		local spec = GetActiveTalentGroup()
 		
-		GameTooltip:SetOwner(self, "ANCHOR_NONE", 0, 0)
+		GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 2)
 		GameTooltip:ClearLines()
 		
 		if spec == 1 then
