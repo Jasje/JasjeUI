@@ -23,9 +23,6 @@ end
 T.PP = function(p, obj)
 	local left = TukuiInfoLeft
 	local right = TukuiInfoRight
-	local mapleft = TukuiMinimapStatsLeft
-	local mapright = TukuiMinimapStatsRight
-	local tabright = TukuiTabsRightBackground
 	local pvedl = PveDatatextl
 	local pvedr = PveDatatextr
 
@@ -80,7 +77,7 @@ T.DataTextTooltipAnchor = function(self)
 	local panel = self:GetParent()
 	local anchor = "ANCHOR_TOP"
 	local xoff = 0
-	local yoff = T.Scale(5)
+	local yoff = T.Scale(2)
 
 	if panel == TukuiInfoLeft then
 		anchor = "ANCHOR_TOPLEFT"
