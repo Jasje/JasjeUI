@@ -57,7 +57,7 @@ function tInterruptIcons.CreateIcon()
 	tInterruptIcons.Icons[i]:SetTemplate("Default")
 
 	tInterruptIcons.Icons[i].TimerText = tInterruptIcons.Icons[i]:CreateFontString("tInterruptIconsTimerText","OVERLAY")
-	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.font,14,"Outline")
+	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.pixelfont,16, "OUTLINEMONOCHROME")
 	tInterruptIcons.Icons[i].TimerText:SetTextColor(1,0,0)
 	tInterruptIcons.Icons[i].TimerText:SetShadowColor(0,0,0)
 	tInterruptIcons.Icons[i].TimerText:SetShadowOffset(T.mult,-T.mult)

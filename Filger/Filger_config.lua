@@ -217,8 +217,6 @@ ns.Filger_Spells = {
 			{ spellID = 6789, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Enslave Demon
 			{ spellID = 1098, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Demon Charge
-			{ spellID = 54785, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
         {
 			Name = "Cooldown",
@@ -868,7 +866,7 @@ ns.Filger_Spells = {
 			--Gnaw (Ghoul)
             { spellID = 47481, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Hungering Cold
-	        { spellID = 51209, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
+	        { spellID = 61058, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Chilblains
 	        { spellID = 50040, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },			
         
@@ -922,7 +920,7 @@ ns.Filger_Spells = {
 			--Snatch (Bird of Prey)
 	        { spellID = 50541, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Froststorm Breath (Chimera)
-	        { spellID = 54644, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },		
+	        { spellID = 95725, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },		
 			--Pin (Crab)
             { spellID = 50245, size = 70, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Tendon Rip (Hyena)
@@ -1036,7 +1034,7 @@ ns.Filger_Spells = {
             --Innervate -- I also wanna see innervate on focus
 			{ spellID = 29166, size = 40, unitId = "focus", caster = "all", filter = "BUFF"},			
 			--Hungering Cold
-	        { spellID = 51209, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
+	        { spellID = 49203, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },
 			--Chains of Ice
 	        { spellID = 45524, size = 40, unitId = "focus", caster = "all", filter = "DEBUFF" },			
 			--Hex

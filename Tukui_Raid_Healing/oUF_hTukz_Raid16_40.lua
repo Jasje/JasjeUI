@@ -228,15 +228,26 @@ local function Shared(self, unit)
 		}
 	end
 	
+	--Resurrect Indicator
+	local Resurrect = CreateFrame('Frame', nil, self)
+	Resurrect:SetFrameLevel(20)
+
+	local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
+	ResurrectIcon:Point(health.value:GetPoint())
+	ResurrectIcon:Size(30, 25)
+	ResurrectIcon:SetDrawLayer('OVERLAY', 7)
+
+	self.ResurrectIcon = ResurrectIcon
+	
 	if C["unitframes"].raidunitdebuffwatch == true then
 		-- AuraWatch (corner icon)
 		T.createAuraWatch(self,unit)
 		
 		-- Raid Debuffs (big middle icon)
 		local RaidDebuffs = CreateFrame('Frame', nil, self)
-		RaidDebuffs:Height(18*C["unitframes"].gridscale)
-		RaidDebuffs:Width(18*C["unitframes"].gridscale)
-		RaidDebuffs:Point('CENTER', health, 1,-6)
+		RaidDebuffs:Height(22*C["unitframes"].gridscale)
+		RaidDebuffs:Width(22*C["unitframes"].gridscale)
+		RaidDebuffs:Point('CENTER', health, 1,-7)
 		RaidDebuffs:SetFrameStrata(health:GetFrameStrata())
 		RaidDebuffs:SetFrameLevel(health:GetFrameLevel() + 2)
 		
