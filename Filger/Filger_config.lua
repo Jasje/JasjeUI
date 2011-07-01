@@ -718,6 +718,34 @@ ns.Filger_Spells = {
 			{ spellID = 93260, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
 			-- Lightning Rod
 			{ spellID = 93295, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+			
+--[[ INCOMPLETE ]] --
+-- The Firelands  
+    -- Beth'tilac			
+		-- Widows Kiss
+		{ spellID = 99506, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	-- Alysrazor		
+		-- Fiero Blast
+		{ spellID = 101296, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Gushing Wound
+		{ spellID = 100723, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	--	Shannox
+		-- Crystal Prison
+		{ spellID = 99837, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Jagged Tear
+		{ spellID = 99937, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	-- Baleroc	
+		-- Tormented
+		{ spellID = 99403, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	-- Lord Rhyolith	
+		-- Heated Volcano
+		{ spellID = 93295, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	-- Majordomo Staghelm	
+		-- Burning Orbs
+		{ spellID = 98451, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+	 -- Ragnaros		
+		-- Lava Wave
+		{ spellID = 100293, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
     	},	
 		{
 --[[       Tons of SpellIDs taken from LoseControl so credit to Kouri 
