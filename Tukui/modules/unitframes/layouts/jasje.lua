@@ -440,7 +440,7 @@ local function Shared(self, unit)
 				self.TotemBar = TotemBar
 			end
         end
-			
+		
 			-- script for pvp status and low mana
 			self:SetScript("OnEnter", function(self)
 				if self.EclipseBar and self.EclipseBar:IsShown() then 
@@ -504,7 +504,7 @@ local function Shared(self, unit)
 			
 			self.CPoints = CPoints
 		end
-
+		
 		if (unit == "target" and C["unitframes"].targetauras) or (unit == "player" and C["unitframes"].playerauras) then
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
