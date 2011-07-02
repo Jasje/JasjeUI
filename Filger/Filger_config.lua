@@ -719,33 +719,51 @@ ns.Filger_Spells = {
 			-- Lightning Rod
 			{ spellID = 93295, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
 			
---[[ INCOMPLETE ]] --
--- The Firelands  
-    -- Beth'tilac			
-		-- Widows Kiss
-		{ spellID = 99506, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	-- Alysrazor		
-		-- Fiero Blast
-		{ spellID = 101296, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-		-- Gushing Wound
-		{ spellID = 100723, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	--	Shannox
-		-- Crystal Prison
-		{ spellID = 99837, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-		-- Jagged Tear
-		{ spellID = 99937, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	-- Baleroc	
-		-- Tormented
-		{ spellID = 99403, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	-- Lord Rhyolith	
-		-- Heated Volcano
-		{ spellID = 93295, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	-- Majordomo Staghelm	
-		-- Burning Orbs
-		{ spellID = 98451, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-	 -- Ragnaros		
-		-- Lava Wave
-		{ spellID = 100293, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+--      [[ INCOMPLETE ]] --
+-- Firelands
+        --Shannox
+            -- Magma Rupture
+            { spellID = 99840, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Crystal Prison Trap 
+            { spellID = 99837, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Jagged Tear
+            { spellID = 99936, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Lord Rhyolith	
+            -- Eruption
+            { spellID = 98492, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Alysrazor	
+            -- Molten Feather
+            { spellID = 97128, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+            -- Wings of Flame
+            { spellID = 98619, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+            -- Blazing Power
+            { spellID = 99461, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Alysra's Razor
+            { spellID = 100029, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Beth'tilac	
+            -- The Widow's Kiss
+            { spellID = 99506, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Baleroc	
+            -- Torment
+            { spellID = 99256, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Tormented
+            { spellID = 99257, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Blaze of Glory
+            { spellID = 99252, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Vital Flame
+            { spellID = 99262, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+            -- Vital Spark
+            { spellID = 99263, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+		-- Majordomo Staghelm	
+            -- Searing Seeds
+            { spellID = 98450, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Burning Orbs
+            { spellID = 98451, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+		-- Ragnaros	
+            -- Blazing Heat
+            { spellID = 100460, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+            -- Burning Wound 
+            { spellID = 101239, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
     	},	
 		{
 --[[       Tons of SpellIDs taken from LoseControl so credit to Kouri 
