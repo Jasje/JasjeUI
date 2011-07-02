@@ -54,7 +54,8 @@ function tInterruptIcons.CreateIcon()
 	tInterruptIcons.Icons[i].Texture:Point("BOTTOMRIGHT", tInterruptIcons.Icons[i], -2, 2)
 	tInterruptIcons.Icons[i].Texture:SetTexCoord(.08, .92, .08, .92)
 	
-	tInterruptIcons.Icons[i]:SetTemplate("Default")
+	tInterruptIcons.Icons[i]:SetTemplate("")
+	tInterruptIcons.Icons[i]:SetBorder()
 
 	tInterruptIcons.Icons[i].TimerText = tInterruptIcons.Icons[i]:CreateFontString("tInterruptIconsTimerText","OVERLAY")
 	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.pixelfont,16, "OUTLINEMONOCHROME")
@@ -139,7 +140,7 @@ function tInterruptIcons.Print(msg, ...)
 	DEFAULT_CHAT_FRAME:AddMessage("|cFFFFFF33[Tukui Interrupt Icons]|r "..format(msg, ...))
 end
 
-function tInterruptIcons.COMBAT_LOG_EVENT_UNFILTERED(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellID)
+function tInterruptIcons.COMBAT_LOG_EVENT_UNFILTERED(timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID)
 	if (event == "SPELL_CAST_SUCCESS" and not tInterruptIcons.Icons[1]:IsMouseEnabled() and (bit.band(sourceFlags,COMBATLOG_OBJECT_REACTION_HOSTILE) == COMBATLOG_OBJECT_REACTION_HOSTILE)) then			
 		if (sourceName ~= UnitName("player")) then
 			if (tInterruptIcons.Spells[spellID]) then
