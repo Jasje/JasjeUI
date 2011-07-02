@@ -2,21 +2,15 @@ local T, C, L = unpack(select(2, ...))
 -----------------------------------------------
 --	announce your interrupts(by Elv22) 
 -----------------------------------------------
-if not C["interruptanncounce"].enable == true then
+if C["interruptanncounce"].enable == true then
+
 local interrupt_announce = CreateFrame("Frame")
 interrupt_announce:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-interrupt_announce:SetScript("OnEvent", function(self, _, ...)
-	local _, event, _, sourceGUID, _, _, _, _, destName, _, _, _, _, _, spellID, spellName = ...
-	if not (event == "SPELL_INTERRUPT" and sourceGUID == UnitGUID("player")) then return end
+interrupt_announce:SetScript("OnEvent", function(self, _, _, event, _, sourceGUID, _, _, _, _, destName, _, _, _, _, _, spellID, spellName)
+	if not (event == "SPELL_INTERRUPT" and sourceGUID == UnitGUID('player')) then return end
 
-	if GetRealNumRaidMembers() > 0 then
-		SendChatMessage(INTERRUPTED.." "..destName..": \124cff71d5ff\124Hspell:"..spellID.."\124h["..spellName.."]\124h\124r!", "RAID", nil, nil)
-	elseif GetRealNumPartyMembers() > 0 and not UnitInRaid("player") then
-		SendChatMessage(INTERRUPTED.." "..destName..": \124cff71d5ff\124Hspell:"..spellID.."\124h["..spellName.."]\124h\124r!", "PARTY", nil, nil)
-	else
-		SendChatMessage(INTERRUPTED.." "..destName..": \124cff71d5ff\124Hspell:"..spellID.."\124h["..spellName.."]\124h\124r!", "SAY", nil, nil)
-	end
-end)
+    SendChatMessage(INTERRUPTED.." "..destName..": \124cff71d5ff\124Hspell:"..spellID.."\124h["..spellName.."]\124h\124r!", "YELL", nil, nil) -- change "YELL" to whatever channel you like
+    end)
 end
 -----------------------------------------------
 -- enemy drinking(by Duffed)
