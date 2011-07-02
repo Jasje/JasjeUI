@@ -969,19 +969,25 @@ if C["unitframes"].raidunitdebuffwatch == true then
 	do
 		T.buffids = {
 			PRIEST = {
-				{6788, "TOPLEFT", {1, 0, 0}, true}, -- Weakened Soul
-				{33076, "TOPRIGHT", {0.2, 0.7, 0.2}}, -- Prayer of Mending
-				{139, "BOTTOMLEFT", {0.4, 0.7, 0.2}}, -- Renew
-				{17, "BOTTOMRIGHT", {0.81, 0.85, 0.1}, true}, -- Power Word: Shield
+				{6788, "TOPLEFT", {1, 0, 0}, true},			-- Weakened Soul
+				{33076, "TOPRIGHT", {0.2, 0.7, 0.2}},		-- Prayer of Mending
+				{139, "BOTTOMLEFT", {0.4, 0.7, 0.2}}, 			-- Renew
+				{17, "BOTTOMRIGHT", {0.81, 0.85, 0.1}, true},		-- Power Word: Shield
+				{10060, "RIGHT", {0.89, 0.1, 0.1}},				-- Power Infusion
+				{33206, "LEFT", {0.89, 0.1, 0.1}, true},		-- Pain Suppress
+				{47788, "LEFT", {0.86, 0.52, 0}, true},			-- Hand of Freedom
 			},
 			DRUID = {
-				{774, "TOPLEFT", {0.8, 0.4, 0.8}}, -- Rejuvenation
+			    {774, "TOPLEFT", {0.8, 0.4, 0.8}}, -- Rejuvenation
 				{8936, "TOPRIGHT", {0.2, 0.8, 0.2}}, -- Regrowth
-				{33763, "BOTTOMLEFT", {0.4, 0.8, 0.2}}, -- Lifebloom
-				{48438, "BOTTOMRIGHT", {0.8, 0.4, 0}}, -- Wild Growth
+			    {33763, "BOTTOMLEFT", {0.4, 0.8, 0.2}}, -- Lifebloom
+			    {48438, "BOTTOMRIGHT", {0.8, 0.4, 0}}, -- Wild Growth
 			},
 			PALADIN = {
-				{53563, "TOPLEFT", {0.7, 0.3, 0.7}}, -- Beacon of Light
+				{53563, "TOPLEFT", {0.7, 0.3, 0.7}},			-- Beacon of Light
+				{1022, "BOTTOMRIGHT", {0.2, 0.2, 1}, true},		-- Hand of Protection
+				{1044, "BOTTOMRIGHT", {0.89, 0.45, 0}, true},	-- Hand of Freedom
+				{1038, "BOTTOMRIGHT", {0.93, 0.75, 0}, true},	-- Hand of Salvation
 			},
 			SHAMAN = {
 				{61295, "TOPLEFT", {0.7, 0.3, 0.7}}, -- Riptide 
@@ -989,9 +995,30 @@ if C["unitframes"].raidunitdebuffwatch == true then
 				{16177, "BOTTOMLEFT", {0.4, 0.7, 0.2}}, -- Ancestral Fortitude
 				{974, "BOTTOMRIGHT", {0.7, 0.4, 0}, true}, -- Earth Shield
 			},
+			ROGUE = {
+				{57933, "TOPRIGHT", {0.89, 0.1, 0.1}},			-- Tricks of the Trade
+			},
+			DEATHKNIGHT = {
+				{49016, "TOPRIGHT", {0.89, 0.89, 0.1}},			-- Unholy Frenzy
+			},
+			MAGE = {
+				{54646, "TOPRIGHT", {0.2, 0.2, 1}},				-- Focus Magic
+			},
+			WARRIOR = {
+				{59665, "TOPLEFT", {0.2, 0.2, 1}},				-- Vigilance
+				{3411, "TOPRIGHT", {0.89, 0.1, 0.1}},			-- Intervene
+			},
+			HUNTER = {
+				{34477, "TOPRIGHT", {0.2, 0.2, 1}},				-- Misdirection
+			},
+			WARLOCK = {
+				{20707, "TOPRIGHT", {0.7, 0.32, 0.75}},			-- Soulstone Resurrection
+			},
 			ALL = {
-				{14253, "RIGHT", {0, 1, 0}}, -- Abolish Poison
-				{23333, "LEFT", {1, 0, 0}}, -- Warsong flag xD
+				{23333, "LEFT", {1, 0, 0}, true}, 				-- Warsong flag, Horde
+				{23335, 'LEFT', {0, 0, 1}, true},				-- Warsong flag, Alliance
+				{34976, "LEFT", {1, 0, 0}, true}, 				-- Netherstorm Flag
+				{64413, "RIGHT", {0.8, 0.2, 0}, true},			-- Protection of Ancient Kings
 			},
 		}
 	end
@@ -1018,77 +1045,124 @@ if C["unitframes"].raidunitdebuffwatch == true then
 		-- Other debuff
 			SpellName(67479), -- Impale
 
-		--CATA DEBUFFS
-		--Baradin Hold
-			SpellName(95173), -- Consuming Darkness
+		-- Baradin Hold
+			-- Argaloth
+			SpellName(95173),	-- Consuming Darkness
+		-- Blackwing Descent
+			-- Magmaw
+			SpellName(94679),	-- Parasitic Infection
+			SpellName(94617),	-- Mangle
+			SpellName(91911),	-- Constricting Chains
+			-- Omintron Defense System
+			SpellName(91433),	-- Lightning Conductor
+			SpellName(91535),	-- Flamethrower
+			SpellName(80161),	-- Chemical Cloud
+			SpellName(92035),	-- Acquiring Target
+			SpellName(79835),	-- Poison Soaked Shell
+			SpellName(91555),	-- Power Generator
+			SpellName(80094),	-- Fixate
+			SpellName(91521),	-- Incineration Security Measure
+			SpellName(92048),	-- Shadow Infusion
+			SpellName(92053),	-- Shadow Conductor
+			-- Maloriak
+			SpellName(92754),	-- Engulfing Darkness
+			SpellName(77699),	-- Flash Freeze
+			SpellName(77760),	-- Biting Chill
+			SpellName(92971),	-- Consuming Flames
+			SpellName(92989),	-- Rend
+			SpellName(78617),	-- Fixate
+			-- Atramedes
+			SpellName(92423),	-- Searing Flame
+			SpellName(92485),	-- Roaring Flame
+			SpellName(92407),	-- Sonic Breath
+			SpellName(78092),	-- Tracking
+			-- Chimaeron
+			SpellName(82881),	-- Break
+			SpellName(89084),	-- Low Health
+			-- Nefarian
+			SpellName(81114),	-- Magma
+			SpellName(94128),	-- Tail Lash
+			SpellName(79339),	-- Explosive Cinders
+			SpellName(79318),	-- Dominion
+		-- The Bastion of Twilight
+			-- Halfus Wyrmbreaker
+			SpellName(83710),	-- Furious Roar
+			SpellName(39171),	-- Malevolent Strikes
+			-- Valiona & Theralion
+			SpellName(86505),	-- Fabulous Flames
+			SpellName(86840),	-- Devouring Flames
+			SpellName(92878),	-- Blackout
+			SpellName(95639),	-- Engulfing Magic
+			SpellName(93051),	-- Twilight Shift
+			SpellName(92886),	-- Twilight Zone
+			SpellName(88518),	-- Twilight Meteorite
+			-- Twilight Ascendant Council
+			SpellName(82660),	-- Burning Blood
+			SpellName(82665),	-- Heart of Ice
+			SpellName(82762),	-- Waterlogged
+			SpellName(83099),	-- Lightning Rod
+			SpellName(92488),	-- Gravity Crush
+			SpellName(83500),	-- Swirling Winds
+			SpellName(83581),	-- Grounded
+			SpellName(92505),	-- Frozen
+			SpellName(92511),	-- Hydro Lance
+			SpellName(92518),	-- Flame Torrent
+			SpellName(92075),	-- Gravity Core
+			-- Cho'gall
+			SpellName(93187),	-- Corrupted Blood
+			SpellName(82125),	-- Corruption: Malformation
+			SpellName(82170),	-- Corruption: Absolute
+			SpellName(93200),	-- Corruption: Sickness
+			SpellName(82411),	-- Debilitating Beam
+			SpellName(91317),	-- Worshipping
+			SpellName(86028),	-- Cho's Blast
+			SpellName(86029),	-- Gall's Blast
+			-- Sinestra
+			SpellName(92956),	-- Wrack
+		-- Throne of the Four Winds
+			-- Conclave of Wind
+			-- Nezir
+			SpellName(93131),	-- Ice Patch
+			-- Anshal
+			SpellName(86206),	-- Soothing Breeze
+			SpellName(93122),	-- Toxic Spores
+			-- Rohash
+			SpellName(93058),	-- Slicing Gale
+			-- Al'Akir
+			SpellName(87873),	-- Static Shock
+			SpellName(93260),	-- Ice Storm
+			SpellName(87856),	-- Squall Line
+			SpellName(88427),	-- Electrocute
+			SpellName(93295),	-- Lightning Rod
+		-- Firelands
+			-- Beth'tilac
+			SpellName(99506),	-- Widows Kiss
+			SpellName(97202),	-- Fiery Web Spin
+			SpellName(49026),	-- Fixate
+			SpellName(97079),	-- Seeping Venom
+			-- Lord Rhyolith
 
-		--Blackwing Descent
-			--Magmaw
-			SpellName(91911), -- Constricting Chains
-			SpellName(94679), -- Parasitic Infection
-			SpellName(94617), -- Mangle
-			SpellName(78199), -- Sweltering Armor
-
-			--Omintron Defense System
-	        SpellName(91433), --Lightning Conductor
-			SpellName(91521), --Incineration Security Measure
-            SpellName(80094), --Fixate 
-
-			--Maloriak
-			SpellName(77699), -- Flash Freeze
-			SpellName(77760), -- Biting Chill
-
-			--Atramedes
-			SpellName(92423), -- Searing Flame
-			SpellName(92485), -- Roaring Flame
-			SpellName(92407), -- Sonic Breath
-
-			--Chimaeron
-			SpellName(82881), -- Break
-			SpellName(89084), -- Low Health
-
-			--Nefarian
-
-			--Sinestra
-			SpellName(92956), --Wrack
-
-		--The Bastion of Twilight
-			--Valiona & Theralion
-			SpellName(92878), -- Blackout
-			SpellName(86840), -- Devouring Flames
-			SpellName(95639), -- Engulfing Magic
-			SpellName(93051), -- Twilight Shift
-           	SpellName(92886), -- Twilight Zone
-	        SpellName(88518), -- Twilight Meteorite
-
-			--Halfus Wyrmbreaker
-			SpellName(39171), -- Malevolent Strikes
-
-			--Twilight Ascendant Council
-			SpellName(92511), -- Hydro Lance
-			SpellName(82762), -- Waterlogged
-			SpellName(92505), -- Frozen
-			SpellName(92518), -- Flame Torrent
-			SpellName(83099), -- Lightning Rod
-			SpellName(92075), -- Gravity Core
-			SpellName(92488), -- Gravity Crush
-
-			--Cho'gall
-			SpellName(86028), -- Cho's Blast
-			SpellName(86029), -- Gall's Blast
-
-		--Throne of the Four Winds
-			--Conclave of Wind
-				--Nezir <Lord of the North Wind>
-				SpellName(93131), --Ice Patch
-				--Anshal <Lord of the West Wind>
-				SpellName(86206), --Soothing Breeze
-				SpellName(93122), --Toxic Spores
-				--Rohash <Lord of the East Wind>
-				SpellName(93058), --Slicing Gale
-			--Al'Akir
-			SpellName(93260), -- Ice Storm
-			SpellName(93295), -- Lightning Rod
+			-- Alysrazor
+			SpellName(101296),	-- Fieroblast
+			SpellName(100723),	-- Gushing Wound
+			SpellName(99389),	-- Imprinted
+			SpellName(101729),	-- Blazing Claw
+			-- Shannox
+			SpellName(99837),	-- Crystal Prison
+			SpellName(99937),	-- Jagged Tear
+			-- Baleroc
+			SpellName(99403),	-- Torment
+			SpellName(99252),	-- Blaze of Glory
+			SpellName(99516),	-- Countdown
+			-- Majordomo Staghelm
+			SpellName(98450),	-- Searing Seeds
+			-- Ragnaros
+			SpellName(99399),	-- Burning Wound
+			SpellName(100293),	-- Lava Wave
+			SpellName(98313),	-- Magma Blast
+			SpellName(100675),	-- Dreadflame
+			-- Trash
+			SpellName(99532),	-- Melt Armor	
 		}
 
 	T.ReverseTimer = {
