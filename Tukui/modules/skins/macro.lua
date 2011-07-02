@@ -14,6 +14,8 @@ local function LoadSkin()
 		"MacroFrameTab2",
 		"MacroPopupOkayButton",
 		"MacroPopupCancelButton",
+		"MacroSaveButton",
+		"MacroCancelButton",
 	}
 
 	for i = 1, #buttons do

@@ -105,7 +105,7 @@ C["actionbar"] = {
 	["buttonspacing"] = 4,                              -- buttons spacing
 	-- taken from Asphyxia edit
 	["mainbarWidth"] = 12,								-- amount of buttons per row on main bar (set between 1-12)
-	["sidebarWidth"] = 3,								-- amount of buttons per row on side bars (set between 0-6, 0 = disabled)
+	["sidebarWidth"] = 5,								-- amount of buttons per row on side bars (set between 0-6, 0 = disabled)
 	["bgPanel"] = true,									-- enable background panels for actionbars
 }
 

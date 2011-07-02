@@ -253,11 +253,9 @@ Stat:SetScript("OnEnter", function(self)
 
 					if UnitInParty(info[4]) or UnitInRaid(info[4]) then grouped = 1 else grouped = 2 end
 					GameTooltip:AddDoubleLine(format(clientLevelNameString, info[6],levelc.r*255,levelc.g*255,levelc.b*255,info[16],classc.r*255,classc.g*255,classc.b*255,info[4],groupedTable[grouped], 255, 0, 0, statusTable[status]),info[2].." "..info[3],238,238,238,238,238,238)
-					if IsShiftKeyDown() then
 						if GetRealZoneText() == info[15] then zonec = activezone else zonec = inactivezone end
 						if GetRealmName() == info[11] then realmc = activezone else realmc = inactivezone end
 						GameTooltip:AddDoubleLine(info[15], info[11], zonec.r, zonec.g, zonec.b, realmc.r, realmc.g, realmc.b)
-					end
 				else
 					GameTooltip:AddDoubleLine(format(otherGameInfoString, info[6], info[4]), format(otherGameInfoString2, info[2], info[3]), .9, .9, .9, .9, .9, .9)
 				end

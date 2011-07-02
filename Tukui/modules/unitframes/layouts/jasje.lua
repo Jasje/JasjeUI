@@ -1463,8 +1463,8 @@ AddonLayout:SetScript("OnEvent", function(self, event, addon)
 		tot:SetPoint("RIGHT", TukuiTarget, "LEFT", -17, -0)
 		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 7)
 	elseif addon == "Tukui_Raid_Healing" then
-		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 35)
-		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 35)
+		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 55)
+		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 55)
 		tot:SetPoint("LEFT", TukuiTarget, "RIGHT", -100, -52)
 		pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", 100, -52)
 	end

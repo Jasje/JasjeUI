@@ -327,7 +327,7 @@ end)
 local step4 = function()
 	TukuiDataPerChar.install = true
 	sb:SetValue(4)
-	PlaySoundFile("Sound\\interface\\LevelUp.wav")
+	PlaySoundFile("Sound\\Character\\Troll\\TrollMaleLaugh01.wav")
 	header:SetText(L.install_header_11)
 	text1:SetText(L.install_step_4_line_1)
 	text2:SetText(L.install_step_4_line_2)
@@ -344,6 +344,7 @@ end
 local step3 = function()
 	if not option2:IsShown() then option2:Show() end	
 	sb:SetValue(3)
+	PlaySoundFile("Sound\\Character\\Troll\\TrollVocalMale\\TrollMaleCheer03.wav")
 	header:SetText(L.install_header_10)
 	text1:SetText(L.install_step_3_line_1)
 	text2:SetText(L.install_step_3_line_2)
@@ -359,6 +360,7 @@ end
 
 local step2 = function()
 	sb:SetValue(2)
+	PlaySoundFile("Sound\\Character\\Troll\\TrollVocalMale\\TrollMaleCheer02.wav")
 	header:SetText(L.install_header_9)
 	sbt:SetText("2/4")
 	if IsAddOnLoaded("Prat") or IsAddOnLoaded("Chatter") then 
@@ -383,6 +385,7 @@ end
 local step1 = function()
 	close:Hide()
 	sb:SetMinMaxValues(0, 4)
+	PlaySoundFile("Sound\\Character\\Troll\\TrollVocalMale\\TrollMaleCheer01.wav")
 	sb:Show()
 	sb:SetValue(1)
 	sb:SetStatusBarColor(0.26, 1, 0.22)
