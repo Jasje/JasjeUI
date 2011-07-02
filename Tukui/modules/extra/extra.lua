@@ -351,8 +351,6 @@ xpOverlay:SetVertexColor(.1,.1,.1)
 
 --Create xp status bar
 local xpBar = CreateFrame("StatusBar",  aName.."xpBar", xpBorder, "TextStatusBar")
---xpBar:SetWidth(barWidth-4)
---xpBar:SetHeight(GetWatchedFactionInfo() and (barHeight-7) or barHeight-4)
 xpBar:SetPoint("TOPRIGHT", xpBorder, "TOPRIGHT", -2, -2)
 xpBar:SetPoint("BOTTOMLEFT", xpBorder, "BOTTOMLEFT", 2, 2)
 xpBar:SetStatusBarTexture(barTex)
@@ -360,8 +358,6 @@ xpBar:SetStatusBarColor(.5, 0, .75)
 
 --Create Rested XP Status Bar
 local restedxpBar = CreateFrame("StatusBar", aName.."restedxpBar", xpBorder, "TextStatusBar")
---restedxpBar:SetWidth(barWidth-4)
---restedxpBar:SetHeight(GetWatchedFactionInfo() and (barHeight-7) or barHeight-4)
 restedxpBar:SetPoint("TOPRIGHT", xpBorder, "TOPRIGHT", -2, -2)
 restedxpBar:SetPoint("BOTTOMLEFT", xpBorder, "BOTTOMLEFT", 2, 2)
 restedxpBar:SetStatusBarTexture(barTex)
@@ -389,8 +385,6 @@ repOverlay:SetTexture(barTex)
 repOverlay:SetVertexColor(.1,.1,.1)
 
 local repBar = CreateFrame("StatusBar", aName.."repBar", repBorder, "TextStatusBar")
---repBar:SetWidth(barWidth-4)
---repBar:SetHeight(st.IsMaxLevel() and barHeight-4 or 2)
 repBar:SetPoint("TOPRIGHT", repBorder, "TOPRIGHT", -2, -2)
 repBar:SetPoint("BOTTOMLEFT", repBorder, "BOTTOMLEFT", 2, 2)
 repBar:SetStatusBarTexture(barTex)
@@ -469,22 +463,6 @@ local function updateStatus()
 		if mouseoverText == true then
 			Text:SetAlpha(1)
 		end
-		--[[GameTooltip:SetBackdrop({
-			bgFile = flatTex, 
-			edgeFile = flatTex, 
-			tile = false, tileSize = 0, edgeSize = 1, 
-			insets = { left = -1, right = -1, top = -1, bottom = -1}
-		})
-		GameTooltip:SetBackdropColor(0, 0, 0)
-		GameTooltip:SetBackdropBorderColor(.2, .2, .2, 1)
-		if not gtOverlay then
-			local gtOverlay = GameTooltip:CreateTexture(nil, "BORDER", GameTooltip)
-			gtOverlay:ClearAllPoints()
-			gtOverlay:SetPoint("TOPLEFT", GameTooltip, "TOPLEFT", 2, -2)
-			gtOverlay:SetPoint("BOTTOMRIGHT", GameTooltip, "BOTTOMRIGHT", -2, 2)
-			gtOverlay:SetTexture(barTex)
-			gtOverlay:SetVertexColor(.1,.1,.1)
-		end]]
 		GameTooltip:SetOwner(mouseFrame, "ANCHOR_BOTTOMLEFT", -3, barHeight)
 		GameTooltip:ClearLines()
 		if not st.IsMaxLevel() then
@@ -666,60 +644,65 @@ frame:SetScript("OnEvent", updateStatus)
 ------------------------------------------------------------------------------------
 -- OpenAll By Kemayo
 -- http://www.wowinterface.com/downloads/info7762-OpenAll.html
--------------------------------------------------------------------------------------
-
+------------------------------------------------------------------------------------
 local deletedelay, t = 0.5, 0
 local takingOnlyCash = false
-local button, button2, waitForMail, doNothing, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, copper_to_pretty_money, total_cash
+local button, button2, waitForMail, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, copper_to_pretty_money, total_cash
 local _G = _G
 local baseInboxFrame_OnClick
-function doNothing() end
 
 function openAll()
 	if GetInboxNumItems() == 0 then return end
 	button:SetScript("OnClick", nil)
 	button2:SetScript("OnClick", nil)
 	baseInboxFrame_OnClick = InboxFrame_OnClick
-	InboxFrame_OnClick = doNothing
+	InboxFrame_OnClick = function() end
 	button:RegisterEvent("UI_ERROR_MESSAGE")
 	openMail(GetInboxNumItems())
 end
+
 function openAllCash()
 	takingOnlyCash = true
 	openAll()
 end
+
 function openMail(index)
 	if not InboxFrame:IsVisible() then return stopOpening(hexa.."Need a mailbox."..hexb) end
-	if index == 0 then return stopOpening(hexa.."Reached the end."..hexb) end
+	if index == 0 then MiniMapMailFrame:Hide() stopOpening(hexa.."Reached the end."..hexb) return end
 	local _, _, _, _, money, COD, _, numItems = GetInboxHeaderInfo(index)
-	if not takingOnlyCash then
-		if money > 0 or (numItems and numItems > 0) and COD <= 0 then
-			AutoLootMailItem(index)
-			needsToWait = true
-		end
-	elseif money > 0 then
+	if money > 0 then
 		TakeInboxMoney(index)
 		needsToWait = true
 		if total_cash then total_cash = total_cash - money end
+	elseif (not takingOnlyCash) and numItems and (numItems > 0) and COD <= 0 then
+		TakeInboxItem(index)
+		needsToWait = true
 	end
 	local items = GetInboxNumItems()
-	if items > 1 and index <= items then
+	if (numItems and numItems > 1) or (items > 1 and index <= items) then
 		lastopened = index
+		t = 0
 		button:SetScript("OnUpdate", waitForMail)
 	else
 		stopOpening(hexa.."All done."..hexb)
+		MiniMapMailFrame:Hide()
 	end
 end
-function waitForMail(this, arg1)
-	t = t + arg1
+
+function waitForMail(self, elapsed)
+	t = t + elapsed
 	if (not needsToWait) or (t > deletedelay) then
-		if not InboxFrame:IsVisible() then return stopOpening(hexa.."Need a mailbox."..hexb) end
-		t = 0
 		needsToWait = false
 		button:SetScript("OnUpdate", nil)
-		openMail(lastopened - 1)
+		local _, _, _, _, money, COD, _, numItems = GetInboxHeaderInfo(lastopened)
+		if money > 0 or ((not takingOnlyCash) and COD <= 0 and numItems and (numItems > 0)) then
+			openMail(lastopened)
+		else
+			openMail(lastopened - 1)
+		end
 	end
 end
+
 function stopOpening(msg, ...)
 	button:SetScript("OnUpdate", nil)
 	button:SetScript("OnClick", openAll)
@@ -730,9 +713,9 @@ function stopOpening(msg, ...)
 	button:UnregisterEvent("UI_ERROR_MESSAGE")
 	takingOnlyCash = false
 	total_cash = nil
-	needsToWait = false
 	if msg then DEFAULT_CHAT_FRAME:AddMessage(hexa.."OpenAll: "..hexb..msg, ...) end
 end
+
 function onEvent(frame, event, arg1, arg2, arg3, arg4)
 	if event == "UI_ERROR_MESSAGE" then
 		if arg1 == ERR_INV_FULL then
@@ -740,22 +723,23 @@ function onEvent(frame, event, arg1, arg2, arg3, arg4)
 		end
 	end
 end
+
 local function makeButton(id, text, w, h, x, y)
 	local button = CreateFrame("Button", id, InboxFrame, "UIPanelButtonTemplate")
 	button:SetWidth(w)
 	button:SetHeight(h)
-	button:SetPoint("CENTER", InboxFrame, "TOP", x, y+2)
+	button:SetPoint("CENTER", InboxFrame, "TOP", x, y)
 	button:SetText(text)
 	return button
 end
-button = makeButton("OpenAllButton", "Take All", 60, 25, -50, -410)
+button = makeButton("OpenAllButton", ALL, 70, 25, -45, -408)
 button:SetScript("OnClick", openAll)
 button:SetScript("OnEvent", onEvent)
-button2 = makeButton("OpenAllButton2", "Take Cash", 60, 25, 20, -410)
+button2 = makeButton("OpenAllButton2", MONEY, 70, 25, 28, -408)
 button2:SetScript("OnClick", openAllCash)
 
 button:SetScript("OnEnter", function()
-	GameTooltip:SetOwner(button, "ANCHOR_RIGHT",0,2)
+	GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
 	GameTooltip:AddLine(string.format("%d messages", GetInboxNumItems()), 1, 1, 1)
 	GameTooltip:Show()
 end)
@@ -763,25 +747,27 @@ button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 function copper_to_pretty_money(c)
 	if c > 10000 then
-		return ("%d|cffffd700g|r%d|cffc7c7cfs|r%d|cffeda55fc|r"):format(c/10000, (c/100)%100, c%100)
+		return ("%d|cffffd700"..GOLD_AMOUNT_SYMBOL.."|r %d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c/10000, (c/100)%100, c%100)
 	elseif c > 100 then
-		return ("%d|cffc7c7cfs|r%d|cffeda55fc|r"):format((c/100)%100, c%100)
+		return ("%d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format((c/100)%100, c%100)
 	else
-		return ("%d|cffeda55fc|r"):format(c%100)
+		return ("%d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c%100)
 	end
 end
+
 button2:SetScript("OnEnter", function()
 	if not total_cash then
 		total_cash = 0
-		for index=0, GetInboxNumItems() do
+		for index = 0, GetInboxNumItems() do
 			total_cash = total_cash + select(5, GetInboxHeaderInfo(index))
 		end
 	end
-	GameTooltip:SetOwner(button, "ANCHOR_RIGHT",70,2)
+	GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
 	GameTooltip:AddLine(copper_to_pretty_money(total_cash), 1, 1, 1)
 	GameTooltip:Show()
 end)
-button2:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
+button2:SetScript("OnLeave", function()	GameTooltip:Hide() end)
 
 ---------------------------------------------------------------------------------------------------------------------------------
 -- tekKompare by Tekkub found at http://www.wowinterface.com/downloads/info6837-tekKompare.html
@@ -820,22 +806,3 @@ for i=1, NUM_CHAT_WINDOWS do
 	orig2[frame] = frame:GetScript("OnHyperlinkLeave")
 	frame:SetScript("OnHyperlinkLeave", OnHyperlinkLeave)
 end	
-
------------------------------------
--- Drink announce by Duffed
------------------------------------
-
-local function Update(self, event, ...)
-	if event == "UNIT_SPELLCAST_SUCCEEDED" then
-		local unit, spellName, spellrank, spelline, spellID = ...
-		if GetZonePVPInfo() == "arena" then
-			if UnitIsEnemy("player", unit) and (spellID == 80167 or spellID == 94468 or spellID == 43183 or spellID == 57073 or spellName == "Drinking") then
-				SendChatMessage(UnitName(unit).." is drinking.", "PARTY")
-			end
-		end
-	end
-end
-
-local f = CreateFrame("Frame")
-f:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-f:SetScript("OnEvent", Update)
