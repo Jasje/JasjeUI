@@ -107,7 +107,7 @@ function Update(self)
 					bar.statusbar = CreateFrame("StatusBar", "$parentStatusBar", bar);
 					bar.statusbar:SetWidth(T.Scale(value.data.barWidth - 2));
 					bar.statusbar:SetHeight(T.Scale(value.data.size - 10));
-					bar.statusbar:SetStatusBarTexture(C.media.normTex);
+					bar.statusbar:SetStatusBarTexture(C.media.Glamour);
 					bar.statusbar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1);
 					if ( self.IconSide == "LEFT" ) then
 						bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 6, 2);
