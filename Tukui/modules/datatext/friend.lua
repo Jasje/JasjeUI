@@ -1,8 +1,7 @@
-local T, C, L = unpack(select(2, ...)) 
-
 --------------------------------------------------------------------
 -- FRIEND
 --------------------------------------------------------------------
+local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 if not C["datatext"].friends or C["datatext"].friends == 0 then return end
 
@@ -37,11 +36,11 @@ Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
-    Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
-    T.PP(C["datatext"].friends, Text)
-    Stat:SetParent(Text:GetParent())
+Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
+T.PP(C["datatext"].friends, Text)
+Stat:SetParent(Text:GetParent())
 
-local menuFrame = CreateFrame("Frame", "TukuiFriendRightClickMenu", UIParent, "UIDropDownMenuTemplate")
+local menuFrame = CreateFrame("Frame", "TukuiFriendRightClickMenu", T.UIParent, "UIDropDownMenuTemplate")
 local menuList = {
 	{ text = OPTIONS_MENU, isTitle = true,notCheckable=true},
 	{ text = hexa.."Invite"..hexb, hasArrow = true,notCheckable=true, },
@@ -77,7 +76,7 @@ local otherGameInfoString2 = "%s %s"
 local totalOnlineString = join("", FRIENDS_LIST_ONLINE, ": %s/%s")
 local tthead, ttsubh, ttoff = {r=0.4, g=0.78, b=1}, {r=0.75, g=0.9, b=1}, {r=.3,g=1,b=.3}
 local activezone, inactivezone = {r=0.3, g=1.0, b=0.3}, {r=0.65, g=0.65, b=0.65}
-local displayString = join("", hexa.."%s: "..hexb, "%d|r")
+local displayString = string.join("", hexa.."%s: "..hexb, "|cffffffff", "%d|r")
 local statusTable = { L.chat_FLAG_AFK, L.chat_FLAG_DND, "" }
 local groupedTable = { "|cffaaaaaa*|r", "" } 
 local friendTable, BNTable = {}, {}
@@ -109,7 +108,7 @@ local function BuildBNTable(total)
 		presenceID, givenName, surname, toonName, toonID, client, isOnline, _, isAFK, isDND, _, noteText = BNGetFriendInfo(i)
 
 		if isOnline then 
-			_, _, _, realmName, faction, _, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
+			_, _, _, realmName, _, faction, race, class, _, zoneName, level = BNGetToonInfo(presenceID)
 			for k,v in pairs(LOCALIZED_CLASS_NAMES_MALE) do if class == v then class = k end end
 			BNTable[i] = { presenceID, givenName, surname, toonName, toonID, client, isOnline, isAFK, isDND, noteText, realmName, faction, race, class, zoneName, level }
 		end
@@ -121,7 +120,6 @@ local function BuildBNTable(total)
 		end
 	end)
 end
-
 
 local function Update(self, event, ...)
 	local _, onlineFriends = GetNumFriends()
@@ -253,9 +251,11 @@ Stat:SetScript("OnEnter", function(self)
 
 					if UnitInParty(info[4]) or UnitInRaid(info[4]) then grouped = 1 else grouped = 2 end
 					GameTooltip:AddDoubleLine(format(clientLevelNameString, info[6],levelc.r*255,levelc.g*255,levelc.b*255,info[16],classc.r*255,classc.g*255,classc.b*255,info[4],groupedTable[grouped], 255, 0, 0, statusTable[status]),info[2].." "..info[3],238,238,238,238,238,238)
+					if IsShiftKeyDown() then
 						if GetRealZoneText() == info[15] then zonec = activezone else zonec = inactivezone end
 						if GetRealmName() == info[11] then realmc = activezone else realmc = inactivezone end
 						GameTooltip:AddDoubleLine(info[15], info[11], zonec.r, zonec.g, zonec.b, realmc.r, realmc.g, realmc.b)
+					end
 				else
 					GameTooltip:AddDoubleLine(format(otherGameInfoString, info[6], info[4]), format(otherGameInfoString2, info[2], info[3]), .9, .9, .9, .9, .9, .9)
 				end
