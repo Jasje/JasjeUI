@@ -1151,7 +1151,10 @@ if C["unitframes"].raidunitdebuffwatch == true then
 			SpellName(99837),	-- Crystal Prison
 			SpellName(99937),	-- Jagged Tear
 			-- Baleroc
-			SpellName(99403),	-- Torment
+			--SpellName(99403),	-- Torment1
+			SpellName(99256),	-- Torment2
+		   	--SpellName(100230),	-- Torment3
+			--SpellName(100232),	-- Torment4
 			SpellName(99252),	-- Blaze of Glory
 			SpellName(99516),	-- Countdown
 			-- Majordomo Staghelm
