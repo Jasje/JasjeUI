@@ -30,7 +30,7 @@ local function Shared(self, unit)
 	local health = CreateFrame('StatusBar', nil, self)
 	health:SetPoint("TOPLEFT")
 	health:SetPoint("TOPRIGHT")
-	health:Height(40.3*C["unitframes"].gridscale*T.raidscale)
+	health:Height(35.3*C["unitframes"].gridscale*T.raidscale)
 	health:SetStatusBarTexture(normTex)
 	self.Health = health
 	
@@ -245,9 +245,9 @@ local function Shared(self, unit)
 		
 		-- Raid Debuffs (big middle icon)
 		local RaidDebuffs = CreateFrame('Frame', nil, self)
-		RaidDebuffs:Height(22*C["unitframes"].gridscale)
-		RaidDebuffs:Width(22*C["unitframes"].gridscale)
-		RaidDebuffs:Point('CENTER', health, 1,-7)
+		RaidDebuffs:Height(25*C["unitframes"].gridscale)
+		RaidDebuffs:Width(25*C["unitframes"].gridscale)
+		RaidDebuffs:Point('CENTER', health, 0,-10)
 		RaidDebuffs:SetFrameStrata(health:GetFrameStrata())
 		RaidDebuffs:SetFrameLevel(health:GetFrameLevel() + 2)
 		
@@ -304,7 +304,7 @@ oUF:Factory(function(self)
 				self:SetHeight(header:GetAttribute('initial-height'))
 			]],
 			'initial-width', T.Scale(68),
-			'initial-height', T.Scale(40.3),
+			'initial-height', T.Scale(35.3),
 			"showRaid", true,
 			"showParty", true,
 			"showPlayer", C["unitframes"].showplayerinparty,
@@ -320,5 +320,5 @@ oUF:Factory(function(self)
 			"columnSpacing", T.Scale(10),
 			"columnAnchorPoint", "TOP"		
 		)
-		raid:SetPoint("BOTTOM", TukuiBar1, 0, 109) 
+		raid:SetPoint("BOTTOM", TukuiBar1, 0, 105) 
     end)
