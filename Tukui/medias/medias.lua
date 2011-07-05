@@ -49,6 +49,7 @@ C["media"] = {
 	["buttonhover"] = [[Interface\AddOns\Tukui\medias\textures\button_hover]],
 	["jasjeicon"] = [[Interface\AddOns\Tukui\medias\textures\JasjeUI]],
 	["Glamour"] = [[Interface\AddOns\Tukui\medias\textures\Glamour4]], -- Caithlyn texture
+
 	-- taken from Asphyxia
 	["switchlayoutheal"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_heal]], -- switch layout texture
 	["switchlayoutdd"] = [[Interface\AddOns\Tukui\medias\textures\switch_layout_dd]], -- switch layout texture

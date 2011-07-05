@@ -731,7 +731,7 @@ local function Shared(self, unit)
 	if (unit == "targettarget") then
 		-- create a panel	
 	    local panel = CreateFrame("Frame", nil, self)
-		panel:CreatePanel("Default", 104, 13, "TOP", self, "BOTTOM", 0, 16)
+		panel:CreatePanel("Default", 104, 13, "TOP", self, "BOTTOM", 0, 26)
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
 		panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
@@ -775,46 +775,7 @@ local function Shared(self, unit)
 			health.colorClass = true
 			health.colorReaction = true			
 		end
-		
-		-- power
-		local power = CreateFrame('StatusBar', nil, self)
-		power:Size(100, 3)
-        power:Point("LEFT", health, "BOTTOMLEFT", 0, -9)
-		power:SetFrameLevel(4)
-		power:SetStatusBarTexture(normTex)
-		
-		-- power border
-		local powerborder = CreateFrame("Frame", nil, self)
-		powerborder:CreatePanel("Hydra", 1, 1, "CENTER", power, "CENTER", 0, 0)
-		powerborder:ClearAllPoints()
-		powerborder:SetPoint("TOPLEFT", power, T.Scale(-2), T.Scale(2))
-		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
-		powerborder:SetFrameStrata("MEDIUM")
-		powerborder:SetFrameLevel(4)
 
-		local powerBG = power:CreateTexture(nil, 'BORDER')
-		powerBG:SetAllPoints(power)
-		powerBG:SetTexture(normTex)
-		powerBG.multiplier = 0.3
-		
-		self.Power = power
-		self.Power.bg = powerBG
-		
-		power.frequentUpdates = true
-		power.colorDisconnected = true
-
-		if C["unitframes"].showsmooth == true then
-			power.Smooth = true
-		end
-		
-		if C["unitframes"].unicolor == true then
-			power.colorTapping = true
-			power.colorClass = true
-			powerBG.multiplier = 0.1				
-		else
-			power.colorPower = true
-		end
-		
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		Name:SetPoint("CENTER", panel, 0, 0)
