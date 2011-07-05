@@ -104,7 +104,17 @@ local function Shared(self, unit)
 		-- health bar background
 		local healthBG = health:CreateTexture(nil, 'BORDER')
 		healthBG:SetAllPoints()
-
+		if C["unitframes"].healthpercent then
+		    local percHP = T.SetFontString(health, C.media.font, 20, "THINOUTLINE")
+		    if unit == "player" then
+                percHP:SetPoint("RIGHT", health, "LEFT", -5, -10)
+		    elseif unit == "target" then
+		        percHP:SetPoint("LEFT", health, "RIGHT", 5, -10)
+		    end
+	    self:Tag(percHP, "[Tukui:perchp]")
+	    self.percHP = percHP
+		end
+		
 		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		health.value:Point("RIGHT", panel, "RIGHT", -4, -0)
 		health.PostUpdate = T.PostUpdateHealth
@@ -123,13 +133,12 @@ local function Shared(self, unit)
 			health.colorClass = false
 			health:SetStatusBarColor(.2, .2, .2, 1)
 			healthBG:SetTexture(.6, .6, .6)
-			healthBG:SetVertexColor(0, 0, 0)		
+			healthBG:SetVertexColor(0, 0, 0)	-- set background color under healthbar	
 		else
 			health.colorDisconnected = true
 			health.colorTapping = true	
 			health.colorClass = true
 			health.colorReaction = true	
-            healthBG:SetTexture(color.r, color.b, color.g)			
 		end
 
 		-- power

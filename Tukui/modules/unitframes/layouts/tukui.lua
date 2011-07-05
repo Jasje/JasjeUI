@@ -78,11 +78,7 @@ local function Shared(self, unit)
 	if (unit == "player" or unit == "target") then
 		-- create a panel
 		local panel = CreateFrame("Frame", nil, self)
-		if T.lowversion then
-			panel:CreatePanel("Default", 186, 21, "BOTTOM", self, "BOTTOM", 0, 0)
-		else
-			panel:CreatePanel("Default", 250, 21, "BOTTOM", self, "BOTTOM", 0, 0)
-		end
+		panel:CreatePanel("Default", 250, 21, "BOTTOM", self, "BOTTOM", 0, 0)
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
 		panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
@@ -91,11 +87,7 @@ local function Shared(self, unit)
 
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
-		if T.lowversion then
-			health:Height(26)
-		else
-			health:Height(32)
-		end
+		health:Height(32)
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)

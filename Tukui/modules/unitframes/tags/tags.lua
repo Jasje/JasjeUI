@@ -27,6 +27,16 @@ oUF.Tags['Tukui:threat'] = function(unit)
 	end
 end
 
+oUF.TagEvents['Tukui:perchp'] = 'UNIT_HEALTH'
+oUF.Tags['Tukui:perchp'] = function(u)
+	local m = UnitHealthMax(u)
+	if(m == 0) then
+		return 0
+	else
+		return hexa..math.floor(UnitHealth(u)/m*100+.5).."%"
+	end
+end
+
 oUF.Tags['Tukui:health'] = function(unit)
 	local min, max = UnitHealth(unit), UnitHealthMax(unit)
 	local status = not UnitIsConnected(unit) and 'Offline' or UnitIsGhost(unit) and 'Ghost' or UnitIsDead(unit) and 'Dead'

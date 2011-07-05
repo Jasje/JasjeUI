@@ -39,6 +39,7 @@ C["unitframes"] = {
 	["playeraggro"] = true,                             -- color player border to red if you have aggro on current target.
 	["healcomm"] = true,                               -- enable healprediction support.
 	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
+	["healthpercent"] = false,                        -- display health procent on player and target side of unitframe
 	["bordercolor"] = { .4,.4,.4 },                     -- unit frames panel border color
 	
 	-- unitframe font fontsize and fontflag
@@ -186,7 +187,7 @@ C["chat"] = {
 	    "Jasjè",  
 	    "Noshì",
 	    "Noshi", 
-	    "Tom",
+	    "Tom"
 	},              
 }
 
