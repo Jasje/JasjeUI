@@ -132,6 +132,7 @@
 	<Script file="modules\blizzard\achievements.lua"/>
 	<Script file="modules\extra\extra.lua"/>
 	<Script file="modules\extra\announce.lua"/>
+	<Script file="modules\extra\bgannouncer.lua"/>
 	<Script file="core\movers.lua"/>
 	<Script file="modules\misc\raidutilities.lua"/>
 	
