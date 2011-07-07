@@ -4,7 +4,7 @@ local T, C, L = unpack(Tukui)
 -- config
 --------------------------------------------------------
 
-local FONTSIZE = 18
+local FONTSIZE = 30
 local POINT = "TOP"
 local X = 0
 local Y = -300
