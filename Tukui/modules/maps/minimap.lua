@@ -122,42 +122,6 @@ TukuiMinimap:SetScript("OnEvent", function(self, event, addon)
 	elseif addon == "Blizzard_TimeManager" then
 		-- Hide Game Time
 		TimeManagerClockButton:Kill()
-	else
-		local inv = CalendarGetNumPendingInvites()
-		local mail = HasNewMail()
-		if inv > 0 and mail then -- New invites and mail
-			TukuiMinimap:SetBackdropBorderColor(1, .5, 0)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, .5, 0)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(1, .5, 0)
-			end
-		elseif inv > 0 and not mail then -- New invites and no mail
-			TukuiMinimap:SetBackdropBorderColor(1, 30/255, 60/255)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(1, 30/255, 60/255)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(1, 30/255, 60/255)
-			end
-		elseif inv==0 and mail then -- No invites and new mail
-			TukuiMinimap:SetBackdropBorderColor(0, 1, 0)
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(0, 1, 0)
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(0, 1, 0)
-			end
-		else -- None of the above
-			TukuiMinimap:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			if TukuiMinimapStatsLeft then
-				TukuiMinimapStatsLeft:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			end
-			if TukuiMinimapStatsRight then
-				TukuiMinimapStatsRight:SetBackdropBorderColor(unpack(C.media.bordercolor))
-			end
-		end
 	end
 end)
 
