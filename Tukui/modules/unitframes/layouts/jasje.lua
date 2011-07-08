@@ -1046,7 +1046,7 @@ local function Shared(self, unit)
 		local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
 		castbar:ClearAllPoints()
 		castbar:SetPoint("CENTER", UIParent, 0, 0)
-		castbar:Size(450, 18)
+		castbar:Size(450, 25)
 		-- spark
 		castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark:SetHeight(50)
@@ -1055,12 +1055,12 @@ local function Shared(self, unit)
 
 		castbar:SetStatusBarTexture(normTex)
 		castbar:SetFrameLevel(6)
-		
+
 		castbar.bg = CreateFrame("Frame", nil, castbar)
 		castbar.bg:SetTemplate("Transparent")
-		castbar.bg:SetBorder()
-		castbar.bg:Point("TOPLEFT", -2, 2)
-		castbar.bg:Point("BOTTOMRIGHT", 2, -2)
+		castbar.bg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+		castbar.bg:SetPoint("TOPLEFT", T.Scale(-2), T.Scale(2))
+		castbar.bg:SetPoint("BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
 		castbar.bg:SetFrameLevel(5)
 		
 		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
@@ -1076,8 +1076,8 @@ local function Shared(self, unit)
 		if C["unitframes"].cbicons == true then
 		castbar.button = CreateFrame("Frame", nil, castbar)
 
-		castbar.button:SetPoint("CENTER", 0, 28)
-		castbar.button:Size(26)
+		castbar.button:SetPoint("CENTER", 0, 38)
+		castbar.button:Size(40)
 		castbar.button:SetTemplate("Transparent")
 		castbar.button:SetBorder()
 		
@@ -1094,6 +1094,141 @@ local function Shared(self, unit)
 		self.Castbar.Time = castbar.time
 		self.Castbar.Icon = castbar.icon
 	end
+end
+
+	if (unit == "focustarget") then
+		local panel = CreateFrame("Frame", nil, self)
+		panel:Size(224,13)
+		panel:Point("TOP", self, "BOTTOM", 0,16)
+		panel:SetTemplate("")
+		panel:SetFrameLevel(2)
+		panel:SetFrameStrata("MEDIUM")
+		panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+		self.panel = panel
+
+		-- health bar
+		local health = CreateFrame('StatusBar', nil, self)
+		health:Height(19)
+		health:SetPoint("TOPLEFT")
+		health:SetPoint("TOPRIGHT")
+		health:SetStatusBarTexture(normTex)
+		
+		-- border
+		local Healthbg = CreateFrame("Frame", nil, health)
+	    Healthbg:SetPoint("TOPLEFT", health, "TOPLEFT", T.Scale(-2), T.Scale(2))
+	    Healthbg:SetPoint("BOTTOMRIGHT", health, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
+	    Healthbg:SetTemplate("")
+	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+	    Healthbg:SetFrameLevel(2)
+	    self.Healthbg = Healthbg		
+		
+		-- health bar background
+		local healthBG = health:CreateTexture(nil, 'BORDER')
+		healthBG:SetAllPoints()
+
+		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+		health.value:Point("RIGHT", panel, "RIGHT", -4, -0)
+		health.PostUpdate = T.PostUpdateHealth
+		
+		self.Health = health
+		self.Health.bg = healthBG
+
+		health.frequentUpdates = true
+		
+		-- names
+		local Name = health:CreateFontString(nil, "OVERLAY")
+		Name:SetPoint("CENTER", panel, 0, 0)
+		Name:SetJustifyH("LEFT")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
+
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
+		self.Name = Name
+		if C["unitframes"].showsmooth == true then
+			health.Smooth = true
+		end
+		
+		if C["unitframes"].unicolor == true then
+			health.colorTapping = false
+			health.colorDisconnected = false
+			health.colorClass = false
+			health:SetStatusBarColor(.2, .2, .2, 1)
+			healthBG:SetTexture(.6, .6, .6)
+			healthBG:SetVertexColor(0, 0, 0)		
+		else
+			health.colorDisconnected = true
+			health.colorTapping = true	
+			health.colorClass = true
+			health.colorReaction = true	
+            healthBG:SetTexture(color.r, color.b, color.g)			
+		end
+		
+		-- power
+		local power = CreateFrame('StatusBar', nil, self)
+		power:Size(220, 3)
+		power:Point("LEFT", health, "BOTTOMLEFT", 0, -9)
+		power:SetFrameLevel(4)
+		power:SetStatusBarTexture(normTex)
+		
+		-- power border
+		local powerborder = CreateFrame("Frame", nil, self)
+		powerborder:CreatePanel("Hydra", 1, 1, "CENTER", power, "CENTER", 0, 0)
+		powerborder:ClearAllPoints()
+		powerborder:SetPoint("TOPLEFT", power, T.Scale(-2), T.Scale(2))
+		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
+		powerborder:SetFrameStrata("MEDIUM")
+		powerborder:SetFrameLevel(4)
+		self.powerborder = powerborder
+		
+		local powerBG = power:CreateTexture(nil, 'BORDER')
+		powerBG:SetAllPoints(power)
+		powerBG:SetTexture(.6, .6, .6)
+		powerBG:SetVertexColor(0, 0, 0)	
+		powerBG.multiplier = 0.3
+		
+		power.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+		power.value:Point("LEFT", panel, "LEFT", 4, -0)
+		power.PreUpdate = T.PreUpdatePower
+		power.PostUpdate = T.PostUpdatePower
+		
+		self.Power = power
+		self.Power.bg = powerBG
+		
+		power.frequentUpdates = true
+		power.colorDisconnected = true
+		
+		-- hiding power bar, just need to see text
+		power:Hide()
+		powerborder:Hide()
+		
+		-- buff/debuff
+		    local buffs = CreateFrame("Frame", nil, self)
+			local debuffs = CreateFrame("Frame", nil, self)
+		
+			buffs:SetHeight(26)
+			buffs:SetWidth(220)
+			buffs:SetPoint("TOPLEFT", self, "TOPLEFT", -2, 30)
+			buffs.size = 26
+			buffs.num = 8
+
+			buffs.spacing = 2
+			buffs.initialAnchor = 'TOPLEFT'
+			buffs.PostCreateIcon = T.PostCreateAura
+			buffs.PostUpdateIcon = T.PostUpdateAura
+			self.Buffs = buffs
+
+			debuffs:SetHeight(26)
+			debuffs:SetWidth(220)
+			debuffs:SetPoint("BOTTOMLEFT", buffs, "TOPLEFT", 2, 2)
+			debuffs.size = 26
+			debuffs.num = 8
+
+			debuffs.spacing = 2
+			debuffs.initialAnchor = 'TOPRIGHT'
+			debuffs["growth-y"] = "UP"
+			debuffs["growth-x"] = "LEFT"
+			debuffs.PostCreateIcon = T.PostCreateAura
+			debuffs.PostUpdateIcon = T.PostUpdateAura
+			self.Debuffs = debuffs
 end
 	------------------------------------------------------------------------
 	--	Arena or boss units layout (both mirror'd)
@@ -1280,7 +1415,6 @@ end
 		AuraTracker:Size(59)
 		AuraTracker:Point("RIGHT", health, "LEFT", -4, -12)
 		AuraTracker:SetTemplate("Default")
-		self.AuraTracker = AuraTracker
 		
 		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
 		AuraTracker.icon:SetAllPoints(AuraTracker)
@@ -1291,6 +1425,7 @@ end
 		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize, unitframefontflag)
 		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
 		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		self.AuraTracker = AuraTracker
 		
 		-- ClassIcon			
 		local class = AuraTracker:CreateTexture(nil, "ARTWORK")
@@ -1452,8 +1587,8 @@ local focus = oUF:Spawn('focus', "TukuiFocus")
 -- focus target
 if C.unitframes.showfocustarget then	
 local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
-focustarget:SetPoint("BOTTOMRIGHT", TukuiTarget, "TOPRIGHT", 10, -55)
-    focustarget:Size(200, 12)
+focustarget:SetPoint("LEFT", TukuiFocus, "RIGHT", 10, -0)
+    focustarget:Size(220, 40)
 end
 
 if C.arena.unitframes then

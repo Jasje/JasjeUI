@@ -40,6 +40,7 @@ C["unitframes"] = {
 	["healcomm"] = true,                               -- enable healprediction support.
 	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
 	["healthpercent"] = false,                        -- display health procent on player and target side of unitframe
+	["showfocustarget"] = false,                         -- show focus target
 	["bordercolor"] = { .4,.4,.4 },                     -- unit frames panel border color
 	
 	-- unitframe font fontsize and fontflag
