@@ -712,6 +712,7 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 	end
 end
 
+
 T.UpdateShards = function(self, event, unit, powerType)
 	if(self.unit ~= unit or (powerType and powerType ~= 'SOUL_SHARDS')) then return end
 	local num = UnitPower(unit, SPELL_POWER_SOUL_SHARDS)

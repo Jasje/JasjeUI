@@ -164,8 +164,9 @@ local function SetChatStyle(frame)
 	if tab.conversationIcon then tab.conversationIcon:Kill() end
 
 	tab.glow:ClearAllPoints()
-	tab.glow:Point("CENTER", _G[chat.."TabText"], 0, 3)
-	tab.glow:Width(_G[chat.."TabText"]:GetWidth() + 6)
+	tab.glow:Point("CENTER", _G[chat.."TabText"], 0, 10)
+	tab.glow:Width(_G[chat.."TabText"]:GetWidth() + 40)
+	tab.glow:Height(30)
 	
 	-- Disable alt key usage
 	_G[chat.."EditBox"]:SetAltArrowKeyMode(false)
