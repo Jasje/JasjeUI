@@ -1422,7 +1422,7 @@ end
 		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
 		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
 		
-		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize, unitframefontflag)
+		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize+10, unitframefontflag)
 		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
 		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
 		self.AuraTracker = AuraTracker
