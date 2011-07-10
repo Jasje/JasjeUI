@@ -1,0 +1,7 @@
+﻿## Interface: 40200
+## Author: Hydra
+## Version: 1.00
+## Title: |cff00AAFFHydra|r |cffFFFFFFChat|r
+## Notes: Instant Messanger style chat windows
+
+Load.xml
