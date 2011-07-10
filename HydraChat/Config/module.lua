@@ -83,5 +83,5 @@ local EnableConfig = function()
 	ToggleFrame(configPanel)
 end
 
-SLASH_HYDRACHATCONFIG1 = "/him"
+SLASH_HYDRACHATCONFIG1 = "/hydrachat "
 SlashCmdList["HYDRACHATCONFIG"] = EnableConfig

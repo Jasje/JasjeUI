@@ -463,5 +463,5 @@ local MoveChatDock = function()
 	if enable then enable = false else enable = true end
 end
 
-SLASH_HYDRAMOVE1 = "/himove"
+SLASH_HYDRAMOVE1 = "/hydramove"
 SlashCmdList["HYDRAMOVE"] = MoveChatDock
