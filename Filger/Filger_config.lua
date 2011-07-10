@@ -437,6 +437,8 @@ ns.Filger_Spells = {
 			{ spellID = 16246, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Tidal Waves
 			{ spellID = 51562, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Spiritswalkers Grace
+			{ spellID = 79206, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Focused Insight
 			{ spellID = 77796, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
 		},
@@ -1041,6 +1043,8 @@ ns.Filger_Spells = {
             { spellID = 18118, size = 80, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Curse of Exhaustion
 	        { spellID = 18223, size = 80, unitId = "player", caster = "all", filter = "DEBUFF" },
+			--Curse of Tongues
+	        { spellID = 1714, size = 80, unitId = "player", caster = "all", filter = "DEBUFF" },
 			--Shadowsnare (Glyph of Shadowflame)
 	        { spellID = 63311, size = 80, unitId = "player", caster = "all", filter = "DEBUFF" },
 			
