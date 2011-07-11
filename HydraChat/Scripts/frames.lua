@@ -40,7 +40,7 @@ local UpdateDockedWindows = function()
 		local pos = select(1, HydraChatDock:GetPoint())
 		chat:ClearAllPoints()
 
-		if pos:match("LEFT") then
+		if (pos:match("LEFT")) or (pos:match("TOPLEFT")) or (pos:match("BOTTOMLEFT")) then
 			chat.title:ClearAllPoints()
 			chat.title:SetPoint("BOTTOMLEFT", chat, "TOPLEFT", 0, F.Scale(1))
 			if key == 1 then
@@ -50,7 +50,7 @@ local UpdateDockedWindows = function()
 			end
 		end
 		
-		if pos:match("RIGHT") then
+		if (pos:match("RIGHT")) or (pos:match("TOPRIGHT")) or (pos:match("BOTTOMRIGHT")) then
 			chat.title:ClearAllPoints()
 			chat.title:SetPoint("BOTTOMRIGHT", chat, "TOPRIGHT", 0, F.Scale(1))
 			if key == 1 then
@@ -86,7 +86,7 @@ local StopFlash = function(self)
 	end
 end
 
-local SetMinimized = function(self)	
+F.SetMinimized = function(self)	
 	self:Size(F.Scale(4), F.Scale(1))
 	self:SetAlpha(0)
 	self.title:Show()
@@ -105,11 +105,11 @@ local SetMinimized = function(self)
 	UpdateDockedWindows()
 end
 
-local SetMaximized = function(self)
+F.SetMaximized = function(self)
 	self.flash:SetScript("OnUpdate", nil)
 	StopFlash(self.title)
 
-	self:Size(F.Scale(370), F.Scale(100))
+	self:Size(F.Scale(C["ChatWindows"].Width), F.Scale(C["ChatWindows"].Height))
 	self:SetAlpha(1)
 	self.hideBG:Show()
 	self.miniBG:SetAlpha(1)
@@ -160,7 +160,7 @@ local OnMouseWheel = function(self, delta) -- Blizzard/Tukui credit
 end
 
 local OnEnter = function(self)
-	if not C["ChatWindows"].AutoFade then 
+	if (not C["ChatWindows"].AutoFade) then 
 		if (self.faded and self:GetAlpha() ~= 1) then
 			UIFrameFadeIn(self, 0.4, 0.4, 1)
 		else
@@ -176,10 +176,10 @@ local OnEnter = function(self)
 end
 
 local OnLeave = function(self)
-	if not C["ChatWindows"].AutoFade then return end
+	if (not C["ChatWindows"].AutoFade) then return end
 
 	if not self.faded then
-		F.Delay(2, function()
+		F.Delay(3, function()
 			UIFrameFadeIn(self, 0.4, 1, 0.4)
 			self.faded = true
 		end)
@@ -283,7 +283,7 @@ local InitNewFrame = function(self, event, msg, sender, guid) -- Create the new 
 	end
 
 	local Chatbox = CreateFrame("Frame", "HydraChat_"..sender, UIParent)
-	F.CreatePanel(Chatbox, 370, 100, "CENTER", UIParent, "CENTER", -400, 0)
+	F.CreatePanel(Chatbox, C["ChatWindows"].Width, C["ChatWindows"].Height, "CENTER", UIParent, "CENTER", 300, 300)
 	Chatbox:EnableMouse(true)
 	Chatbox:SetMovable(true)
 	Chatbox:RegisterForDrag("LeftButton")
@@ -301,12 +301,12 @@ local InitNewFrame = function(self, event, msg, sender, guid) -- Create the new 
 	Chatbox.flash = CreateFrame("Frame")
 
 	Chatbox.title = UIParent:CreateFontString("HydraChat_"..sender.."Title", "OVERLAY")
-	Chatbox.title:SetFont(C.pixelfont, 8, "MONOCHROMEOUTLINE")
+	Chatbox.title:SetFont(C.pixelfont, 8, "OUTLINEMONOCHROME")
 	Chatbox.title:SetPoint("BOTTOMLEFT", Chatbox, "TOPLEFT", 0, F.Scale(2))
 	Chatbox.title:SetText(hex..sender.."|r")
 	
 	Chatbox.text = CreateFrame("ScrollingMessageFrame", "HydraChat_"..sender.."Text", Chatbox)
-	Chatbox.text:SetFont(C.font, 12)
+	Chatbox.text:SetFont(C.font, C["ChatWindows"].FontSize)
 	Chatbox.text:SetShadowColor(0, 0, 0)
 	Chatbox.text:SetShadowOffset(1.25, -1.25)
 	Chatbox.text:SetPoint("TOPLEFT", F.Scale(2), F.Scale(-2))
@@ -322,7 +322,7 @@ local InitNewFrame = function(self, event, msg, sender, guid) -- Create the new 
 		F.URLSetItemRef(link, text, button, self)
 	end)
 
-	Chatbox.Editbox = CreateFrame("Frame", nil, Chatbox)
+	Chatbox.Editbox = CreateFrame("Frame", "HydraChat_"..sender.."Edit", Chatbox)
 	F.CreatePanel(Chatbox.Editbox, Chatbox:GetWidth(), 20, "TOP", Chatbox, "BOTTOM", 0, -3)
 	Chatbox.Editbox:EnableMouse(true)
 
@@ -359,30 +359,36 @@ local InitNewFrame = function(self, event, msg, sender, guid) -- Create the new 
 		_G["HydraChat_"..sender.."Text"] = nil
 	end)
 	
+	Chatbox.hideBG:SetScript("OnEnter", function() Chatbox.close:SetTextColor(1,0,0) end)
+	Chatbox.hideBG:SetScript("OnLeave", function() Chatbox.close:SetTextColor(1,1,1) end)
+	
 	Chatbox.close = Chatbox.hideBG:CreateFontString(nil, "OVERLAY")
-	Chatbox.close:SetFont(C.font, 12, "OUTLINE")
+	Chatbox.close:SetFont(C.font, 12, "THINOUTLINE")
 	Chatbox.close:SetPoint("CENTER", 2, F.Scale(-1))
 	Chatbox.close:SetText("X")
 	
 	Chatbox.miniBG = CreateFrame("Frame", nil, Chatbox)
-	F.CreatePanel(Chatbox.miniBG, 15, 15, "RIGHT", Chatbox.hideBG, "LEFT", -3, 0)
+	F.CreatePanel(Chatbox.miniBG, 15, 15, "RIGHT", Chatbox.hideBG, "LEFT", -2, 0)
 	Chatbox.miniBG:EnableMouse(true)
 	Chatbox.miniBG:SetFrameStrata("HIGH")
 	Chatbox.miniBG:SetScript("OnMouseDown", function()
 		if not Chatbox.minimized then
-			SetMinimized(Chatbox)
+			F.SetMinimized(Chatbox)
 		else
-			SetMaximized(Chatbox)
+			F.SetMaximized(Chatbox)
 		end
 	end)
 	
+	Chatbox.miniBG:SetScript("OnEnter", function() Chatbox.mini:SetTextColor(0,0.8,1) end)
+	Chatbox.miniBG:SetScript("OnLeave", function() Chatbox.mini:SetTextColor(1,1,1) end)
+	
 	Chatbox.mini = Chatbox.miniBG:CreateFontString(nil, "OVERLAY")
-	Chatbox.mini:SetFont(C.font, 12, "OUTLINE")
-	Chatbox.mini:SetPoint("CENTER", F.Scale(2), F.Scale(2))
+	Chatbox.mini:SetFont(C.font, 12, "THINOUTLINE")
+	Chatbox.mini:SetPoint("CENTER", F.Scale(1), F.Scale(2))
 	Chatbox.mini:SetText("_")
 	
-	if InCombatLockdown() then -- Auto minimize incoming msg if in combat
-		SetMinimized(Chatbox)
+	if (InCombatLockdown()) or (C["ChatWindows"].AutoHide) then -- Auto minimize incoming msg if in combat
+		F.SetMinimized(Chatbox)
 	end
 	
 	tinsert(F.chats, Chatbox)
@@ -463,5 +469,5 @@ local MoveChatDock = function()
 	if enable then enable = false else enable = true end
 end
 
-SLASH_HYDRAMOVE1 = "/hydramove"
+SLASH_HYDRAMOVE1 = "/hcmove"
 SlashCmdList["HYDRAMOVE"] = MoveChatDock
