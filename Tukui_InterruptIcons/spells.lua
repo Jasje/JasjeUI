@@ -21,4 +21,6 @@ T.interrupt = {
 	[80965] = 10, -- feral skull bash (bear)
 	[85388] = 45, -- throwdown warrior
 	[49576] = 25, -- death grip
+	[408] = 20, -- kidney shot
+	[19503] = 25, -- Scatter Shot
 }
