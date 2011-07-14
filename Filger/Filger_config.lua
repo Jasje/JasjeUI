@@ -5,6 +5,46 @@ ns.Filger_Settings = {
 }
 
 ns.Filger_Spells = {
+	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
+		{
+			Name = "Shaman Procs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 106, -85 },
+
+			-- Maelstorm Weapon
+			{ spellID = 53817, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Shamanistic Rage
+			{ spellID = 30823, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Clearcasting
+			{ spellID = 16246, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Tidal Waves
+			-- { spellID = 51562, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Spiritswalkers Grace
+			{ spellID = 79206, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Focused Insight
+			{ spellID = 77796, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 106, -35 },
+
+			-- Hex
+			{ spellID = 51514, size = 46, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Storm Strike
+			{ spellID = 17364, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Earth Shock
+			{ spellID = 8042, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Frost Shock
+			{ spellID = 8056, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Flame Shock
+			{ spellID = 8050, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+	},	
 	 ["MAGE"] = { -------------------------------------------------------------------------------------------------------- Mage
 		{
 			Name = "Cooldown",
@@ -421,46 +461,6 @@ ns.Filger_Spells = {
 			{ spellID = 51722, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
     },		
-	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
-		{
-			Name = "Shaman Procs",
-			Direction = "RIGHT",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -85 },
-
-			-- Maelstorm Weapon
-			{ spellID = 53817, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Shamanistic Rage
-			{ spellID = 30823, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Clearcasting
-			{ spellID = 16246, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Tidal Waves
-			{ spellID = 51562, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Spiritswalkers Grace
-			{ spellID = 79206, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Focused Insight
-			{ spellID = 77796, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "RIGHT",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -35 },
-
-			-- Hex
-			{ spellID = 51514, size = 46, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Storm Strike
-			{ spellID = 17364, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Earth Shock
-			{ spellID = 8042, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Frost Shock
-			{ spellID = 8056, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Flame Shock
-			{ spellID = 8050, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
-		},
-	},	
 	["PALADIN"] = { -------------------------------------------------------------------------------------------------------- Paladin
 		{
 			Name = "Buffs and Debuffs",
@@ -1079,7 +1079,7 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "BAR",
-			setPoint = { "BOTTOMLEFT", TukuiFocus, -2, 45 },
+			setPoint = { "CENTER", UIParent, -406, -90 },
 			
             --Innervate -- I also wanna see innervate on focus
 			{ spellID = 29166, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "BUFF"},			
