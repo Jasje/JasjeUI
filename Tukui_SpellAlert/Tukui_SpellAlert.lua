@@ -61,29 +61,19 @@ local function Message(caster, spell, target, msg)
 		text:AddMessage("|cffff0000"..caster.."|r"..msg.."|cffD7DC23"..spell.."|r")
 	end
 	
-	if sound then
-		if spell == "Polymorph" then
-			PlaySoundFile("Sound\\Creature\\Sheep\\SheepDeath.ogg")
-		else
-			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
-		end
-	end
-	
-	if sound then
-		if spell == "Hex" then
-			PlaySoundFile("Sound\\Character\\Gnome\\GnomeVocalFemale\\GnomeFemaleIncoming01.wav")
-		else
-			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
-		end
-	end
-	
-	if sound then
-		if spell == "Mana Burn" then
-			PlaySoundFile("Sound\\Spells\\ManaBurnImpact.wav")
-		else
-			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
-		end
-	end
+if sound then
+	if spell == "Polymorph" then
+		    PlaySoundFile("Sound\\Creature\\Sheep\\SheepDeath.ogg")
+	    elseif spell == "Hex" then
+		    PlaySoundFile("Sound\\Doodad\\BoatDockedWarning.wav")
+	    elseif spell == "Mana Burn" then
+		    PlaySoundFile("Sound\\Doodad\\BellTollAlliance.wav")	
+		elseif spell == "Cyclone" then
+		    PlaySoundFile("Sound\\Spells\\ShaysBell.wav")
+	    else
+		    PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
+	    end
+    end
 end
 
 local Update = function(self, event, ...)
