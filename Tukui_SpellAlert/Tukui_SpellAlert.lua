@@ -68,6 +68,22 @@ local function Message(caster, spell, target, msg)
 			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
 		end
 	end
+	
+	if sound then
+		if spell == "Hex" then
+			PlaySoundFile("Sound\\Character\\Gnome\\GnomeVocalFemale\\GnomeFemaleIncoming01.wav")
+		else
+			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
+		end
+	end
+	
+	if sound then
+		if spell == "Mana Burn" then
+			PlaySoundFile("Sound\\Spells\\ManaBurnImpact.wav")
+		else
+			PlaySoundFile("Sound\\Doodad\\BellTollHorde.wav")
+		end
+	end
 end
 
 local Update = function(self, event, ...)
