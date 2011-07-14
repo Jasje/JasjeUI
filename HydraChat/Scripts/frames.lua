@@ -283,7 +283,7 @@ local InitNewFrame = function(self, event, msg, sender, guid) -- Create the new 
 	end
 
 	local Chatbox = CreateFrame("Frame", "HydraChat_"..sender, UIParent)
-	F.CreatePanel(Chatbox, C["ChatWindows"].Width, C["ChatWindows"].Height, "CENTER", UIParent, "CENTER", -400, 0)
+	F.CreatePanel(Chatbox, C["ChatWindows"].Width, C["ChatWindows"].Height, "CENTER", UIParent, "CENTER", -400, -200)
 	Chatbox:EnableMouse(true)
 	Chatbox:SetMovable(true)
 	Chatbox:RegisterForDrag("LeftButton")
