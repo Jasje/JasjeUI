@@ -9,6 +9,8 @@ TukuiBar1:SetWidth((T.buttonsize * mbWidth) + (T.buttonspacing * (mbWidth-1)))
 TukuiBar1:SetHeight((T.buttonsize * 2) + (T.buttonspacing))
 TukuiBar1:SetFrameStrata("BACKGROUND")
 TukuiBar1:SetFrameLevel(1)
+TukuiBar1:SetBackdrop(nil)
+
 
 local TukuiBar2 = CreateFrame("Frame", "TukuiBar2", UIParent)
 TukuiBar2:CreatePanel("Invisible", 1, 1, "BOTTOMRIGHT", TukuiBar1, "BOTTOMLEFT", -5, 0)
@@ -17,6 +19,7 @@ TukuiBar2:SetHeight((T.buttonsize * 2) + (T.buttonspacing))
 TukuiBar2:SetFrameStrata("BACKGROUND")
 TukuiBar2:SetFrameLevel(2)
 TukuiBar2:SetAlpha(1)
+TukuiBar2:SetBackdrop(nil)
 
 local TukuiBar3 = CreateFrame("Frame", "TukuiBar3", UIParent)
 TukuiBar3:CreatePanel("Invisible", 1, 1, "BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 5, 0)
@@ -25,6 +28,7 @@ TukuiBar3:SetHeight((T.buttonsize * 2) + (T.buttonspacing))
 TukuiBar3:SetFrameStrata("BACKGROUND")
 TukuiBar3:SetFrameLevel(2)
 TukuiBar3:SetAlpha(1)
+TukuiBar3:SetBackdrop(nil)
 
 local TukuiBar4 = CreateFrame("Frame", "TukuiBar4", UIParent)
 TukuiBar4:CreatePanel("Invisible", 1, 1, "BOTTOM", UIParent, "BOTTOM", 0, 7)
@@ -33,12 +37,14 @@ TukuiBar4:SetHeight((T.buttonsize * 2) + (T.buttonspacing))
 TukuiBar4:SetFrameStrata("BACKGROUND")
 TukuiBar4:SetFrameLevel(2)
 TukuiBar4:SetAlpha(0)
+TukuiBar4:SetBackdrop(nil)
 
 local TukuiBar5 = CreateFrame("Frame", "TukuiBar5", UIParent)
 TukuiBar5:CreatePanel("Invisible", T.buttonsize, (T.buttonsize * 12) + (T.buttonspacing * 11), "RIGHT", UIParent, "RIGHT", -10, -40)
 TukuiBar5:SetFrameStrata("BACKGROUND")
 TukuiBar5:SetFrameLevel(2)
 TukuiBar5:SetAlpha(0)
+TukuiBar5:SetBackdrop(nil)
 
 local TukuiBar6 = CreateFrame("Frame", "TukuiBar6", UIParent)
 TukuiBar6:SetWidth((T.buttonsize) + (T.buttonspacing * 2))
@@ -47,6 +53,7 @@ TukuiBar6:SetPoint("LEFT", TukuiBar5, "LEFT", 0, 0)
 TukuiBar6:SetFrameStrata("BACKGROUND")
 TukuiBar6:SetFrameLevel(2)
 TukuiBar6:SetAlpha(0)
+TukuiBar6:SetBackdrop(nil)
 
 local TukuiBar7 = CreateFrame("Frame", "TukuiBar7", UIParent)
 TukuiBar7:SetWidth((T.buttonsize ) + (T.buttonspacing * 2))
@@ -55,6 +62,7 @@ TukuiBar7:SetPoint("TOP", TukuiBar5, "TOP", 0 , 0)
 TukuiBar7:SetFrameStrata("BACKGROUND")
 TukuiBar7:SetFrameLevel(2)
 TukuiBar7:SetAlpha(0)
+TukuiBar7:SetBackdrop(nil)
 
 local petbg = CreateFrame("Frame", "TukuiPetBar", UIParent, "SecureHandlerStateTemplate")
 petbg:CreatePanel("Invisible", T.petbuttonsize + (T.petbuttonspacing * 2), (T.petbuttonsize * 10) + (T.petbuttonspacing * 11), "RIGHT", TukuiBar5, "LEFT", -6, 0)
@@ -267,8 +275,10 @@ local StyleTooltip = function(self)
 		
 		if spec == 1 then
 			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, PRIMARY))
+			GameTooltip:AddDoubleLine("Arena") 
 		else
 			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, SECONDARY))
+			GameTooltip:AddDoubleLine("Battleground")
 		end
 		
 		self.highlight:Show()
