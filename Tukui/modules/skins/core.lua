@@ -45,6 +45,26 @@ function T.SkinButton(f, strip)
 	f:HookScript("OnLeave", T.SetOriginalBackdrop)
 end
 
+function T.SkinSlideBar(frame,height,movetext)
+	frame:SetTemplate("Default")
+	frame:SetBackdropColor(0,0,0,.8)
+
+	if not height then height = frame:GetHeight() end
+	frame:Height(height)
+
+	if movetext then
+		if _G[frame:GetName().."Low"] then _G[frame:GetName().."Low"]:Point("BOTTOM",0,-18) end
+		if _G[frame:GetName().."High"] then _G[frame:GetName().."High"]:Point("BOTTOM",0,-18) end
+		if _G[frame:GetName().."Text"] then _G[frame:GetName().."Text"]:Point("TOP",0,19) end
+	end
+
+	if _G[frame:GetName().."Thumb"] then
+		_G[frame:GetName().."Thumb"]:SetTexture([[Interface\AddOns\Tukui\medias\textures\blank.tga]])
+		_G[frame:GetName().."Thumb"]:SetVertexColor(unpack(C["media"].bordercolor))
+		_G[frame:GetName().."Thumb"]:Size(height-4,height+4)
+	end
+end
+
 function T.SkinScrollBar(frame)
 	if _G[frame:GetName().."BG"] then _G[frame:GetName().."BG"]:SetTexture(nil) end
 	if _G[frame:GetName().."Track"] then _G[frame:GetName().."Track"]:SetTexture(nil) end
