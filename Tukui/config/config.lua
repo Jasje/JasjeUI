@@ -131,7 +131,7 @@ C["cooldown"] = {
 	["enable"] = true,                                  -- do i really need to explain this?
 	["treshold"] = 2,                                   -- show decimal under X seconds and text turn red
 }
-  -- 8 and 9 are only visable in raid/party/pvp
+  -- 8 and 9 are only visable in raid/party
 C["datatext"] = {
 	["fps_ms"] = 5,                                     -- show fps and ms on panels
 	["system"] = 0,                                     -- show total memory and others systems infos on panels

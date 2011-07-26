@@ -809,7 +809,7 @@ local function Shared(self, unit)
 	if (unit == "pet") then
 		-- create a panel	
 	    local panel = CreateFrame("Frame", nil, self)
-		panel:CreatePanel("Default", 104, 13, "TOP", self, "BOTTOM", 0, 16)
+		panel:CreatePanel("Default", 104, 13, "TOP", self, "BOTTOM", 0, 26)
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
 		panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
@@ -858,36 +858,6 @@ local function Shared(self, unit)
 				health.colorHappiness = true
 			end
 		end
-		
-		-- power
-		local power = CreateFrame('StatusBar', nil, self)
-		power:Size(100, 3)
-        power:Point("LEFT", health, "BOTTOMLEFT", 0, -9)
-		power:SetFrameLevel(4)
-		power:SetStatusBarTexture(normTex)
-		
-		-- power border
-		local powerborder = CreateFrame("Frame", nil, self)
-		powerborder:CreatePanel("Hydra", 1, 1, "CENTER", power, "CENTER", 0, 0)
-		powerborder:ClearAllPoints()
-		powerborder:SetPoint("TOPLEFT", power, T.Scale(-2), T.Scale(2))
-		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
-		powerborder:SetFrameStrata("MEDIUM")
-		powerborder:SetFrameLevel(4)
-		
-		power.frequentUpdates = true
-		power.colorPower = true
-		if C["unitframes"].showsmooth == true then
-			power.Smooth = true
-		end
-
-		local powerBG = power:CreateTexture(nil, 'BORDER')
-		powerBG:SetAllPoints(power)
-		powerBG:SetTexture(normTex)
-		powerBG.multiplier = 0.3
-		
-		self.Power = power
-		self.Power.bg = powerBG
 		
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
@@ -1566,7 +1536,7 @@ AddonLayout:SetScript("OnEvent", function(self, event, addon)
 		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", 120, 35)
 		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", -120, 35)
 		tot:SetPoint("RIGHT", TukuiTarget, "LEFT", -17, -0)
-		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 7)
+		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 0)
 	elseif addon == "Tukui_Raid_Healing" then
 		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 55)
 		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 55)

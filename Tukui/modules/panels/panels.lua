@@ -115,17 +115,17 @@ local invbarbg = CreateFrame("Frame", "InvTukuiActionBarBackground", UIParent)
 
 -- INFO LEFT (FOR STATS)
 local ileft = CreateFrame("Frame", "TukuiInfoLeft", TukuiBar1)
-ileft:CreatePanel("Hydra", T.InfoLeftRightWidth, 20, "BOTTOMLEFT", UIParent, "BOTTOMLEFT", T.Scale(10), T.Scale(7))
-ileft:SetFrameLevel(2)
-ileft:SetFrameStrata("BACKGROUND")
-ileft:CreateShadow("Hydra")
+    ileft:CreatePanel("Hydra", T.InfoLeftRightWidth, 20, "BOTTOMLEFT", UIParent, "BOTTOMLEFT", T.Scale(10), T.Scale(7))
+    ileft:SetFrameLevel(2)
+    ileft:SetFrameStrata("BACKGROUND")
+    ileft:CreateShadow("Hydra")
 
 -- INFO RIGHT (FOR STATS)
 local iright = CreateFrame("Frame", "TukuiInfoRight", TukuiBar1)
-iright:CreatePanel("Hydra", T.InfoLeftRightWidth, 20, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", T.Scale(-10), T.Scale(7))
-iright:SetFrameLevel(2)
-iright:SetFrameStrata("BACKGROUND")
-iright:CreateShadow("Hydra")
+    iright:CreatePanel("Hydra", T.InfoLeftRightWidth, 20, "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", T.Scale(-10), T.Scale(7))
+    iright:SetFrameLevel(2)
+    iright:SetFrameStrata("BACKGROUND")
+    iright:CreateShadow("Hydra")
 
 if C.chat.background then
 	-- CHAT BG LEFT
@@ -155,13 +155,14 @@ end
 
 -- BOTTOM BAR
 local tbottombar = CreateFrame("Frame", "TukuiBottomBar", UIParent)
-tbottombar:CreatePanel("Hydra", 1, 22, "TOP", UIParent, "TOP", 0, 0)
-tbottombar:ClearAllPoints()
-tbottombar:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", T.Scale(-6), T.Scale(-6))
-tbottombar:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", T.Scale(6), T.Scale(-6))
-tbottombar:SetFrameStrata("BACKGROUND")
-tbottombar:SetFrameLevel(0)
-tbottombar:CreateShadow("Hydra")
+    tbottombar:CreatePanel("Hydra", 1, 22, "TOP", UIParent, "TOP", 0, 0)
+    tbottombar:ClearAllPoints()
+    tbottombar:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", T.Scale(-6), T.Scale(-6))
+    tbottombar:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", T.Scale(6), T.Scale(-6))
+    tbottombar:SetFrameStrata("BACKGROUND")
+    tbottombar:SetFrameLevel(0)
+    tbottombar:SetAlpha(.9)
+    tbottombar:CreateShadow("Hydra")
 
 --BATTLEGROUND STATS FRAME
 if C["datatext"].battleground == true then
@@ -175,23 +176,23 @@ end
 
 --Pve/Pvp datatext yo
 local pvedl = CreateFrame("Frame", "PveDatatextl", TukuiBar2)
-pvedl:CreatePanel("Transparent", 97, 15, "TOPRIGHT", TukuiBar2, "TOPRIGHT", T.Scale(0), T.Scale(17))
-pvedl:SetFrameLevel(2)
-pvedl:SetFrameStrata("BACKGROUND")
-pvedl:SetBorder()
+    pvedl:CreatePanel("Transparent", 97, 15, "TOPRIGHT", TukuiBar2, "TOPRIGHT", T.Scale(0), T.Scale(17))
+    pvedl:SetFrameLevel(2)
+    pvedl:SetFrameStrata("BACKGROUND")
+    pvedl:SetBorder()
 
 --Pve/Pvp datatext yo
 local pvedr= CreateFrame("Frame", "PveDatatextr", TukuiBar3)
-pvedr:CreatePanel("Transparent", 97, 15, "TOPLEFT", TukuiBar3, "TOPLEFT", T.Scale(0), T.Scale(17))
-pvedr:SetFrameLevel(2)
-pvedr:SetFrameStrata("BACKGROUND")
-pvedr:SetBorder()
+    pvedr:CreatePanel("Transparent", 97, 15, "TOPLEFT", TukuiBar3, "TOPLEFT", T.Scale(0), T.Scale(17))
+    pvedr:SetFrameLevel(2)
+    pvedr:SetFrameStrata("BACKGROUND")
+    pvedr:SetBorder()
 
---show hide datatext 8 and 9 on entering instance/pvp -- thanks Hydra!
+--show hide datatext 8 and 9 on entering instance
 local function OnEvent(self, event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		local inInstance, instanceType = IsInInstance()
-		if (inInstance and instanceType == "party") or (inInstance and  instanceType == "raid") or (inInstance and  instanceType == "pvp")  then
+		if (inInstance and instanceType == "party") or (inInstance and  instanceType == "raid") then
 			PveDatatextr:Show()
 			PveDatatextl:Show()
 		else
@@ -229,19 +230,19 @@ end)
 if UnitLevel("player") <= 10 then return end
 
 local frame = CreateFrame("Frame", "CorinnaTalent", UIParent)
-frame:CreatePanel(nil, 20, 20, "RIGHT", TukuiInfoRight, "LEFT", -3, 0)
-frame:EnableMouse(true)
+    frame:CreatePanel(nil, 20, 20, "RIGHT", TukuiInfoRight, "LEFT", -3, 0)
+    frame:EnableMouse(true)
 
-frame.tex = frame:CreateTexture(nil, "ARTWORK")
-frame.tex:Point("TOPLEFT", 2, -2)
-frame.tex:Point("BOTTOMRIGHT", -2, 2)
-frame.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    frame.tex = frame:CreateTexture(nil, "ARTWORK")
+    frame.tex:Point("TOPLEFT", 2, -2)
+    frame.tex:Point("BOTTOMRIGHT", -2, 2)
+    frame.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 
-frame.highlight = frame:CreateTexture(nil, "ARTWORK")
-frame.highlight:Point("TOPLEFT", 2, -2)
-frame.highlight:Point("BOTTOMRIGHT", -2, 2)
-frame.highlight:SetTexture(1,1,1,.3)
-frame.highlight:Hide()
+    frame.highlight = frame:CreateTexture(nil, "ARTWORK")
+    frame.highlight:Point("TOPLEFT", 2, -2)
+    frame.highlight:Point("BOTTOMRIGHT", -2, 2)
+    frame.highlight:SetTexture(1,1,1,.3)
+    frame.highlight:Hide()
 
 local UpdateTexture = function(self)
 	local primary = GetPrimaryTalentTree()
