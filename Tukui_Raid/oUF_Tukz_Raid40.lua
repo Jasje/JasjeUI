@@ -65,23 +65,6 @@ local function Shared(self, unit)
 	self.Healthbg = Healthbg
 	-- end border	
 	
-	-- hydra glow
-	if C.unitframes.gradienthealth and C.unitframes.unicolor then
-		self:HookScript("OnEnter", function(self) -- Mouseover coloring
-			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
-			local hover = RAID_CLASS_COLORS[select(2, UnitClass(self.unit))]
-			if not hover then return end
-			health:SetStatusBarColor(hover.r, hover.g, hover.b)
-		end)
-		
-		self:HookScript("OnLeave", function(self)
-			if not UnitIsConnected(self.unit) or UnitIsDead(self.unit) or UnitIsGhost(self.unit) then return end
-			local r, g, b = oUF.ColorGradient(UnitHealth(self.unit)/UnitHealthMax(self.unit), unpack(C["unitframes"].gradient))
-			health:SetStatusBarColor(r, g, b)
-		end)
-	end
-	-- end hydra glow
-
 	local name = health:CreateFontString(nil, 'OVERLAY')
 	name:SetFont(raidframefont, raidframefontsize, raidframefontflag)
 	name:Point("LEFT", self, "RIGHT", 5, 0)
