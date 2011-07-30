@@ -51,7 +51,7 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 173, -80 },
+			setPoint = { "CENTER", UIParent, 173, -20 },
 
 			-- Water Elemental Freeze
 			{ spellID = 33395, size = 37, filter = "CD" },
@@ -63,7 +63,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 173, -120 },
+			setPoint = { "CENTER", UIParent, 173, -60 },
 			
 			-- Frostfire Bolt aka Glyph of Frostfire
 			{ spellID = 44614, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
@@ -79,7 +79,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", "UIParent", 220, -75 },
+			setPoint = { "CENTER", "UIParent", 220, -15 },
 			
 			--Brain Freeze
 			{ spellID = 57761, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
