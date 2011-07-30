@@ -232,7 +232,7 @@ local function LoadSkin()
 
 	--Guild Log
 	T.SkinScrollBar(GuildLogScrollFrameScrollBar)
-	GuildLogFrame:SetTemplate("Default")
+	GuildLogFrame:SetTemplate("Transparent")
 
 	for i = 1, GuildLogFrame:GetNumChildren() do
 		local child = select(i, GuildLogFrame:GetChildren())
