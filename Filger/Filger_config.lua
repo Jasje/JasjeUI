@@ -11,7 +11,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -85 },
+			setPoint = { "CENTER", UIParent, 106, -55 },
 
 			-- Maelstorm Weapon
 			{ spellID = 53817, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
@@ -31,7 +31,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -35 },
+			setPoint = { "CENTER", UIParent, 106, -5 },
 
 			-- Hex
 			{ spellID = 51514, size = 46, unitId = "target", caster = "all", filter = "DEBUFF" },
@@ -1079,10 +1079,11 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "BAR",
-			setPoint = { "CENTER", UIParent, -406, -90 },
+			IconSide = "RIGHT",
+			setPoint = { "CENTER", UIParent, -211, -104 },
 			
             --Innervate -- I also wanna see innervate on focus
-			{ spellID = 29166, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "BUFF"},			
+			{ spellID = 29166, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "BUFF"},				
 			--Hungering Cold
 	        { spellID = 49203, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "DEBUFF" },
 			--Chains of Ice

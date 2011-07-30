@@ -62,7 +62,7 @@ function Update(self)
 			bar:SetWidth(value.data.size);
 			bar:SetHeight(value.data.size);
 			bar:SetScale(1);
-			bar:SetTemplate("Hydra")
+			bar:SetTemplate("Transparent")
 
 			if (index == 1) then
 				bar:SetPoint(unpack(self.setPoint));
@@ -106,7 +106,7 @@ function Update(self)
 				else
 					bar.statusbar = CreateFrame("StatusBar", "$parentStatusBar", bar);
 					bar.statusbar:SetWidth(T.Scale(value.data.barWidth - 2));
-					bar.statusbar:SetHeight(T.Scale(value.data.size - 10));
+					bar.statusbar:SetHeight(T.Scale(value.data.size - 5));
 					bar.statusbar:SetStatusBarTexture(C.media.Glamour);
 					bar.statusbar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1);
 					if ( self.IconSide == "LEFT" ) then
@@ -125,7 +125,7 @@ function Update(self)
 					bar.bg:SetPoint("TOPLEFT", T.Scale(-2), T.Scale(2))
 					bar.bg:SetPoint("BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
 					bar.bg:SetFrameStrata("BACKGROUND")
-					bar.bg:SetTemplate("Hydra")
+					bar.bg:SetTemplate("Transparent")
 				end
 				
 				if (bar.background)then
@@ -134,7 +134,7 @@ function Update(self)
 					bar.background = bar.statusbar:CreateTexture(nil, "BACKGROUND");
 					bar.background:SetAllPoints();
 					bar.background:SetTexture(C.media.normTex);
-					bar.background:SetVertexColor(0, 0, 0, 0.5);
+					bar.background:SetVertexColor(0, 0, 0, 0);
 				end
 				
 				if (bar.time)then
