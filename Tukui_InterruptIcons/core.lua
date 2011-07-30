@@ -63,8 +63,6 @@ function tInterruptIcons.CreateIcon()
 	tInterruptIcons.Icons[i].TimerText = tInterruptIcons.Icons[i]:CreateFontString("tInterruptIconsTimerText","OVERLAY")
 	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.pixelfont,16, "OUTLINEMONOCHROME")
 	tInterruptIcons.Icons[i].TimerText:SetTextColor(1,0,0)
-	tInterruptIcons.Icons[i].TimerText:SetShadowColor(0,0,0)
-	tInterruptIcons.Icons[i].TimerText:SetShadowOffset(T.mult,-T.mult)
 	tInterruptIcons.Icons[i].TimerText:Point("CENTER", tInterruptIcons.Icons[i], "CENTER",1,0)
 	tInterruptIcons.Icons[i].TimerText:SetText(999)
    
@@ -146,7 +144,11 @@ end
 function tInterruptIcons.COMBAT_LOG_EVENT_UNFILTERED(...)
 	local timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellID
 
-	timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID = ...
+	if T.toc < 40200 then
+		timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, spellID = ...
+	else
+		timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID = ...
+	end
 
 	if (event == "SPELL_CAST_SUCCESS" and not tInterruptIcons.Icons[1]:IsMouseEnabled() and (bit.band(sourceFlags,COMBATLOG_OBJECT_REACTION_HOSTILE) == COMBATLOG_OBJECT_REACTION_HOSTILE)) then			
 		if (sourceName ~= UnitName("player")) then
