@@ -704,7 +704,7 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 			self:SetStatusBarColor(unpack(C["castbar"].nointerruptcolor))	
 		end
 	else
-        if C["castbar"].classcolor and (unit == "player" or unit == "target") then
+        if C["castbar"].classcolor then
             self:SetStatusBarColor(unpack(oUF.colors.class[select(2, UnitClass(unit))]))
         else
             self:SetStatusBarColor(unpack(C["castbar"].castbarcolor))

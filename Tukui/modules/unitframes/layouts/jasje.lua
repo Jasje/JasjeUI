@@ -1031,16 +1031,15 @@ local function Shared(self, unit)
 
 		castbar.bg = CreateFrame("Frame", nil, castbar)
 		castbar.bg:SetTemplate("Transparent")
-		castbar.bg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
-		castbar.bg:SetPoint("TOPLEFT", T.Scale(-2), T.Scale(2))
-		castbar.bg:SetPoint("BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
+		castbar.bg:SetBorder()
+		castbar.bg:SetPoint("TOPLEFT", -2, 2)
+		castbar.bg:SetPoint("BOTTOMRIGHT", 2, -2)
 		castbar.bg:SetFrameLevel(5)
 		
 		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
 		castbar.time:SetTextColor(0.84, 0.75, 0.65)
 		castbar.time:SetJustifyH("RIGHT")
-		castbar.CustomTimeText = T.CustomCastTimeText
 
 		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
@@ -1059,9 +1058,10 @@ local function Shared(self, unit)
 		castbar.icon:SetPoint("BOTTOMRIGHT", castbar.button, T.Scale(-2), T.Scale(2))
 		castbar.icon:SetTexCoord(0.08, 0.92, 0.08, .92)
 		
+		castbar.CustomTimeText = T.CustomCastTimeText
 		castbar.CustomDelayText = T.CustomCastDelayText
-		castbar.PostCastStart = T.CheckCast
-		castbar.PostChannelStart = T.CheckChannel
+        castbar.PostCastStart = T.PostCastStart
+        castbar.PostChannelStart = T.PostCastStart
 
 		self.Castbar = castbar
 		self.Castbar.Time = castbar.time
@@ -1394,9 +1394,10 @@ end
 		castbar.Text:Point("LEFT", castbar, "LEFT", 4, 0)
 		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 		
+		castbar.CustomTimeText = T.CustomCastTimeText
 		castbar.CustomDelayText = T.CustomCastDelayText
-		castbar.PostCastStart = T.CheckCast
-		castbar.PostChannelStart = T.CheckChannel
+        castbar.PostCastStart = T.PostCastStart
+        castbar.PostChannelStart = T.PostCastStart
 		
 		castbar.button = CreateFrame("Frame", nil, castbar)
 		castbar.button:Height(castbar:GetHeight()+4)
@@ -1582,10 +1583,11 @@ end
 		castbar:SetPoint("LEFT", 0, 0)
 		castbar:SetPoint("RIGHT", 42, -1)
 		castbar:SetPoint("BOTTOM", 0, -27)
-		
+
 		castbar:SetHeight(35)
 		castbar:SetStatusBarTexture(normTex)
 		castbar:SetFrameLevel(6)
+
 		-- spark
 		castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark:SetHeight(70)
@@ -1603,15 +1605,15 @@ end
 		castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), 0)
 		castbar.time:SetTextColor(0.84, 0.75, 0.65)
 		castbar.time:SetJustifyH("RIGHT")
-		castbar.CustomTimeText = T.CustomCastTimeText
 
 		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
 		castbar.Text:Point("LEFT", castbar, "LEFT", 4, 0)
 		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 		
+		castbar.CustomTimeText = T.CustomCastTimeText
 		castbar.CustomDelayText = T.CustomCastDelayText
-		castbar.PostCastStart = T.CheckCast
-		castbar.PostChannelStart = T.CheckChannel
+        castbar.PostCastStart = T.PostCastStart
+        castbar.PostChannelStart = T.PostCastStart
 		
 		castbar.button = CreateFrame("Frame", nil, castbar)
 		castbar.button:Height(castbar:GetHeight()+5)

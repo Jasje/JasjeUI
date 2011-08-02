@@ -113,7 +113,7 @@ C["actionbar"] = {
 
 C["castbar"] = { 
 	["classcolor"] = true, -- classcolor
-	["castbarcolor"] = { .0, 0.6, 1,1 }, -- color if classcolor = false
+	["castbarcolor"] = { .2, .2, .2,1 }, -- color if classcolor = false
 	["nointerruptcolor"] = { 1,.2,.2,1 }, -- color of casts which can't be interrupted
 }
 
