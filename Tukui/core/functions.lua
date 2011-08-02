@@ -709,9 +709,8 @@ T.PostCastStart = function(self, unit, name, rank, castid)
         else
             self:SetStatusBarColor(unpack(C["castbar"].castbarcolor))
         end
-	end
-end
-
+	end	
+end	
 
 T.UpdateShards = function(self, event, unit, powerType)
 	if(self.unit ~= unit or (powerType and powerType ~= 'SOUL_SHARDS')) then return end

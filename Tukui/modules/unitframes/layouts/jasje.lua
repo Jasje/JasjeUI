@@ -1016,7 +1016,7 @@ local function Shared(self, unit)
 		local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
 		castbar:ClearAllPoints()
 		castbar:SetPoint("CENTER", UIParent, 0, 0)
-		castbar:Size(450, 25)
+		castbar:Size(380, 25)
 		-- spark
 		castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
 		castbar.Spark:SetHeight(50)
@@ -1201,10 +1201,10 @@ end
 			self.Debuffs = debuffs
 end
 	------------------------------------------------------------------------
-	--	Arena or boss units layout (both mirror'd)
+	-- Boss units layout 
 	------------------------------------------------------------------------
 	
-	if (unit and unit:find("arena%d") and C["arena"].unitframes == true) or (unit and unit:find("boss%d") and C["unitframes"].showboss == true) then
+	if (unit and unit:find("boss%d") and C["unitframes"].showboss == true) then
 		-- Right-click focus on arena or boss units
 		self:SetAttribute("type2", "focus")
 		
@@ -1363,53 +1363,8 @@ end
 		debuffs.PostUpdateIcon = T.PostUpdateAura
 		self.Debuffs = debuffs
 		--]]		
-		if (C.arena.unitframes) and (unit and unit:find('arena%d')) then
-		-- trinket feature via trinket plugin
-		local Trinketbg = CreateFrame("Frame", nil, self)
-		Trinketbg:Size(59)
-		Trinketbg:SetPoint("LEFT", health, "RIGHT", 4, -12)				
-		Trinketbg:SetTemplate("Hydra")
-		Trinketbg:SetFrameLevel(0)
-		self.Trinketbg = Trinketbg
 
-		local Trinket = CreateFrame("Frame", nil, Trinketbg)
-		Trinket:SetAllPoints(Trinketbg)
-		Trinket:SetPoint("TOPLEFT", Trinketbg, T.Scale(2), T.Scale(-2))
-		Trinket:SetPoint("BOTTOMRIGHT", Trinketbg, T.Scale(-2), T.Scale(2))
-		Trinket:SetFrameLevel(1)
-		--Trinket.trinketUseAnnounce = true
-		self.Trinket = Trinket
-		
-		-- Auratracker Frame
-		local AuraTracker = CreateFrame("Frame", nil, self)
-		AuraTracker:Size(59)
-		AuraTracker:Point("RIGHT", health, "LEFT", -4, -12)
-		AuraTracker:SetTemplate("Default")
-		
-		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
-		AuraTracker.icon:SetAllPoints(AuraTracker)
-		AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
-		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
-		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
-		
-		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize+10, unitframefontflag)
-		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
-		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
-		self.AuraTracker = AuraTracker
-		
-		-- ClassIcon			
-		local class = AuraTracker:CreateTexture(nil, "ARTWORK")
-		class:SetAllPoints(AuraTracker.icon)
-		self.ClassIcon = class
-		
-		-- Spec info
-		Talents = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
-		Talents:Point("CENTER", health, 0, 0)
-		Talents:SetTextColor(1,1,1,1)
-		self.Talents = Talents
-		end
-		
-        -- boss & arena frames cast bar!
+        -- boss frames cast bar!
 		local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
 		castbar:SetPoint("LEFT", 23, 0)
 		castbar:SetPoint("RIGHT", 0, -1)
@@ -1455,7 +1410,220 @@ end
 		self.Castbar.Time = castbar.time
 		self.Castbar.Icon = castbar.icon
 	end
+	
+    -- Arena Layout
+	if (unit and unit:find("arena%d") and C["arena"].unitframes == true) then
+	    -- Right-click focus on arena units
+		self:SetAttribute("type2", "focus")
 
+		-- health 
+		local health = CreateFrame('StatusBar', nil, self)
+		health:Height(15)
+		health:SetPoint("TOPLEFT")
+		health:SetPoint("TOPRIGHT")
+		health:SetStatusBarTexture(normTex)
+		
+		-- border
+		local Healthbg = CreateFrame("Frame", nil, health)
+	    Healthbg:SetPoint("TOPLEFT", health, "TOPLEFT", T.Scale(-2), T.Scale(2))
+	    Healthbg:SetPoint("BOTTOMRIGHT", health, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
+	    Healthbg:SetTemplate("")
+	    Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+	    Healthbg:SetFrameLevel(2)
+	    self.Healthbg = Healthbg			
+
+		health.frequentUpdates = true
+		health.colorDisconnected = true
+		if C["unitframes"].showsmooth == true then
+			health.Smooth = true
+		end
+		health.colorClass = true
+		
+		local healthBG = health:CreateTexture(nil, 'BORDER')
+		healthBG:SetAllPoints()
+
+		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+		health.value:Point("RIGHT", panel, "RIGHT", -4, -0)
+		health.PostUpdate = T.PostUpdateHealth
+		
+		self.Health = health
+		self.Health.bg = healthBG
+		
+		health.frequentUpdates = true
+		if C["unitframes"].showsmooth == true then
+			health.Smooth = true
+		end
+		
+		if C["unitframes"].unicolor == true then
+			health.colorDisconnected = false
+			health.colorClass = true
+			health:SetStatusBarColor(.2, .2, .2, 1)
+			--healthBG:SetTexture(.6, .6, .6)
+			--healthBG:SetVertexColor(0, 0, 0)				
+		else
+			health.colorDisconnected = true
+			health.colorClass = true
+			health.colorReaction = true	
+		end
+	
+		-- power
+		local power = CreateFrame('StatusBar', nil, self)
+		power:Size(220, 15)
+        power:Point("RIGHT", health, "BOTTOMRIGHT", 0, -14)
+		power:SetFrameLevel(4)
+		power:SetStatusBarTexture(normTex)
+		
+		-- power border
+		local powerborder = CreateFrame("Frame", nil, self)
+		powerborder:CreatePanel("Hydra", 1, 1, "CENTER", power, "CENTER", 0, 0)
+		powerborder:ClearAllPoints()
+		powerborder:SetPoint("TOPLEFT", power, T.Scale(-2), T.Scale(2))
+		powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
+		powerborder:SetFrameStrata("MEDIUM")
+		powerborder:SetFrameLevel(4)
+		self.powerborder = powerborder
+
+		local powerBG = power:CreateTexture(nil, 'BORDER')
+		powerBG:SetAllPoints(power)
+		powerBG:SetTexture(.6, .6, .6)
+		powerBG:SetVertexColor(0, 0, 0, 0)	
+		powerBG.multiplier = 0.3
+
+		self.Power = power
+		self.Power.bg = powerBG
+
+		if C["unitframes"].showsmooth == true then
+			power.Smooth = true
+		end
+		
+		if C["unitframes"].unicolor == true then
+			power.colorTapping = true
+			power.colorClass = false
+			powerBG.multiplier = 0.1				
+			power.colorPower = true
+		end
+		--[[
+		-- names
+		local Name = health:CreateFontString(nil, "OVERLAY")
+		Name:Point("CENTER", panel, "CENTER", 0, 0)
+		Name:SetJustifyH("CENTER")
+		Name:SetFont(unitframefont, unitframefontsize, unitframefontflag)
+		Name.frequentUpdates = 0.2
+		
+		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
+		self.Name = Name
+		
+		-- create debuff for arena units
+		local debuffs = CreateFrame("Frame", nil, self)
+		debuffs:SetHeight(36)
+		debuffs:SetWidth(200)
+		debuffs:SetPoint('LEFT', self, 'RIGHT', T.Scale(4), 0)
+		debuffs.size = 36
+		debuffs.num = 2
+		debuffs.spacing = 2
+		debuffs.initialAnchor = 'LEFT'
+		debuffs["growth-x"] = "RIGHT"
+		debuffs.PostCreateIcon = T.PostCreateAura
+		debuffs.PostUpdateIcon = T.PostUpdateAura
+		self.Debuffs = debuffs
+		--]]		
+		if (C.arena.unitframes) and (unit and unit:find('arena%d')) then
+		local Trinketbg = CreateFrame("Frame", nil, self)
+		Trinketbg:Size(40)
+		Trinketbg:SetPoint("LEFT", health, "RIGHT", 4, -11)				
+		Trinketbg:SetTemplate("Hydra")
+		Trinketbg:SetFrameLevel(0)
+		self.Trinketbg = Trinketbg
+
+		local Trinket = CreateFrame("Frame", nil, Trinketbg)
+		Trinket:SetAllPoints(Trinketbg)
+		Trinket:SetPoint("TOPLEFT", Trinketbg, T.Scale(2), T.Scale(-2))
+		Trinket:SetPoint("BOTTOMRIGHT", Trinketbg, T.Scale(-2), T.Scale(2))
+		Trinket:SetFrameLevel(1)
+		--Trinket.trinketUseAnnounce = true
+		self.Trinket = Trinket
+		
+		-- Auratracker Frame
+		local AuraTracker = CreateFrame("Frame", nil, self)
+		AuraTracker:Size(40)
+		AuraTracker:Point("RIGHT", health, "LEFT", -4, -11)
+		AuraTracker:SetTemplate("Default")
+		
+		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
+		AuraTracker.icon:SetAllPoints(AuraTracker)
+		AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
+		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
+		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
+		
+		AuraTracker.text = T.SetFontString(AuraTracker,  unitframefont, unitframefontsize+10, unitframefontflag)
+		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
+		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		self.AuraTracker = AuraTracker
+		
+		-- ClassIcon			
+		local class = AuraTracker:CreateTexture(nil, "ARTWORK")
+		class:SetAllPoints(AuraTracker.icon)
+		self.ClassIcon = class
+		
+		-- Spec info
+		Talents = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+		Talents:Point("CENTER", health, 0, 0)
+		Talents:SetTextColor(1,1,1,1)
+		self.Talents = Talents
+		end
+		
+        -- arena frames cast bar!
+		local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
+		castbar:SetPoint("LEFT", 0, 0)
+		castbar:SetPoint("RIGHT", 42, -1)
+		castbar:SetPoint("BOTTOM", 0, -27)
+		
+		castbar:SetHeight(35)
+		castbar:SetStatusBarTexture(normTex)
+		castbar:SetFrameLevel(6)
+		-- spark
+		castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
+		castbar.Spark:SetHeight(70)
+		castbar.Spark:SetWidth(25)
+		castbar.Spark:SetBlendMode('ADD')
+		
+		castbar.bg = CreateFrame("Frame", nil, castbar)
+		castbar.bg:SetTemplate("Transparent")
+		castbar.bg:SetBorder()
+		castbar.bg:SetPoint("TOPLEFT", -2, 2)
+		castbar.bg:SetPoint("BOTTOMRIGHT", 2, -2)
+		castbar.bg:SetFrameLevel(5)
+		
+		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
+		castbar.time:SetPoint("RIGHT", castbar, "RIGHT", T.Scale(-4), 0)
+		castbar.time:SetTextColor(0.84, 0.75, 0.65)
+		castbar.time:SetJustifyH("RIGHT")
+		castbar.CustomTimeText = T.CustomCastTimeText
+
+		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
+		castbar.Text:Point("LEFT", castbar, "LEFT", 4, 0)
+		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
+		
+		castbar.CustomDelayText = T.CustomCastDelayText
+		castbar.PostCastStart = T.CheckCast
+		castbar.PostChannelStart = T.CheckChannel
+		
+		castbar.button = CreateFrame("Frame", nil, castbar)
+		castbar.button:Height(castbar:GetHeight()+5)
+		castbar.button:Width(castbar:GetHeight()+5)
+		castbar.button:Point("RIGHT", castbar, "LEFT",-4, 0)
+		castbar.button:SetTemplate("Hydra")
+		castbar.button:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+		castbar.icon = castbar.button:CreateTexture(nil, "ARTWORK")
+		castbar.icon:Point("TOPLEFT", castbar.button, T.Scale(2), T.Scale(-2))
+		castbar.icon:Point("BOTTOMRIGHT", castbar.button, -2, 2)
+		castbar.icon:SetTexCoord(0.08, 0.92, 0.08, .92)
+
+		self.Castbar = castbar
+		self.Castbar.Time = castbar.time
+		self.Castbar.Icon = castbar.icon
+	end
+	
 	------------------------------------------------------------------------
 	--	Main tanks and Main Assists layout (both mirror'd)
 	------------------------------------------------------------------------
@@ -1538,8 +1706,8 @@ AddonLayout:SetScript("OnEvent", function(self, event, addon)
 		tot:SetPoint("BOTTOM", TukuiBar1, "TOP", -0, 35)
 		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 0)
 	elseif addon == "Tukui_Raid_Healing" then
-		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 255)
-		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 255)
+		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 115)
+		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 115)
 		tot:SetPoint("LEFT", TukuiTarget, "RIGHT", -100, -52)
 		pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", 100, -52)
 	end
@@ -1566,9 +1734,9 @@ if C.arena.unitframes then
 	for i = 1, 5 do
 		arena[i] = oUF:Spawn("arena"..i, "TukuiArena"..i)
 		if i == 1 then
-			arena[i]:SetPoint("RIGHT", UIParent, "RIGHT", -220, -201)
+			arena[i]:SetPoint("RIGHT", UIParent, "RIGHT", -250, -100)
 		else
-			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 35)
+			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 32)
 		end
 		arena[i]:SetSize(T.Scale(220), T.Scale(50))
 	end
