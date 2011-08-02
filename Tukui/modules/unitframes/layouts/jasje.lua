@@ -104,17 +104,19 @@ local function Shared(self, unit)
 		-- health bar background
 		local healthBG = health:CreateTexture(nil, 'BORDER')
 		healthBG:SetAllPoints()
-		if C["unitframes"].healthpercent then
-		    local percHP = T.SetFontString(health, C.media.font, 20, "THINOUTLINE")
-		    if unit == "player" then
-                percHP:SetPoint("RIGHT", health, "LEFT", -5, -10)
-		    elseif unit == "target" then
-		        percHP:SetPoint("LEFT", health, "RIGHT", 5, -10)
-		    end
-	    self:Tag(percHP, "[Tukui:perchp]")
-	    self.percHP = percHP
-		end
 		
+		if C["unitframes"].healthpercent then
+		    local percHP = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+			percHP:SetTextColor(oUF.colors.class[select(2, UnitClass(unit))])
+		if unit == "player" then
+			percHP:SetPoint("LEFT", health, "RIGHT", 5, -5)
+		elseif unit == "target" then
+			percHP:SetPoint("RIGHT", health, "LEFT", -5, -5)
+		end
+		    self:Tag(percHP, "[Tukui:perchp]")
+		    self.percHP = percHP
+		end
+
 		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 		health.value:Point("RIGHT", panel, "RIGHT", -4, -0)
 		health.PostUpdate = T.PostUpdateHealth
@@ -123,6 +125,7 @@ local function Shared(self, unit)
 		self.Health.bg = healthBG
 
 		health.frequentUpdates = true
+		
 		if C["unitframes"].showsmooth == true then
 			health.Smooth = true
 		end
@@ -1442,14 +1445,16 @@ end
 		local healthBG = health:CreateTexture(nil, 'BORDER')
 		healthBG:SetAllPoints()
 
-		health.value = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
-		health.value:Point("RIGHT", panel, "RIGHT", -4, -0)
-		health.PostUpdate = T.PostUpdateHealth
-		
 		self.Health = health
 		self.Health.bg = healthBG
 		
 		health.frequentUpdates = true
+
+		local percHP = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
+	    percHP:SetPoint("LEFT", health, "LEFT", 5, -0)
+		self:Tag(percHP, "[Tukui:perchp]")
+		self.percHP = percHP
+		
 		if C["unitframes"].showsmooth == true then
 			health.Smooth = true
 		end
