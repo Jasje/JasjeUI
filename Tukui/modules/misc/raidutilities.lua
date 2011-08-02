@@ -14,7 +14,7 @@ local function CreateUtilities(self, event, addon)
 
 		--Create main frame
 		local TukuiRaidUtility = CreateFrame("Frame", "TukuiRaidUtility", UIParent)
-		TukuiRaidUtility:CreatePanel("Transparent", TukuiMinimap:GetWidth(), panel_height, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -20) --set to -2 if your not using TinyDps
+		TukuiRaidUtility:CreatePanel("Transparent", TukuiMinimap:GetWidth(), panel_height, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -2)
 		TukuiRaidUtility:Hide()
 		TukuiRaidUtility:SetBorder()
 
