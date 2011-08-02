@@ -45,8 +45,8 @@ function tInterruptIcons.CreateIcon()
 	local i = (#tInterruptIcons.Icons)+1
    
 	tInterruptIcons.Icons[i] = CreateFrame("frame","tInterruptIconsIcon"..i,anchor)
-	tInterruptIcons.Icons[i]:Height(40)
-	tInterruptIcons.Icons[i]:Width(40)
+	tInterruptIcons.Icons[i]:Height(28)
+	tInterruptIcons.Icons[i]:Width(28)
 	tInterruptIcons.Icons[i]:SetFrameStrata("HIGH")
 	tInterruptIcons.Icons[i]:SetFrameLevel(20)
 
@@ -61,9 +61,9 @@ function tInterruptIcons.CreateIcon()
 	tInterruptIcons.Icons[i]:SetTemplate("Default")
 
 	tInterruptIcons.Icons[i].TimerText = tInterruptIcons.Icons[i]:CreateFontString("tInterruptIconsTimerText","OVERLAY")
-	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.pixelfont,16, "OUTLINEMONOCHROME")
+	tInterruptIcons.Icons[i].TimerText:SetFont(C.media.pixelfont,14, "OUTLINEMONOCHROME")
 	tInterruptIcons.Icons[i].TimerText:SetTextColor(1,0,0)
-	tInterruptIcons.Icons[i].TimerText:Point("CENTER", tInterruptIcons.Icons[i], "CENTER",1,0)
+	tInterruptIcons.Icons[i].TimerText:Point("CENTER", tInterruptIcons.Icons[i], "CENTER",1,-25)
 	tInterruptIcons.Icons[i].TimerText:SetText(999)
    
 	return i
