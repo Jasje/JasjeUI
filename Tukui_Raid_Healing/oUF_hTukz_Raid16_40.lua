@@ -320,5 +320,5 @@ oUF:Factory(function(self)
 			"columnSpacing", T.Scale(10),
 			"columnAnchorPoint", "TOP"		
 		)
-		raid:SetPoint("BOTTOM", TukuiBar1, 0, 170) 
+		raid:SetPoint("BOTTOM", InvTukuiActionBarBackground, 0, 107) 
     end)

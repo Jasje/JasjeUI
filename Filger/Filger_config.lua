@@ -629,8 +629,7 @@ ns.Filger_Spells = {
 			Interval = 4,
 			Mode = "ICON",
 			setPoint = { "LEFT", FilgerBossDebuffs, "RIGHT", 0, 0 },
-			--setPoint = { "CENTER", UIParent, -105, 20 },
-			
+
 -- Baradin Hold
 			-- Consuming Darkness
             { spellID = 95173, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
@@ -776,7 +775,6 @@ ns.Filger_Spells = {
 			Interval = 6,
 			Mode = "ICON",
 			setPoint = { "RIGHT", FilgerPvpTargetDebuffs, "LEFT", 0, 0 },
-			--setPoint = {  "CENTER", UIParent ,0,180 },
 
 			--[[ Druid ]]--
 			--Innervate
@@ -829,7 +827,6 @@ ns.Filger_Spells = {
 			Interval = 6,
 			Mode = "ICON",
 			setPoint = { "LEFT", FilgerPvpPlayerDebuffs, "RIGHT", 0, 0 },
-			--setPoint = {  "CENTER", UIParent , 0,90 },
 			
 			--[[ Rouge ]]--
 			--Kidney Shot
@@ -1084,7 +1081,6 @@ ns.Filger_Spells = {
 			Mode = "BAR",
 			IconSide = "RIGHT",
             setPoint = { "CENTER", FilgerFocusBuffs, "CENTER", 95,35 },
-            --setPoint = { "CENTER", UIParent, -211, -104 },
 			
             --Innervate -- I also wanna see innervate on focus
 			{ spellID = 29166, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "BUFF"},				

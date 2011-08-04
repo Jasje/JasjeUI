@@ -66,7 +66,7 @@ local function CreateUtilities(self, event, addon)
 		end
 
 		--Show Button
-		CreateButton("TukuiRaidUtilityShowButton", UIParent, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -20, hexa..RAID_ASSISTANT..hexb, nil) --set to -2 if your not using TinyDps
+		CreateButton("TukuiRaidUtilityShowButton", UIParent, "UIMenuButtonStretchTemplate, SecureHandlerClickTemplate", TukuiMinimap:GetWidth(), 21, "TOPRIGHT", TukuiMinimap, "BOTTOMRIGHT", 0, -2, hexa..RAID_ASSISTANT..hexb, nil) 
 		TukuiRaidUtilityShowButton:SetFrameRef("TukuiRaidUtility", TukuiRaidUtility)
 		TukuiRaidUtilityShowButton:SetAttribute("_onclick", [=[self:Hide(); self:GetFrameRef("TukuiRaidUtility"):Show();]=])
 		TukuiRaidUtilityShowButton:SetScript("OnMouseUp", function(self) TukuiRaidUtility.toggled = true end)
