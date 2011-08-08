@@ -433,6 +433,8 @@ ns.Filger_Spells = {
 			{ spellID = 57934, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Turn the Tables
 			{ spellID = 51627, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Recuperate
+			{ spellID = 73651, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
