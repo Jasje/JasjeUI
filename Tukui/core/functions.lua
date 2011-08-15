@@ -755,30 +755,29 @@ T.EclipseDirection = function(self)
 	end
 end
 
-T.EclipseDisplay = function(self, login)
+T.DruidBarDisplay = function(self, login)
 	local eb = self.EclipseBar
+	local dm = self.DruidMana
 	local txt = self.EclipseBar.Text
 
 	if login then
-		eb:SetScript("OnUpdate", nil)
+		dm:SetScript("OnUpdate", nil)
 	end
 
-	if eb:IsShown() then
-		txt:Show()
-		self.FlashInfo:Hide()
-		if T.lowversion then
-			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 34) end
-		else
-			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 38) end
-		end				
+	if eb:IsShown() or dm:IsShown() then
+		if eb:IsShown() then
+			txt:Show()
+			self.FlashInfo:Hide()
+		end
+		self.shadow:Point("TOPLEFT", -4, 12)
+		self.DruidManaBackground:Show()
+		if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 38) end				
 	else
 		txt:Hide()
 		self.FlashInfo:Show()
-		if T.lowversion then
-			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 26) end
-		else
-			if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 30) end
-		end
+		self.shadow:Point("TOPLEFT", -4, 4)
+		self.DruidManaBackground:Hide()
+		if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 30) end
 	end
 end
 
@@ -902,14 +901,14 @@ end
 --------------------------------------------------------------------------------------------
 
 T.countOffsets = {
-	TOPLEFT = {6*C["unitframes"].gridscale, 1},
-	TOPRIGHT = {-6*C["unitframes"].gridscale, 1},
-	BOTTOMLEFT = {6*C["unitframes"].gridscale, 1},
-	BOTTOMRIGHT = {-6*C["unitframes"].gridscale, 1},
-	LEFT = {6*C["unitframes"].gridscale, 1},
-	RIGHT = {-6*C["unitframes"].gridscale, 1},
-	TOP = {0, 0},
-	BOTTOM = {0, 0},
+	TOPLEFT = { 6, 1},
+	TOPRIGHT = { -6, 1},
+	BOTTOMLEFT = { 6, 0},
+	BOTTOMRIGHT = { -6, 0},
+	LEFT = { 6, 1},
+	RIGHT = { -6, 1},
+	TOP = { 0, 0},
+	BOTTOM = { 0, 0},
 }
 
 T.CreateAuraWatchIcon = function(self, icon)
@@ -957,9 +956,16 @@ T.createAuraWatch = function(self, unit)
 			local icon = CreateFrame("Frame", nil, auras)
 			icon.spellID = spell[1]
 			icon.anyUnit = spell[4]
-			icon:Width(5*C["unitframes"].gridscale)
-			icon:Height(5*C["unitframes"].gridscale)
-			icon:SetPoint(spell[2], 0, 0)
+			icon:Width(5)
+			icon:Height(5)
+			
+		--if spell[2] == "BOTTOMLEFT" then
+           -- icon:SetPoint(spell[2], 0, 5)
+        --elseif spell[2] == "BOTTOMRIGHT" then
+           -- icon:SetPoint(spell[2], 0, 5)
+        --else
+            icon:SetPoint(spell[2], 0, 1)
+        --end
 
 			local tex = icon:CreateTexture(nil, "OVERLAY")
 			tex:SetAllPoints(icon)

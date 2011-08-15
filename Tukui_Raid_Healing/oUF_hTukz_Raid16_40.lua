@@ -52,6 +52,17 @@ local function Shared(self, unit)
 	health.PostUpdate = T.PostUpdateHealthRaid
 	health.frequentUpdates = true
 	
+	-- border
+	local Healthbg = CreateFrame("Frame", nil, self)
+	Healthbg:Point("TOPLEFT", self, "TOPLEFT", -2, 2)
+	Healthbg:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", 2, -2)
+	Healthbg:SetTemplate("Hydra")
+	Healthbg:CreateShadow("Hydra")
+	Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+	Healthbg:SetFrameLevel(2)
+	self.Healthbg = Healthbg
+	-- end border	
+	
 	if C.unitframes.unicolor == true then
 		health.colorDisconnected = false
 		health.colorClass = false
@@ -64,17 +75,6 @@ local function Shared(self, unit)
 		health.colorReaction = true	
         health.bg:SetTexture(.1, .1, .1)		
 	end
-	
-	-- border
-	local Healthbg = CreateFrame("Frame", nil, self)
-	Healthbg:Point("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
-	Healthbg:Point("BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
-	Healthbg:SetTemplate("Hydra")
-	Healthbg:CreateShadow("Hydra")
-	Healthbg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
-	Healthbg:SetFrameLevel(2)
-	self.Healthbg = Healthbg
-	-- end border	
 	
 	-- hydra glow
 	if C.unitframes.gradienthealth and C.unitframes.unicolor then
@@ -95,25 +95,25 @@ local function Shared(self, unit)
 	
 	local power = CreateFrame("StatusBar", nil, self)
 	power:Size(58, 2)
-	power:Point("LEFT", health, "BOTTOMLEFT", 5, -2)
+	power:Point("TOP", health, "BOTTOM", 0, -2)
 	power:SetFrameLevel(4)
 	power:SetStatusBarTexture(normTex)
 	self.Power = power
+	
+	power.frequentUpdates = true
+	power.colorDisconnected = true
 
 	-- power border
 	local powerborder = CreateFrame("Frame", nil, self)
 	powerborder:CreatePanel("Frame", 1, 1, "CENTER", health, "CENTER", 0, 0)
 	powerborder:ClearAllPoints()
-	powerborder:SetPoint("TOPLEFT", power, T.Scale(-2), T.Scale(2))
-	powerborder:SetPoint("BOTTOMRIGHT", power, T.Scale(2), T.Scale(-2))
+	powerborder:SetPoint("TOPLEFT", power, -2, 2)
+	powerborder:SetPoint("BOTTOMRIGHT", power, 2, -2)
 	powerborder:SetFrameStrata("MEDIUM")
     powerborder:SetTemplate("Hydra")
 	powerborder:SetFrameLevel(4)
 	self.powerborder = powerborder
 	-- end border	
-
-	power.frequentUpdates = true
-	power.colorDisconnected = true
 
 	power.bg = power:CreateTexture(nil, "BORDER")
 	power.bg:SetAllPoints(power)

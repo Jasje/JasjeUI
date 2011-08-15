@@ -273,7 +273,28 @@ local function Shared(self, unit)
 				CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateDruidMana(self) end)
 				local DruidMana = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
 				DruidMana:SetTextColor(1, 0.49, 0.04)
-				self.DruidMana = DruidMana
+				self.DruidManaText = DruidMana
+
+				local DruidManaBackground = CreateFrame("Frame", nil, self)
+				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
+				DruidManaBackground:Size(250, 8)
+				DruidManaBackground:SetFrameLevel(8)
+				DruidManaBackground:SetFrameStrata("MEDIUM")
+				DruidManaBackground:SetTemplate("Default")
+				DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
+
+				local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
+				DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
+				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
+				DruidManaBarStatus:SetStatusBarTexture(normTex)
+				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
+
+				DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+				DruidManaBackground:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
+
+				self.DruidManaBackground = DruidManaBackground
+				self.DruidMana = DruidManaBarStatus
 			end
 			
 	if C["unitframes"].classbar then
@@ -284,15 +305,14 @@ local function Shared(self, unit)
 				eclipseBar:SetFrameStrata("MEDIUM")
 				eclipseBar:SetFrameLevel(4)
 
-				eclipseBar:SetScript("OnShow", function() T.EclipseDisplay(self, false) end)
-				eclipseBar:SetScript("OnUpdate", function() T.EclipseDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
-				eclipseBar:SetScript("OnHide", function() T.EclipseDisplay(self, false) end)
+                eclipseBar:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+				eclipseBar:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
 				
 				local lunarBar = CreateFrame('StatusBar', nil, eclipseBar)
 				lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
 				lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
 				lunarBar:SetStatusBarTexture(normTex)
-				lunarBar:SetStatusBarColor(.30, .52, .90)
+				lunarBar:SetStatusBarColor(.50, .52, .70)
 				eclipseBar.LunarBar = lunarBar
 
 				local solarBar = CreateFrame('StatusBar', nil, eclipseBar)
@@ -1708,10 +1728,10 @@ local AddonLayout = CreateFrame("Frame")
 AddonLayout:RegisterEvent("ADDON_LOADED")
 AddonLayout:SetScript("OnEvent", function(self, event, addon)
 	if addon == "Tukui_Raid" then
-		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", 57, 35)
-		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", -57, 35)
-		tot:SetPoint("BOTTOM", TukuiBar1, "TOP", -0, 35)
-		pet:SetPoint("BOTTOM", TukuiTargetTarget, "TOP", 0, 0)
+		player:Point("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", 57, 200)
+		target:Point("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", -57, 200)
+		tot:Point("TOPRIGHT", TukuiTarget, "BOTTOMRIGHT", 0, -7)
+		pet:Point("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 	elseif addon == "Tukui_Raid_Healing" then
 		player:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 55)
 		target:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 55)
@@ -1719,7 +1739,7 @@ AddonLayout:SetScript("OnEvent", function(self, event, addon)
 		pet:SetPoint("RIGHT", TukuiPlayer, "LEFT", 100, -52)
 	end
 end)
-	
+
 -- focus
 local focus = oUF:Spawn('focus', "TukuiFocus")
     if not (T.myclass == "SHAMAN" or T.myclass == "DEATHKNIGHT" or T.myclass == "PALADIN" or T.myclass == "WARLOCK" or T.myclass == "ROGUE" or T.myclass == "DRUID") then
@@ -1819,7 +1839,7 @@ local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
 
 do
 	UnitPopupMenus["SELF"] = { "PVP_FLAG", "LOOT_METHOD", "LOOT_THRESHOLD", "OPT_OUT_LOOT_TITLE", "LOOT_PROMOTE", "DUNGEON_DIFFICULTY", "RAID_DIFFICULTY", "RESET_INSTANCES", "RAID_TARGET_ICON", "SELECT_ROLE", "CONVERT_TO_PARTY", "CONVERT_TO_RAID", "LEAVE", "CANCEL" };
-	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", "PET_DISMISS", "CANCEL" };
+	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", "CANCEL" };
 	UnitPopupMenus["PARTY"] = { "MUTE", "UNMUTE", "PARTY_SILENCE", "PARTY_UNSILENCE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "PROMOTE", "PROMOTE_GUIDE", "LOOT_PROMOTE", "VOTE_TO_KICK", "UNINVITE", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
 	UnitPopupMenus["PLAYER"] = { "WHISPER", "INSPECT", "INVITE", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
 	UnitPopupMenus["RAID_PLAYER"] = { "MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "RAID_LEADER", "RAID_PROMOTE", "RAID_DEMOTE", "LOOT_PROMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" };

@@ -58,11 +58,13 @@ local Enable = function(self, unit)
 		self:RegisterEvent('UNIT_POWER_BAR_HIDE', Toggler)
 
 		altpowerbar:Hide()
-
-		PlayerPowerBarAlt:UnregisterEvent'UNIT_POWER_BAR_SHOW'
-		PlayerPowerBarAlt:UnregisterEvent'UNIT_POWER_BAR_HIDE'
-		PlayerPowerBarAlt:UnregisterEvent'PLAYER_ENTERING_WORLD'
-
+		
+        if(unit == 'player') then
+		    PlayerPowerBarAlt:UnregisterEvent'UNIT_POWER_BAR_SHOW'
+		    PlayerPowerBarAlt:UnregisterEvent'UNIT_POWER_BAR_HIDE'
+		    PlayerPowerBarAlt:UnregisterEvent'PLAYER_ENTERING_WORLD'
+        end
+			
 		return true
 	end
 end
@@ -72,10 +74,12 @@ local Disable = function(self, unit)
 	if(altpowerbar) then
 		self:UnregisterEvent('UNIT_POWER_BAR_SHOW', Toggler)
 		self:UnregisterEvent('UNIT_POWER_BAR_HIDE', Toggler)
-
-		PlayerPowerBarAlt:RegisterEvent'UNIT_POWER_BAR_SHOW'
-		PlayerPowerBarAlt:RegisterEvent'UNIT_POWER_BAR_HIDE'
-		PlayerPowerBarAlt:RegisterEvent'PLAYER_ENTERING_WORLD'
+		
+        if(unit == 'player') then
+		    PlayerPowerBarAlt:RegisterEvent'UNIT_POWER_BAR_SHOW'
+		    PlayerPowerBarAlt:RegisterEvent'UNIT_POWER_BAR_HIDE'
+		    PlayerPowerBarAlt:RegisterEvent'PLAYER_ENTERING_WORLD'
+		end
 	end
 end
 

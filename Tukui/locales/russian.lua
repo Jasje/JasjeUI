@@ -26,7 +26,7 @@ if T.client == "ruRU" then
 	L.chat_recrutment = "Гильдии"
 	L.chat_lfg = "ПоискСпутников"
  
-	L.disband = "Роспуск группы."
+	L.disband = "Роспуск группы ?"
 
 	L.datatext_download = "Загрузка: "
 	L.datatext_bandwidth = "Скорость: "
@@ -161,6 +161,9 @@ if T.client == "ruRU" then
 	L.bags_bids = "Использование сумок: "
 	L.bags_stackend = "Заполнение завершено."
 	L.bags_rightclick_search = "ПКМ для поиска."
+	
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
  
 	L.chat_invalidtarget = "Неверная цель"
  

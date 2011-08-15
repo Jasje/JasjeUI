@@ -1,5 +1,3 @@
-local WoW41 = select(4, GetBuildInfo()) == 40100
-
 local parent, ns = ...
 local oUF = ns.oUF
 local Private = oUF.Private
@@ -26,11 +24,8 @@ if(IsAddOnLoaded'!ClassColors' and CUSTOM_CLASS_COLORS) then
 			colors.class[eclass] = {color.r, color.g, color.b}
 		end
 
-		local oUF = ns.oUF or _G[parent]
-		if(oUF) then
-			for _, obj in next, oUF.objects do
-				obj:UpdateAllElements("CUSTOM_CLASS_COLORS")
-			end
+		for _, obj in next, oUF.objects do
+			obj:UpdateAllElements("CUSTOM_CLASS_COLORS")
 		end
 	end
 
@@ -60,6 +55,21 @@ local ColorGradient = function(perc, ...)
 		local r, g, b = ...
 		return r, g, b
 	end
+
+	local num = select('#', ...) / 3
+	local segment, relperc = math.modf(perc*(num-1))
+	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
+
+	return r1 + (r2-r1)*relperc, g1 + (g2-g1)*relperc, b1 + (b2-b1)*relperc
+end
+
+Private.colors = colors
+
+oUF.colors = colors
+oUF.ColorGradient = ColorGradient
+
+frame_metatable.__index.colors = colors
+frame_metatable.__index.ColorGradient = ColorGradient
 
 	local num = select('#', ...) / 3
 	local segment, relperc = math.modf(perc*(num-1))

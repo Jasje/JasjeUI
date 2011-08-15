@@ -17,7 +17,7 @@ C["unitframes"] = {
 
 	-- general options
 	["enable"] = true,                                  -- do i really need to explain this?
-	["enemyhcolor"] = false,                            -- enemy target (players) color by hostility, very useful for healer.
+	["enemyhcolor"] = true,                            -- enemy target (players) color by hostility, very useful for healer.
 	["unitcastbar"] = true,                             -- enable tukui castbar
 		["trikz"] = true,                             -- replace castbar on top of actionbars made for a friend hence the name
 	["cblatency"] = true,                              -- enable castbar latency
@@ -48,7 +48,7 @@ C["unitframes"] = {
 	["castbarfont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global castbar font
 	["unitframefontsize"] = 8, -- size used for all unitframe&castbars 
 	["unitframefontflag"] = "OUTLINEMONOCHROME", -- outline used for all unitframe&castbars
-
+	
 	-- raid layout (if one of them is enabled)
 	["showrange"] = true,                               -- show range opacity on raidframes
 	["raidalphaoor"] = 0.3,                             -- alpha of unitframes when unit is out of range

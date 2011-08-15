@@ -26,7 +26,7 @@ if T.client == "deDE" then
 	L.chat_recrutment = "Gildenrekrutierung"
 	L.chat_lfg = "SucheNachGruppe"
 	
-	L.disband = "Gruppe wird aufgelöst."  
+	L.disband = "Gruppe wird aufgelöst ?"  
  
 	L.datatext_download = "Download: "
 	L.datatext_bandwidth = "Bandbreite: "
@@ -161,6 +161,9 @@ if T.client == "deDE" then
 	L.bags_bids = "Benutze Taschen: "
 	L.bags_stackend = "Neu stapeln abgeschlossen."  
 	L.bags_rightclick_search = "Rechtsklick, um zu suchen." 
+	
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
  
 	L.chat_invalidtarget = "Falsches Ziel"
  

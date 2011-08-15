@@ -14,16 +14,12 @@ T.MoverFrames = {
 	TukuiGMFrameAnchor,
 	TukuiVehicleAnchor,
 	TukuiWorldStateFrameAnchor,
-	FilgerFocusBuffs,
-	FilgerPvpPlayerDebuffs,
-	FilgerPvpTargetDebuffs,
-	FilgerBossDebuffs,
 }
 
 -- used to exec various code if we enable or disable moving
 local function exec(self, enable)
 
-    if self == TukuiGMFrameAnchor or self == FilgerFocusBuffs or self == FilgerPvpPlayerDebuffs or self == FilgerPvpTargetDebuffs or self == FilgerBossDebuffs then
+    if self == TukuiGMFrameAnchor then
 		if enable then
 			self:Show()
 		else

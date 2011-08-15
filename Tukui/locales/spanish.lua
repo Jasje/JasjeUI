@@ -26,7 +26,7 @@ if T.client == "esES" then
 	L.chat_recrutment = "ReclutamientoHermandad"
 	L.chat_lfg = "BuscandoGrupo"
 	
-	L.disband = "Deshacer grupo."
+	L.disband = "Deshacer grupo ?"
  
 	L.datatext_download = "Descarga: "
 	L.datatext_bandwidth = "Ancho de banda: "
@@ -161,6 +161,9 @@ if T.client == "esES" then
 	L.bags_bids = "Usando las bolsas: "
 	L.bags_stackend = "Se ha acabado de amontonar."
 	L.bags_rightclick_search = "Click derecho para buscar."
+	
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
  
 	L.chat_invalidtarget = "Objetivo Invalido"
  

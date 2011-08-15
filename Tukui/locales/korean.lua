@@ -26,7 +26,7 @@ if T.client == "koKR" then
 	L.chat_recrutment = "길드모집"
 	L.chat_lfg = "파티찾기"
  
-	L.disband = "공격대를 해체합니다."
+	L.disband = "공격대를 해체합니다 ?"
  
 	L.datatext_download = "다운로드: "
 	L.datatext_bandwidth = "대역폭: "
@@ -168,6 +168,9 @@ if T.client == "koKR" then
 	L.bags_bids = "사용 중인 가방: "
 	L.bags_stackend = "재정리 완료."
 	L.bags_rightclick_search = "검색하려면 오른쪽 클릭"
+	
+	L.loot_fish = "Fishy loot"
+	L.loot_empty = "Empty slot"
  
 	L.chat_invalidtarget = "잘못된 대상"
  

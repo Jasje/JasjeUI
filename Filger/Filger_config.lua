@@ -8,41 +8,53 @@ ns.Filger_Spells = {
 	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
 		{
 			Name = "Shaman Procs",
-			Direction = "RIGHT",
+			Direction = "LEFT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -55 },
+			setPoint = { "RIGHT", UIParent, "CENTER", -190, -20 },
 
 			-- Maelstorm Weapon
-			{ spellID = 53817, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 53817, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Shamanistic Rage
-			{ spellID = 30823, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 30823, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Clearcasting
-			{ spellID = 16246, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 16246, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Tidal Waves
-			-- { spellID = 51562, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			-- { spellID = 51562, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Spiritswalkers Grace
-			{ spellID = 79206, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 79206, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Focused Insight
-			{ spellID = 77796, size = 46, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 77796, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -5 },
+			setPoint = { "LEFT", UIParent, "CENTER", 190, -20 },
 
 			-- Hex
-			{ spellID = 51514, size = 46, unitId = "target", caster = "all", filter = "DEBUFF" },
+			{ spellID = 51514, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Storm Strike
-			{ spellID = 17364, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 17364, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Earth Shock
-			{ spellID = 8042, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 8042, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Shock
-			{ spellID = 8056, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 8056, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Flame Shock
-			{ spellID = 8050, size = 46, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 8050, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "Lave Surge", -- I know Im blind :)
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 220, 35 },
+
+			-- Lava Burst
+			{ spellID = 51505, size = 60, unitId = "player", caster = "player", filter = "CD" },
+			-- Chain Lightning
+			{ spellID = 421, size = 60, unitId = "player", caster = "player", filter = "CD" },
 		},
 	},	
 	 ["MAGE"] = { -------------------------------------------------------------------------------------------------------- Mage
@@ -51,7 +63,7 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 173, -20 },
+			setPoint = { "CENTER", UIParent, 173, 10 },
 
 			-- Water Elemental Freeze
 			{ spellID = 33395, size = 37, filter = "CD" },
@@ -61,9 +73,9 @@ ns.Filger_Spells = {
 		{
 			Name = "Buffs and Debuffs",
 			Direction = "RIGHT",
-			Interval = 3,
+			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 173, -60 },
+			setPoint = { "CENTER", UIParent, 173, -30 },
 			
 			-- Frostfire Bolt aka Glyph of Frostfire
 			{ spellID = 44614, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
@@ -79,7 +91,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", "UIParent", 220, -15 },
+			setPoint = { "CENTER", "UIParent", 219, 15 },
 			
 			--Brain Freeze
 			{ spellID = 57761, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
@@ -413,7 +425,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -60, -90 },
+			setPoint = { "RIGHT", UIParent, "CENTER", -190, -20 },
 
 			-- Sprint
 			{ spellID = 2983, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
@@ -439,10 +451,12 @@ ns.Filger_Spells = {
 		{
 			Name = "Buffs and Debuffs",
 			Direction = "RIGHT",
-			Interval = 3,
+			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 56, -90 },
+			setPoint = { "LEFT", UIParent, "CENTER", 190, -20 },
 
+			-- hemo bleed
+			{ spellID = 16511, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Cheap shot
 			{ spellID = 1833, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Kidney shot
@@ -461,8 +475,81 @@ ns.Filger_Spells = {
 			{ spellID = 8647, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Dismantle
 			{ spellID = 51722, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Deadly Poison
+			{ spellID = 2818, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Mind-numbing Poison
+			{ spellID = 5760, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Crippling Poison
+			{ spellID = 3409, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Wound Poison
+			{ spellID = 13218, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- garrote silence
+			{ spellID = 1330, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
-    },		
+		{
+			Name = "Shivable Rage effects",
+			Direction = "RIGHT",
+			IconSide = "LEFT",
+			Interval = 4,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 0, 250 },
+
+			-- Unholy Frenzy
+			{ spellID = 49016, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Vengeance
+			{ spellID = 76691, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Enrage
+			{ spellID = 5229, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Savage Roar
+			{ spellID = 52610, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Owlkin Frenzy
+			{ spellID = 48391, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Berserker Rage *
+			{ spellID = 18499, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Wrecking Crew  *
+			{ spellID = 57519, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Death Wish  *
+			{ spellID = 12292, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			-- Bastion of Defense  *
+			{ spellID = 29594, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+        },
+		{
+			Name = "COOLDOWN",
+			Direction = "LEFT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "RIGHT", UIParent, "CENTER", -5, -400},
+
+			-- prep
+			{ spellID = 14185, size = 55, unitId = "player", caster = "player", filter = "CD" },
+			-- dance
+			{ spellID = 51713, size = 55, unitId = "player", caster = "player", filter = "CD" },
+			-- smoke bomb
+			{ spellID = 76577, size = 55, unitId = "player", caster = "player", filter = "CD" },	
+			-- Vendetta
+			{ spellID = 79140, size = 55, unitId = "player", caster = "player", filter = "CD" },
+			-- step
+			{ spellID = 36554, size = 55, unitId = "player", caster = "player", filter = "CD" },	
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "RIGHT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "LEFT", UIParent, "CENTER", 5, -400},
+			
+			-- cloak
+			{ spellID = 31224, size = 55, unitId = "player", caster = "player", filter = "CD" },
+			-- combat readiness
+			{ spellID = 74001, size = 55, unitId = "player", caster = "player", filter = "CD" },
+			-- kick
+			{ spellID = 1766, size = 55, unitId = "player", caster = "player", filter = "CD" },		
+			-- vanish
+			{ spellID = 1856, size = 55, unitId = "player", caster = "player", filter = "CD" },	
+			-- sprint
+			{ spellID = 2983, size = 55, unitId = "player", caster = "player", filter = "CD" },			
+		},
+	},	
 	["PALADIN"] = { -------------------------------------------------------------------------------------------------------- Paladin
 		{
 			Name = "Buffs and Debuffs",
@@ -630,7 +717,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "LEFT", FilgerBossDebuffs, "RIGHT", 0, 0 },
+			setPoint = { "LEFT", UIParent, "CENTER", -1900, -98 },
 
 -- Baradin Hold
 			-- Consuming Darkness
@@ -776,7 +863,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = { "RIGHT", FilgerPvpTargetDebuffs, "LEFT", 0, 0 },
+			setPoint = { "LEFT", UIParent, "CENTER", 190, -98 },
 
 			--[[ Druid ]]--
 			--Innervate
@@ -828,7 +915,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = { "LEFT", FilgerPvpPlayerDebuffs, "RIGHT", 0, 0 },
+			setPoint = { "RIGHT", UIParent, "CENTER", -190, -98 },
 			
 			--[[ Rouge ]]--
 			--Kidney Shot
@@ -1082,7 +1169,7 @@ ns.Filger_Spells = {
 			Interval = 3,
 			Mode = "BAR",
 			IconSide = "RIGHT",
-            setPoint = { "CENTER", FilgerFocusBuffs, "CENTER", 95,35 },
+			setPoint = { "RIGHT", UIParent, "CENTER", -190, 20},
 			
             --Innervate -- I also wanna see innervate on focus
 			{ spellID = 29166, size = 35, barWidth = 183,  unitId = "focus", caster = "all", filter = "BUFF"},				
