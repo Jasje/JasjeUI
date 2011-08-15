@@ -268,13 +268,11 @@ local function Shared(self, unit)
 			self:RegisterEvent("PARTY_LEADER_CHANGED", T.MLAnchorUpdate)
 			self:RegisterEvent("PARTY_MEMBERS_CHANGED", T.MLAnchorUpdate)
 			
-			-- show druid mana when shapeshifted in bear, cat or whatever
-			if T.myclass == "DRUID" then
-				CreateFrame("Frame"):SetScript("OnUpdate", function() T.UpdateDruidMana(self) end)
-				local DruidMana = T.SetFontString(health, unitframefont, unitframefontsize, unitframefontflag)
-				DruidMana:SetTextColor(1, 0.49, 0.04)
-				self.DruidManaText = DruidMana
 
+			
+	if C["unitframes"].classbar then
+	        if T.myclass == "DRUID" then
+				-- DRUID MANA BAR
 				local DruidManaBackground = CreateFrame("Frame", nil, self)
 				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
 				DruidManaBackground:Size(250, 8)
@@ -294,11 +292,8 @@ local function Shared(self, unit)
 				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
 
 				self.DruidManaBackground = DruidManaBackground
-				self.DruidMana = DruidManaBarStatus
-			end
+				self.DruidMana = DruidManaBarStatus					
 			
-	if C["unitframes"].classbar then
-				if T.myclass == "DRUID" then							
 				local eclipseBar = CreateFrame('Frame', nil, self)
 				eclipseBar:Point("LEFT", health, "TOPLEFT", 0, 8)
 				eclipseBar:Size(220, 3)
