@@ -759,6 +759,10 @@ T.DruidBarDisplay = function(self, login)
 	local eb = self.EclipseBar
 	local dm = self.DruidMana
 	local txt = self.EclipseBar.Text
+	local shadow = self.shadow
+	local bg = self.DruidManaBackground
+	local buffs = self.Buffs
+	local flash = self.FlashInfo
 
 	if login then
 		dm:SetScript("OnUpdate", nil)
@@ -767,17 +771,17 @@ T.DruidBarDisplay = function(self, login)
 	if eb:IsShown() or dm:IsShown() then
 		if eb:IsShown() then
 			txt:Show()
-			self.FlashInfo:Hide()
+			flash:Hide()
 		end
-		self.shadow:Point("TOPLEFT", -4, 12)
-		self.DruidManaBackground:Show()
-		if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 38) end				
+		shadow:Point("TOPLEFT", -4, 12)
+		bg:SetAlpha(1)
+		if buffs then buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 38) end			
 	else
 		txt:Hide()
-		self.FlashInfo:Show()
-		self.shadow:Point("TOPLEFT", -4, 4)
-		self.DruidManaBackground:Hide()
-		if self.Buffs then self.Buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 30) end
+		flash:Show()
+		shadow:Point("TOPLEFT", -4, 4)
+		bg:SetAlpha(0)
+		if buffs then buffs:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 30) end
 	end
 end
 
