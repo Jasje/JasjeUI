@@ -227,42 +227,18 @@ m_coord_text:Point("Center",-1,0)
 m_coord_text:Hide()
 m_coord_text:SetText("00,00")
 
--- reload button on mouseover in minimap
-local reloadbutton = CreateFrame("Button", "TukuiReloadUIButton", UIParent, "SecureActionButtonTemplate")
-reloadbutton:CreatePanel("Transparent", 90, 18, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -2,2)
-reloadbutton:SetFrameStrata("LOW")
-reloadbutton:Hide()
-reloadbutton:SetAttribute("type", "macro")
-reloadbutton:SetAttribute("macrotext", "/rl")
-
-local reloadbutton_text = reloadbutton:CreateFontString(nil,"Overlay")
-reloadbutton_text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-reloadbutton_text:Point("Center",-1,0)
-reloadbutton_text:Hide()
-reloadbutton_text:SetText(hexa.."Reload UI")
-
-local color = RAID_CLASS_COLORS[T.myclass]
-reloadbutton:SetScript("OnEnter", function(self) self:SetBackdropBorderColor(color.r, color.g, color.b) end)
-reloadbutton:SetScript("OnLeave", function(self) self:SetBackdropBorderColor(unpack(C.media.bordercolor)) end)
-
 Minimap:SetScript("OnEnter",function()
 	m_zone:Show()
     m_zone_text:Show()
 	m_coord:Show()
     m_coord_text:Show()
-	reloadbutton:Show()
-    reloadbutton_text:Show()
 end)
 
 Minimap:SetScript("OnLeave",function()
-	    m_zone:Hide()
-	    m_zone_text:Hide()
-	    m_coord:Hide()
-    	m_coord_text:Hide()
-    if not MouseIsOver(reloadbutton) then	
-	    reloadbutton:Hide()
-	    reloadbutton_text:Hide()	
-	end	
+	m_zone:Hide()
+	m_zone_text:Hide()
+	m_coord:Hide()
+    m_coord_text:Hide()
 end)
 
 local ela = 0
@@ -314,3 +290,27 @@ m_zone:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 m_zone:RegisterEvent("ZONE_CHANGED")
 m_zone:RegisterEvent("ZONE_CHANGED_INDOORS")
 m_zone:SetScript("OnEvent",zone_Update) 
+
+-- reload button on mouseover in minimap
+local reloadbutton = CreateFrame("Button", "TukuiReloadUIButton", UIParent, "SecureActionButtonTemplate")
+reloadbutton:CreatePanel("Transparent", 90, 18, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -2,2)
+reloadbutton:SetFrameStrata("HIGH")
+reloadbutton:SetAttribute("type", "macro")
+reloadbutton:SetAttribute("macrotext", "/rl")
+
+local reloadbutton_text = reloadbutton:CreateFontString(nil,"Overlay")
+reloadbutton_text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+reloadbutton_text:Point("Center", TukuiReloadUIButton, -1,0)
+reloadbutton_text:SetText(hexa.."Reload UI")
+
+reloadbutton:SetScript("OnEnter", function()
+	if InCombatLockdown() then return end
+	reloadbutton:FadeIn()
+end)
+
+reloadbutton:SetScript("OnLeave", function()
+	reloadbutton:FadeOut()
+end)
+
+reloadbutton:RegisterEvent("PLAYER_LOGIN")
+reloadbutton:SetScript("OnEvent", function(self) end)

@@ -167,6 +167,15 @@ local function CreateBackdrop(f, t, tex)
 	f.backdrop = b
 end
 
+--	Fade in/out functions
+local function FadeIn(f)
+	UIFrameFadeIn(f, 0.1, f:GetAlpha(), 1)
+end
+
+local function FadeOut(f)
+	UIFrameFadeOut(f, 0, f:GetAlpha(), 0)
+end
+
 -- Hydra Border Function 
 local function SetBorder(f)
 	if f:GetFrameStrata() == "BACKGROUND" then f:SetFrameStrata("LOW") end
@@ -329,6 +338,8 @@ local function addapi(object)
 	if not object.Height then mt.Height = Height end
 	if not object.FontString then mt.FontString = FontString end
 	if not object.HighlightUnit then mt.HighlightUnit = HighlightUnit end
+	if not object.FadeIn then mt.FadeIn = FadeIn end
+	if not object.FadeOut then mt.FadeOut = FadeOut end
 end
 
 local handled = {["Frame"] = true}
