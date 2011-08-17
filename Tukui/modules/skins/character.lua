@@ -287,7 +287,7 @@ local function LoadSkin()
 	-- color item by rarity on character frame.
 	local function ColorItemBorder()
 		for _, slot in pairs(slots) do
-			-- Colour the equipment slots by rarity
+			-- Color the equipment slots by rarity
 			local target = _G["Character"..slot]
 			local slotId, _, _ = GetInventorySlotInfo(slot)
 			local itemId = GetInventoryItemID("player", slotId)
