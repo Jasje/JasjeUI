@@ -42,7 +42,7 @@ C["unitframes"] = {
 	["healthpercent"] = false,                        -- display health procent on player and target side of unitframe
 	["showfocustarget"] = false,                         -- show focus target
 	["bordercolor"] = { .4,.4,.4 },                     -- unit frames panel border color
-	
+
 	-- unitframe font fontsize and fontflag
 	["unitframefont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global unitframe font
 	["castbarfont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- global castbar font
@@ -82,6 +82,7 @@ C["unitframes"] = {
 	
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
+	["druidmana"] = true,                          -- enable druidmana bar over player unit
 }
    -- credit Elv
 C["interruptanncounce"] = {

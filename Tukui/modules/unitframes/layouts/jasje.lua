@@ -268,9 +268,7 @@ local function Shared(self, unit)
 			self:RegisterEvent("PARTY_LEADER_CHANGED", T.MLAnchorUpdate)
 			self:RegisterEvent("PARTY_MEMBERS_CHANGED", T.MLAnchorUpdate)
 			
-
-			
-	if C["unitframes"].classbar then
+	    if C["unitframes"].druidmana then
 	        if T.myclass == "DRUID" then
 				-- DRUID MANA BAR
 				local DruidManaBackground = CreateFrame("Frame", nil, self)
@@ -287,9 +285,9 @@ local function Shared(self, unit)
 				DruidManaBarStatus:SetStatusBarTexture(normTex)
 				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
 
-				DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
-				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
-				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
+				DruidManaBarStatus:SetScript("OnShow", function() T.DruidManaDisplay(self, false) end)
+				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidManaDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+				DruidManaBarStatus:SetScript("OnHide", function() T.DruidManaDisplay(self, false) end)
 
 				self.DruidManaBackground = DruidManaBackground
 				self.DruidMana = DruidManaBarStatus
@@ -299,7 +297,11 @@ local function Shared(self, unit)
 				DruidManaBackground.FrameBackdrop:SetPoint( "TOPLEFT", -2, 2 )
 				DruidManaBackground.FrameBackdrop:SetPoint( "BOTTOMRIGHT", 2, -2 )
 				DruidManaBackground.FrameBackdrop:SetFrameLevel( DruidManaBackground:GetFrameLevel() - 1 )
-			
+			end
+		end	
+		
+		if C["unitframes"].classbar then
+	        if T.myclass == "DRUID" then	
 				local eclipseBar = CreateFrame('Frame', nil, self)
 				eclipseBar:Point("LEFT", health, "TOPLEFT", 0, 8)
 				eclipseBar:Size(220, 3)
@@ -342,7 +344,7 @@ local function Shared(self, unit)
 				if eclipseBar and eclipseBar:IsShown() then FlashInfo.ManaLevel:SetAlpha(0) end
 				
 				self.EclipseBar = eclipseBar
-				end
+			end
 			
 				-- set holy power bar or shard bar
 				if (T.myclass == "WARLOCK" or T.myclass == "PALADIN") then
