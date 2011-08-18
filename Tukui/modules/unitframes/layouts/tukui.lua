@@ -305,13 +305,13 @@ local function Shared(self, unit)
 	        if T.myclass == "DRUID" then
 				-- DRUID MANA BAR
 				local DruidManaBackground = CreateFrame("Frame", nil, self)
-				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
-				DruidManaBackground:Size(250, 8)
+				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+				DruidManaBackground:Size(220, 3)
 				DruidManaBackground:SetFrameLevel(8)
 				DruidManaBackground:SetFrameStrata("MEDIUM")
 				DruidManaBackground:SetTemplate("Default")
 				DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
-
+				
 				local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
 				DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
 				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
@@ -319,17 +319,23 @@ local function Shared(self, unit)
 				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
 
 				DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
-				DruidManaBackground:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
 				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
 
 				self.DruidManaBackground = DruidManaBackground
-				self.DruidMana = DruidManaBarStatus		
-	
+				self.DruidMana = DruidManaBarStatus
+
+				DruidManaBackground.FrameBackdrop = CreateFrame( "Frame", nil, DruidManaBackground )
+				DruidManaBackground.FrameBackdrop:SetTemplate( "Default" )
+				DruidManaBackground.FrameBackdrop:SetPoint( "TOPLEFT", -2, 2 )
+				DruidManaBackground.FrameBackdrop:SetPoint( "BOTTOMRIGHT", 2, -2 )
+				DruidManaBackground.FrameBackdrop:SetFrameLevel( DruidManaBackground:GetFrameLevel() - 1 )
+			
 				local eclipseBar = CreateFrame('Frame', nil, self)
-				eclipseBar:Point("LEFT", health, "TOPLEFT", 10, 2)
-				eclipseBar:Size(200, 5)
+				eclipseBar:Point("LEFT", health, "TOPLEFT", 0, 8)
+				eclipseBar:Size(220, 3)
 				eclipseBar:SetFrameStrata("MEDIUM")
-				eclipseBar:SetFrameLevel(4)
+				eclipseBar:SetFrameLevel(8)
 
                 eclipseBar:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
 				eclipseBar:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
