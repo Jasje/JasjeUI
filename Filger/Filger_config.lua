@@ -49,7 +49,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 220, 35 },
+			setPoint = { "CENTER", UIParent, 0, -90 },
 
 			-- Lava Burst
 			{ spellID = 51505, size = 60, unitId = "player", caster = "player", filter = "CD" },

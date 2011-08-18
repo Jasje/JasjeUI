@@ -20,7 +20,8 @@ if not C["datatext"].friends or C["datatext"].friends == 0 then return end
 		timeout = 0,
 		exclusive = 1,
 		whileDead = 1,
-		hideOnEscape = 1
+		hideOnEscape = 1	
+        preferredIndex = 3,
 	}
 
 	local MAX_BROADCAST_LEN = 40

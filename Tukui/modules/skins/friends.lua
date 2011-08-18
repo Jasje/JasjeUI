@@ -146,7 +146,7 @@ local function LoadSkin()
 	T.SkinDropDownBox(FriendsFrameStatusDropDown,70)
 
 		--Bottom Tabs
-	for i=1, 4 do
+	for i=1, 5 do
 		T.SkinTab(_G["FriendsFrameTab"..i])
 	end
 
