@@ -24,7 +24,7 @@ local function LoadSkin()
 
 	for i = 1, getn(skins) do
 		_G[skins[i]]:SetTemplate("Transparent")
-		if _G[skins[i]] ~= _G["GhostFrameContentsFrame"] or _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
+		if _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
 			_G[skins[i]]:CreateShadow("Default")
 		end
 	end
@@ -32,10 +32,12 @@ local function LoadSkin()
 	-- Skin all DropDownList[i]
 	local function SkinDropDownList(level, index)
 		for i = 1, UIDROPDOWNMENU_MAXLEVELS do
-			local dropdown = _G["DropDownList"..i.."MenuBackdrop"]
-			if not dropdown.isSkinned then
-				dropdown:SetTemplate("Default")
-				dropdown.isSkinned = true
+			local menubackdrop = _G["DropDownList"..i.."MenuBackdrop"]
+			local backdrop = _G["DropDownList"..i.."Backdrop"]
+			if not backdrop.isSkinned then
+				menubackdrop:SetTemplate("Transparent")
+				backdrop:SetTemplate("Default")
+				backdrop.isSkinned = true
 			end
 		end
 	end
@@ -50,9 +52,9 @@ local function LoadSkin()
 	--
 	for i = 1, getn(ChatMenus) do
 		if _G[ChatMenus[i]] == _G["ChatMenu"] then
-			_G[ChatMenus[i]]:HookScript("OnShow", function(self) self:SetTemplate("Default", true) self:SetBackdropColor(unpack(C["media"].backdropcolor)) self:ClearAllPoints() self:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", 0, T.Scale(30)) end)
+			_G[ChatMenus[i]]:HookScript("OnShow", function(self) self:SetTemplate("Transparent", true) self:SetBackdropColor(unpack(C["media"].backdropcolor)) self:ClearAllPoints() self:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", 0, T.Scale(30)) end)
 		else
-			_G[ChatMenus[i]]:HookScript("OnShow", function(self) self:SetTemplate("Default", true) self:SetBackdropColor(unpack(C["media"].backdropcolor)) end)
+			_G[ChatMenus[i]]:HookScript("OnShow", function(self) self:SetTemplate("Transparent", true) self:SetBackdropColor(unpack(C["media"].backdropcolor)) end)
 		end
 	end
 
