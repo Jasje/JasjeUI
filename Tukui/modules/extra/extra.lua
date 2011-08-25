@@ -427,10 +427,10 @@ local function updateStatus()
 			Frame:Hide()
 		else
 			Frame:Show()
-		end
 		
-		local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
-		Text:SetText(format("%d / %d (%d%%)", value-minRep, maxRep-minRep, (value-minRep)/(maxRep-minRep)*100))
+			local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
+			Text:SetText(format("%d / %d (%d%%)", value-minRep, maxRep-minRep, (value-minRep)/(maxRep-minRep)*100))
+		end
 	else		
 		xpBar:SetMinMaxValues(min(0, XP), maxXP)
 		xpBar:SetValue(XP)
@@ -478,12 +478,12 @@ local function updateStatus()
 			end
 		end
 		if GetWatchedFactionInfo() then
-			local name, rank, min, max, value = GetWatchedFactionInfo()
+			local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
 			if not st.IsMaxLevel() then GameTooltip:AddLine(" ") end
 			GameTooltip:AddLine(string.format(hexa..'Reputation:'..hexb..' %s', name))
 			GameTooltip:AddLine(string.format(hexa..'Standing:'..hexb..' |c'..st.Colorize(rank)..'%s|r', st.FactionInfo[rank][2]))
-			GameTooltip:AddLine(string.format(hexa..'Rep:'..hexb..' %s/%s (%d%%)', st.CommaValue(value-min), st.CommaValue(max-min), (value-min)/(max-min)*100))
-			GameTooltip:AddLine(string.format(hexa..'Remaining:'..hexb..' %s', st.CommaValue(max-value)))
+			GameTooltip:AddLine(string.format(hexa..'Rep:'..hexb..' %s/%s (%d%%)', st.CommaValue(value-minRep), st.CommaValue(maxRep-minRep), (value-minRep)/(maxRep-minRep)*100))
+			GameTooltip:AddLine(string.format(hexa..'Remaining:'..hexb..' %s', st.CommaValue(maxRep-value)))
 		end
 		GameTooltip:Show()
 	end)
@@ -497,8 +497,8 @@ local function updateStatus()
 	-- Right click menu
 	local function sendReport(dest, rep)--Destination, if Reputation rep = true
 		if rep == true then 
-			local name, rank, min, max, value = GetWatchedFactionInfo()
-			SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-min).."/"..(max-min).." ("..floor((((value-min)/(max-min))*100)).."%).",dest)
+			local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
+			SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-minRep).."/"..(maxRep-minRep).." ("..floor((((value-minRep)/(maxRep-minRep))*100)).."%).",dest)
 		else
 			local XP, maxXP = UnitXP("player"), UnitXPMax("player")
 			SendChatMessage("I'm currently at "..st.CommaValue(XP).."/"..st.CommaValue(maxXP).." ("..floor((XP/maxXP)*100).."%) experience.",dest)
@@ -576,8 +576,8 @@ local function updateStatus()
 			{text = hexa.."Target"..hexb,
 				func = function() 
 					if UnitName("target") then 
-						local name, rank, min, max, value = GetWatchedFactionInfo()
-						SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-min).."/"..(max-min).." ("..floor((((value-min)/(max-min))*100)).."%).","WHISPER",nil,UnitName("target"))
+						local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
+						SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-minRep).."/"..(maxRep-minRep).." ("..floor((((value-minRep)/(maxRep-minRep))*100)).."%).","WHISPER",nil,UnitName("target"))
 					end
 				end},
 			}
@@ -620,8 +620,8 @@ local function updateStatus()
 			{text = hexa.."Target"..hexb,
 				func = function() 
 					if UnitName("target") then 
-						local name, rank, min, max, value = GetWatchedFactionInfo()
-						SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-min).."/"..(max-min).." ("..floor((((value-min)/(max-min))*100)).."%).","WHISPER",nil,UnitName("target"))
+						local name, rank, minRep, maxRep, value = GetWatchedFactionInfo()
+						SendChatMessage("I'm currently "..st.FactionInfo[rank][2].." with "..name.." "..(value-minRep).."/"..(maxRep-minRep).." ("..floor((((value-minRep)/(maxRep-minRep))*100)).."%).","WHISPER",nil,UnitName("target"))
 					end
 				end},
 			}
