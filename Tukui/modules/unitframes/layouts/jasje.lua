@@ -284,7 +284,7 @@ local function Shared(self, unit)
 				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
 				DruidManaBarStatus:SetStatusBarTexture(normTex)
 				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
-				DruidManaBarStatus:SetOrientation("Vertical")
+				--DruidManaBarStatus:SetOrientation("Vertical")
 
 				DruidManaBarStatus:SetScript("OnShow", function() T.DruidManaDisplay(self, false) end)
 				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidManaDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
