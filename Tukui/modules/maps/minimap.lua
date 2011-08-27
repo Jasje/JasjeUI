@@ -196,9 +196,7 @@ local menuList = {
 	func = function() ToggleHelpFrame() end},
 	{text = hexa..CALENDAR_VIEW_EVENT..hexb,
 	func = function()
-	if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
-		Calendar_Toggle()
-	end},
+	if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end Calendar_Toggle() end},
 	{text = hexa..ENCOUNTER_JOURNAL..hexb,
 	func = function() ToggleFrame(EncounterJournal) end}, 
 }

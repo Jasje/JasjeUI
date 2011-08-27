@@ -80,6 +80,9 @@ C["unitframes"] = {
 	-- priest only plugin
 	["weakenedsoulbar"] = true,                         -- show weakened soul bar
 	
+	-- combopoints
+	["combopoint"] = true,                         -- show combopoints above your unitframe
+	
 	-- class bar
 	["classbar"] = true,                                -- enable tukui classbar over player unit
 	["druidmana"] = true,                          -- enable druidmana bar over player unit

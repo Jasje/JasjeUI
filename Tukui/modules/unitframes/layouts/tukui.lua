@@ -509,6 +509,7 @@ local function Shared(self, unit)
 			self:Tag(Name, '[Tukui:getnamecolor][Tukui:targetname] [Tukui:diffcolor][level] [shortclassification]')
 			self.Name = Name
 
+		if C["unitframes"].combopoint then	
 			-- combo points on target
 			local CPoints = {}
 			CPoints.unit = PlayerFrame.unit
@@ -543,7 +544,7 @@ local function Shared(self, unit)
 
 			self.CPoints = CPoints
 		end
-
+    end	
 		if (unit == "target" and C["unitframes"].targetauras) or (unit == "player" and C["unitframes"].playerauras) then
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)

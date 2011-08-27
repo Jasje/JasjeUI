@@ -272,18 +272,19 @@ local function Shared(self, unit)
 	        if T.myclass == "DRUID" then
 				-- DRUID MANA BAR
 				local DruidManaBackground = CreateFrame("Frame", nil, self)
-				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
-				DruidManaBackground:Size(220, 3)
+				DruidManaBackground:Point("CENTER", panel, "CENTER", 0, 0)
+				DruidManaBackground:Size(45,3)
 				DruidManaBackground:SetFrameLevel(8)
 				DruidManaBackground:SetFrameStrata("MEDIUM")
 				DruidManaBackground:SetTemplate("Default")
 				DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
-				
+
 				local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
 				DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
 				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
 				DruidManaBarStatus:SetStatusBarTexture(normTex)
 				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
+				DruidManaBarStatus:SetOrientation("Vertical")
 
 				DruidManaBarStatus:SetScript("OnShow", function() T.DruidManaDisplay(self, false) end)
 				DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidManaDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
@@ -291,12 +292,6 @@ local function Shared(self, unit)
 
 				self.DruidManaBackground = DruidManaBackground
 				self.DruidMana = DruidManaBarStatus
-
-				DruidManaBackground.FrameBackdrop = CreateFrame( "Frame", nil, DruidManaBackground )
-				DruidManaBackground.FrameBackdrop:SetTemplate( "Default" )
-				DruidManaBackground.FrameBackdrop:SetPoint( "TOPLEFT", -2, 2 )
-				DruidManaBackground.FrameBackdrop:SetPoint( "BOTTOMRIGHT", 2, -2 )
-				DruidManaBackground.FrameBackdrop:SetFrameLevel( DruidManaBackground:GetFrameLevel() - 1 )
 			end
 		end	
 		
@@ -505,6 +500,7 @@ local function Shared(self, unit)
 			self:Tag(Name, '[Tukui:getnamecolor][Tukui:targetname] [Tukui:diffcolor][level] [shortclassification]')
 			self.Name = Name
 			
+		if C["unitframes"].combopoint then	
 			-- combo points on target
 			local CPoints = {}
 			CPoints.unit = PlayerFrame.unit
@@ -539,7 +535,7 @@ local function Shared(self, unit)
 			
 			self.CPoints = CPoints
 		end
-		
+	end	
 		if (unit == "target" and C["unitframes"].targetauras) or (unit == "player" and C["unitframes"].playerauras) then
 			local buffs = CreateFrame("Frame", nil, self)
 			local debuffs = CreateFrame("Frame", nil, self)
