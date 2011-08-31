@@ -53,7 +53,7 @@ local function Shared(self, unit)
 		health.colorClass = true
 		health.colorReaction = true			
 	end
-	
+
 	-- border
 	local Healthbg = CreateFrame("Frame", nil, self)
 	Healthbg:Point("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale(2))
@@ -64,13 +64,40 @@ local function Shared(self, unit)
 	Healthbg:SetFrameLevel(2)
 	self.Healthbg = Healthbg
 	-- end border	
+
+	-- thanks to smelly
+	local power = CreateFrame("StatusBar", nil, self)
+	power:Height(1)
+	power:Point("BOTTOMLEFT", health, "BOTTOMLEFT", 4, 2)
+	power:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", -4, 2)
+	power:SetStatusBarTexture(C["media"].blank)
+	power:SetFrameLevel(health:GetFrameLevel() + 1)
+	self.Power = power
+	power:CreateBorder(false, true)
+
+	power.frequentUpdates = true
+	power.colorDisconnected = true
+
+	power.bg = self.Power:CreateTexture(nil, "BORDER")
+	power.bg:SetAllPoints(power)
+	power.bg:SetTexture(C["media"].normTex)
+	power.bg:SetAlpha(1)
+	power.bg.multiplier = 0.4
+	self.Power.bg = power.bg
+
+	if C.unitframes.unicolor == true then
+		power.colorClass = true
+		power.bg.multiplier = 0.1				
+	else
+		power.colorPower = true
+	end
 	
 	local name = health:CreateFontString(nil, 'OVERLAY')
 	name:SetFont(raidframefont, raidframefontsize, raidframefontflag)
 	name:Point("LEFT", self, "RIGHT", 5, 0)
 	self:Tag(name, '[Tukui:getnamecolor][Tukui:namemedium] [Tukui:dead][Tukui:afk]')
 	self.Name = name
-
+	
 	if C["unitframes"].showsymbols == true then
 		RaidIcon = health:CreateTexture(nil, 'OVERLAY')
 		RaidIcon:Height(14*T.raidscale)

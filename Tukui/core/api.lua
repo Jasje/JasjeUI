@@ -150,12 +150,49 @@ local function CreatePanel(f, t, w, h, a1, p, a2, x, y)
 	f:SetBackdropBorderColor(borderr, borderg, borderb)
 end
 
+-- Credits to Eclipse
+local function CreateBorder(f, i, o)
+	if i then
+		if f.iborder then return end
+		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "InnerBorder" or nil, f)
+		border:Point("TOPLEFT", mult, -mult)
+		border:Point("BOTTOMRIGHT", -mult, mult)
+		border:SetBackdrop({
+			edgeFile = C["media"].blank, 
+			edgeSize = mult, 
+			insets = { left = mult, right = mult, top = mult, bottom = mult }
+		})
+		border:SetBackdropBorderColor(unpack(C["media"].backdropcolor))
+		f.iborder = border
+	end
+
+	if o then
+		if f.oborder then return end
+		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "OuterBorder" or nil, f)
+		border:Point("TOPLEFT", -mult, mult)
+		border:Point("BOTTOMRIGHT", mult, -mult)
+		border:SetFrameLevel(f:GetFrameLevel() + 1)
+		border:SetBackdrop({
+			edgeFile = C["media"].blank, 
+			edgeSize = mult, 
+			insets = { left = mult, right = mult, top = mult, bottom = mult }
+		})
+		border:SetBackdropBorderColor(unpack(C["media"].backdropcolor))
+		f.oborder = border
+	end
+end
+
 local function CreateBackdrop(f, t, tex)
 	if not t then t = "Default" end
 
-	local b = CreateFrame("Frame", nil, f)
-	b:Point("TOPLEFT", -2, 2)
-	b:Point("BOTTOMRIGHT", 2, -2)
+	local b = CreateFrame("Frame", (f:GetName() and f:GetName().."Backdrop") or nil, f)
+	if strfind(t, "Thin") then
+		b:Point("TOPLEFT", -1, 1)
+		b:Point("BOTTOMRIGHT", 1, -1)
+	else
+		b:Point("TOPLEFT", -2, 2)
+		b:Point("BOTTOMRIGHT", 2, -2)
+	end
 	b:SetTemplate(t, tex)
 
 	if f:GetFrameLevel() - 1 >= 0 then
@@ -338,6 +375,8 @@ local function addapi(object)
 	if not object.Height then mt.Height = Height end
 	if not object.FontString then mt.FontString = FontString end
 	if not object.HighlightUnit then mt.HighlightUnit = HighlightUnit end
+	if not object.CreateBorder then mt.CreateBorder = CreateBorder end
+	if not object.CreateBackdrop then mt.CreateBackdrop = CreateBackdrop end
 	if not object.FadeIn then mt.FadeIn = FadeIn end
 	if not object.FadeOut then mt.FadeOut = FadeOut end
 end
