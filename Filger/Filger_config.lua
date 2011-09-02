@@ -717,7 +717,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", -1900, -98 },
+			setPoint = { "LEFT", UIParent, "CENTER", -190, -98 },
 
 -- Baradin Hold
 			-- Consuming Darkness
