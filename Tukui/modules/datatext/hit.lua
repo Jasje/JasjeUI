@@ -29,11 +29,11 @@ if not C["datatext"].hit == nil or C["datatext"].hit > 0 then
 			local cast = GetSpellHitModifier() or 0
 
 			if attackpwr > spellpwr and select(2, UnitClass("Player")) ~= "HUNTER" then
-				Text:SetText(format("%.2f", GetCombatRatingBonus(6)+cac).."% Hit")
+				Text:SetText(format("%.2f", GetCombatRatingBonus(6)+cac).."%"..hexa.." Hit"..hexb)
 			elseif select(2, UnitClass("Player")) == "HUNTER" then
-				Text:SetText(format("%.2f", GetCombatRatingBonus(7)+cac).."% Hit")
+				Text:SetText(format("%.2f", GetCombatRatingBonus(7)+cac).."%"..hexa.." Hit"..hexb)
 			else
-				Text:SetText(format("%.2f", GetCombatRatingBonus(8)+cast).."% Hit")
+				Text:SetText(format("%.2f", GetCombatRatingBonus(8)+cast).."%"..hexa.." Hit"..hexb)
 			end
 
 			int = 1
