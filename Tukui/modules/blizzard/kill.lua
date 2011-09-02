@@ -26,7 +26,7 @@ Kill:SetScript("OnEvent", function(self, event, addon)
 		if addon ~= "Tukui" then return end
 		
 		GuildChallengeAlertFrame:Kill()
-		
+
 		PlayerTalentFrameLearnButtonTutorialArrow:Kill()
 		StreamingIcon:Kill()
 		Advanced_UseUIScale:Kill()
