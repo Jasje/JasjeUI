@@ -147,7 +147,7 @@ addon:RegisterForClicks"anyup"
 addon:SetParent(UIParent)
 --addon:SetUserPlaced(true)
 addon:Point("TOPLEFT", 0, -104)
-addon:SetTemplate("Default")
+addon:SetTemplate("Transparent")
 addon:Width(256)
 addon:Height(64)
 addon:SetBackdropColor(0.1, 0.1, 0.1, 1)

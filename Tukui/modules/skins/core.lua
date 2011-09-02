@@ -102,14 +102,14 @@ function T.SkinTab(tab)
 	end
 
 	tab.backdrop = CreateFrame("Frame", nil, tab)
-	tab.backdrop:SetTemplate("Default")
+	tab.backdrop:SetTemplate("Transparent")
 	tab.backdrop:SetFrameLevel(tab:GetFrameLevel() - 1)
 	tab.backdrop:Point("TOPLEFT", 10, -3)
 	tab.backdrop:Point("BOTTOMRIGHT", -10, 3)				
 end
 
 function T.SkinNextPrevButton(btn, horizonal)
-	btn:SetTemplate("Default")
+	btn:SetTemplate("Transparent")
 	btn:Size(btn:GetWidth() - 7, btn:GetHeight() - 7)	
 
 	if horizonal then
@@ -160,7 +160,7 @@ function T.SkinEditBox(frame)
 	if _G[frame:GetName().."Middle"] then _G[frame:GetName().."Middle"]:Kill() end
 	if _G[frame:GetName().."Right"] then _G[frame:GetName().."Right"]:Kill() end
 	if _G[frame:GetName().."Mid"] then _G[frame:GetName().."Mid"]:Kill() end
-	frame:CreateBackdrop("Default")
+	frame:CreateBackdrop("Transparent")
 
 	if frame:GetName() and frame:GetName():find("Silver") or frame:GetName():find("Copper") then
 		frame.backdrop:Point("BOTTOMRIGHT", -12, -2)
@@ -191,7 +191,7 @@ end
 
 function T.SkinCheckBox(frame)
 	frame:StripTextures()
-	frame:CreateBackdrop("Default")
+	frame:CreateBackdrop("Transparent")
 	frame.backdrop:Point("TOPLEFT", 4, -4)
 	frame.backdrop:Point("BOTTOMRIGHT", -4, 4)
 

@@ -36,7 +36,7 @@ if C.chat.background and TukuiChatBackgroundRight then
 else
 	anchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight)
 end
-anchor:SetTemplate("Hydra")
+anchor:SetTemplate("Transparent")
 anchor:SetBackdropBorderColor(C.media.backdropcolor)
 anchor:SetMovable(true)
 anchor.text = T.SetFontString(anchor, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
@@ -377,7 +377,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 
 		ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
 		ItemRefTooltip:HookScript("OnShow", SetStyle)	
-		FriendsTooltip:SetTemplate("Hydra")
+		FriendsTooltip:SetTemplate("Transparent")
 
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
@@ -408,11 +408,11 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 			FrameStackTooltip:SetScale(C.general.uiscale)
 
 			-- Skin it
-			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Hydra") end)
+			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
 		end
 
 		if EventTraceTooltip then
-			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Hydra") end)
+			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
 		end
 	end
 end)

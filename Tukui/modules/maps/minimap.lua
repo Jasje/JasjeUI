@@ -150,70 +150,20 @@ TukuiMinimap:SetScript("OnEvent", function(self, event, addon)
 end)
 
 ----------------------------------------------------------------------------------------
--- Right click menu, used to show micro menu
+-- Map menus, right/middle click
 ----------------------------------------------------------------------------------------
 
-local menuFrame = CreateFrame("Frame", "TukuiMinimapMiddleClickMenu", TukuiMinimap, "UIDropDownMenuTemplate")
-local menuList = {
-	{text = hexa..CHARACTER_BUTTON..hexb,
-	func = function() ToggleCharacter("PaperDollFrame") end},
-	{text = hexa..SPELLBOOK_ABILITIES_BUTTON..hexb,
-	func = function() ToggleFrame(SpellBookFrame) end},
-	{text = hexa..TALENTS_BUTTON..hexb,
-	func = function() 
-		if not PlayerTalentFrame then 
-			LoadAddOn("Blizzard_TalentUI") 
-		end 
-
-		if not GlyphFrame then 
-			LoadAddOn("Blizzard_GlyphUI") 
-		end 
-		PlayerTalentFrame_Toggle() 
-	end},
-	{text = hexa..ACHIEVEMENT_BUTTON..hexb,
-	func = function() ToggleAchievementFrame() end},
-	{text = hexa..QUESTLOG_BUTTON..hexb,
-	func = function() ToggleFrame(QuestLogFrame) end},
-	{text = hexa..SOCIAL_BUTTON..hexb,
-	func = function() ToggleFriendsFrame(1) end},
-	{text = hexa..PLAYER_V_PLAYER..hexb,
-	func = function() ToggleFrame(PVPFrame) end},
-	{text = hexa..ACHIEVEMENTS_GUILD_TAB..hexb,
-	func = function() 
-		if IsInGuild() then 
-			if not GuildFrame then LoadAddOn("Blizzard_GuildUI") end 
-			GuildFrame_Toggle() 
-		else 
-			if not LookingForGuildFrame then LoadAddOn("Blizzard_LookingForGuildUI") end 
-			LookingForGuildFrame_Toggle() 
-		end
-	end},
-	{text = hexa..LFG_TITLE..hexb,
-	func = function() ToggleFrame(LFDParentFrame) end},
-	{text = hexa..LOOKING_FOR_RAID..hexb,
-	func = function() ToggleFrame(LFRParentFrame) end},
-	{text = hexa..HELP_BUTTON..hexb,
-	func = function() ToggleHelpFrame() end},
-	{text = hexa..CALENDAR_VIEW_EVENT..hexb,
-	func = function()
-	if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end Calendar_Toggle() end},
-	{text = hexa..ENCOUNTER_JOURNAL..hexb,
-	func = function() ToggleFrame(EncounterJournal) end}, 
-}
-
 Minimap:SetScript("OnMouseUp", function(self, btn)
+	local xoff = 0
 	local position = TukuiMinimap:GetPoint()
-	if btn == "RightButton" then
-		local xoff = 0
 
+	if btn == "RightButton" then	
 		if position:match("RIGHT") then xoff = T.Scale(-16) end
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, TukuiMinimap, xoff, T.Scale(-2))
 	elseif btn == "MiddleButton" then
-		if position:match("LEFT") then
-			EasyMenu(menuList, menuFrame, "cursor", 0, 0, "MENU", 2)
-		else
-			EasyMenu(menuList, menuFrame, "cursor", -160, 0, "MENU", 2)
-		end
+		if not TukuiMicroMenu then return end
+		if position:match("RIGHT") then xoff = T.Scale(-14) end
+		ToggleDropDownMenu(1, nil, TukuiMicroMenu, TukuiMinimap, xoff, T.Scale(-2))
 	else
 		Minimap_OnClick(self)
 	end

@@ -83,6 +83,40 @@ local function Point(obj, arg1, arg2, arg3, arg4, arg5)
 	obj:SetPoint(arg1, arg2, arg3, arg4, arg5)
 end
 
+local function AllPoints(obj, frame, inset)
+	if not inset then inset = 0 end
+	obj:SetPoint("TOPLEFT", frame, "TOPLEFT", inset, -inset)
+	obj:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -inset, inset)
+end
+
+local function innerBorder(f)
+	if f.innerborder then return end
+	f.innerborder = CreateFrame("Frame", nil, f)
+	f.innerborder:SetPoint("TOPLEFT", mult, -mult)
+	f.innerborder:SetPoint("BOTTOMRIGHT", -mult, mult)
+	f.innerborder:SetBackdrop({
+		edgeFile = C["media"].blank, 
+		edgeSize = mult, 
+		insets = { left = mult, right = mult, top = mult, bottom = mult }
+	})
+	f.innerborder:SetBackdropBorderColor(0,0,0)
+	return f.innerborder
+end
+
+local function outerBorder(f)
+	if f.outerborder then return end
+	f.outerborder = CreateFrame("Frame", nil, f)
+	f.outerborder:SetPoint("TOPLEFT", -mult, mult)
+	f.outerborder:SetPoint("BOTTOMRIGHT", mult, -mult)
+	f.outerborder:SetBackdrop({
+		edgeFile = C["media"].blank, 
+		edgeSize = mult, 
+		insets = { left = mult, right = mult, top = mult, bottom = mult }
+	})
+	f.outerborder:SetBackdropBorderColor(0,0,0)
+	return f.outerborder
+end
+
 local function SetTemplate(f, t, tex)
 	if tex then texture = C.media.normTex else texture = C.media.blank end
 	

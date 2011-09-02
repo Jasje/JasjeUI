@@ -1,10 +1,11 @@
 local T, C, L = unpack(select(2, ...))
 
+local Taint = T.FullMapQuestTaintFix
+
 local function LoadSkin()
 	WorldMapFrame:CreateBackdrop("Transparent")
-	--WorldMapDetailFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 1)
 	WorldMapDetailFrame.backdrop = CreateFrame("Frame", nil, WorldMapFrame)
-	WorldMapDetailFrame.backdrop:SetTemplate("Default")
+	WorldMapDetailFrame.backdrop:SetTemplate("Transparent")
 	WorldMapDetailFrame.backdrop:Point("TOPLEFT", WorldMapDetailFrame, "TOPLEFT", -2, 2)
 	WorldMapDetailFrame.backdrop:Point("BOTTOMRIGHT", WorldMapDetailFrame, "BOTTOMRIGHT", 2, -2)
 	WorldMapDetailFrame.backdrop:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() - 2)
@@ -65,18 +66,18 @@ local function LoadSkin()
 		WorldMapFrame.backdrop:Point("BOTTOMRIGHT", WorldMapDetailFrame, "BOTTOMRIGHT", 325, -235)  
 
 		if not WorldMapQuestDetailScrollFrame.backdrop then
-			WorldMapQuestDetailScrollFrame:CreateBackdrop("Default")
+			WorldMapQuestDetailScrollFrame:CreateBackdrop("Transparent")
 			WorldMapQuestDetailScrollFrame.backdrop:Point("TOPLEFT", -22, 2)
 			WorldMapQuestDetailScrollFrame.backdrop:Point("BOTTOMRIGHT", 23, -4)
 		end
 
 		if not WorldMapQuestRewardScrollFrame.backdrop then
-			WorldMapQuestRewardScrollFrame:CreateBackdrop("Default")
+			WorldMapQuestRewardScrollFrame:CreateBackdrop("Transparent")
 			WorldMapQuestRewardScrollFrame.backdrop:Point("BOTTOMRIGHT", 22, -4)				
 		end
 
 		if not WorldMapQuestScrollFrame.backdrop then
-			WorldMapQuestScrollFrame:CreateBackdrop("Default")
+			WorldMapQuestScrollFrame:CreateBackdrop("Transparent")
 			WorldMapQuestScrollFrame.backdrop:Point("TOPLEFT", 0, 2)
 			WorldMapQuestScrollFrame.backdrop:Point("BOTTOMRIGHT", 24, -3)				
 		end
@@ -95,11 +96,9 @@ local function LoadSkin()
 		if not InCombatLockdown() then
 			WorldMapFrame:SetScale(1)
 			WorldMapFrameSizeDownButton:Show()
-			WorldMapFrame:SetFrameLevel(10)
-		else
-			WorldMapFrameSizeDownButton:Disable()
-			WorldMapFrameSizeUpButton:Disable()
-		end	
+			WorldMapFrame:SetFrameLevel(40)
+			WorldMapFrame:SetFrameStrata("HIGH")
+		end
 
 		WorldMapFrameAreaLabel:SetFont(C["media"].font, 50, "OUTLINE")
 		WorldMapFrameAreaLabel:SetShadowOffset(2, -2)
@@ -115,13 +114,19 @@ local function LoadSkin()
 	WorldMapFrame:HookScript("OnShow", FixSkin)
 	hooksecurefunc("WorldMapFrame_SetFullMapView", LargeSkin)
 	hooksecurefunc("WorldMapFrame_SetQuestMapView", QuestSkin)
-	hooksecurefunc("WorldMap_ToggleSizeUp", FixSkin)
+	hooksecurefunc("WorldMap_ToggleSizeUp", function() 
+		if WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE then
+			Taint = true
+		end
+		FixSkin() 
+	end)
 
 	WorldMapFrame:RegisterEvent("PLAYER_LOGIN")
 	WorldMapFrame:RegisterEvent("PLAYER_REGEN_ENABLED") -- fix taint with small map & big map
 	WorldMapFrame:RegisterEvent("PLAYER_REGEN_DISABLED") -- fix taint with small map & big map
 	WorldMapFrame:HookScript("OnEvent", function(self, event)
 		local miniWorldMap = GetCVarBool("miniWorldMap")
+		local quest = WorldMapQuestShowObjectives:GetChecked()
 
 		if event == "PLAYER_LOGIN" then
 			if not miniWorldMap then
@@ -129,53 +134,59 @@ local function LoadSkin()
 				ToggleFrame(WorldMapFrame)
 			end
 		elseif event == "PLAYER_REGEN_DISABLED" then
-			HideUIPanel(WorldMapFrame)
-
-			if not miniWorldMap and WatchFrame.showObjectives then
-				WorldMapFrame_SetFullMapView()
-			end
-
 			WorldMapFrameSizeDownButton:Disable()
 			WorldMapFrameSizeUpButton:Disable()
 
-			HideUIPanel(WorldMapFrame)
-			WatchFrame.showObjectives = nil
-			WorldMapQuestShowObjectives:SetChecked(false)
-			WorldMapTitleButton:Hide()
-			WorldMapBlobFrame:Hide()
-			WorldMapPOIFrame:Hide()
+			if (quest) and (miniWorldMap or Taint) then
+				if WorldMapFrame:IsShown() then
+					HideUIPanel(WorldMapFrame)
+				end
 
-			WorldMapQuestShowObjectives.Show = T.dummy
-			WorldMapTitleButton.Show = T.dummy
-			WorldMapBlobFrame.Show = T.dummy
-			WorldMapPOIFrame.Show = T.dummy       
+				if not miniWorldMap and Taint and WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE then
+					WorldMapFrame_SetFullMapView()
+				end
 
-			WatchFrame_Update()
+				WatchFrame.showObjectives = nil
+				WorldMapTitleButton:Hide()
+				WorldMapBlobFrame:Hide()
+				WorldMapPOIFrame:Hide()
 
+				WorldMapQuestShowObjectives.Show = T.dummy
+				WorldMapTitleButton.Show = T.dummy
+				WorldMapBlobFrame.Show = T.dummy
+				WorldMapPOIFrame.Show = T.dummy
+
+				WatchFrame_Update()
+			end
 			WorldMapQuestShowObjectives:Hide()
 		elseif event == "PLAYER_REGEN_ENABLED" then
 			WorldMapFrameSizeDownButton:Enable()
 			WorldMapFrameSizeUpButton:Enable()
 
-			WorldMapQuestShowObjectives.Show = WorldMapQuestShowObjectives:Show()
-			WorldMapTitleButton.Show = WorldMapTitleButton:Show()
-			WorldMapBlobFrame.Show = WorldMapBlobFrame:Show()
-			WorldMapPOIFrame.Show = WorldMapPOIFrame:Show()
+			if (quest) and (miniWorldMap or Taint) then
+				WorldMapQuestShowObjectives.Show = WorldMapQuestShowObjectives:Show()
+				WorldMapTitleButton.Show = WorldMapTitleButton:Show()
+				WorldMapBlobFrame.Show = WorldMapBlobFrame:Show()
+				WorldMapPOIFrame.Show = WorldMapPOIFrame:Show()
 
-			WorldMapTitleButton:Show()
+				WorldMapTitleButton:Show()
 
-			WatchFrame.showObjectives = true
-			WorldMapQuestShowObjectives:SetChecked(true)
+				WatchFrame.showObjectives = true
 
-			if not miniWorldMap and WatchFrame.showObjectives then
-				WorldMapFrame_SetQuestMapView()
+				if not miniWorldMap and Taint and WORLDMAP_SETTINGS.size == WORLDMAP_FULLMAP_SIZE then
+					WorldMapFrame_SetFullMapView()
+				end
+
+				WorldMapBlobFrame:Show()
+				WorldMapPOIFrame:Show()
+
+				WatchFrame_Update()
+
+				if Taint and not miniWorldMap and WorldMapFrame:IsShown() and WORLDMAP_SETTINGS.size == WORLDMAP_FULLMAP_SIZE then
+					HideUIPanel(WorldMapFrame)
+					ShowUIPanel(WorldMapFrame)
+				end
 			end
-
-			WorldMapBlobFrame:Show()
-			WorldMapPOIFrame:Show()
-
-			WatchFrame_Update()
-
 			WorldMapQuestShowObjectives:Show()
 		end
 	end)

@@ -51,6 +51,7 @@
 	<Script file="modules\blizzard\gm.lua"/>
 	<Script file="modules\blizzard\timertracker.lua"/>
 	<Script file="modules\misc\commands.lua"/>
+	<Script file="modules\misc\micromenu.lua"/>
 	<Script file="modules\blizzard\quests.lua"/>
 	<Script file="modules\misc\invite.lua"/>
 	<Script file="modules\misc\damage.lua"/>
@@ -173,6 +174,7 @@
 	<Script file="modules\skins\merchant.lua"/>
 	<Script file="modules\skins\opacity.lua"/>
 	<Script file="modules\skins\others.lua"/>
+	<Script file="modules\skins\options.lua"/>
 	<Script file="modules\skins\petition.lua"/>
 	<Script file="modules\skins\pvp.lua"/>
 	<Script file="modules\skins\quest.lua"/>
