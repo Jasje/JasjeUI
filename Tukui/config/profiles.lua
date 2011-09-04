@@ -19,10 +19,6 @@ if T.myname == "Jasjè" or T.myname == "Noshì" then
 	C.chat.classcolortab = false
 	C.castbar.classcolor = false
 end
-
-if T.myclass == "WARRIOR" or T.myclass == "WARLOCK"then
-	C.actionbar.sidebarWidth = 3
-end
 	
 if T.myclass == "HUNTER" then
 	C.datatext.regen = 0

@@ -21,9 +21,9 @@ if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 	local Text  = TukuiInfoLeft:CreateFontString(nil, "OVERLAY")
 	Text:SetFont(C["datatext"].font, C["datatext"].fontsize,C["datatext"].fontflag)
 	T.PP(C["datatext"].micromenu, Text)
-
+	
 	local function OnEvent(self, event, ...)
-		Text:SetText(MAINMENU_BUTTON)
+		Text:SetText(hexa.."GAME")
 		self:SetAllPoints(Text)
 	end
 
@@ -32,7 +32,7 @@ if C["datatext"].micromenu and C["datatext"].micromenu > 0 then
 
 		local xoff = 0
 		local position = TukuiMinimap:GetPoint()
-		if position:match("RIGHT") then xoff = T.Scale(-14) end
+		if position:match("RIGHT") then xoff = T.Scale(-11) end
 
 		ToggleDropDownMenu(1, nil, TukuiMicroMenu, TukuiMinimap, xoff, T.Scale(-2))
 	end
