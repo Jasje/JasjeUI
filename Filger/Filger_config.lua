@@ -633,29 +633,37 @@ ns.Filger_Spells = {
 		},
 		{
 			Name = "T_DEBUFF_ICON",
-			Direction = "RIGHT",
+			Direction = "UP",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", 160, -20 },
+			setPoint = { "CENTER", UIParent, 75, -90 },
 
 			-- Hamstring
 			{ spellID = 1715, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Improved Hamstring
+			{ spellID = 12668, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Rend
 			{ spellID = 94009, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Sunder Armor
 			{ spellID = 7386, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Thunder Clap
 			{ spellID = 6343, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Infected Wounds
-			{ spellID = 48484, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Frost Fever
-			{ spellID = 55095, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Demoralizing Shout
 			{ spellID = 1160, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Demoralizing Roar
-			{ spellID = 99, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Curse of Weakness
-			{ spellID = 702, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "RIGHT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "LEFT", UIParent, "CENTER", -100, -400},
+			
+			-- recklesness
+			{ spellID = 1719, size = 65, unitId = "player", caster = "player", filter = "CD" },
+			-- throwdown
+			{ spellID = 85388, size = 65, unitId = "player", caster = "player", filter = "CD" },
+			-- berserker rage
+			{ spellID = 18499, size = 65, unitId = "player", caster = "player", filter = "CD" },		
 		},
     },		
 	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
@@ -717,7 +725,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", -190, -98 },
+			setPoint = { "LEFT", UIParent, "CENTER", -190, -180 },
 
 -- Baradin Hold
 			-- Consuming Darkness
