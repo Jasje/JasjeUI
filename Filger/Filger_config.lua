@@ -632,7 +632,7 @@ ns.Filger_Spells = {
 			{ spellID = 871, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
-			Name = "T_DEBUFF_ICON",
+			Name = "Buffs and Debuffs",
 			Direction = "UP",
 			Interval = 4,
 			Mode = "ICON",
@@ -659,61 +659,116 @@ ns.Filger_Spells = {
 			setPoint = { "LEFT", UIParent, "CENTER", -100, -400},
 			
 			-- recklesness
-			{ spellID = 1719, size = 65, unitId = "player", caster = "player", filter = "CD" },
+			{ spellID = 1719, size = 65, filter = "CD" },
 			-- throwdown
-			{ spellID = 85388, size = 65, unitId = "player", caster = "player", filter = "CD" },
+			{ spellID = 85388, size = 65, filter = "CD" },
 			-- berserker rage
-			{ spellID = 18499, size = 65, unitId = "player", caster = "player", filter = "CD" },		
+			{ spellID = 18499, size = 65, filter = "CD" },		
 		},
     },		
 	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
 		{
 			Name = "Deathknight Procs",
-			Direction = "RIGHT",
-			Interval = 3,
+			Direction = "DOWN",
+			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -85 },
+			setPoint = { "CENTER", "UIParent", -0, -85 },
 
-			-- Blood Shield
-			{ spellID = 77513, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Force
-			{ spellID = 67383, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 67383, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Strength
-			{ spellID = 53365, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 53365, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Might
-			{ spellID = 67117, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 67117, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Dancing Rune Weapon
-			{ spellID = 49028, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Icebound Fortitude
-			{ spellID = 48792, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Anti-Magic Shell
-			{ spellID = 48707, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Killing machine
-			{ spellID = 51124, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Freezing fog
-			{ spellID = 59052, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Bone Shield
-			{ spellID = 49222, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 49028, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Killing Machine
+			{ spellID = 51124, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Freezing Fog
+			{ spellID = 59052, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Crimson Scourge
+			{ spellID = 81141, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "RIGHT",
+			Direction = "UP",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 106, -43 },
+			setPoint = { "CENTER", UIParent, -90, -85 },
 
+			-- Dancing Rune Weapon
+			{ spellID = 49028, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Icebound Fortitude
+			{ spellID = 48792, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Anti-Magic Shell
+			{ spellID = 48707, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Bone Shield
+			{ spellID = 49222, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 90, -85 },
+
+			-- Blood Shield
+			{ spellID = 77513, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Strangulate
-			{ spellID = 47476, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 47476, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Blood Plague
-			{ spellID = 59879, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 59879, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Fever
-			{ spellID = 59921, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 59921, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Unholy Blight
-			{ spellID = 49194, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 49194, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Summon Gargoyle
-			{ spellID = 49206, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 49206, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Death and Decay/
-			{ spellID = 43265, size = 36, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 43265, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "LEFT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "LEFT", UIParent, "CENTER", -75, -400},
+
+			-- Death Grip
+			{ spellID = 49576, size = 65, filter = "CD" },
+			-- Anti-Magic Shell
+			{ spellID = 48707, size = 65, filter = "CD" },
+			-- Blood Tap
+			{ spellID = 45529, size = 65, filter = "CD" },
+			-- Death Pact
+			{ spellID = 48743, size = 65, filter = "CD" },
+			-- Icebound Fortitude
+			{ spellID = 48792, size = 65, filter = "CD" },
+			-- Death and Decay
+			{ spellID = 43265, size = 65, filter = "CD" },
+			-- Raise Dead
+			{ spellID = 46584, size = 65, filter = "CD" },
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "RIGHT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "RIGHT", UIParent, "CENTER", 75, -400},
+			-- Gnaw
+			{ spellID = 47481, size = 65, filter = "CD" },
+			-- Strangulate
+			{ spellID = 47476, size = 65, filter = "CD" },
+			-- Mind Freeze
+			{ spellID = 47528, size = 65, filter = "CD" },
+			-- Rune Tap
+			{ spellID = 48982, size = 65, filter = "CD" },
+			-- Lichborne
+			{ spellID = 49039, size = 65, filter = "CD" },
+			-- Pillar of Frost
+			{ spellID = 51271, size = 65, filter = "CD" },
+			-- Hungering Cold
+			{ spellID = 49203, size = 65, filter = "CD" },
 		},
 	},
 -----------------------------------------------------------------------------------------------------------------------
@@ -725,11 +780,13 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 4,
 			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", -190, -180 },
+			setPoint = { "LEFT", UIParent, "CENTER", -240, -140 },
 
 -- Baradin Hold
 			-- Consuming Darkness
             { spellID = 95173, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
+			-- Gaze of Occu'tha
+            { spellID = 97028, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
 -- Blackwing Descent
 		-- Magmaw
 			-- Constricting Chains
@@ -871,7 +928,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", 190, -98 },
+			setPoint = { "LEFT", UIParent, "CENTER", 190, -70 },
 
 			--[[ Druid ]]--
 			--Innervate
@@ -923,7 +980,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 6,
 			Mode = "ICON",
-			setPoint = { "RIGHT", UIParent, "CENTER", -190, -98 },
+			setPoint = { "RIGHT", UIParent, "CENTER", -190, -70 },
 			
 			--[[ Rouge ]]--
 			--Kidney Shot
