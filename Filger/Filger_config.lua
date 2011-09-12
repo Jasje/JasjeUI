@@ -44,18 +44,6 @@ ns.Filger_Spells = {
 			-- Flame Shock
 			{ spellID = 8050, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
-		{
-			Name = "Lave Surge", -- I know Im blind :)
-			Direction = "RIGHT",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 0, -90 },
-
-			-- Lava Burst
-			{ spellID = 51505, size = 60, unitId = "player", caster = "player", filter = "CD" },
-			-- Chain Lightning
-			{ spellID = 421, size = 60, unitId = "player", caster = "player", filter = "CD" },
-		},
 	},	
 	 ["MAGE"] = { -------------------------------------------------------------------------------------------------------- Mage
 		{
@@ -553,27 +541,13 @@ ns.Filger_Spells = {
 	["PALADIN"] = { -------------------------------------------------------------------------------------------------------- Paladin
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "LEFT",
-			Interval = 4,
+			Direction = "UP",
+			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -60, -90 },
+			setPoint = { "CENTER", UIParent, -90, -85 },
 
 			-- Beacon of Light -- player
 			{ spellID = 53563, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "RIGHT",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 56, -90 },
-
-			-- Beacon of Light -- target
-			{ spellID = 53563, size = 37, unitId = "target", caster = "player", filter = "BUFF" },
-			-- Hammer of Justice
-			{ spellID = 853, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Seal of Truth Aka Censure
-			{ spellID = 31803, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Divine Illumination
 			{ spellID = 31842, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Divine Plea
@@ -582,6 +556,20 @@ ns.Filger_Spells = {
 			{ spellID = 20925, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Inquisition
 			{ spellID = 84963, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 90, -85 },
+
+			-- Beacon of Light -- target
+			{ spellID = 53563, size = 37, unitId = "target", caster = "player", filter = "BUFF" },
+			-- Hammer of Justice
+			{ spellID = 853, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Seal of Truth Aka Censure
+			{ spellID = 31803, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 		},
 		{
 			Name = "Paladin Procs",
@@ -598,6 +586,20 @@ ns.Filger_Spells = {
 			{ spellID = 87138, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Hand of Light 
 			{ spellID = 90174, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "LEFT",
+			Interval = 10,
+			Mode = "ICON",
+			setPoint = { "LEFT", UIParent, "CENTER", -75, -400},
+			
+			-- Divine Plea
+			{ spellID = 54428, size = 65, filter = "CD" },
+			-- Avenging Wrath
+			{ spellID = 31884, size = 65, filter = "CD" },
+			-- Hand Of Reckoning
+			{ spellID = 62124, size = 65, filter = "CD" },
 		},
 	},
 	["WARRIOR"] = {  -------------------------------------------------------------------------------------------------------- Warrior
@@ -658,12 +660,20 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "LEFT", UIParent, "CENTER", -100, -400},
 			
-			-- recklesness
+			-- Recklesness
 			{ spellID = 1719, size = 65, filter = "CD" },
-			-- throwdown
+			-- Throwdown
 			{ spellID = 85388, size = 65, filter = "CD" },
-			-- berserker rage
-			{ spellID = 18499, size = 65, filter = "CD" },		
+			-- Intercept
+			{ spellID = 20252, size = 65, filter = "CD" },
+			-- Berserker rage
+			{ spellID = 18499, size = 65, filter = "CD" },	
+			--Last Stand
+			{ spellID = 12975, size = 65, filter = "CD" },		
+			-- Taunt
+			{ spellID = 355, size = 65, filter = "CD" },		
+			-- Commanding Shout
+			{ spellID = 469, size = 65, filter = "CD" },		
 		},
     },		
 	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight

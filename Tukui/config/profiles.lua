@@ -12,15 +12,19 @@ end
 -- Per Character Name Config (overwrite general and class)
 -- Name need to be case sensitive
 ----------------------------------------------------------------------------
-
+--[[
 if T.myname == "Jasjè" or T.myname == "Noshì" then
 	-- yeah my default config is not really like default tukui.
 	C.datatext.classcolor = false
 	C.chat.classcolortab = false
 	C.castbar.classcolor = false
 end
-	
+]]--	
 if T.myclass == "HUNTER" then
 	C.datatext.regen = 0
 	C.datatext.crit = 9
+end	
+
+if T.myname == "Jassíe" then
+    C.actionbar.sidebarWidth = 6
 end	
