@@ -1039,58 +1039,61 @@ local function Shared(self, unit)
 		self:Tag(Name, '[Tukui:getnamecolor][Tukui:namemedium]')
 		self.Name = Name
 		
-		local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
-		castbar:ClearAllPoints()
-		castbar:SetPoint("CENTER", UIParent, 0, 0)
-		castbar:Size(380, 25)
-		-- spark
-		castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
-		castbar.Spark:SetHeight(50)
-		castbar.Spark:SetWidth(15)
-		castbar.Spark:SetBlendMode('ADD')
+	if (C["unitframes"].unitcastbar == true) then		
+			local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
+        	castbar:ClearAllPoints()
+	    	castbar:SetPoint("CENTER", UIParent, 0, 0)
+	    	castbar:Size(380, 25)
 
-		castbar:SetStatusBarTexture(normTex)
-		castbar:SetFrameLevel(6)
+			castbar:SetStatusBarTexture(normTex)
+			castbar:SetFrameLevel(6)
 
-		castbar.bg = CreateFrame("Frame", nil, castbar)
-		castbar.bg:SetTemplate("Transparent")
-		castbar.bg:SetBorder()
-		castbar.bg:SetPoint("TOPLEFT", -2, 2)
-		castbar.bg:SetPoint("BOTTOMRIGHT", 2, -2)
-		castbar.bg:SetFrameLevel(5)
-		
-		castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
-		castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
-		castbar.time:SetTextColor(0.84, 0.75, 0.65)
-		castbar.time:SetJustifyH("RIGHT")
+			-- spark
+		    castbar.Spark = castbar:CreateTexture(nil, 'OVERLAY')
+		    castbar.Spark:SetHeight(50)
+		    castbar.Spark:SetWidth(15)
+		    castbar.Spark:SetBlendMode('ADD')
+			
+	        castbar.bg = CreateFrame("Frame", nil, castbar)
+		    castbar.bg:SetTemplate("Transparent")
+		    castbar.bg:SetBorder()
+	    	castbar.bg:SetPoint("TOPLEFT", -2, 2)
+	    	castbar.bg:SetPoint("BOTTOMRIGHT", 2, -2)
+	    	castbar.bg:SetFrameLevel(5)
 
-		castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
-		castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
-		castbar.Text:SetTextColor(0.84, 0.75, 0.65)
-		
-		if C["unitframes"].cbicons == true then
-		castbar.button = CreateFrame("Frame", nil, castbar)
+			castbar.time = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
+			castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
+			castbar.time:SetTextColor(0.84, 0.75, 0.65)
+			castbar.time:SetJustifyH("RIGHT")
 
-		castbar.button:SetPoint("CENTER", 0, 38)
-		castbar.button:Size(40)
-		castbar.button:SetTemplate("Transparent")
-		castbar.button:SetBorder()
-		
-		castbar.icon = castbar.button:CreateTexture(nil, "ARTWORK")
-		castbar.icon:SetPoint("TOPLEFT", castbar.button, T.Scale(2), T.Scale(-2))
-		castbar.icon:SetPoint("BOTTOMRIGHT", castbar.button, T.Scale(-2), T.Scale(2))
-		castbar.icon:SetTexCoord(0.08, 0.92, 0.08, .92)
-		
-		castbar.CustomTimeText = T.CustomCastTimeText
-		castbar.CustomDelayText = T.CustomCastDelayText
-        castbar.PostCastStart = T.PostCastStart
-        castbar.PostChannelStart = T.PostCastStart
+			castbar.Text = T.SetFontString(castbar, castbarfont, unitframefontsize, unitframefontflag)
+			castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
+			castbar.Text:SetTextColor(0.84, 0.75, 0.65)
+			
+			castbar.CustomTimeText = T.CustomCastTimeText
+		    castbar.CustomDelayText = T.CustomCastDelayText
+            castbar.PostCastStart = T.PostCastStart
+            castbar.PostChannelStart = T.PostCastStart
+			
+			if C["unitframes"].cbicons == true then
+			    castbar.button = CreateFrame("Frame", nil, castbar)
 
-		self.Castbar = castbar
-		self.Castbar.Time = castbar.time
-		self.Castbar.Icon = castbar.icon
+				castbar.button:SetPoint("CENTER", 0, 38)
+	        	castbar.button:Size(40)
+	        	castbar.button:SetTemplate("Transparent")
+	        	castbar.button:SetBorder()
+				
+		    	castbar.icon = castbar.button:CreateTexture(nil, "ARTWORK")
+		    	castbar.icon:Point("TOPLEFT", castbar.button, 2, -2)
+		    	castbar.icon:Point("BOTTOMRIGHT", castbar.button, -2, 2)
+			    castbar.icon:SetTexCoord(0.08, 0.92, 0.08, .92)
+			end	
+			
+			self.Castbar = castbar
+		    self.Castbar.Time = castbar.time
+		    self.Castbar.Icon = castbar.icon
+		end
 	end
-end
 
 	if (unit == "focustarget") then
 		local panel = CreateFrame("Frame", nil, self)
