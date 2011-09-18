@@ -189,11 +189,6 @@ local function cvarsetup()
 	SetCVar("showArenaEnemyFrames", 0)
 	SetCVar("autoLootDefault", 1) -- turning on autoloot by default
 end
-
-if T.myname == "Jàsje" or T.myname == "Jasje" then
-    SetCVar("M2Faster", 3) 
-	SetCVar("processAffinityMask", 15)	
-end	
 	
 local function positionsetup()
 	-- reset saved variables on char

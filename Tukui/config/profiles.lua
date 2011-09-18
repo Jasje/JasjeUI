@@ -25,6 +25,8 @@ if T.myclass == "HUNTER" then
 	C.datatext.crit = 9
 end	
 
-if T.myname == "Jassíe" then
+if T.myname == "Jassíe" or T.myname == "Noshi" then
     C.actionbar.sidebarWidth = 6
+    C.nameplate.enhancethreat = true
 end	
+
