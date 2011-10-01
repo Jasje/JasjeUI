@@ -810,16 +810,3 @@ for i=1, NUM_CHAT_WINDOWS do
 	orig2[frame] = frame:GetScript("OnHyperlinkLeave")
 	frame:SetScript("OnHyperlinkLeave", OnHyperlinkLeave)
 end	
-
-----------------------------------------------------------------------------------------
---	GuildTab in FriendsFrame by Shestak
-----------------------------------------------------------------------------------------
-local n = FriendsFrame.numTabs + 1
-local gtframe = CreateFrame("Button", "FriendsFrameTab"..n, FriendsFrame, "FriendsFrameTabTemplate")
-    gtframe:SetID(n)
-    gtframe:SetText(hexa..GUILD)
-    gtframe:SetPoint("LEFT", getglobal("FriendsFrameTab"..n-1), "RIGHT", -15, 0)
-    gtframe:RegisterForClicks("AnyUp")
-    gtframe:SetScript("OnClick", function() ToggleGuildFrame() end)
-    PanelTemplates_SetNumTabs(FriendsFrame, n)
-    PanelTemplates_EnableTab(FriendsFrame, n)

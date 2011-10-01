@@ -126,6 +126,12 @@ local iright = CreateFrame("Frame", "TukuiInfoRight", TukuiBar1)
     iright:SetFrameLevel(2)
     iright:SetFrameStrata("BACKGROUND")
     iright:CreateShadow("Hydra")
+	
+    TukuiInfoRight:SetScript("OnMouseDown", function(self, btn)
+        if btn == "LeftButton" then
+            ToggleFrame(tdpsFrame)
+        end
+    end)
 
 if C.chat.background then
 	-- CHAT BG LEFT

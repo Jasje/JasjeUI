@@ -28,5 +28,7 @@ end
 if T.myname == "Jassíe" or T.myname == "Noshi" then
     C.actionbar.sidebarWidth = 6
     C.nameplate.enhancethreat = true
+	C.datatext.regen = 0
+	C.datatext.crit = 9
 end	
 
