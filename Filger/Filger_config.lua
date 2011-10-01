@@ -620,6 +620,10 @@ ns.Filger_Spells = {
 			{ spellID = 64568, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Victorious
 			{ spellID = 32216, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Battle trance
+			{ spellID = 85742, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Incite
+			{ spellID = 86627, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
         {		
 			Name = "Buffs and Debuffs",
@@ -652,6 +656,8 @@ ns.Filger_Spells = {
 			{ spellID = 6343, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Demoralizing Shout
 			{ spellID = 1160, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Collosus Smash
+			{ spellID = 86346, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
 		{
 			Name = "COOLDOWN",
@@ -673,7 +679,9 @@ ns.Filger_Spells = {
 			-- Taunt
 			{ spellID = 355, size = 65, filter = "CD" },		
 			-- Commanding Shout
-			{ spellID = 469, size = 65, filter = "CD" },		
+			{ spellID = 469, size = 65, filter = "CD" },	
+           -- Heroic Leap			
+			{ spellID = 6544, size = 65, filter = "CD" },		
 		},
     },		
 	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
@@ -803,8 +811,6 @@ ns.Filger_Spells = {
             { spellID = 91911, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
 			-- Parasitic Infection
             { spellID = 94679, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
-			-- Mangle
-            { spellID = 94617, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
 		-- Omintron Defense System	
 			-- Poison Soaked Shell	
 	        { spellID = 79835, size = 47, unitId = "player", caster = "all", filter = "DEBUFF" },
