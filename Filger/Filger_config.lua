@@ -698,8 +698,6 @@ ns.Filger_Spells = {
 			{ spellID = 53365, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Might
 			{ spellID = 67117, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Dancing Rune Weapon
-			{ spellID = 49028, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Killing Machine
 			{ spellID = 51124, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Freezing Fog
@@ -712,7 +710,7 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -90, -85 },
+			setPoint = { "CENTER", UIParent, -100, -85 },
 
 			-- Dancing Rune Weapon
 			{ spellID = 49028, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
@@ -728,7 +726,7 @@ ns.Filger_Spells = {
 			Direction = "UP",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 90, -85 },
+			setPoint = { "CENTER", UIParent, 100, -85 },
 
 			-- Blood Shield
 			{ spellID = 77513, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
