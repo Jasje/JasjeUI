@@ -33,6 +33,7 @@
 	<Script file="modules\unitframes\plugins\oUF_AuraTracker\oUF_AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\oUF_Talents\oUF_Talents.lua"/>	
 	<Script file="modules\unitframes\plugins\oUF_WeakenedSoul\oUF_WeakenedSoul.lua"/>
+	<Script file="modules\unitframes\plugins\oUF_NecroStrike\oUF_NecroStrike.lua"/>
 	<Script file="modules\unitframes\templates\colors.lua"/>
 	
 	<Script file="modules\datatext\colors.lua"/>
