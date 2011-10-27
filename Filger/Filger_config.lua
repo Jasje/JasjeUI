@@ -694,8 +694,6 @@ ns.Filger_Spells = {
 
 			-- Unholy Force
 			{ spellID = 67383, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Unholy Strength
-			{ spellID = 53365, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Unholy Might
 			{ spellID = 67117, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Killing Machine
