@@ -3,6 +3,7 @@ local T, C, L = unpack(select(2, ...))
 C["media"] = {
 	-- fonts (ENGLISH, SPANISH)
 	["font"] = [=[Interface\Addons\Tukui\medias\fonts\normal_font.ttf]=], -- general font of tukui
+	["uffont"] = [[Interface\AddOns\Tukui\medias\fonts\uf_font.ttf]], -- font used in some external addons
 	["dmgfont"] = [[Fonts\skurri.TTF]], -- general font of dmg / sct 
 	
 		["pixelfont"] = [[Interface\AddOns\Tukui\medias\fonts\HOOG0555.ttf]], -- extra pixelfont
