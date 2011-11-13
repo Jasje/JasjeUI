@@ -20,12 +20,16 @@ if T.myname == "Jasjè" or T.myname == "Noshì" then
 	C.castbar.classcolor = false
 end
 ]]--	
-if T.myclass == "HUNTER" then
-	C.datatext.regen = 0
-	C.datatext.crit = 9
+
+
+
+
+if T.myclass == "DEATHKNIGHT" then
+    C.unitframes.classbar = false
+	C.castbar.nointerruptcolor = {0,11,.0} -- cause we cant see interrupt color when classcolor for dk is enabled.
 end	
 
-if T.myname == "Jassíe" or T.myname == "Noshi" then
+if T.myname == "Jassíe" or T.myname == "Jasjè" or T.myname == "Noshi" or T.myclass == "HUNTER" then
     C.actionbar.sidebarWidth = 6
     C.nameplate.enhancethreat = true
 	C.datatext.regen = 0
