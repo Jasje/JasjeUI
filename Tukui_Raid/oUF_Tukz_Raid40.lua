@@ -250,10 +250,10 @@ end
 	tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT",  2, -2)
 	tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 
-oUF:RegisterStyle('TukuiHealRaid', Shared)
+oUF:RegisterStyle('TukuiDpsRaid', Shared)
 oUF:Factory(function(self)
-	oUF:SetActiveStyle("TukuiHealRaid")	
-        local raid = self:SpawnHeader("TukuiHealGrid", nil, "solo,raid,party",
+	oUF:SetActiveStyle("TukuiDpsRaid")	
+        local raid = self:SpawnHeader("TukuiDpsGrid", nil, "solo,raid,party",
 			'oUF-initialConfigFunction', [[
 				local header = self:GetParent()
 				self:SetWidth(header:GetAttribute('initial-width'))
