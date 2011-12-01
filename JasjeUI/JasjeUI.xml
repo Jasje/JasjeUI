@@ -1,0 +1,22 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="core\api.lua"/>
+	<Script file="core\functions.lua"/>
+    <Script file="medias\media.lua"/>	
+
+	<Script file="modules\maps\minimap.lua"/>
+	<Script file="modules\buffs\buffs.lua"/>
+	<Script file="modules\actionbars\actionbars.lua"/>
+	<Script file="modules\panels\panels.lua"/>
+	<Script file="modules\misc\altpowerbar.lua"/>
+	<Script file="modules\misc\threatbar.lua"/>
+	
+	<Script file="modules\datatext\datatext.lua"/>
+	
+	<Script file="modules\classbars\combopoints.lua"/>
+	<Script file="modules\classbars\eclipsebar.lua"/>
+	<Script file="modules\classbars\holypower.lua"/>
+	<Script file="modules\classbars\runebars.lua"/>
+	<Script file="modules\classbars\soulshards.lua"/>
+	<Script file="modules\classbars\totemtimers.lua"/>
+
+</Ui>

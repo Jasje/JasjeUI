@@ -1,0 +1,7 @@
+## Interface: 40300
+## Author: Jasje
+## Title: |cffC495DDJasje Config|r
+## Notes: Default Configuration for Jasjes Edit.
+## Version: 1.0
+
+config.lua
