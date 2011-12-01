@@ -1,8 +1,0 @@
-## Interface: 40200
-## Author: Tukz
-## Version: 1.0.1
-## Title: |cffC495DDTukui Spell Alert|r
-## Notes: Show spell we watch from enemy through a message in the center of the screen
-## RequiredDeps: Tukui
-
-Tukui_SpellAlert.lua
