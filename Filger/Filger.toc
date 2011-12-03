@@ -2,7 +2,7 @@
 ## Title: Filger
 ## Notes: Minimal buff/debuff/proc tracking
 ## Author: Nils Ruesch, Affli
-## Editor: FourOne, Jasje
+## Editor: Jasje
 ## Credits: Nils Ruesch, Shestak, Affli, Garagar, hidekki
 ## Version: 3.0
 ## RequiredDeps: JasjeUI_Config,Tukui
