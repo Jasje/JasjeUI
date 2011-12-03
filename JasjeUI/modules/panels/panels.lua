@@ -46,3 +46,99 @@ if C.chat.background then
     TukuiLineToABLeftAlt:Kill()
     TukuiLineToABRightAlt:Kill()
 end	
+
+-- switch layout
+local swl = CreateFrame("Button", "TukuiSwitchLayoutButton", UIParent, "SecureActionButtonTemplate")
+	swl:Size(20, 20)
+	swl:Point("LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
+	swl:SetFrameStrata("BACKGROUND")
+	swl:SetFrameLevel(2)
+	swl:RegisterForClicks("AnyUp") swl:SetScript("OnClick", function()
+		if IsAddOnLoaded("Tukui_Raid") then
+			DisableAddOn("Tukui_Raid")
+			EnableAddOn("Tukui_Raid_Healing")
+			ReloadUI()
+		elseif IsAddOnLoaded("Tukui_Raid_Healing") then
+			DisableAddOn("Tukui_Raid_Healing")
+			EnableAddOn("Tukui_Raid")
+			ReloadUI()
+		elseif not IsAddOnLoaded("Tukui_Raid_Healing") and not IsAddOnLoaded("Tukui_Raid") then
+			EnableAddOn("Tukui_Raid")
+			ReloadUI()
+		end
+end)
+
+-- Hydra Spec Button!
+if UnitLevel("player") <= 10 then return end
+
+local frame = CreateFrame("Frame", "CorinnaTalent", UIParent)
+    frame:CreatePanel(nil, 20, 20, "RIGHT", TukuiInfoRight, "LEFT", -3, 0)
+    frame:EnableMouse(true)
+
+    frame.tex = frame:CreateTexture(nil, "ARTWORK")
+    frame.tex:Point("TOPLEFT", 2, -2)
+    frame.tex:Point("BOTTOMRIGHT", -2, 2)
+    frame.tex:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+    frame.highlight = frame:CreateTexture(nil, "ARTWORK")
+    frame.highlight:Point("TOPLEFT", 2, -2)
+    frame.highlight:Point("BOTTOMRIGHT", -2, 2)
+    frame.highlight:SetTexture(1,1,1,.3)
+    frame.highlight:Hide()
+
+local UpdateTexture = function(self)
+	local primary = GetPrimaryTalentTree()
+	local tex = select(4, GetTalentTabInfo(primary))
+	
+	self.tex:SetTexture(tex)
+end
+
+local ChangeSpec = function()
+	local spec = GetActiveTalentGroup()
+	
+	if spec == 1 then
+		SetActiveTalentGroup(2)
+	else
+		SetActiveTalentGroup(1)
+	end
+end
+
+local color = RAID_CLASS_COLORS[T.myclass]
+
+local StyleTooltip = function(self)
+	if not InCombatLockdown() then
+		local p1 = select(5, GetTalentTabInfo(1))
+		local p2 = select(5, GetTalentTabInfo(2))
+		local p3 = select(5, GetTalentTabInfo(3))
+		local name = select(2, GetTalentTabInfo(GetPrimaryTalentTree()))
+		local spec = GetActiveTalentGroup()
+		
+		GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 2)
+		GameTooltip:ClearLines()
+		
+		if spec == 1 then
+			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, PRIMARY))
+			GameTooltip:AddDoubleLine("Arena") 
+		else
+			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, SECONDARY))
+			GameTooltip:AddDoubleLine("Battleground")
+		end
+		
+		self.highlight:Show()
+		self:SetBackdropBorderColor(color.r, color.g, color.b)
+		GameTooltip:Show()
+	end
+end
+
+local OnLeave = function(self)
+	GameTooltip:Hide()
+	self.highlight:Hide()
+	self:SetBackdropBorderColor(unpack(C.media.bordercolor))
+end
+
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+frame:RegisterEvent("PLAYER_TALENT_UPDATE")
+frame:SetScript("OnEvent", UpdateTexture)
+frame:SetScript("OnMouseDown", ChangeSpec)
+frame:SetScript("OnEnter", StyleTooltip)

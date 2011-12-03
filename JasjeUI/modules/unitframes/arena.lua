@@ -69,6 +69,11 @@ for i = 1, 5 do
 			self.Castbar.Text.ClearAllPoints = T.dummy
 			self.Castbar.Text.SetPoint = T.dummy
 
+		    self.Castbar.CustomTimeText = T.CustomCastTimeText
+	        self.Castbar.CustomDelayText = T.CustomCastDelayText
+            self.Castbar.PostCastStart = T.PostCastStart
+            self.Castbar.PostChannelStart = T.PostCastStart
+			
 			self.Castbar.time:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 			self.Castbar.time:SetParent(self.Castbar)
 			self.Castbar.time:ClearAllPoints()

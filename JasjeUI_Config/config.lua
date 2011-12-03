@@ -17,6 +17,9 @@ C.media = {
 	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], -- another pixelfont
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
+
+	switchlayoutheal = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_heal]], -- switch layout texture
+	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], -- switch layout texture
 }
 
 C.unitframes = {
@@ -29,6 +32,13 @@ C.unitframes = {
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
 }
+
+C.castbar = { 
+	classcolor = true, -- classcolor
+	castbarcolor = { .2, .2, .2,1 }, -- color if classcolor = false
+	nointerruptcolor = { 1,.2,.2,1 }, -- color of casts which can't be interrupted
+}
+
 
 C.bags = {
 	enable = true,
