@@ -142,3 +142,15 @@ frame:RegisterEvent("PLAYER_TALENT_UPDATE")
 frame:SetScript("OnEvent", UpdateTexture)
 frame:SetScript("OnMouseDown", ChangeSpec)
 frame:SetScript("OnEnter", StyleTooltip)
+
+-- Version check
+local v = CreateFrame("Button", "JasjeUIVersionFrame", TukuiInstallFrame)
+v:SetSize(430, 25)
+v:SetPoint("BOTTOM", TukuiInstallFrame, "TOP", 0, 5)
+v:SetTemplate("Transparent")
+v:FontString("Text", C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
+v.Text:SetPoint("CENTER")
+v.Text:SetText("|cffD38D01JasjeUI|r 1.0 by |cffD38D01Jasje@tukui.org|r, thanks to |cffAD2420Tukz|r at |cffC495DDwww.tukui.org|r")
+
+TukuiInstallFrame:SetSize(T.screenwidth-100,T.screenheight-100)
+TukuiInstallFrame:SetTemplate("Transparent")

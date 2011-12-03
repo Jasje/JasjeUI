@@ -58,6 +58,7 @@ for _, frame in pairs(units) do
 	    self.Health.bg:SetVertexColor(0, 0, 0)
 		
 		self.CombatFeedbackText:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		self.Status:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		
 		self.Castbar:ClearAllPoints()
         self.Castbar:SetHeight(T.Scale(25))
@@ -66,6 +67,7 @@ for _, frame in pairs(units) do
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 		
         self.Castbar:CreateBorder(true)
+		self.Castbar.bg:SetVertexColor(.1, .1, .1)
 
 		self.Castbar.button:ClearAllPoints()		
 		self.Castbar.button:SetPoint("LEFT", -32, T.Scale(0))
@@ -103,7 +105,19 @@ for _, frame in pairs(units) do
 	
         self.Health:CreateBorder(true)
         self.Power:CreateBorder(true)
-
+		
+		self.Debuffs:SetHeight(26)
+		self.Debuffs:SetWidth(220)
+		self.Debuffs.size = 26
+		self.Debuffs.num = 8
+		self.Debuffs.spacing = 2
+		
+		self.Buffs:SetHeight(26)
+		self.Buffs:SetWidth(220)
+		self.Buffs.size = 26
+		self.Buffs.num = 8
+		self.Buffs.spacing = 2
+		
 		self:ClearAllPoints()
 		self:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 200)
 

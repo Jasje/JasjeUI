@@ -30,7 +30,7 @@ C.unitframes = {
 	classbar = false,
 	combatfeedback = true,
 	showplayerinparty = true,
-	gridonly = false,
+	gridonly = true,
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
 }

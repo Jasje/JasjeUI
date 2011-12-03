@@ -22,13 +22,28 @@ L.datatext_hps =  hexa.."hps"..hexb
 L.datatext_playerarp =  hexa.."arp"..hexb
 L.datatext_playercrit =  hexa.." crit"..hexb
 L.datatext_playerheal =  hexa.." heal"..hexb
-L.datatext_healing =  hexa.."HEALING"..hexb
-L.datatext_damage = hexa.."DAMAGE"..hexb
-L.datatext_honor = hexa.."HONOR"..hexb
+L.datatext_healing =  hexa.."healing: "..hexb
+L.datatext_damage = hexa.."damage: "..hexb
+L.datatext_honor = hexa.."honor: "..hexb
 L.datatext_playeravd = hexa.."avd: "..hexb
+-- battleground datatext
 L.datatext_tthonorgain = hexa.."Honor Gained:"..hexb
 L.datatext_ttdmgdone = hexa.."Damage Done:"..hexb
 L.datatext_tthealdone = hexa.."Healing Done:"..hexb
+L.datatext_killingblows = hexa.."Killing Blows: "..hexb
+L.datatext_ttkillingblows = hexa.."Killing Blows:"..hexb
+L.datatext_tthonorkills = hexa.."Honorable Kills:"..hexb
+L.datatext_ttdeaths = hexa.."Deaths:"..hexb
+L.datatext_basesassaulted = hexa.."Bases Assaulted:"..hexb
+L.datatext_basesdefended = hexa.."Bases Defended:"..hexb
+L.datatext_towersassaulted = hexa.."Towers Assaulted:"..hexb
+L.datatext_towersdefended = hexa.."Towers Defended:"..hexb
+L.datatext_flagscaptured = hexa.."Flags Captured:"..hexb
+L.datatext_flagsreturned = hexa.."Flags Returned:"..hexb
+L.datatext_graveyardsassaulted = hexa.."Graveyards Assaulted:"..hexb
+L.datatext_graveyardsdefended = hexa.."Graveyards Defended:"..hexb
+L.datatext_demolishersdestroyed = hexa.."Demolishers Destroyed:"..hexb
+L.datatext_gatesdestroyed = hexa.."Gates Destroyed:"..hexb
 
 -- datatext panel position
 local DataTextPosition = function(f, t, o)
