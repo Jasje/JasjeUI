@@ -1,7 +1,7 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="core\api.lua"/>
 	<Script file="core\functions.lua"/>
-    <Script file="medias\media.lua"/>	
+    <Script file="medias\media.lua"/>
 
 	<Script file="modules\maps\minimap.lua"/>
 	<Script file="modules\buffs\buffs.lua"/>
@@ -18,5 +18,12 @@
 	<Script file="modules\classbars\runebars.lua"/>
 	<Script file="modules\classbars\soulshards.lua"/>
 	<Script file="modules\classbars\totemtimers.lua"/>
+	
+	<Script file="modules\unitframes\plugins\AuraTracker.lua"/>
+	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
+	<Script file="modules\unitframes\tags.lua"/>>	
+	<Script file="modules\unitframes\unitframe.lua"/>>
+	<Script file="modules\unitframes\arena.lua"/>
+	<Script file="modules\unitframes\boss.lua"/>
 
 </Ui>

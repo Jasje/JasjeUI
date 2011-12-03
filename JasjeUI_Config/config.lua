@@ -3,24 +3,31 @@ local C = {}
 --config
 C.general = {
 	bordercolor = {.2,.2,.2,1},             
-	backdropcolor = {.075,.075,.075,1},         
+	backdropcolor = {.075,.075,.075,1},       
+	altbackdropcolor = { .075,.075,.075,.7 },
 }
 
 C.media = {
+    font = [[Interface\AddOns\JasjeUI\media\fonts\normal_font.ttf]], -- general font of tukui
+	
     dmgfont = [[Fonts\skurri.TTF]], -- general font of dmg / sct 
 	pixelfont = [[Interface\AddOns\JasjeUI\media\fonts\HOOG0555.ttf]], -- extra pixelfont
 	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], -- another pixelfont
 	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], -- another pixelfont
 	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], -- another pixelfont
+	
+	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
 }
 
 C.unitframes = {
     unicolor = true,
 	cbicons = true,
-	classbar = true,
+	classbar = false,
 	combatfeedback = true,
 	showplayerinparty = true,
 	gridonly = true,
+	targetpowerpvponly = true,   
+	showfocustarget = false,   
 }
 
 C.bags = {
@@ -57,7 +64,7 @@ C.datatext = {
 	hps_text = 0,                                 -- show a heal meter on panels
 	power = 0,                                    -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
 	haste = 0,                                    -- show your haste rating on panels.
-	crit = 4,                                     -- show your crit rating on panels.
+	crit = 0,                                     -- show your crit rating on panels.
 	avd = 0,                                      -- show your current avoidance against the level of the mob your targeting
 	armor = 0,                                    -- show your armor value against the level mob you are currently targeting
 	currency = 0,                                 -- show your tracked currency on panels
@@ -71,17 +78,21 @@ C.datatext = {
 	time24 = false,                               -- set time to 24h format.
 	localtime = true,                             -- set time to local time instead of server time.
 	battleground = false,
+	
+	-- Color Datatext
+	classcolor = true,                -- classcolored datatexts 
+	color = "|cff00AAFF",              -- datatext color if classcolor = false
 }
 
 -- Thank Saft for this, since I couldn't be assed to edit the classbars myself :p
 C.classbar = {
     --["class"] =   { enabled, width, height }
-	runeBars =		{ true, 200, 8 },
-	eclipseBar =	{ true, 200, 8 },
-	holyPower =		{ true, 200, 8 },
-	comboPoints =	{ true, 220, 8 },
-	totemTimers =	{ true, 200, 8 },
-	soulShards =	{ true, 200, 8 },
+	runeBars =		{ false, 200, 8 },
+	eclipseBar =	{ false, 200, 8 },
+	holyPower =		{ false, 200, 8 },
+	comboPoints =	{ false, 220, 8 },
+	totemTimers =	{ false, 200, 8 },
+	soulShards =	{ false, 200, 8 },
 }
 
     -- pet action icons

@@ -24,11 +24,10 @@ TukuiInfoLeft:Height(20)
 -- bottombar
 local tbottombar = CreateFrame("Frame", "TukuiBottomBar", UIParent)
 tbottombar:CreatePanel("Default", T.screenwidth+6, 20, "BOTTOM", UIParent, "BOTTOM", 0, -2)
-
-    tbottombar:SetFrameStrata("BACKGROUND")
-    tbottombar:SetFrameLevel(0)
-    tbottombar:SetAlpha(.9)
-    tbottombar:CreateShadow("Hydra")
+tbottombar:SetFrameStrata("BACKGROUND")
+tbottombar:SetFrameLevel(0)
+tbottombar:SetAlpha(.9)
+tbottombar:CreateShadow("Hydra")
 	
 TukuiTooltipAnchor:ClearAllPoints()
 TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight, 0,-6)

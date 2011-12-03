@@ -1,16 +1,5 @@
 local T, C, L = unpack(Tukui)
 
--- just for creating text
-T.SetFontString = function(parent, fontName, fontHeight, fontStyle)
-	local fs = parent:CreateFontString(nil, "OVERLAY")
-	fs:SetFont(fontName, fontHeight, fontStyle)
-	fs:SetJustifyH("LEFT")
-	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(0, 0)
-	return fs
-end
-
-
 T.DataTextTooltipAnchor = function(self)
 	local panel = self:GetParent()
 	local anchor = "ANCHOR_TOP"

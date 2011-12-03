@@ -1,35 +1,23 @@
 local T, C, L = unpack(Tukui)
 
--- Credits to Eclipse
-local function CreateBorder(f, i, o)
-	if i then
-		if f.iborder then return end
-		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "InnerBorder" or nil, f)
-		border:Point("TOPLEFT", mult, -mult)
-		border:Point("BOTTOMRIGHT", -mult, mult)
-		border:SetBackdrop({
-			edgeFile = C["media"].blank, 
-			edgeSize = mult, 
-			insets = { left = T.mult, right = T.mult, top = T.mult, bottom = T.mult }
-		})
-		border:SetBackdropBorderColor(unpack(C["media"].backdropcolor))
-		f.iborder = border
-	end
+-- just for creating text
+T.SetFontString = function(parent, fontName, fontHeight, fontStyle)
+	local fs = parent:CreateFontString(nil, "OVERLAY")
+	fs:SetFont(fontName, fontHeight, fontStyle)
+	fs:SetJustifyH("LEFT")
+	fs:SetShadowColor(0, 0, 0)
+	fs:SetShadowOffset(0, 0)
+	return fs
+end
 
-	if o then
-		if f.oborder then return end
-		local border = CreateFrame("Frame", f:GetName() and f:GetName() .. "OuterBorder" or nil, f)
-		border:Point("TOPLEFT", -T.mult, T.mult)
-		border:Point("BOTTOMRIGHT", T.mult, -T.mult)
-		border:SetFrameLevel(f:GetFrameLevel() + 1)
-		border:SetBackdrop({
-			edgeFile = C["media"].blank, 
-			edgeSize = T.mult, 
-			insets = { left = T.mult, right = T.mult, top = T.mult, bottom = T.mult }
-		})
-		border:SetBackdropBorderColor(unpack(C["media"].backdropcolor))
-		f.oborder = border
-	end
+local function CreateBorder( self, s )
+	if( self:GetFrameStrata() == "BACKGROUND") then self:SetFrameStrata("LOW") end
+
+	local border = CreateFrame( "Frame", nil, self )
+	border:SetPoint("TOPLEFT", self, "TOPLEFT", T.Scale(-2), T.Scale( 2 ))
+	border:SetPoint( "BOTTOMRIGHT", self, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
+	border:SetTemplate("Default")
+	border:SetFrameLevel( self:GetFrameLevel() )
 end
 
 -- Hydra Border Function 
@@ -37,12 +25,13 @@ local function SetBorder(f)
 	if f:GetFrameStrata() == "BACKGROUND" then f:SetFrameStrata("LOW") end
 	f:SetBackdropColor(.075, .075, .075, 0.7)
 	f:SetBackdropBorderColor(unpack(C["media"].bordercolor))
+	
 	local border = CreateFrame("Frame", nil, f)
-	border:SetPoint("TOPLEFT", f, "TOPLEFT", Scale(-1), Scale(1))
-	border:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", Scale(1), Scale(-1))
+	border:SetPoint("TOPLEFT", f, "TOPLEFT", T.Scale(-1), T.Scale(1))
+	border:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", T.Scale(1), T.Scale(-1))
 	border:SetFrameStrata("BACKGROUND")
 	border:SetFrameLevel(1)
-	border:SetBackdrop { edgeFile = C["media"].blank, edgeSize = Scale(3), insets = {left = 0, right = 0, top = 0, bottom = 0} }
+	border:SetBackdrop { edgeFile = C["media"].blank, edgeSize = T.Scale(3), insets = {left = 0, right = 0, top = 0, bottom = 0} }
 	border:SetBackdropColor(unpack(C["media"].backdropcolor))
 	border:SetBackdropBorderColor(unpack(C["media"].backdropcolor))
 end
