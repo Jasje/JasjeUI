@@ -177,6 +177,8 @@ for _, frame in pairs(units) do
 		self.panel:SetHeight(12)
 		self.panel:SetWidth(104)
 
+		self.Power:Kill()
+		
         self:Size(100, 50)
 
 		self.Health:Size(220, 19)

@@ -20,6 +20,8 @@ C.media = {
 
 	switchlayoutheal = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_heal]], -- switch layout texture
 	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], -- switch layout texture
+	
+	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], -- used for Selfbuffs
 }
 
 C.unitframes = {
@@ -28,7 +30,7 @@ C.unitframes = {
 	classbar = false,
 	combatfeedback = true,
 	showplayerinparty = true,
-	gridonly = true,
+	gridonly = false,
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
 }
@@ -87,22 +89,11 @@ C.datatext = {
 	
 	time24 = false,                               -- set time to 24h format.
 	localtime = true,                             -- set time to local time instead of server time.
-	battleground = false,
+	battleground = true,
 	
 	-- Color Datatext
 	classcolor = true,                -- classcolored datatexts 
 	color = "|cff00AAFF",              -- datatext color if classcolor = false
-}
-
--- Thank Saft for this, since I couldn't be assed to edit the classbars myself :p
-C.classbar = {
-    --["class"] =   { enabled, width, height }
-	runeBars =		{ false, 200, 8 },
-	eclipseBar =	{ false, 200, 8 },
-	holyPower =		{ false, 200, 8 },
-	comboPoints =	{ false, 220, 8 },
-	totemTimers =	{ false, 200, 8 },
-	soulShards =	{ false, 200, 8 },
 }
 
     -- pet action icons
