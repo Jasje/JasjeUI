@@ -65,11 +65,8 @@ local function EditUnitFrame(frame, header)
         power.colorClass = true
 	    power.bg.multiplier = 0.1
 		
-        debuff:SetHeight(32)
-        debuff:SetWidth(200)
-        debuff.size = 32
-		debuff.spacing = 1
-		
+        debuff:Kill()
+
 		name:SetParent(health)
 		name:ClearAllPoints()
 		name:SetPoint("TOP", 0, -5)

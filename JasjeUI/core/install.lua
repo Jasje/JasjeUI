@@ -1,6 +1,6 @@
 ﻿local T, C, L = unpack(Tukui)
 
-T.version = GetAddOnMetadata("Jasje UI ", "Version")
+T.release = GetAddOnMetadata("JasjeUI", "Version")
 
 T.ChatSetup = function()
 	-- Setup the spam chat frame

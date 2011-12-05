@@ -150,7 +150,7 @@ v:SetPoint("BOTTOM", TukuiInstallFrame, "TOP", 0, 5)
 v:SetTemplate("Transparent")
 v:FontString("Text", C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
 v.Text:SetPoint("CENTER")
-v.Text:SetText("|cffD38D01JasjeUI|r 1.0 by |cffD38D01Jasje@tukui.org|r, thanks to |cffAD2420Tukz|r at |cffC495DDwww.tukui.org|r")
+v.Text:SetText("|cffD38D01Jasje UI|r v"..T.release..hexa.." by "..hexb.."|cffD38D01Jasje@tukui.org|r"..hexa..", thanks to "..hexb.."|cffC495DDTukz|r "..hexa.."at "..hexb.."|cffC495DDwww.tukui.org|r")
 
 TukuiInstallFrame:SetSize(T.screenwidth-100,T.screenheight-100)
 TukuiInstallFrame:SetTemplate("Transparent")
@@ -167,7 +167,6 @@ TukuiInstallFrame:SetTemplate("Transparent")
 		local continue = GameMenuButtonContinue
 		local continuex = continue:GetWidth()
 		local continuey = continue:GetHeight()
-		local version = T.version
 		local interface = GameMenuButtonUIOptions
 		local keybinds = GameMenuButtonKeybindings
 
@@ -176,7 +175,7 @@ TukuiInstallFrame:SetTemplate("Transparent")
 		local button = CreateFrame("BUTTON", "GameMenuTukuiButtonOptions", menu, "GameMenuButtonTemplate")
 		button:SetSize(continuex, continuey)
 		button:Point("TOP", interface, "BOTTOM", 0, -1)
-		button:SetText(hexa.."Jasje Edit: "..version..hexb)
+		button:SetText(hexa.."Jasje Edit:|r "..T.release)
 
 		if C.general.blizzardreskin then
 			T.SkinButton(button)

@@ -65,23 +65,3 @@ while object do
 
 	object = EnumerateFrames(object)
 end
-
-local color = RAID_CLASS_COLORS[select(2, UnitClass("player"))] -- did this for button hover, pushed
-
-local function StyleButton(b, c) 
-    local name = b:GetName()
-	
-	if b then
-		hover:SetTexture(color.r, color.g, color.b,0.3)
-		elseif c then
-		checked:SetTexture(color.r, color.g, color.b,.5)
-		end
-		end		
-				
-				
-				
-				
-				
-				
-				
-				

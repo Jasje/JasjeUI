@@ -116,7 +116,7 @@ for i = 1, 5 do
 			self:Size(220, 50)
 			self:ClearAllPoints()
 			if( i == 1 ) then
-			    self:SetPoint("RIGHT", UIParent, "RIGHT", -140, -210)
+			    self:Point("BOTTOM", TukuiTarget, "TOP", 150, 150)
 		    else
 			    self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
 		    end

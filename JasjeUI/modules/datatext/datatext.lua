@@ -124,7 +124,7 @@ for _, data in pairs(datatext) do
 	end
 end
 
-local font, fontsize, fontflag = C["media"].pixelfont2, 14, "MONOCHROMEOUTLINE"
+local font, fontsize, fontflag = C.media.pixelfont2, 14, "MONOCHROMEOUTLINE"
 
 -- Setting the fonts for all Datatexts
 if C.datatext.armor > 0 then

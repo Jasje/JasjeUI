@@ -21,11 +21,13 @@ local OnAttributeChanged = function(self)
 		
 		if child.Duration then
 			child.Duration:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
+			child.Duration:ClearAllPoints()
 			child.Duration:SetPoint("BOTTOM", 0, -12)
 		end
 		
 		if child.Count then
 			child.Count:SetFont(C["media"].pixelfont, 16, "MONOCHROMEOUTLINE")
+			child.Count:ClearAllPoints()
 			child.Count:SetPoint("BOTTOMRIGHT", -1, 1)
 		end
 	end
