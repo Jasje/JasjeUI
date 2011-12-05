@@ -2,7 +2,7 @@
 ## Author: Jasje
 ## Version: 1.0
 ## Credits: Tukz
-## Title: |cffC495DDJasje UI|r
+## Title: |cffD38D01Jasje UI|r
 ## Notes: Jasjes custom Edit of Tukui.
 ## RequiredDeps: JasjeUI_Config, Tukui
 

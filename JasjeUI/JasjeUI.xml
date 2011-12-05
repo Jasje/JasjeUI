@@ -1,12 +1,14 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="core\api.lua"/>
 	<Script file="core\functions.lua"/>
+	<Script file="core\install.lua"/>
     <Script file="medias\media.lua"/>
 
 	<Script file="modules\datatext\datatext.lua"/>
 	
 	<Script file="modules\maps\minimap.lua"/>
 	<Script file="modules\buffs\buffs.lua"/>
+	<Script file="modules\chat\chat.lua"/>
 	<Script file="modules\buffsnotice\buffs.lua"/>
 	<Script file="modules\tooltip\tooltip.lua"/>
 	<Script file="modules\buffsnotice\weapons.lua"/>

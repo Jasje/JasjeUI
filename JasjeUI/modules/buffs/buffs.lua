@@ -25,7 +25,7 @@ local OnAttributeChanged = function(self)
 		end
 		
 		if child.Count then
-			child.Count:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
+			child.Count:SetFont(C["media"].pixelfont, 16, "MONOCHROMEOUTLINE")
 			child.Count:SetPoint("BOTTOMRIGHT", -1, 1)
 		end
 	end

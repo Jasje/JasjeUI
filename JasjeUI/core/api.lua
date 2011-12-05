@@ -1,15 +1,5 @@
 local T, C, L = unpack(Tukui)
 
--- just for creating text
-T.SetFontString = function(parent, fontName, fontHeight, fontStyle)
-	local fs = parent:CreateFontString(nil, "OVERLAY")
-	fs:SetFont(fontName, fontHeight, fontStyle)
-	fs:SetJustifyH("LEFT")
-	fs:SetShadowColor(0, 0, 0)
-	fs:SetShadowOffset(0, 0)
-	return fs
-end
-
 local function CreateBorder( self, s )
 	if( self:GetFrameStrata() == "BACKGROUND") then self:SetFrameStrata("LOW") end
 
@@ -75,3 +65,23 @@ while object do
 
 	object = EnumerateFrames(object)
 end
+
+local color = RAID_CLASS_COLORS[select(2, UnitClass("player"))] -- did this for button hover, pushed
+
+local function StyleButton(b, c) 
+    local name = b:GetName()
+	
+	if b then
+		hover:SetTexture(color.r, color.g, color.b,0.3)
+		elseif c then
+		checked:SetTexture(color.r, color.g, color.b,.5)
+		end
+		end		
+				
+				
+				
+				
+				
+				
+				
+				

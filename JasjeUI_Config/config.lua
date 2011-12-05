@@ -24,13 +24,23 @@ C.media = {
 	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], -- used for Selfbuffs
 }
 
+C.chat = {
+	classcolortab = true,                          -- set chat tabs to be class colored.
+	tabcolor = { 0, 0.7, 1 },                           -- color of chat tabs, disabled if classcolor is true
+	tabmouseover = { 1, 1, 1, 1 },                       -- color of tabs on mouse-over
+	-- chat tab font
+	font = C.media.pixelfont,
+	fontsize = 8, 
+	fontflag = "OUTLINEMONOCHROME", 
+}
+
 C.unitframes = {
     unicolor = true,
 	cbicons = true,
 	classbar = false,
 	combatfeedback = true,
 	showplayerinparty = true,
-	gridonly = true,
+	gridonly = false,
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
 }
