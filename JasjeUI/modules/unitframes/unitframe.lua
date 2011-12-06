@@ -66,7 +66,8 @@ for _, frame in pairs(units) do
         self.Castbar:Point("BOTTOM", InvTukuiActionBarBackground, "TOP", 15, 4)
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 		
-        self.Castbar:CreateBorder(true)
+        self.Castbar:CreateBackdrop()
+        self.Castbar:SetBorder()
 		self.Castbar.bg:SetVertexColor(.1, .1, .1)
 
 		self.Castbar.button:ClearAllPoints()		
@@ -84,7 +85,39 @@ for _, frame in pairs(units) do
 		
         self.Castbar.Text = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
         self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
-	end
+		
+		-- experience bar on player via mouseover for player currently levelling a character
+    if T.level ~= MAX_PLAYER_LEVEL then
+        self.Experience:Width(T.InfoLeftRightWidth-4)
+	    self.Experience:Height(1)
+	    self.Experience:ClearAllPoints()
+	    self.Experience:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
+	    self.Experience:SetFrameLevel(12)
+	    self.Experience:SetAlpha(1)
+	    self.Experience:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
+
+	    local xpBG = CreateFrame("Frame", nil, self.Experience)
+	    xpBG:CreatePanel("Transparent", self.Experience:GetWidth(), self.Experience:GetHeight(), "TOPLEFT", self.Experience, "TOPLEFT", -2, 2)
+	    xpBG:Point("BOTTOMRIGHT", self.Experience, "BOTTOMRIGHT", 2, -2)	
+
+	    Resting:SetTexture(nil)
+    end
+
+-- reputation bar for max level character
+    if T.level == MAX_PLAYER_LEVEL then
+	    self.Reputation:Width(T.InfoLeftRightWidth-4)
+	    self.Reputation:Height(1)
+	    self.Reputation:ClearAllPoints()
+	    self.Reputation:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
+	    self.Reputation:SetFrameLevel(10)
+	    self.Reputation:SetAlpha(1)
+	    self.Reputation:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
+
+	    local repBG = CreateFrame("Frame", nil, self.Reputation)
+	    repBG:CreatePanel("Transparent", self.Reputation:GetWidth(), self.Reputation:GetHeight(), "TOPLEFT", self.Reputation, "TOPLEFT", -2, 2)
+	    repBG:Point("BOTTOMRIGHT", self.Reputation, "BOTTOMRIGHT", 2, -2)
+    end
+end
 	
 	if unit == "target" then
 	    self.panel:ClearAllPoints()
@@ -135,24 +168,23 @@ for _, frame in pairs(units) do
 		self.CombatFeedbackText:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		
 		self.Castbar:ClearAllPoints()
-        self.Castbar:SetHeight(T.Scale(25))
         self.Castbar:Size(220, 18)
         self.Castbar:Point("BOTTOM", TukuiTarget, "TOP", 0, 70)
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
-		
-        self.Castbar:CreateBorder(true)
+
+		self.Castbar:CreateBackdrop()
+		self.Castbar:SetBorder()
 
 		self.Castbar.button:ClearAllPoints()		
-		self.Castbar.button:SetPoint("CENTER", 0, T.Scale(28))
+		self.Castbar.button:Point("CENTER", 0, 25)
 		self.Castbar.button:Size(26)
-		self.Castbar.button.shadow:Kill()
 
 		self.Castbar.CustomTimeText = T.CustomCastTimeText
 	    self.Castbar.CustomDelayText = T.CustomCastDelayText
         self.Castbar.PostCastStart = T.PostCastStart
         self.Castbar.PostChannelStart = T.PostCastStart
 		
-        self.Castbar.Time = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		self.Castbar.Time = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
         self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)
 		
         self.Castbar.Text = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
@@ -233,7 +265,7 @@ for _, frame in pairs(units) do
         self.Health:CreateBorder(true)
 		
 		self:ClearAllPoints()
-		self:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 5)
+		self:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 10)
 
 		self.Name:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		self.Name:ClearAllPoints()
@@ -253,5 +285,28 @@ for _, frame in pairs(units) do
 	    self.Health:SetStatusBarColor(.2, .2, .2, 1)
 	    self.Health.bg:SetTexture(.6, .6, .6)
 	    self.Health.bg:SetVertexColor(0, 0, 0)
+		-- castbar
+		self.Castbar:ClearAllPoints()
+        self.Castbar:Size(380, 25)
+        self.Castbar:Point("CENTER", UIParent, 0, 0)
+		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
+
+		self.Castbar:CreateBackdrop()
+		self.Castbar:SetBorder()
+	
+		self.Castbar.button:ClearAllPoints()		
+		self.Castbar.button:Point("CENTER", 0, 38)
+		self.Castbar.button:Size(40)
+
+		self.Castbar.CustomTimeText = T.CustomCastTimeText
+	    self.Castbar.CustomDelayText = T.CustomCastDelayText
+        self.Castbar.PostCastStart = T.PostCastStart
+        self.Castbar.PostChannelStart = T.PostCastStart
+		
+		self.Castbar.Time = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+        self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 0)
+		
+        self.Castbar.Text = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+        self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
 	end
 end

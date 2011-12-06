@@ -26,7 +26,7 @@ for i = 1, 5 do
 
 		    self.Health.colorTapping = false
 	        self.Health.colorDisconnected = false
-	        self.Health.colorClass = false
+	        self.Health.colorClass = true
 	        self.Health:SetStatusBarColor(.2, .2, .2, 1)
 	        self.Health.bg:SetTexture(.6, .6, .6)
 	        self.Health.bg:SetVertexColor(0, 0, 0)

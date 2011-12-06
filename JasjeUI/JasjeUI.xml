@@ -24,6 +24,7 @@
 	<Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
 	<Script file="modules\unitframes\plugins\NecroStrike.lua"/>
+	<Script file="modules\unitframes\classbar.lua"/>
 	<Script file="modules\unitframes\tags.lua"/>
 	<Script file="modules\unitframes\unitframe.lua"/>
 	<Script file="modules\unitframes\arena.lua"/>
