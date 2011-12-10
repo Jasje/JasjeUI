@@ -13,6 +13,7 @@ local function EditUnitFrame(frame, header)
 	local power = frame.Power
 	local panel = frame.panel
 	local debuff = frame.Debuffs
+	local raiddebuff = frame.RaidDebuffs
 
 	local Glamour = C["media"].Glamour
 	local font, fontsize, fontflag = C.media.pixelfont, 8, "OUTLINEMONOCHROME"
@@ -29,11 +30,42 @@ local function EditUnitFrame(frame, header)
     health.DebuffHighlightAlpha = 0.2
 
 	-- for layout-specifics, here we edit only 1 layout at time
-	if header == TukuiRaid25 then
-		-- more blah
-	elseif header == TukuiRaid40 then
-		-- more blah
+	if header == TukuiRaid25 or header == TukuiRaid40 then
+	
+		health:ClearAllPoints()
+		health:SetAllPoints(frame)
+		health:SetStatusBarTexture(Glamour)
+	    health:CreateBorder(true)
+	
+		health.colorDisconnected = false
+	    health.colorClass = true
+		health.colorReaction = true
+		
+	    health:SetStatusBarColor(.2, .2, .2, 1)
+	    health.bg:SetTexture(.6, .6, .6)
+	    health.bg:SetVertexColor(0, 0, 0)
+
+        power:Kill()
+
+		name:SetParent(health)
+		name:SetFont(font, fontsize, fontflag)
+
+		health.Smooth = true
+	    power.Smooth = true
+		
+		-- switch layout
+	    local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
+    	swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
+    	swlicon:SetFrameStrata("BACKGROUND")
+    	swlicon:SetFrameLevel(2)
+
+    	local tex = swlicon:CreateTexture(nil, "OVERLAY")
+    	tex:SetTexture(C.media.switchlayoutdd)
+    	tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT",  2, -2)
+    	tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
+
 	elseif header == TukuiRaidHealer15 then
+	
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
@@ -58,7 +90,7 @@ local function EditUnitFrame(frame, header)
 	    power:SetFrameLevel(health:GetFrameLevel() + 1)
 
 		power.bg:SetAllPoints(power)
-	    power.bg:SetTexture(C["media"].Glamour)
+	    power.bg:SetTexture(Glamour)
     	power.bg:SetAlpha(1)
 	    power.bg.multiplier = 0.4
 
@@ -71,6 +103,8 @@ local function EditUnitFrame(frame, header)
 		name:ClearAllPoints()
 		name:SetPoint("TOP", 0, -5)
 		name:SetFont(font, fontsize, fontflag)
+		
+		self:Tag(Name, "[Tukui:getnamecolor][Tukui:namelong]")
 		
 		health.Smooth = true
 	    power.Smooth = true
@@ -112,7 +146,7 @@ local function EditUnitFrame(frame, header)
 	    power:SetFrameLevel(health:GetFrameLevel() + 1)
 
 		power.bg:SetAllPoints(power)
-	    power.bg:SetTexture(C["media"].Glamour)
+	    power.bg:SetTexture(Glamour)
     	power.bg:SetAlpha(1)
 	    power.bg.multiplier = 0.4
 
@@ -123,10 +157,12 @@ local function EditUnitFrame(frame, header)
 		name:ClearAllPoints()
 		name:SetPoint("TOP", 0, -5)
 		name:SetFont(font, fontsize, fontflag)
-		
+
 		health.Smooth = true
 	    power.Smooth = true
 		
+		raiddebuff.time:Kill()
+
 		local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
 	    swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
 	    swlicon:SetFrameStrata("BACKGROUND")
@@ -136,7 +172,7 @@ local function EditUnitFrame(frame, header)
 	    tex:SetTexture(C.media.switchlayoutheal)
 	    tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT", 2, -2)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
-
+		
 	end
 end
 

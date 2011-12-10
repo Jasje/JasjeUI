@@ -37,12 +37,14 @@ C.chat = {
 C.unitframes = {
     unicolor = true,
 	cbicons = true,
-	classbar = false,
+	classbar = true,
 	combatfeedback = true,
 	showplayerinparty = true,
-	gridonly = false,
+	gridonly = true,
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
+    classiccombo = false,                           -- display classic combo points (from Tukui 13 or less)
+	movecombobar = false,                            -- display the new combo bar (t14+) from target to player (ROGUE ONLY)
 }
 
 C.castbar = { 

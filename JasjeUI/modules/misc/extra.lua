@@ -1,5 +1,70 @@
 local T, C, L = unpack(Tukui)
 
+----------------------------------------------------------------------------------------
+--	Force readycheck warning
+----------------------------------------------------------------------------------------
+local ShowReadyCheckHook = function(self, initiator, timeLeft)
+	if initiator ~= "player" then
+		PlaySound("ReadyCheck", "Master")
+	end
+end
+hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
+
+----------------------------------------------------------------------------------------
+--	Force other warning
+----------------------------------------------------------------------------------------
+local ForceWarning = CreateFrame("Frame")
+ForceWarning:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
+ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
+ForceWarning:RegisterEvent("PARTY_INVITE_REQUEST")
+ForceWarning:SetScript("OnEvent", function(self, event)
+	if event == "UPDATE_BATTLEFIELD_STATUS" and StaticPopup_Visible("CONFIRM_BATTLEFIELD_ENTRY") then
+		PlaySound("ReadyCheck", "Master")
+	elseif event == "LFG_PROPOSAL_SHOW" or event == "PARTY_INVITE_REQUEST" then
+		PlaySound("ReadyCheck", "Master")
+	end
+end)
+
+----------------------------------------------------------------------------------------
+--	Disband party or raid(by Monolit)
+----------------------------------------------------------------------------------------
+function DisbandRaidGroup()
+	if InCombatLockdown() then return end
+	if UnitInRaid("player") then
+		SendChatMessage("Disbanding Raid", "RAID")
+		for i = 1, GetNumRaidMembers() do
+			local name, _, _, _, _, _, _, online = GetRaidRosterInfo(i)
+			if online and name ~= T.name then
+				UninviteUnit(name)
+			end
+		end
+	else
+		SendChatMessage("Disbanding Party", "PARTY")
+		for i = MAX_PARTY_MEMBERS, 1, -1 do
+			if GetPartyMember(i) then
+				UninviteUnit(UnitName("party"..i))
+			end
+		end
+	end
+	LeaveParty()
+end
+
+StaticPopupDialogs.DISBAND_RAID = {
+	text = hexa.."Jasje is Disbanding your Raid/Party"..hexb,
+	button1 = hexa.."Accept"..hexb,
+	button2 = hexa.."Cancel"..hexb,
+	OnAccept = DisbandRaidGroup,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = true,
+	preferredIndex = 3,
+}
+
+SlashCmdList.GROUPDISBAND = function()
+	StaticPopup_Show("DISBAND_RAID")
+end
+SLASH_GROUPDISBAND1 = "/rd"
+
 -- Profanity
 local p = CreateFrame("Frame")
 p:RegisterEvent("CVAR_UPDATE")

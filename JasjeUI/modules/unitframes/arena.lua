@@ -16,20 +16,17 @@ for i = 1, 5 do
 			
 			self.Health.value:Hide()
 			self.Power.value:Hide()
-			self.Name:Hide()
 			self.Debuffs:Hide()
+
+	        self.Name:ClearAllPoints()
+	        self.Name:Point("RIGHT", self.Health, "RIGHT", -5, 0)
+	        self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+			self.Name:SetJustifyH("LEFT")
 			
 			local percHP = T.SetFontString(self.Health, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 	        percHP:SetPoint("LEFT", self.Health, "LEFT", 5, -0)
 	    	self:Tag(percHP, "[Tukui:perchp]")
 		    self.percHP = percHP
-
-		    self.Health.colorTapping = false
-	        self.Health.colorDisconnected = false
-	        self.Health.colorClass = true
-	        self.Health:SetStatusBarColor(.2, .2, .2, 1)
-	        self.Health.bg:SetTexture(.6, .6, .6)
-	        self.Health.bg:SetVertexColor(0, 0, 0)
 		end
 		
 		do

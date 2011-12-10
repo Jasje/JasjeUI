@@ -1,10 +1,8 @@
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if C.unitframes.enable ~= true then return end
 
----------------------------------------------------------------------------------------------
-	-- classbar
-	---------------------------------------------------------------------------------------------
 local self = _G["TukuiPlayer"]
+local color = RAID_CLASS_COLORS[T.myclass]
 	
 	do
 		if( C["unitframes"].classbar == true ) then
@@ -49,7 +47,46 @@ local self = _G["TukuiPlayer"]
 
 				-- hide "low mana" text on load if eclipseBar is show
 				if eclipseBar and eclipseBar:IsShown() then FlashInfo.ManaLevel:SetAlpha(0) end
-			end
+			end		
+			
+        -- combo bar
+        local parent = TukuiTarget
+        local stick
+
+        if T.myclass == "ROGUE" and C.unitframes.movecombobar then
+	        parent = TukuiPlayer
+        	stick = true
+        end
+
+        if not parent or C.unitframes.classiccombo then return end
+
+		    local Colors = { 
+	            [1] = { 225, 0, 0 }, -- red 
+	            [2] = { 225, 0, 0 }, -- red
+	            [3] = { 225, 225, 0 }, -- yellow
+	            [4] = { 225, 225, 0 }, -- yellow
+	            [5] = { 0, 225, 0 }, -- green
+            }
+		
+            TukuiCombo:Point("BOTTOMLEFT", parent, "TOPLEFT", 0, 5)
+            TukuiCombo:SetWidth(220)
+            TukuiCombo:SetHeight(4)
+            TukuiCombo:CreateBorder(true)
+
+            for i = 1, 5 do
+			        TukuiCombo[i]:SetHeight(4)
+			        TukuiCombo[i]:ClearAllPoints()
+			        TukuiCombo[i]:SetStatusBarTexture(C["media"].Glamour)
+			        TukuiCombo[i]:SetStatusBarColor(unpack(Colors[i]))
+
+              	if i == 1 then
+	              	TukuiCombo[i]:Point("RIGHT", TukuiCombo, "LEFT", 43, 0)
+		            TukuiCombo[i]:SetWidth(217 / 5)
+	            else
+		            TukuiCombo[i]:Point("LEFT", TukuiCombo[i-1], "RIGHT", 0.5, 0)
+		            TukuiCombo[i]:SetWidth(217 / 5)
+	            end
+	        end
 
 			if( T.myclass == "WARLOCK" or T.myclass == "PALADIN" ) then
 				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
@@ -58,7 +95,6 @@ local self = _G["TukuiPlayer"]
 				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
 				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
 				classbar:SetTemplate( "Default" )
-				classbar:CreateShadow( "Default" )
 
 				if( T.myclass == "WARLOCK" ) then
 					self.SoulShards:SetWidth( classbar:GetWidth() - 4 )
@@ -66,9 +102,9 @@ local self = _G["TukuiPlayer"]
 					self.SoulShards:ClearAllPoints()
 					self.SoulShards:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
 
-					TukuiPlayer_Shard1:SetStatusBarColor( .58, .5, .78 )
-					TukuiPlayer_Shard2:SetStatusBarColor( .58, .5, .78 )
-					TukuiPlayer_Shard3:SetStatusBarColor( .58, .5, .78 )
+					TukuiPlayer_Shard1:SetStatusBarColor( .58, .5, .78)
+					TukuiPlayer_Shard2:SetStatusBarColor( .58, .5, .78)
+					TukuiPlayer_Shard3:SetStatusBarColor( .58, .5, .78)
 				elseif( T.myclass == "PALADIN" ) then
 					self.HolyPower:SetWidth( classbar:GetWidth() - 4 )
 					self.HolyPower:SetHeight(3)
@@ -77,13 +113,13 @@ local self = _G["TukuiPlayer"]
 				end
 
 				TukuiPlayer_Shard1:SetHeight(3)
-				TukuiPlayer_Shard1:SetWidth( ( classbar:GetWidth() - 6 ) / 3 )
+				TukuiPlayer_Shard1:SetWidth((classbar:GetWidth() - 6) / 3)
 
 				TukuiPlayer_Shard2:SetHeight(3)
-				TukuiPlayer_Shard2:SetWidth( ( classbar:GetWidth() - 6 ) / 3 )
+				TukuiPlayer_Shard2:SetWidth((classbar:GetWidth() - 6) / 3)
 
-				TukuiPlayer_Shard3:SetHeight( 5 )
-				TukuiPlayer_Shard3:SetWidth( ( classbar:GetWidth() - 6 ) / 3 )
+				TukuiPlayer_Shard3:SetHeight(3)
+				TukuiPlayer_Shard3:SetWidth((classbar:GetWidth() - 6) / 3)
 			end
 
 			if( T.myclass == "DEATHKNIGHT" ) then
@@ -93,9 +129,8 @@ local self = _G["TukuiPlayer"]
 				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
 				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
 				classbar:SetTemplate( "Default" )
-				classbar:CreateShadow( "Default" )
 
-				self.Runes:SetWidth( classbar:GetWidth() - 4 )
+				self.Runes:SetWidth(classbar:GetWidth() - 4)
 				self.Runes:SetHeight(3)
 				self.Runes:ClearAllPoints()
 				self.Runes:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
@@ -141,7 +176,6 @@ local self = _G["TukuiPlayer"]
 				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
 				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
 				classbar:SetTemplate( "Default" )
-				classbar:CreateShadow( "Default" )
 
 				local ABStack = {}
 
@@ -151,7 +185,7 @@ local self = _G["TukuiPlayer"]
 					ABStack[i]:SetHeight(3)
 					ABStack[i].tex = ABStack[i]:CreateTexture( nil, "OVERLAY" )
 					ABStack[i].tex:SetTexture( C["media"].Glamour )
-					ABStack[i].tex:SetVertexColor( .58, .5, .78 )
+					ABStack[i].tex:SetVertexColor(color.r, color.g, color.b)
 					ABStack[i].tex:SetAllPoints( ABStack[i] )
 					ABStack[i]:SetOrientation( "VERTICAL" )
 
@@ -183,19 +217,18 @@ local self = _G["TukuiPlayer"]
 				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
 				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
 				classbar:SetTemplate( "Default" )
-				classbar:CreateShadow( "Default" )
 
 				local Orbs = {}
 
 				for i = 1, 3 do
-					Orbs[i] = CreateFrame( "StatusBar", "Classbar_Power" .. i, classbar )
-					Orbs[i]:SetWidth( ( classbar:GetWidth() - 6 ) / 3 )
+					Orbs[i] = CreateFrame("StatusBar", "Classbar_Power" .. i, classbar)
+					Orbs[i]:SetWidth((classbar:GetWidth() - 6 ) / 3 )
 					Orbs[i]:SetHeight(3)
-					Orbs[i].tex = Orbs[i]:CreateTexture( nil, "OVERLAY" )
-					Orbs[i].tex:SetTexture( C["media"].Glamour )
-					Orbs[i].tex:SetVertexColor( .5,0,.7 )
+					Orbs[i].tex = Orbs[i]:CreateTexture( nil, "OVERLAY")
+					Orbs[i].tex:SetTexture(C["media"].Glamour)
+					Orbs[i].tex:SetVertexColor(color.r, color.g, color.b)
 					Orbs[i].tex:SetAllPoints( Orbs[i] )
-					Orbs[i]:SetOrientation( "VERTICAL" )
+					Orbs[i]:SetOrientation("VERTICAL")
 
 					if( i == 1 ) then
 						Orbs[i]:SetPoint( "LEFT", classbar, "LEFT", 2, 0 )
@@ -204,18 +237,18 @@ local self = _G["TukuiPlayer"]
 					end
 				end
 
-				local change = CreateFrame( "Frame" )
-				change:RegisterEvent( "PLAYER_ENTERING_WORLD" )
-				change:RegisterEvent( "UNIT_AURA" )
-				change:RegisterEvent( "PLAYER_TARGET_CHANGED" )
-				change:SetScript( "OnEvent", function()
-					count = select( 4, UnitAura( "player", GetSpellInfo( 77487 ) ) )
-					if( count and count > 0 ) then
-						for i = 1, count do Orbs[i]:SetAlpha( 1 )end
+				local change = CreateFrame("Frame")
+				change:RegisterEvent("PLAYER_ENTERING_WORLD")
+				change:RegisterEvent("UNIT_AURA")
+				change:RegisterEvent("PLAYER_TARGET_CHANGED")
+				change:SetScript("OnEvent", function()
+					count = select( 4, UnitAura( "player", GetSpellInfo(77487)))
+					if(count and count > 0) then
+						for i = 1, count do Orbs[i]:SetAlpha(1)end
 					else
-						for i = 1, 3 do Orbs[i]:SetAlpha( 0.2 ) end
+						for i = 1, 3 do Orbs[i]:SetAlpha(0.2) end
 					end
-				end )
+				end)
 			end
 		end
 	end

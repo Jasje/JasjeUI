@@ -99,8 +99,6 @@ for _, frame in pairs(units) do
 	    local xpBG = CreateFrame("Frame", nil, self.Experience)
 	    xpBG:CreatePanel("Transparent", self.Experience:GetWidth(), self.Experience:GetHeight(), "TOPLEFT", self.Experience, "TOPLEFT", -2, 2)
 	    xpBG:Point("BOTTOMRIGHT", self.Experience, "BOTTOMRIGHT", 2, -2)	
-
-	    Resting:SetTexture(nil)
     end
 
 -- reputation bar for max level character
@@ -288,7 +286,7 @@ end
 		-- castbar
 		self.Castbar:ClearAllPoints()
         self.Castbar:Size(380, 25)
-        self.Castbar:Point("CENTER", UIParent, 0, 0)
+        self.Castbar:Point("CENTER", UIParent, 0,100)
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 
 		self.Castbar:CreateBackdrop()

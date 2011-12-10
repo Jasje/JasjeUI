@@ -2,6 +2,7 @@
 ## Author: Jasje
 ## Title: |cffD38D01Jasje Config|r
 ## Notes: Some config for Jasjes Edit.
+## Credits: Tukz,Hydra,Shestak
 ## Version: 1.1
 
 config.lua
