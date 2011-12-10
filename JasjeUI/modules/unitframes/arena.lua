@@ -1,35 +1,32 @@
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if C.unitframes.enable ~= true then return end
 
-for i = 1, 5 do
+    for i = 1, 5 do
 		local self = _G["TukuiArena" .. i]
 		
-		self.shadow:Kill()
-	
-		self:SetBackdrop(nil)
-	    self:SetBackdropColor(0, 0, 0)
-		
-		do
+		-- we dont need too see this
+		    self:SetBackdrop(nil)
+	        self:SetBackdropColor(0, 0, 0)
+        -- health
 			self.Health:Size(220, 15)
 			self.Health:CreateBorder(true)
 			self.Health:SetStatusBarTexture(C["media"].Glamour)
-			
+		-- killing stuff		
+		    self.shadow:Kill()
 			self.Health.value:Hide()
 			self.Power.value:Hide()
 			self.Debuffs:Hide()
-
+		-- name
 	        self.Name:ClearAllPoints()
 	        self.Name:Point("RIGHT", self.Health, "RIGHT", -5, 0)
 	        self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
 			self.Name:SetJustifyH("LEFT")
-			
+		-- percentage
 			local percHP = T.SetFontString(self.Health, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 	        percHP:SetPoint("LEFT", self.Health, "LEFT", 5, -0)
 	    	self:Tag(percHP, "[Tukui:perchp]")
 		    self.percHP = percHP
-		end
-		
-		do
+		-- power
 		    self.Power:ClearAllPoints()
 		    self.Power:Size(220, 15)
             self.Power:Point("LEFT", self.Health, "BOTTOMLEFT", 0, -14)
@@ -40,9 +37,7 @@ for i = 1, 5 do
 			self.Power.colorClass = false
 			self.Power.bg.multiplier = 0.1				
 			self.Power.colorPower = true
-		end
-
-		do
+        -- castbar
 			self.Castbar:ClearAllPoints()
 		    self.Castbar:Point("TOP", self, "BOTTOM", 17, 8)
 			
@@ -77,45 +72,39 @@ for i = 1, 5 do
 			self.Castbar.time:SetPoint( "RIGHT", self.Castbar, "RIGHT", -5, 0 )
 			self.Castbar.time.ClearAllPoints = T.dummy
 			self.Castbar.time.SetPoint = T.dummy
-		end
-
-		do
-		   self.Trinketbg:ClearAllPoints()
-		   self.Trinketbg:Size(40)
-		   self.Trinketbg:SetPoint("LEFT", self.Health, "RIGHT", 4, -11)				
-        end
-		
-	    do
+	    -- trinket
+		    self.Trinketbg:ClearAllPoints()
+		    self.Trinketbg:Size(40)
+		    self.Trinketbg:SetPoint("LEFT", self.Health, "RIGHT", 4, -11)				
 		-- Auratracker Frame
-		local AuraTracker = CreateFrame("Frame", nil, self)
-		AuraTracker:Size(40)
-		AuraTracker:Point("RIGHT", self.Health, "LEFT", -4, -11)
-		AuraTracker:SetTemplate("Default")
+		    local AuraTracker = CreateFrame("Frame", nil, self)
+		    AuraTracker:Size(40)
+		    AuraTracker:Point("RIGHT", self.Health, "LEFT", -4, -11)
+		    AuraTracker:SetTemplate("Default")
 		
-		AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
-		AuraTracker.icon:SetAllPoints(AuraTracker)
-		AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
-		AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
-		AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
+	    	AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
+		    AuraTracker.icon:SetAllPoints(AuraTracker)
+		    AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
+		    AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
+		    AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
 		
-		AuraTracker.text = T.SetFontString(AuraTracker,  C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-		AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
-		AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
-		self.AuraTracker = AuraTracker
-		
+		    AuraTracker.text = T.SetFontString(AuraTracker,  C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
+		    AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		    self.AuraTracker = AuraTracker
 		-- ClassIcon			
-		local class = AuraTracker:CreateTexture(nil, "ARTWORK")
-		class:SetAllPoints(AuraTracker.icon)
-		self.ClassIcon = class
-	end	
-		
-		do
+		    local class = AuraTracker:CreateTexture(nil, "ARTWORK")
+		    class:SetAllPoints(AuraTracker.icon)
+		    self.ClassIcon = class
+
+		    self:EnableElement('ClassIcon')
+		    self:EnableElement('AuraTracker')
+		-- size
 			self:Size(220, 50)
 			self:ClearAllPoints()
-			if( i == 1 ) then
-			    self:Point("BOTTOM", TukuiTarget, "TOP", 150, 150)
-		    else
-			    self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
-		    end
+		if( i == 1 ) then
+			self:Point("BOTTOM", TukuiTarget, "TOP", 150, 150)
+		else
+			self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
 		end
 	end
