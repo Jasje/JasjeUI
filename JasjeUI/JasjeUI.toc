@@ -1,6 +1,6 @@
 ## Interface: 40300
 ## Author: Jasje
-## Version: 1.1
+## Version: 1.2
 ## Credits: Tukz
 ## Title: |cffD38D01Jasje UI|r
 ## Notes: Jasjes custom Edit of Tukui.
