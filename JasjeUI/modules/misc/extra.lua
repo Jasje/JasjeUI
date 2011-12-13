@@ -5,7 +5,7 @@ local T, C, L = unpack(Tukui)
 ----------------------------------------------------------------------------------------
 local ShowReadyCheckHook = function(self, initiator, timeLeft)
 	if initiator ~= "player" then
-		PlaySound("ReadyCheck", "Master")
+		PlaySound("LEVELUPSOUND", "master")
 	end
 end
 hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
@@ -19,9 +19,9 @@ ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
 ForceWarning:RegisterEvent("PARTY_INVITE_REQUEST")
 ForceWarning:SetScript("OnEvent", function(self, event)
 	if event == "UPDATE_BATTLEFIELD_STATUS" and StaticPopup_Visible("CONFIRM_BATTLEFIELD_ENTRY") then
-		PlaySound("ReadyCheck", "Master")
+		PlaySound("LEVELUPSOUND", "master")
 	elseif event == "LFG_PROPOSAL_SHOW" or event == "PARTY_INVITE_REQUEST" then
-		PlaySound("ReadyCheck", "Master")
+		PlaySound("LEVELUPSOUND", "master")
 	end
 end)
 

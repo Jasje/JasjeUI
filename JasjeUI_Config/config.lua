@@ -1,6 +1,5 @@
 local C = {}
 
---config
 C.general = {
 	bordercolor = {.2,.2,.2,1},             
 	backdropcolor = {.075,.075,.075,1},       
@@ -8,26 +7,26 @@ C.general = {
 }
 
 C.media = {
-    font = [[Interface\AddOns\JasjeUI\media\fonts\normal_font.ttf]], -- general font of tukui
+    font = [[Interface\AddOns\JasjeUI\media\fonts\normal_font.ttf]],
 	
-    dmgfont = [[Fonts\skurri.TTF]], -- general font of dmg / sct 
-	pixelfont = [[Interface\AddOns\JasjeUI\media\fonts\HOOG0555.ttf]], -- extra pixelfont
-	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], -- another pixelfont
-	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], -- another pixelfont
-	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], -- another pixelfont
+    dmgfont = [[Fonts\skurri.TTF]],
+	pixelfont = [[Interface\AddOns\JasjeUI\media\fonts\HOOG0555.ttf]], 
+	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], 
+	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], 
+	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], 
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
 
-	switchlayoutheal = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_heal]], -- switch layout texture
-	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], -- switch layout texture
+	switchlayoutheal = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_heal]], 
+	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], 
 	
-	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], -- used for Selfbuffs
+	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], 
 }
 
 C.chat = {
-	classcolortab = true,                          -- set chat tabs to be class colored.
+	classcolortab = true,                          
 	tabcolor = { 0, 0.7, 1 },                           -- color of chat tabs, disabled if classcolor is true
-	tabmouseover = { 1, 1, 1, 1 },                       -- color of tabs on mouse-over
+	tabmouseover = { 1, 1, 1, 1 },                -- color of tabs on mouse-over
 	-- chat tab font
 	font = C.media.pixelfont,
 	fontsize = 8, 
@@ -48,15 +47,11 @@ C.unitframes = {
 }
 
 C.castbar = { 
-	classcolor = true, -- classcolor
+	classcolor = true,
 	castbarcolor = { .2, .2, .2,1 }, -- color if classcolor = false
 	nointerruptcolor = { 1,.2,.2,1 }, -- color of casts which can't be interrupted
 }
 
-
-C.bags = {
-	enable = true,
-}
 
 C.auras = {
     consolidate = false,
@@ -66,46 +61,27 @@ C.nameplate = {
     enhancethreat = true,
 }
 
-C.actionbar = {
-	hotkey = true,
-	showgrid = true,
-}
 
 C.cooldown = {
 	treshold = 2,
 }
 
 C.datatext = {
-	fps_ms = 5,                                   -- show fps and ms on panels
-	system = 0,                                   -- show total memory and others systems infos on panels
-	bags = 0,                                     -- show space used in bags on panels
-	gold = 6,                                     -- show your current gold on panels
-	wowtime = 1,                                  -- show time on panels
-	guild = 3,                                    -- show number on guildmate connected on panels
-	dur = 4,                                      -- show your equipment durability on panels.
-	friends = 2,                                  -- show number of friends connected.
-	dps_text = 0,                                 -- show a dps meter on panels
-	hps_text = 0,                                 -- show a heal meter on panels
-	power = 0,                                    -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
-	haste = 0,                                    -- show your haste rating on panels.
-	crit = 0,                                     -- show your crit rating on panels.
-	avd = 0,                                      -- show your current avoidance against the level of the mob your targeting
-	armor = 0,                                    -- show your armor value against the level mob you are currently targeting
-	currency = 0,                                 -- show your tracked currency on panels
-	hit = 0,                                      -- show hit rating
-	mastery = 0,                                  -- show mastery rating
-	micromenu = 0,                                -- add a micro menu thought datatext
-	regen = 0,                                    -- show mana regeneration
-	talent = 0,                                   -- show talent
-	calltoarms = 0,                               -- show dungeon and call to arms
-	
-	time24 = false,                               -- set time to 24h format.
-	localtime = true,                             -- set time to local time instead of server time.
-	battleground = true,
-	
+	wowtime = 1,                                  
+	friends = 2,                              
+	guild = 3,                                 
+	dur = 4,                                 
+	fps_ms = 5,                             
+	gold = 6,                                  
+
+	power = 0,                             
+	system = 0,                            
+
+	localtime = true,                        
+
 	-- Color Datatext
-	classcolor = true,                -- classcolored datatexts 
-	color = "|cff00AAFF",              -- datatext color if classcolor = false
+	classcolor = true,                      -- classcolored datatexts 
+	color = "|cff00AAFF",                -- datatext color if classcolor = false
 }
 
     -- pet action icons

@@ -1,16 +1,22 @@
 local T, C, L = unpack(Tukui)
 
+TukuiBar2Button.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+TukuiBar3Button.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+TukuiBar4Button.text:SetFont(C["media"].pixelfont, 16, "MONOCHROMEOUTLINE") 
+TukuiBar5ButtonTop.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+TukuiBar5ButtonBottom.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+
 local UpdateActionButtonFont = function(self)
 	local Name = self:GetName()
 	local Count = _G[Name.."Count"]
 	local Hotkey = _G[Name.."HotKey"]
 	
 	if Count then
-		Count:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") -- set me
+		Count:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
 	end
 	
 	if Hotkey then
-		Hotkey:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") -- set me
+		Hotkey:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
 	end
 end
 
