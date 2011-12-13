@@ -30,7 +30,42 @@ local function EditUnitFrame(frame, header)
     health.DebuffHighlightAlpha = 0.2
 
 	-- for layout-specifics, here we edit only 1 layout at time
-	if header == TukuiRaid25 or header == TukuiRaid40 then
+	if header == TukuiRaid25 then
+	
+	    health:ClearAllPoints()
+		health:SetAllPoints(frame)
+		health:SetStatusBarTexture(Glamour)
+	    health:CreateBorder(true)
+
+		health.colorDisconnected = false
+		health.colorClass = false
+		health:SetStatusBarColor(.3, .3, .3, 1)
+
+	    health:SetStatusBarColor(.2, .2, .2, 1)
+	    health.bg:SetTexture(.6, .6, .6)
+	    health.bg:SetVertexColor(0, 0, 0)
+
+		name:SetParent(health)
+		name:SetFont(font, fontsize, fontflag)
+
+		health.Smooth = true
+	
+		health.colorClass = true
+		
+	    power:Kill()
+		
+		-- switch layout
+	    local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
+    	swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
+    	swlicon:SetFrameStrata("BACKGROUND")
+    	swlicon:SetFrameLevel(2)
+
+    	local tex = swlicon:CreateTexture(nil, "OVERLAY")
+    	tex:SetTexture(C.media.switchlayoutdd)
+    	tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT",  2, -2)
+    	tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
+		
+	elseif header == TukuiRaid40 then
 	
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
@@ -38,20 +73,17 @@ local function EditUnitFrame(frame, header)
 	    health:CreateBorder(true)
 	
 		health.colorDisconnected = false
-	    health.colorClass = true
-		health.colorReaction = true
-		
+		health.colorClass = false
+		health:SetStatusBarColor(.3, .3, .3, 1)
+
 	    health:SetStatusBarColor(.2, .2, .2, 1)
 	    health.bg:SetTexture(.6, .6, .6)
 	    health.bg:SetVertexColor(0, 0, 0)
-
-        power:Kill()
 
 		name:SetParent(health)
 		name:SetFont(font, fontsize, fontflag)
 
 		health.Smooth = true
-	    power.Smooth = true
 		
 		-- switch layout
 	    local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
@@ -196,10 +228,10 @@ local function EditUnitAttributes(layout)
 		header:SetAttribute("columnSpacing", T.Scale(8))
 	elseif grid then
 		header:SetAttribute("initial-width", 68)
-		header:SetAttribute("initial-height", 30)
+		header:SetAttribute("initial-height", 32)
 		header:SetAttribute("xoffset", 7)
-		header:SetAttribute("yOffset", -7)
-		header:SetAttribute("columnSpacing", T.Scale(10))
+		header:SetAttribute("yOffset", -16)
+		header:SetAttribute("columnSpacing", T.Scale(5))
 	end
 end
 
