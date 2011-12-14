@@ -86,8 +86,8 @@ local frame = CreateFrame("Frame", "TukuiEnchantsWarningFrame", UIParent)
 
 frame.icon = frame:CreateTexture(nil, "OVERLAY")
 frame.icon:SetPoint("CENTER")
-if (class == "ROGUE" or class =="SHAMAN") then
-	frame:CreatePanel("Default", 40, 40, "CENTER", UIParent, "CENTER", 30, 200)
+if (T.myclass == "ROGUE" or T.myclass =="SHAMAN") then
+	frame:CreatePanel("Default", 40, 40, "CENTER", UIParent, "CENTER", 50, 200)
 else
 	frame:CreatePanel("Default", 40, 40, "CENTER", UIParent, "CENTER", 0, 200)
 end
