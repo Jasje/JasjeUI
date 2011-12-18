@@ -3,6 +3,6 @@
 ## Title: |cffD38D01Jasje Config|r
 ## Notes: Some config for Jasjes Edit.
 ## Credits: Tukz,Hydra,Shestak
-## Version: 1.2
+## Version: 1.3
 
 config.lua
