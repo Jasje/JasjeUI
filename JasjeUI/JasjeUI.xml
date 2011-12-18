@@ -4,6 +4,7 @@
 	<Script file="core\install.lua"/>
     <Script file="medias\media.lua"/>
 
+	<Script file="modules\nameplates\nameplates.lua"/>
 	<Script file="modules\datatext\datatext.lua"/>
 	
 	<Script file="modules\maps\minimap.lua"/>
@@ -31,7 +32,8 @@
 	<Script file="modules\unitframes\arena.lua"/>
 	<Script file="modules\unitframes\boss.lua"/>
 	<Script file="modules\raidframes\raidframe.lua"/>
-	
-	<Script file="modules\skins\options.lua"/>
+
+	<Script file="modules\skins\blizzard\options.lua"/>
+	<Script file="modules\skins\addon\tinydps.lua"/>
 
 </Ui>

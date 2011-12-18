@@ -75,7 +75,8 @@ if C.unitframes.enable ~= true then return end
 	    -- trinket
 		    self.Trinketbg:ClearAllPoints()
 		    self.Trinketbg:Size(40)
-		    self.Trinketbg:SetPoint("LEFT", self.Health, "RIGHT", 4, -11)				
+		    self.Trinketbg:SetPoint("LEFT", self.Health, "RIGHT", 4, -11)		
+            self.Trinket.trinketUseAnnounce = false			
 		-- Auratracker Frame
 		    local AuraTracker = CreateFrame("Frame", nil, self)
 		    AuraTracker:Size(40)

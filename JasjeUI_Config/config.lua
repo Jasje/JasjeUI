@@ -21,6 +21,8 @@ C.media = {
 	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], 
 	
 	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], 
+	
+	bordercolor = {.2,.2,.2,1},             
 }
 
 C.chat = {
@@ -58,7 +60,12 @@ C.auras = {
 }
 
 C.nameplate = {
-    enhancethreat = true,
+	enable = true,      
+    enhancethreat = true,            
+
+	font = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], -- font used nameplates
+	fontsize = 10, -- size used for nameplates
+	fontflag = "OUTLINEMONOCHROME", -- outline used nameplates	
 }
 
 
