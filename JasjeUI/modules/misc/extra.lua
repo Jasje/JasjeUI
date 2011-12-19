@@ -66,11 +66,12 @@ end
 SLASH_GROUPDISBAND1 = "/rd"
 
 -- Profanity
-local p = CreateFrame("Frame")
-p:RegisterEvent("CVAR_UPDATE")
-p:RegisterEvent("PLAYER_ENTERING_WORLD")
-p:SetScript("OnEvent", function(self, event, cvar)
-	SetCVar("profanityFilter", 0)
+local p = CreateFrame("FRAME")
+p:RegisterEvent("ADDON_LOADED")
+p:SetScript("OnEvent", function(self, event, addon)
+		if BNGetMatureLanguageFilter() == true then
+			BNSetMatureLanguageFilter(false)
+		end		
 end)
 
 -- kill the option
@@ -441,6 +442,8 @@ end)
 
 button2:SetScript("OnLeave", function()	GameTooltip:Hide() end)
 
+T.SkinButton(OpenAllButton)
+T.SkinButton(OpenAllButton2)
 ---------------------------------------------------------------------------------------------------------------------------------
 -- tekKompare by Tekkub found at http://www.wowinterface.com/downloads/info6837-tekKompare.html
 -- only used Hoverlinks
