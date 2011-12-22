@@ -43,6 +43,7 @@ local function UpdateOverlay(healthFrame)
 		healthFrame.NecroticOverlay:SetPoint("RIGHT", rOfs, 0)
 		healthFrame.NecroticOverlay:SetPoint("TOP", 0, 0)
 		healthFrame.NecroticOverlay:SetPoint("BOTTOM", 0, 0)
+
 		if healthFrame.colorClass then
 			healthFrame.NecroticOverlay:SetVertexColor(0, 0, 0, 0.5)
 		else

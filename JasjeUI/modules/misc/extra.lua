@@ -1,5 +1,11 @@
 local T, C, L = unpack(Tukui)
 
+-- zonetext
+ZoneTextString:SetFont(C.media.pixelfont, 15, "MONOCHROMEOUTLINE")
+SubZoneTextString:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
+PVPInfoTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMETHINOUTLINE")
+PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
+
 ----------------------------------------------------------------------------------------
 --	Force readycheck warning
 ----------------------------------------------------------------------------------------
