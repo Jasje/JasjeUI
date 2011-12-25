@@ -501,42 +501,6 @@ ns.Filger_Spells = {
 			-- Bastion of Defense  *
 			{ spellID = 29594, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
         },
-		{
-			Name = "COOLDOWN",
-			Direction = "LEFT",
-			Interval = 10,
-			Mode = "ICON",
-			setPoint = { "RIGHT", UIParent, "CENTER", -5, -400},
-
-			-- prep
-			{ spellID = 14185, size = 55, unitId = "player", caster = "player", filter = "CD" },
-			-- dance
-			{ spellID = 51713, size = 55, unitId = "player", caster = "player", filter = "CD" },
-			-- smoke bomb
-			{ spellID = 76577, size = 55, unitId = "player", caster = "player", filter = "CD" },	
-			-- Vendetta
-			{ spellID = 79140, size = 55, unitId = "player", caster = "player", filter = "CD" },
-			-- step
-			{ spellID = 36554, size = 55, unitId = "player", caster = "player", filter = "CD" },	
-		},
-		{
-			Name = "COOLDOWN",
-			Direction = "RIGHT",
-			Interval = 10,
-			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", 5, -400},
-			
-			-- cloak
-			{ spellID = 31224, size = 55, unitId = "player", caster = "player", filter = "CD" },
-			-- combat readiness
-			{ spellID = 74001, size = 55, unitId = "player", caster = "player", filter = "CD" },
-			-- kick
-			{ spellID = 1766, size = 55, unitId = "player", caster = "player", filter = "CD" },		
-			-- vanish
-			{ spellID = 1856, size = 55, unitId = "player", caster = "player", filter = "CD" },	
-			-- sprint
-			{ spellID = 2983, size = 55, unitId = "player", caster = "player", filter = "CD" },			
-		},
 	},	
 	["PALADIN"] = { -------------------------------------------------------------------------------------------------------- Paladin
 		{
