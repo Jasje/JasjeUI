@@ -117,11 +117,9 @@ local StyleTooltip = function(self)
 		GameTooltip:ClearLines()
 		
 		if spec == 1 then
-			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, PRIMARY))
-			GameTooltip:AddDoubleLine("Arena") 
+			GameTooltip:AddDoubleLine(format(T.StatColor.."%s: %s/%s/%s - [%s]"..T.StatColorEnd, name, p1, p2, p3, PRIMARY))
 		else
-			GameTooltip:AddDoubleLine(format(hexa.."%s: %s/%s/%s - [%s]"..hexb, name, p1, p2, p3, SECONDARY))
-			GameTooltip:AddDoubleLine("Battleground")
+			GameTooltip:AddDoubleLine(format(T.StatColor.."%s: %s/%s/%s - [%s]"..T.StatColorEnd, name, p1, p2, p3, SECONDARY))
 		end
 		
 		self.highlight:Show()
@@ -150,7 +148,7 @@ v:SetPoint("BOTTOM", TukuiInstallFrame, "TOP", 0, 5)
 v:SetTemplate("Transparent")
 v:FontString("Text", C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
 v.Text:SetPoint("CENTER")
-v.Text:SetText("|cffD38D01Jasje UI|r v"..T.release..hexa.." by "..hexb.."|cffD38D01Jasje@tukui.org|r"..hexa..", thanks to "..hexb.."|cffC495DDTukz|r "..hexa.."at "..hexb.."|cffC495DDwww.tukui.org|r")
+v.Text:SetText("|cffD38D01Jasje UI|r v"..T.release..T.StatColor.." by "..T.StatColorEnd.."|cffD38D01Jasje@tukui.org|r"..T.StatColor..", thanks to "..T.StatColorEnd.."|cffC495DDTukz|r "..T.StatColor.."at "..T.StatColorEnd.."|cffC495DDwww.tukui.org|r")
 
 TukuiInstallFrame:SetSize(T.screenwidth-100,T.screenheight-100)
 TukuiInstallFrame:SetTemplate("Transparent")
@@ -175,7 +173,7 @@ TukuiInstallFrame:SetTemplate("Transparent")
 		local button = CreateFrame("BUTTON", "GameMenuTukuiButtonOptions", menu, "GameMenuButtonTemplate")
 		button:SetSize(continuex, continuey)
 		button:Point("TOP", interface, "BOTTOM", 0, -1)
-		button:SetText(hexa.."Jasje Edit:|r "..T.release)
+		button:SetText(T.StatColor.."Jasje Edit:|r "..T.release)
 
 		if C.general.blizzardreskin then
 			T.SkinButton(button)

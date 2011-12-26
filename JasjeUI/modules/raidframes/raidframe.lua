@@ -205,6 +205,8 @@ local function EditUnitFrame(frame, header)
 	    tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT", 2, -2)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 		
+		header:ClearAllPoints()
+		header:Point("TOP", UIParent, "CENTER", 0, -283)
 	end
 end
 

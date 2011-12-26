@@ -1,10 +1,20 @@
 local T, C, L = unpack(Tukui)
 
+local hexa = T.StatColor
+local hexb = T.StatColorEnd
+
 -- zonetext
 ZoneTextString:SetFont(C.media.pixelfont, 15, "MONOCHROMEOUTLINE")
 SubZoneTextString:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 PVPInfoTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMETHINOUTLINE")
 PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
+
+-- raidwarningtext
+RaidWarningFrameSlot1:SetTextColor(1,1,1)
+RaidWarningFrameSlot2:SetTextColor(1,1,1)
+
+RaidWarningFrame:ClearAllPoints() 
+RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
 
 ----------------------------------------------------------------------------------------
 --	Force readycheck warning

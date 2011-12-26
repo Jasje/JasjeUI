@@ -3,7 +3,7 @@ local C = {}
 C.general = {
 	bordercolor = {.2,.2,.2,1},             
 	backdropcolor = {.075,.075,.075,1},       
-	altbackdropcolor = { .075,.075,.075,.7 },
+	altbackdropcolor = {.075,.075,.075,.7},
 }
 
 C.media = {
@@ -14,6 +14,7 @@ C.media = {
 	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], 
 	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], 
 	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], 
+	ruRUpixel =  [[Interface\AddOns\JasjeUI\media\fonts\ruRU_Pixel.TTF]], 
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
 
@@ -22,13 +23,14 @@ C.media = {
 	
 	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], 
 	
-	bordercolor = {.2,.2,.2,1},             
+	bordercolor = {.2,.2,.2,1}, 
+	datatextcolor1 = {.5,.5,.5,1},	
 }
 
 C.chat = {
 	classcolortab = true,                          
-	tabcolor = { 0, 0.7, 1 },                           -- color of chat tabs, disabled if classcolor is true
-	tabmouseover = { 1, 1, 1, 1 },                -- color of tabs on mouse-over
+	tabcolor = {0,0.7,1},                           -- color of chat tabs, disabled if classcolor is true
+	tabmouseover = {1,1,1,1},                -- color of tabs on mouse-over
 	-- chat tab font
 	font = C.media.pixelfont,
 	fontsize = 8, 
@@ -50,8 +52,8 @@ C.unitframes = {
 
 C.castbar = { 
 	classcolor = true,
-	castbarcolor = { .2, .2, .2,1 }, -- color if classcolor = false
-	nointerruptcolor = { 1,.2,.2,1 }, -- color of casts which can't be interrupted
+	castbarcolor = {.2, .2, .2,1}, -- color if classcolor = false
+	nointerruptcolor = {1,.2,.2,1}, -- color of casts which can't be interrupted
 }
 
 
@@ -84,11 +86,9 @@ C.datatext = {
 	power = 0,                             
 	system = 0,                            
 
-	localtime = true,                        
+	localtime = true,               
 
-	-- Color Datatext
-	classcolor = true,                      -- classcolored datatexts 
-	color = "|cff00AAFF",                -- datatext color if classcolor = false
+    fontsize = 14,
 }
 
     -- pet action icons

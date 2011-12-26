@@ -116,6 +116,7 @@ local function chatsetup()
 end
 
 local function Skin(frame)
+    local id = frame:GetID()
 	local chat = frame:GetName()
 	local tab = _G[chat.."Tab"]
 

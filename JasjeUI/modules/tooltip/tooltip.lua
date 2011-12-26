@@ -1,5 +1,8 @@
 local T, C, L = unpack(Tukui)
 
+local hexa = T.StatColor
+local hexb = T.StatColorEnd
+
 -- GuildNote and PvpTitle
 local Blah = function()
 	local unit = "mouseover"
