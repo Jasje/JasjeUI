@@ -82,6 +82,7 @@ local function EditUnitFrame(frame, header)
 
 		name:SetParent(health)
 		name:SetFont(font, fontsize, fontflag)
+		frame:Tag(name, '[Tukui:getnamecolor][Tukui:nameshort] [Tukui:dead][Tukui:afk]')
 
 		health.Smooth = true
 		

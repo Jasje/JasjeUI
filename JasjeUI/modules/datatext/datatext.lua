@@ -66,6 +66,7 @@ local datatext = {
 	"Regen",
 	"Talent",
 	"CallToArms",
+	"Battleground",
 }
 
 -- Overwrite & Update Show/Hide/Position of all Datatext

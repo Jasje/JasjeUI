@@ -288,7 +288,7 @@ end
 		-- castbar
 		self.Castbar:ClearAllPoints()
         self.Castbar:Size(380, 25)
-        self.Castbar:Point("CENTER", UIParent, 0,100)
+        self.Castbar:Point("CENTER", UIParent, 0,120)
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 
 		self.Castbar:CreateBackdrop()
