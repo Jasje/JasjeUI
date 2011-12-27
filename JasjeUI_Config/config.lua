@@ -14,7 +14,7 @@ C.media = {
 	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], 
 	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], 
 	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], 
-	ruRUpixel =  [[Interface\AddOns\JasjeUI\media\fonts\ruRU_Pixel.TTF]], 
+	ruRUpixel =  [[Interface\AddOns\JasjeUI\media\fonts\visitor_rus.TTF]], 
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
 

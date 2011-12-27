@@ -8,7 +8,8 @@ T.SetPixelFont = function()
 end
 
 if T.client == "ruRU" then
-	C.media.pixelfont = C.media.ruRUpixel
+	C.media.pixelfont2 = C.media.ruRUpixel
+	C.datatext.fontsize = 11
 end
 
 local oUF = oUFTukui
