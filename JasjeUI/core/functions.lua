@@ -10,6 +10,8 @@ end
 if T.client == "ruRU" then
 	C.media.pixelfont2 = C.media.ruRUpixel
 	C.datatext.fontsize = 11
+	C.nameplate.font = C.media.ruRUpixel
+	C.media.pixelfont = C.media.uf_ruRupixel
 end
 
 local oUF = oUFTukui
