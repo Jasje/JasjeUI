@@ -66,7 +66,6 @@ local datatext = {
 	"Regen",
 	"Talent",
 	"CallToArms",
-	"Battleground",
 }
 
 -- Overwrite & Update Show/Hide/Position of all Datatext
@@ -80,4 +79,13 @@ for _, data in pairs(datatext) do
 		text:SetFont(T.SetPixelFont())
 		text:SetShadowOffset(0,0)
 	end
+end
+--work-a-around
+if C.datatext.battleground then
+	TukuiStatBattleGroundText1:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText1:SetPoint("LEFT", 30, 2)
+	TukuiStatBattleGroundText2:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText2:SetPoint("CENTER", 0, 2)
+	TukuiStatBattleGroundText3:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText3:SetPoint("RIGHT", -30, 2)
 end
