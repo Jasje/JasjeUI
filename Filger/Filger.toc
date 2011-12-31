@@ -1,7 +1,7 @@
 ## Interface: 40300
 ## Title: Filger
 ## Notes: Minimal buff/debuff/proc tracking
-## Author: Nils Ruesch, Affli
+## Author: Nils Ruesch
 ## Editor: Jasje
 ## Credits: Nils Ruesch, Shestak, Affli, Garagar, hidekki
 ## Version: 3.0

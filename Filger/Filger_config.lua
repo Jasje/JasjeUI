@@ -1,5 +1,13 @@
 local _, ns = ...
 
+--[[
+	
+	Filger
+	Copyright (c) 2009, Nils Ruesch
+	All rights reserved.
+	
+]]
+
 ns.Filger_Settings = {
 	configmode = false,
 }
