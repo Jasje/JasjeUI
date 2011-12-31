@@ -22,7 +22,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", Blah)
 -- Hp font
 local TooltipUpdateFont = function(self)
 	if self.text and not self.resized then
-		self.text:SetFont(C.media.pixelfont2, 14, "MONOCHROMEOUTLINE")
+		self.text:SetFont(T.SetTooltipFont())
 		self.resized = true
 	end
 end

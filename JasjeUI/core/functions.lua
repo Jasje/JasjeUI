@@ -8,10 +8,24 @@ T.SetPixelFont = function()
 end
 
 if T.client == "ruRU" then
-	C.media.pixelfont2 = C.media.ruRUpixel
-	C.datatext.fontsize = 11
-	C.nameplate.font = C.media.ruRUpixel
-	C.media.pixelfont = C.media.uf_ruRupixel
+	C.media.pixelfont = C.media.ruRUpixel
+	C.media.pixelfont2 = C.media.ruRUpixel2	
+end
+
+T.SetTooltipFont = function()
+	if T.client == "ruRU" then
+		return C.media.pixelfont2, C.media.ruRUfontsize, "MONOCHROMEOUTLINE"
+	else
+		return C.media.pixelfont2, C.tooltip.fontsize, "MONOCHROMEOUTLINE"
+	end
+end
+
+T.SetDatatextFont = function()
+	if T.client == "ruRU" then
+		return C.media.pixelfont2, C.media.ruRUfontsize, "MONOCHROMEOUTLINE"
+	else
+		return C.media.pixelfont2, C.datatext.fontsize, "MONOCHROMEOUTLINE"
+	end
 end
 
 local oUF = oUFTukui

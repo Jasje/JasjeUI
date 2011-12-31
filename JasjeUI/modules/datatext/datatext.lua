@@ -76,16 +76,16 @@ for _, data in pairs(datatext) do
 
 	if frame and frame.Option then
 		DataTextPosition(frame, text, frame.Option)
-		text:SetFont(T.SetPixelFont())
+		text:SetFont(T.SetDatatextFont())
 		text:SetShadowOffset(0,0)
 	end
 end
 --work-a-around
 if C.datatext.battleground then
-	TukuiStatBattleGroundText1:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText1:SetFont(T.SetDatatextFont())
 	TukuiStatBattleGroundText1:SetPoint("LEFT", 30, 2)
-	TukuiStatBattleGroundText2:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText2:SetFont(T.SetDatatextFont())
 	TukuiStatBattleGroundText2:SetPoint("CENTER", 0, 2)
-	TukuiStatBattleGroundText3:SetFont(T.SetPixelFont())
+	TukuiStatBattleGroundText3:SetFont(T.SetDatatextFont())
 	TukuiStatBattleGroundText3:SetPoint("RIGHT", -30, 2)
 end

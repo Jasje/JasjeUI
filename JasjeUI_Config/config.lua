@@ -14,8 +14,10 @@ C.media = {
 	pixelfont2 = [[Interface\AddOns\JasjeUI\media\fonts\visitor2.ttf]], 
 	pixelfont3 = [[Interface\AddOns\JasjeUI\media\fonts\visitor1.ttf]], 
 	pixelfont4 =  [[Interface\AddOns\JasjeUI\media\fonts\Pixelway_Baseline.TTF]], 
-	uf_ruRupixel =  [[Interface\AddOns\JasjeUI\media\fonts\uf_ruRupixel.TTF]], 
-	ruRUpixel =  [[Interface\AddOns\JasjeUI\media\fonts\visitor_rus.TTF]], 
+	
+	ruRUpixel =  [[Interface\AddOns\JasjeUI\media\fonts\ruRU_Pixel.TTF]],
+	ruRUpixel2 =  [[Interface\AddOns\JasjeUI\media\fonts\visitor_rus.TTF]], 
+	ruRUfontsize = 11,
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
 
@@ -60,6 +62,10 @@ C.castbar = {
 
 C.auras = {
     consolidate = false,
+}
+
+C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts
+	fontsize = 14,
 }
 
 C.nameplate = {
