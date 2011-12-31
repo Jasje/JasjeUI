@@ -6,48 +6,39 @@ local color = RAID_CLASS_COLORS[T.myclass]
 	
 	do
 		if( C["unitframes"].classbar == true ) then
-	        if T.myclass == "DRUID" then	
-				local eclipseBar = CreateFrame('Frame', nil, self)
-				eclipseBar:Point("LEFT", health, "TOPLEFT", 0, 8)
-				eclipseBar:Size(224, 3)
-				eclipseBar:SetFrameStrata("MEDIUM")
-				eclipseBar:SetFrameLevel(8)
+		
+		    if T.myclass == "DRUID" then
+			    local DruidManaBackground = self.DruidManaBackground
+				local DruidManaBarStatus = self.DruidMana
+				local DruidManaText = self.DruidManaText
+				local eclipseBar = self.EclipseBar
+				local eclipseBarText = self.EclipseBar.Text
+				local solarBar = eclipseBar.SolarBar
+				local lunarBar = eclipseBar.LunarBar
 
-                eclipseBar:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
-				eclipseBar:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
-				
-				local lunarBar = CreateFrame('StatusBar', nil, eclipseBar)
-				lunarBar:SetPoint('LEFT', eclipseBar, 'LEFT', 0, 0)
-				lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
-				lunarBar:SetStatusBarTexture(normTex)
-				lunarBar:SetStatusBarColor(.50, .52, .70)
-				eclipseBar.LunarBar = lunarBar
+				DruidManaBackground:ClearAllPoints()
+				DruidManaBackground:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
+				DruidManaBackground:Size(218, 2)
 
-				local solarBar = CreateFrame('StatusBar', nil, eclipseBar)
-				solarBar:SetPoint('LEFT', lunarBar:GetStatusBarTexture(), 'RIGHT', 0, 0)
+				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
+				DruidManaText:SetFont(T.SetPixelFont())
+
+				DruidManaBackground:CreateBackdrop("Default")
+				DruidManaBackground.backdrop:CreateShadow("Default")
+
+				eclipseBar:ClearAllPoints()
+				eclipseBar:Point("BOTTOM", self, "TOP", 0, 7)
+				eclipseBar:Size(218, 2)
 				solarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
-				solarBar:SetStatusBarTexture(normTex)
-				solarBar:SetStatusBarColor(.80, .82,  .60)
-				eclipseBar.SolarBar = solarBar
+				lunarBar:SetSize(eclipseBar:GetWidth(), eclipseBar:GetHeight())
 
-				local eclipseBarText = solarBar:CreateFontString(nil, 'OVERLAY')
-				eclipseBarText:SetPoint('TOP', panel)
-				eclipseBarText:SetPoint('BOTTOM', panel)
-				eclipseBarText:SetFont(unitframefont, unitframefontsize, unitframefontflag)
-				eclipseBar.Text = eclipseBarText
-				
-				-- border 
-				eclipseBar.border = CreateFrame("Frame", nil,eclipseBar)
-				eclipseBar.border:SetPoint("TOPLEFT", eclipseBar, "TOPLEFT", T.Scale(-2), T.Scale(2))
-				eclipseBar.border:SetPoint("BOTTOMRIGHT", eclipseBar, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
-				eclipseBar.border:SetFrameStrata("MEDIUM")
-				eclipseBar.border:SetFrameLevel(4)
-				eclipseBar.border:SetTemplate("Hydra")
-				eclipseBar.border:SetBorder()
+				eclipseBarText:ClearAllPoints()
+				eclipseBarText:Point('TOP', eclipseBar, 0, 20)
+				eclipseBarText:SetFont(T.SetPixelFont())
 
-				-- hide "low mana" text on load if eclipseBar is show
-				if eclipseBar and eclipseBar:IsShown() then FlashInfo.ManaLevel:SetAlpha(0) end
-			end		
+				eclipseBar:CreateBackdrop("Default")
+				eclipseBar.backdrop:CreateShadow("Default")
+			end
 			
         -- combo bar
         local parent = TukuiTarget
