@@ -138,6 +138,7 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				for i = 1, 6 do
 					self.Runes[i]:SetHeight(3)
 					self.Runes[i]:SetWidth( ( classbar:GetWidth() - 9 ) / 6 )
+					self.Runes[i]:SetStatusBarTexture(C["media"].Glamour)
 
 					if( i == 1 ) then
 						self.Runes[i]:Point( "BOTTOMLEFT", classbar, "BOTTOMLEFT", 2, 2 )
