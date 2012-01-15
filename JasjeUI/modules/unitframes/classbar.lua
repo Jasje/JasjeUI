@@ -162,44 +162,49 @@ local color = RAID_CLASS_COLORS[T.myclass]
 			end
 				
 			if( T.myclass == "MAGE" ) then
-				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
+			--[[
+		     function SpellCheck:IsRanged()
+	            return class == "MAGE" and IsSpellKnown(44425))
+			end	
+             ]]-- 
+				local classbar = CreateFrame("Frame", "Classbar", UIParent)
 				classbar:Width(224)
 				classbar:Height(7)
-				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
-				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
-				classbar:SetTemplate( "Default" )
-
+				classbar:Point("BOTTOM", TukuiPlayer, "TOP", 0, 5)
+				classbar:SetBackdropBorderColor(0, 0, 0, 0)
+				classbar:SetTemplate("Default")
+				
 				local ABStack = {}
 
 				for i = 1, 4 do
-					ABStack[i] = CreateFrame( "StatusBar", "Classbar_Power" .. i, classbar )
-					ABStack[i]:SetWidth( ( classbar:GetWidth() - 7 ) / 4 )
+					ABStack[i] = CreateFrame("StatusBar", "Classbar_Power" .. i, classbar)
+					ABStack[i]:SetWidth((classbar:GetWidth() - 7) / 4)
 					ABStack[i]:SetHeight(3)
-					ABStack[i].tex = ABStack[i]:CreateTexture( nil, "OVERLAY" )
-					ABStack[i].tex:SetTexture( C["media"].Glamour )
+					ABStack[i].tex = ABStack[i]:CreateTexture( nil, "OVERLAY")
+					ABStack[i].tex:SetTexture(C["media"].Glamour)
 					ABStack[i].tex:SetVertexColor(color.r, color.g, color.b)
-					ABStack[i].tex:SetAllPoints( ABStack[i] )
-					ABStack[i]:SetOrientation( "VERTICAL" )
+					ABStack[i].tex:SetAllPoints(ABStack[i])
+					ABStack[i]:SetOrientation("VERTICAL")
 
 					if( i == 1 ) then
-						ABStack[i]:SetPoint( "LEFT", classbar, "LEFT", 2, 0 )
+						ABStack[i]:SetPoint( "LEFT", classbar, "LEFT", 2, 0)
 					else
-						ABStack[i]:SetPoint( "LEFT", ABStack[i - 1], "RIGHT", 1, 0 )
+						ABStack[i]:SetPoint( "LEFT", ABStack[i - 1], "RIGHT", 1, 0)
 					end
 				end
 
-				change = CreateFrame( "Frame" )
-				change:RegisterEvent( "PLAYER_ENTERING_WORLD" )
-				change:RegisterEvent( "UNIT_AURA" )
-				change:RegisterEvent( "PLAYER_TARGET_CHANGED" )
+				change = CreateFrame("Frame")
+				change:RegisterEvent("PLAYER_ENTERING_WORLD")
+				change:RegisterEvent("UNIT_AURA")
+				change:RegisterEvent("PLAYER_TARGET_CHANGED")
 				change:SetScript( "OnEvent", function()
-					count = select( 4, UnitDebuff( "player", GetSpellInfo( 36032 ) ) )
-					if( count and count > 0 ) then
-						for i = 1, count do ABStack[i]:SetAlpha( 1 ) end
+					count = select(4, UnitDebuff("player", GetSpellInfo(36032)))
+					if(count and count > 0) then
+						for i = 1, count do ABStack[i]:SetAlpha(1) end
 					else
-						for i = 1, 4 do ABStack[i]:SetAlpha( 0.2 ) end
+						for i = 1, 4 do ABStack[i]:SetAlpha(0.2) end
 					end
-				end )
+				end)
 			end
 
 			if( T.myclass == "PRIEST" ) then

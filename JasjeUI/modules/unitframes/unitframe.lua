@@ -94,6 +94,7 @@ for _, frame in pairs(units) do
 	    self.Experience:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
 	    self.Experience:SetFrameLevel(12)
 	    self.Experience:SetAlpha(1)
+	    self.Experience:SetStatusBarTexture(C["media"].Glamour)
 	    self.Experience:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
 
 	    local xpBG = CreateFrame("Frame", nil, self.Experience)
@@ -111,6 +112,7 @@ for _, frame in pairs(units) do
 	    self.Reputation:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
 	    self.Reputation:SetFrameLevel(10)
 	    self.Reputation:SetAlpha(1)
+	    self.Reputation:SetStatusBarTexture(C["media"].Glamour)
 	    self.Reputation:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
 
 	    local repBG = CreateFrame("Frame", nil, self.Reputation)

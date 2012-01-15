@@ -30,16 +30,6 @@ C.media = {
 	datatextcolor1 = {.5,.5,.5,1},	
 }
 
-C.chat = {
-	classcolortab = true,                          
-	tabcolor = {0,0.7,1},                           -- color of chat tabs, disabled if classcolor is true
-	tabmouseover = {1,1,1,1},                -- color of tabs on mouse-over
-	-- chat tab font
-	font = C.media.pixelfont,
-	fontsize = 8, 
-	fontflag = "OUTLINEMONOCHROME", 
-}
-
 C.unitframes = {
     unicolor = true,
 	cbicons = true,

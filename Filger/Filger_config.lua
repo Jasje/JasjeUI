@@ -389,10 +389,10 @@ ns.Filger_Spells = {
 			{ spellID = 3045, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Call of the Wild
 			{ spellID = 53434, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Mend Pet
-			{ spellID = 136, size = 47, unitId = "pet", caster = "player", filter = "BUFF" },
-			-- Feed Pet
-			{ spellID = 6991, size = 47, unitId = "pet", caster = "player", filter = "BUFF" },
+			-- Sic'Em
+			{ spellID = 89388, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Ready, Set, Aim
+			{ spellID = 82925, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -413,6 +413,18 @@ ns.Filger_Spells = {
 			{ spellID = 53301, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Hunter's Mark
 			{ spellID = 1130, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "LEFT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, -56, -90 },
+			
+			-- Mend Pet
+			{ spellID = 136, size = 37, unitId = "pet", caster = "player", filter = "BUFF" },
+			-- Feed Pet
+			{ spellID = 6991, size = 37, unitId = "pet", caster = "player", filter = "BUFF" },
 		},
 	},	
 	["ROGUE"] = { -------------------------------------------------------------------------------------------------------- Rogue
