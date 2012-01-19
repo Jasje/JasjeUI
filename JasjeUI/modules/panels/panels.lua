@@ -36,15 +36,14 @@ TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight, 0,-6)
 -- killing time
 TukuiMinimapStatsLeft:Kill()
 TukuiMinimapStatsRight:Kill()
-TukuiInfoLeftLineVertical:Kill()
-TukuiInfoRightLineVertical:Kill()
-TukuiLineToABLeft:Kill()
-TukuiLineToABRight:Kill()
-TukuiCubeLeft:Kill()
-TukuiCubeRight:Kill()
-if C.chat.background then
-    TukuiLineToABLeftAlt:Kill()
-    TukuiLineToABRightAlt:Kill()
+
+if not C.chat.background then
+    TukuiInfoLeftLineVertical:Kill()
+    TukuiInfoRightLineVertical:Kill()
+    TukuiLineToABLeft:Kill()
+    TukuiLineToABRight:Kill()
+    TukuiCubeLeft:Kill()
+    TukuiCubeRight:Kill()
 end	
 
 -- switch layout
