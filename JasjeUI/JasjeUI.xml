@@ -35,5 +35,6 @@
 
 	<Script file="modules\skins\blizzard\options.lua"/>
 	<Script file="modules\skins\addon\tinydps.lua"/>
+	<Script file="modules\skins\addon\capping.lua"/>
 
 </Ui>
