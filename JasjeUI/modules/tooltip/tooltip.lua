@@ -141,6 +141,7 @@ local function GetAiLColor(ail)
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
+    if (IsModifierKeyDown()) then
 	local ail, r, gb, d
 	local _, unit = GameTooltip:GetUnit()
 
@@ -153,12 +154,13 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(self, ...)
 			r, gb = GetAiLColor(ail)
 			ClearInspectPlayer(unit)
 			if unit == "player" then
-				GameTooltip:AddLine(format("|cfffed100"..STAT_AVERAGE_ITEM_LEVEL..":|r "..ail), r, gb, gb)
+				GameTooltip:AddLine(format(hexa.."Item Level: "..hexb..ail), r, gb, gb)
 			else
-				GameTooltip:AddLine(format("|cfffed100"..STAT_AVERAGE_ITEM_LEVEL..":|r "..ail).." ("..((d > 0) and "|cff00ff00+" or "|cffff0000")..d.."|r)", r, gb, gb)
+				GameTooltip:AddLine(format(hexa.."Item Level: "..hexb..ail).." ("..((d > 0) and "|cff00ff00+" or "|cffff0000")..d.."|r)", r, gb, gb)
 			end
 			GameTooltip:Show()
 		end
+	end
 	end
 end)
 
