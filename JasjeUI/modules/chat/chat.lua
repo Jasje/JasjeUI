@@ -1,6 +1,5 @@
 local T, C, L = unpack(Tukui)
 
-
 local function chatsetup()
 	-- setting chat frames if using Tukui chats.					
 	FCF_ResetChatWindows()

@@ -66,9 +66,9 @@ function DisbandRaidGroup()
 end
 
 StaticPopupDialogs.DISBAND_RAID = {
-	text = hexa.."Jasje is Disbanding your Raid/Party"..hexb,
-	button1 = hexa.."Accept"..hexb,
-	button2 = hexa.."Cancel"..hexb,
+	text = "|cffD38D01Jasje is Disbanding your Raid/Party",
+	button1 = "|cffD38D01Accept",
+	button2 = "|cffD38D01Cancel",
 	OnAccept = DisbandRaidGroup,
 	timeout = 0,
 	whileDead = 1,
@@ -80,19 +80,6 @@ SlashCmdList.GROUPDISBAND = function()
 	StaticPopup_Show("DISBAND_RAID")
 end
 SLASH_GROUPDISBAND1 = "/rd"
-
--- Profanity
-local p = CreateFrame("FRAME")
-p:RegisterEvent("ADDON_LOADED")
-p:SetScript("OnEvent", function(self, event, addon)
-		if BNGetMatureLanguageFilter() == true then
-			BNSetMatureLanguageFilter(false)
-		end		
-end)
-
--- kill the option
-InterfaceOptionsSocialPanelProfanityFilter:Kill()
-
 -------------------------------------------------------------------------------------
 -- Credit Alleykat 
 -- Entering combat and allertrun function (can be used in anther ways)
