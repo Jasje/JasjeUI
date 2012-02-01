@@ -28,6 +28,11 @@ T.SetDatatextFont = function()
 	end
 end
 
+T.SkinAura = function (self, button)
+	button.count:SetFont(T.SetPixelFont())
+	button.remaining:SetFont(T.SetPixelFont())
+end
+
 local oUF = oUFTukui
 -- color castbar
 T.PostCastStart = function(self, unit, name, rank, castid)

@@ -32,7 +32,6 @@ tbottombar:CreateShadow("Hydra")
 TukuiTooltipAnchor:ClearAllPoints()
 TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight, 0,-6)
 
-
 -- killing time
 TukuiMinimapStatsLeft:Kill()
 TukuiMinimapStatsRight:Kill()
@@ -152,6 +151,7 @@ v.Text:SetText("|cffD38D01Jasje UI|r v"..T.release..T.StatColor.." by "..T.StatC
 TukuiInstallFrame:SetSize(T.screenwidth-100,T.screenheight-100)
 TukuiInstallFrame:SetTemplate("Transparent")
 
+if not (IsAddOnLoaded("Tukui_ConfigUI")) then
 -- create esc button
 	local loaded = CreateFrame("Frame")
 	loaded:RegisterEvent("PLAYER_LOGIN")
@@ -181,4 +181,4 @@ TukuiInstallFrame:SetTemplate("Transparent")
 		keybinds:ClearAllPoints()
 		keybinds:Point("TOP", button, "BOTTOM", 0, -1)
 	end)
-
+end
