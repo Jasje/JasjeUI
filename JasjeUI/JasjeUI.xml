@@ -21,7 +21,6 @@
 	<Script file="modules\misc\announce.lua"/>
 	<Script file="modules\misc\bgannouncer.lua"/>
 	<Script file="modules\misc\extra.lua"/>
-	<Script file="modules\misc\tabbinder.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>

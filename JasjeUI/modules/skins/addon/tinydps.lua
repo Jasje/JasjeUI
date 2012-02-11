@@ -34,6 +34,7 @@ frame:SetScript("OnEvent", function(self, event)
 	
 	-- skin it
 	frame:SetTemplate("Transparent", true)
+	frame:CreateShadow(nil)
 	
 	if status then
 		tdpsStatusBar:SetBackdrop({bgFile = C["media"].Glamour,
