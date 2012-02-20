@@ -23,7 +23,7 @@ end
 hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 
 TukuiShiftBar:ClearAllPoints()
-TukuiShiftBar:SetPoint('BOTTOMLEFT', ChatFrame1, "TOPLEFT", -2, 25)
+TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
 
 -- whatcha gonna do when you're bored
 TukuiBar2Button:SetTemplate("Transparent")
