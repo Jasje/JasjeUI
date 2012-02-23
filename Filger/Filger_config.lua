@@ -13,6 +13,64 @@ ns.Filger_Settings = {
 }
 
 ns.Filger_Spells = {
+    ["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
+		{
+			Name = "Deathknight Procs",
+			Direction = "DOWN",
+			Interval = 4,
+			Mode = "ICON",
+			setPoint = { "CENTER", "UIParent", -0, -85 },
+
+			-- Killing Machine
+			{ spellID = 51124, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Freezing Fog
+			{ spellID = 59052, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dark Succor
+			{ spellID = 101568, size = 47, unitId = "player", caster = "player", filter = "BUFF" },	
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, -110, -40 },
+
+			-- Bone Shield
+			{ spellID = 49222, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Surge of Victory
+			{ spellID = 102432, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			--Lichborne
+			{ spellID = 49039, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Summon Gargoyle
+			{ spellID = 49206, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, 110, -40 },
+
+			-- Necrotic Strike
+			{ spellID = 73975, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Blood Plague
+			{ spellID = 59879, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Frost Fever
+			{ spellID = 59921, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "COOLDOWN",
+			Direction = "LEFT",
+			Interval = 4,
+			Mode = "ICON",
+			setPoint = { "LEFT", UIParent, "CENTER", -240, -40 },
+
+			--Death Grip
+			{ spellID = 49576, size = 60, filter = "CD" },	
+			--Shadow infusion
+			{ spellID = 91342, size = 60, unitId = "pet", caster = "player", filter = "BUFF" },
+		},
+	},
 	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
 		{
 			Name = "Shaman Procs",
@@ -686,62 +744,6 @@ ns.Filger_Spells = {
 			{ spellID = 6544, size = 65, filter = "CD" },		
 		},
     },		
-	["DEATHKNIGHT"] = {  -------------------------------------------------------------------------------------------------------- Deathknight
-		{
-			Name = "Deathknight Procs",
-			Direction = "DOWN",
-			Interval = 4,
-			Mode = "ICON",
-			setPoint = { "CENTER", "UIParent", -0, -85 },
-
-			-- Killing Machine
-			{ spellID = 51124, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Freezing Fog
-			{ spellID = 59052, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Dark Succor
-			{ spellID = 101568, size = 47, unitId = "player", caster = "player", filter = "BUFF" },	
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -110, -50 },
-
-			-- Bone Shield
-			{ spellID = 49222, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			--Lichborne
-			{ spellID = 49039, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Summon Gargoyle
-			{ spellID = 49206, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 110, -40 },
-
-			-- Necrotic Strike
-			{ spellID = 73975, size = 60, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Blood Plague
-			{ spellID = 59879, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Frost Fever
-			{ spellID = 59921, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
-		},
-		{
-			Name = "COOLDOWN",
-			Direction = "LEFT",
-			Interval = 4,
-			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", -240, -40 },
-
-			--Death Grip
-			{ spellID = 49576, size = 60, filter = "CD" },	
-			--Shadow infusion
-			{ spellID = 91342, size = 60, unitId = "pet", caster = "player", filter = "BUFF" },
-		},
-	},
 -----------------------------------------------------------------------------------------------------------------------
 -- dont touch anything below or else ill ass rape you aight!
 -----------------------------------------------------------------------------------------------------------------------	
