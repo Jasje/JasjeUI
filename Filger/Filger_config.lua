@@ -123,6 +123,8 @@ ns.Filger_Spells = {
 			{ spellID = 33395, size = 37, filter = "CD" },
 			-- Blast Wave
 			{ spellID = 11113, size = 37, filter = "CD" },
+			-- Mana shield
+			{ spellID = 1463, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},	
 		{
 			Name = "Buffs and Debuffs",
