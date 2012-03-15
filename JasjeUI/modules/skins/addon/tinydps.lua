@@ -47,7 +47,7 @@ frame:SetScript("OnEvent", function(self, event)
 	if button then
 		button:HookScript("OnShow", function(self) 
 			anchor:ClearAllPoints()
-			anchor:Point('BOTTOMLEFT', TukuiMinimap, 'BOTTOMLEFT', 0, -28)
+			anchor:Point('BOTTOMLEFT', TukuiMinimap, 'BOTTOMLEFT', 0, -5)
 		end)
 		button:HookScript("OnHide", function(self) 
 			anchor:ClearAllPoints()
