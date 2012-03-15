@@ -5,9 +5,14 @@ local debuffs = TukuiAurasPlayerDebuffs
 
 buffs:ClearAllPoints()
 buffs:SetPoint("TOPRIGHT", Minimap,"TOPLEFT" ,-8, 2)
+buffs:SetAttribute("wrapAfter", 14)
+buffs:SetAttribute("xOffset", -33)
+buffs:SetAttribute("wrapYOffset", -39)
 
 debuffs:ClearAllPoints()
-debuffs:SetPoint("TOPRIGHT", Minimap, "BOTTOMLEFT",-8, -5)
+debuffs:SetPoint("TOPRIGHT", Minimap, "BOTTOMLEFT",-8, -15)
+debuffs:SetAttribute("wrapAfter", 14)
+debuffs:SetAttribute("xOffset", -33)
 
 local hooks = {
 	TukuiAurasPlayerBuffs,
