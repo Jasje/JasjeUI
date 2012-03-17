@@ -218,7 +218,27 @@ for i = 1, getn(interfacedropdown) do
 	end
 end
 T.SkinButton(InterfaceOptionsHelpPanelResetTutorials)
-	
+	-- Shestak made this
+    ScrollOfResurrectionSelectionFrame:StripTextures()
+	ScrollOfResurrectionSelectionFrameList:StripTextures()
+	ScrollOfResurrectionSelectionFrame:SetTemplate("Transparent")
+	ScrollOfResurrectionSelectionFrameList:SetTemplate("Overlay")
+	T.SkinButton(ScrollOfResurrectionSelectionFrameAcceptButton)
+	T.SkinButton(ScrollOfResurrectionSelectionFrameCancelButton)
+	T.SkinEditBox(ScrollOfResurrectionSelectionFrameTargetEditBox)
+	ScrollOfResurrectionFrameTargetEditBox:Height(ScrollOfResurrectionSelectionFrameTargetEditBox:GetHeight() - 5)
+
+	ScrollOfResurrectionFrame:StripTextures()
+	ScrollOfResurrectionFrameNoteFrame:StripTextures()
+	ScrollOfResurrectionFrame:SetTemplate("Transparent")
+	ScrollOfResurrectionFrameNoteFrame:SetTemplate("Overlay")
+	T.SkinButton(ScrollOfResurrectionFrameAcceptButton)
+	T.SkinButton(ScrollOfResurrectionFrameCancelButton)
+	T.SkinEditBox(ScrollOfResurrectionFrameTargetEditBox)
+	ScrollOfResurrectionFrameTargetEditBox:Height(ScrollOfResurrectionFrameTargetEditBox:GetHeight()-5)
+	ScrollOfResurrectionSelectionFrameTargetEditBox:Width(ScrollOfResurrectionSelectionFrameList:GetWidth())
+    T.SkinScrollBar(ScrollOfResurrectionSelectionFrameListScrollFrameScrollBar)
+    --
 local optioncheckbox = {
 	-- Advanced
 	"Advanced_MaxFPSCheckBox",
