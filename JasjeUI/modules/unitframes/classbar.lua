@@ -116,18 +116,18 @@ local color = RAID_CLASS_COLORS[T.myclass]
 			if( T.myclass == "DEATHKNIGHT" ) then
 				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
 				classbar:Width(224)
-				classbar:Height(7)
+				classbar:Height(10)
 				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
 				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
 				classbar:SetTemplate( "Default" )
 
 				self.Runes:SetWidth(classbar:GetWidth() - 4)
-				self.Runes:SetHeight(3)
+				self.Runes:SetHeight(6)
 				self.Runes:ClearAllPoints()
 				self.Runes:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
 
 				for i = 1, 6 do
-					self.Runes[i]:SetHeight(3)
+					self.Runes[i]:SetHeight(6)
 					self.Runes[i]:SetWidth( ( classbar:GetWidth() - 9 ) / 6 )
 					self.Runes[i]:SetStatusBarTexture(C["media"].Glamour)
 
