@@ -1,14 +1,5 @@
 local T, C, L = unpack(Tukui)
 
-TukuiBar1:ClearAllPoints()
-TukuiBar1:Point("BOTTOM", UIParent, "BOTTOM", 0, 7)
-
-TukuiBar4:ClearAllPoints()
-TukuiBar4:Point("BOTTOM", UIParent, "BOTTOM", 0, 7)
-
-TukuiBar5:ClearAllPoints()
-TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -10, -50)
-
 T.InfoLeftRightWidth = 370
 
 TukuiInfoRight:ClearAllPoints()
@@ -20,6 +11,26 @@ TukuiInfoLeft:ClearAllPoints()
 TukuiInfoLeft:Point("BOTTOMLEFT", UIParent, 10, 7)
 TukuiInfoLeft:Width(T.InfoLeftRightWidth)
 TukuiInfoLeft:Height(20)
+
+TukuiBar1:ClearAllPoints()
+TukuiBar1:SetPoint("BOTTOM", 0, 7)
+TukuiBar4:ClearAllPoints()
+TukuiBar4:SetPoint("BOTTOMLEFT", TukuiBar1, 0, 0)
+TukuiBar5:ClearAllPoints()
+TukuiBar5:Point("RIGHT", UIParent, "RIGHT", -10, -50)
+
+if C.actionbar.jasje then
+    TukuiBar2:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+    TukuiBar3:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+	
+    TukuiBar4Button:Kill() 
+
+	TukuiBar2Button:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+	TukuiBar3Button:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+	
+	TukuiExitVehicleButtonLeft:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+	TukuiExitVehicleButtonRight:Height((T.buttonsize * 1) + (T.buttonspacing * 2))
+end 
 
 -- bottombar
 local tbottombar = CreateFrame("Frame", "TukuiBottomBar", UIParent)

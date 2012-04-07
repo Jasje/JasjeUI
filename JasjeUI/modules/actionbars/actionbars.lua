@@ -25,6 +25,22 @@ hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 TukuiShiftBar:ClearAllPoints()
 TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
 
+if C.actionbar.jasje then
+    MultiBarBottomLeftButton7:Kill()
+    MultiBarBottomLeftButton8:Kill()
+    MultiBarBottomLeftButton9:Kill()
+    MultiBarBottomLeftButton10:Kill()
+    MultiBarBottomLeftButton11:Kill()
+    MultiBarBottomLeftButton12:Kill()
+
+    MultiBarBottomRightButton7:Kill()
+    MultiBarBottomRightButton8:Kill()
+    MultiBarBottomRightButton9:Kill()
+    MultiBarBottomRightButton10:Kill()
+    MultiBarBottomRightButton11:Kill()
+    MultiBarBottomRightButton12:Kill()
+end
+	
 -- whatcha gonna do when you're bored
 TukuiBar2Button:SetTemplate("Transparent")
 TukuiBar2Button:SetBorder()

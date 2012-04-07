@@ -49,7 +49,6 @@ C.castbar = {
 	nointerruptcolor = {1,.2,.2,1}, -- color of casts which can't be interrupted
 }
 
-
 C.auras = {
     consolidate = false,
 }
@@ -67,7 +66,11 @@ C.nameplate = {
 	fontflag = "OUTLINEMONOCHROME", -- outline used nameplates	
 }
 
-
+C.actionbar = {
+    jasje = true,                                  -- enable jasje action bars
+    buttonsize = 29,                                -- normal buttons size
+}
+	
 C.cooldown = {
 	treshold = 2,
 }
@@ -86,6 +89,10 @@ C.datatext = {
 	localtime = true,               
 
     fontsize = 14,
+}
+
+C.merchant = {
+	autorepair = false,                              
 }
 
     -- pet action icons

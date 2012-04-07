@@ -63,7 +63,12 @@ for _, frame in pairs(units) do
 		self.Castbar:ClearAllPoints()
         self.Castbar:SetHeight(T.Scale(25))
         self.Castbar:Width(TukuiBar1:GetWidth() -34)
+		
+		if C.actionbar.jasje then
+		self.Castbar:Point("BOTTOM", TukuiBar4, "TOP", 15, 4)
+		else
         self.Castbar:Point("BOTTOM", InvTukuiActionBarBackground, "TOP", 15, 4)
+		end
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 		
         self.Castbar:CreateBackdrop()
@@ -250,7 +255,7 @@ end
 	if unit == "focus" then
         local panel = CreateFrame("Frame", nil, self)
 		panel:Size(224,13)
-		panel:Point("TOP", self, "BOTTOM", 0,16)
+		panel:Point("TOP", self, "BOTTOM", 0,21)
 		panel:SetTemplate("")
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
