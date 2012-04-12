@@ -45,7 +45,7 @@ for _, frame in pairs(units) do
         self.Power:CreateBorder(true)
 		
 		self:ClearAllPoints()
-		self:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", -8, 200)
+		self:SetPoint("BOTTOMRIGHT", TukuiBar1, "TOPLEFT", 60, 180)
 
 		self.Power.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		self.Health.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
@@ -159,7 +159,7 @@ end
 		self.Buffs.spacing = 2
 		
 		self:ClearAllPoints()
-		self:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", 8, 200)
+		self:SetPoint("BOTTOMLEFT", TukuiBar1, "TOPRIGHT", -60, 180)
 
 		self.Name:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		self.Power.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")

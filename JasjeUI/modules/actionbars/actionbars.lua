@@ -40,7 +40,7 @@ if C.actionbar.jasje then
     MultiBarBottomRightButton11:Kill()
     MultiBarBottomRightButton12:Kill()
 end
-	
+
 -- whatcha gonna do when you're bored
 TukuiBar2Button:SetTemplate("Transparent")
 TukuiBar2Button:SetBorder()

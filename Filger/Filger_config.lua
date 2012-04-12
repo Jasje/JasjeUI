@@ -67,8 +67,18 @@ ns.Filger_Spells = {
 
 			--Death Grip
 			{ spellID = 49576, size = 60, filter = "CD" },	
+		},
+        {		
+			Name = "Pet",
+			Direction = "LEFT",
+			Interval = 4,
+			Mode = "ICON",
+			setPoint = { "LEFT", TukuiPet, "RIGHT", -80, -45},
+			
 			--Shadow infusion
 			{ spellID = 91342, size = 60, unitId = "pet", caster = "player", filter = "BUFF" },
+			-- Dark Transformation
+			{ spellID = 63560, size = 60, unitId = "pet", caster = "player", filter = "BUFF" },
 		},
 	},
 	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
