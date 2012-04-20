@@ -628,6 +628,8 @@ ns.Filger_Spells = {
 			{ spellID = 20925, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Inquisition
 			{ spellID = 84963, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Judgements of the Pure
+			{ spellID = 53657, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -658,20 +660,6 @@ ns.Filger_Spells = {
 			{ spellID = 87138, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Hand of Light 
 			{ spellID = 90174, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-		},
-		{
-			Name = "COOLDOWN",
-			Direction = "LEFT",
-			Interval = 10,
-			Mode = "ICON",
-			setPoint = { "LEFT", UIParent, "CENTER", -75, -400},
-			
-			-- Divine Plea
-			{ spellID = 54428, size = 65, filter = "CD" },
-			-- Avenging Wrath
-			{ spellID = 31884, size = 65, filter = "CD" },
-			-- Hand Of Reckoning
-			{ spellID = 62124, size = 65, filter = "CD" },
 		},
 	},
 	["WARRIOR"] = {  -------------------------------------------------------------------------------------------------------- Warrior
