@@ -233,7 +233,7 @@ local function EditUnitAttributes(layout)
 		header:SetAttribute("initial-width", 68)
 		header:SetAttribute("initial-height", 32)
 		header:SetAttribute("xoffset", 7)
-		header:SetAttribute("yOffset", -16)
+		header:SetAttribute("yOffset", -5)
 		header:SetAttribute("columnSpacing", T.Scale(5))
 	end
 end

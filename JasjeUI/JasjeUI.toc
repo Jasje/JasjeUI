@@ -1,7 +1,7 @@
 ## Interface: 40300
 ## Author: Jasje
 ## Version: 1.5
-## Credits: Tukz
+## Credits: Tukz, Haleth, Tekkub, Shestak, Ex
 ## Title: |cffD38D01Jasje UI|r
 ## Notes: Jasjes custom Edit of Tukui.
 ## RequiredDeps: JasjeUI_Config, Tukui

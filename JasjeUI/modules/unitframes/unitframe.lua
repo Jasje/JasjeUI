@@ -57,7 +57,7 @@ for _, frame in pairs(units) do
 	    self.Health.bg:SetTexture(.6, .6, .6)
 	    self.Health.bg:SetVertexColor(0, 0, 0)
 		
-		self.CombatFeedbackText:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		self.CombatFeedbackText:Kill()
 		self.Status:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		
 		self.Castbar:ClearAllPoints()

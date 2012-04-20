@@ -37,6 +37,7 @@ C.unitframes = {
 	combatfeedback = true,
 	showplayerinparty = true,
 	gridonly = true,
+	gridvertical = true,                           
 	targetpowerpvponly = true,   
 	showfocustarget = false,   
     classiccombo = false,                           -- display classic combo points (from Tukui 13 or less)
@@ -50,7 +51,7 @@ C.castbar = {
 }
 
 C.auras = {
-    consolidate = false,
+    consolidate = true,
 }
 
 C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts

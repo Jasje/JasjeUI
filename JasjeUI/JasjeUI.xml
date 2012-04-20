@@ -18,6 +18,7 @@
 	<Script file="modules\misc\altpowerbar.lua"/>
 	<Script file="modules\misc\threatbar.lua"/>
 	<Script file="modules\misc\NCATeamRating.lua"/>
+	<Script file="modules\misc\HatTrick.lua"/>
 	
 	<Script file="modules\misc\announce.lua"/>
 	<Script file="modules\misc\bgannouncer.lua"/>

@@ -12,6 +12,14 @@ PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
 RaidWarningFrame:ClearAllPoints() 
 RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
 
+UIErrorsFrame:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+UIErrorsFrame:SetShadowOffset(0, 0)
+
+RaidWarningFrame.slot1:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+RaidWarningFrame.slot2:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+RaidBossEmoteFrame.slot1:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+RaidBossEmoteFrame.slot2:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+
 -- remove Leave Queue from arena/battleground
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 ----------------------------------------------------------------------------------------
@@ -40,13 +48,36 @@ ForceWarning:SetScript("OnEvent", function(self, event)
 end)
 
 ----------------------------------------------------------------------------------------
+-- WorldStateAlwaysUpFrame font
+----------------------------------------------------------------------------------------
+local UpdateWorldFrame = function()
+	for i = 1, GetNumWorldStateUI() do
+		local Name = "AlwaysUpFrame" .. i
+		local Hidden = select(3, GetWorldStateUIInfo(i))
+		
+		if _G[Name] and not (Hidden or _G[Name].TextSet) then
+			local Frame = _G[Name]
+			local Text = _G[Name .. "Text"]
+			Text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE") 
+			
+			Frame.TextSet = true
+		end
+	end
+end
+
+local WorldFrameFont = CreateFrame("Frame")
+WorldFrameFont:RegisterEvent("PLAYER_ENTERING_WORLD")
+WorldFrameFont:RegisterEvent("ZONE_CHANGED")
+WorldFrameFont:SetScript("OnEvent", UpdateWorldFrame)
+
+----------------------------------------------------------------------------------------
 -- Remove Boss Emote spam during BG(ArathiBasin SpamFix by Partha)
 ----------------------------------------------------------------------------------------
 local Fixer = CreateFrame("Frame")
 local RaidBossEmoteFrame, spamDisabled = RaidBossEmoteFrame
 
 local function DisableSpam()
-	if GetZoneText() == L_ZONE_ARATHIBASIN or GetZoneText() == L_ZONE_GILNEAS then
+	if GetZoneText() == "Arathi Basin" or GetZoneText() == "The Battle for Gilneas" then
 		RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
 		spamDisabled = true
 	elseif spamDisabled then

@@ -653,7 +653,7 @@ ns.Filger_Spells = {
 			-- Infusion of Light
 			{ spellID = 54149, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Crusader
-			{ spellID = 94686, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			--{ spellID = 94686, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Art of War
 			{ spellID = 87138, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Hand of Light 
