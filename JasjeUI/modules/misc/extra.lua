@@ -15,11 +15,6 @@ RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
 UIErrorsFrame:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 UIErrorsFrame:SetShadowOffset(0, 0)
 
-RaidWarningFrame.slot1:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-RaidWarningFrame.slot2:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-RaidBossEmoteFrame.slot1:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-RaidBossEmoteFrame.slot2:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-
 -- remove Leave Queue from arena/battleground
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 ----------------------------------------------------------------------------------------
