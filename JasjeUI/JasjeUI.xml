@@ -20,6 +20,7 @@
 	<Script file="modules\misc\NCATeamRating.lua"/>
 	<Script file="modules\misc\HatTrick.lua"/>
 	<Script file="modules\misc\InfusionofLight.lua"/>
+	<Script file="modules\misc\alRaidCD.lua"/>
 	
 	<Script file="modules\misc\announce.lua"/>
 	<Script file="modules\misc\bgannouncer.lua"/>
@@ -39,5 +40,6 @@
 	<Script file="modules\skins\blizzard\options.lua"/>
 	<Script file="modules\skins\addon\tinydps.lua"/>
 	<Script file="modules\skins\addon\capping.lua"/>
+	<Script file="modules\skins\addon\dbm.lua"/>
 
 </Ui>

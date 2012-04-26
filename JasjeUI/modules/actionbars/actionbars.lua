@@ -1,10 +1,12 @@
 local T, C, L = unpack(Tukui)
 
-TukuiBar2Button.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
-TukuiBar3Button.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
-TukuiBar4Button.text:SetFont(C["media"].pixelfont, 16, "MONOCHROMEOUTLINE") 
-TukuiBar5ButtonTop.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
-TukuiBar5ButtonBottom.text:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+TukuiBar2Button.text:SetFont(T.SetPixelFont())
+TukuiBar3Button.text:SetFont(T.SetPixelFont())
+TukuiBar4Button.text:SetFont(T.SetPixelFont())
+TukuiBar5ButtonTop.text:SetFont(T.SetPixelFont())
+TukuiBar5ButtonBottom.text:SetFont(T.SetPixelFont())
+TukuiExitVehicleButtonLeft.text:SetFont(T.SetPixelFont())
+TukuiExitVehicleButtonRight.text:SetFont(T.SetPixelFont())
 
 local UpdateActionButtonFont = function(self)
 	local Name = self:GetName()
@@ -12,18 +14,22 @@ local UpdateActionButtonFont = function(self)
 	local Hotkey = _G[Name.."HotKey"]
 	
 	if Count then
-		Count:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE") 
+		Count:SetFont(T.SetPixelFont())
 	end
 	
 	if Hotkey then
-		Hotkey:SetFont(C["media"].pixelfont, 8, "MONOCHROMEOUTLINE")
+		Hotkey:SetFont(T.SetPixelFont())
 	end
 end
 
 hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 
 TukuiShiftBar:ClearAllPoints()
+if (T.myclass == "PALADIN") then
+TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 5, -45)
+else
 TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
+end
 
 if C.actionbar.jasje then
     MultiBarBottomLeftButton7:Kill()

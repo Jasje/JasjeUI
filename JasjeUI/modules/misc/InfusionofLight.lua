@@ -1,3 +1,5 @@
+local T, C, L = unpack(Tukui)
+
 --[[
 
 http://www.wowinterface.com/downloads/info19542-InfusionofLight.html#info

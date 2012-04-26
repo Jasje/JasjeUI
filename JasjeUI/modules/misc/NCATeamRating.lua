@@ -1,3 +1,5 @@
+local T, C, L = unpack(Tukui)
+
 f = CreateFrame("Frame")
 f:RegisterEvent("UPDATE_BATTLEFIELD_STATUS")
 
