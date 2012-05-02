@@ -126,11 +126,11 @@ end
 local OnMouseDown = function(self, button)
 	if button == "LeftButton" then
 		if GetRealNumRaidMembers() > 0 then
-			SendChatMessage(sformat("Cooldown %s: %s", self.left:GetText(), self.right:GetText()), "RAID")
+			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "RAID")
 		elseif GetRealNumPartyMembers() > 0 and not UnitInRaid("player") then
-			SendChatMessage(sformat("Cooldown %s: %s", self.left:GetText(), self.right:GetText()), "PARTY")
+			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "PARTY")
 		else
-			SendChatMessage(sformat("Cooldown %s: %s", self.left:GetText(), self.right:GetText()), "SAY")
+			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "SAY")
 		end
 	elseif button == "RightButton" then
 		StopTimer(self)
@@ -206,7 +206,7 @@ local OnEvent = function(self, event, ...)
 		if band(sourceFlags, filter) == 0 then return end
 		if eventType == "SPELL_RESURRECT" or eventType == "SPELL_CAST_SUCCESS" or eventType == "SPELL_AURA_APPLIED" then
 			local spellId = select(12, ...)
-			sourceName = sourceName:gsub("-%w+", "")
+			--sourceName = sourceName:gsub(" - %w+", "")
 			if spells[spellId] and show[select(2, IsInInstance())] then
 				StartTimer(sourceName, spellId)
 			end
