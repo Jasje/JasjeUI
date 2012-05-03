@@ -21,6 +21,7 @@
 	<Script file="modules\misc\HatTrick.lua"/>
 	<Script file="modules\misc\InfusionofLight.lua"/>
 	<Script file="modules\misc\alRaidCD.lua"/>
+	<Script file="modules\misc\Flump.lua"/>
 	
 	<Script file="modules\misc\announce.lua"/>
 	<Script file="modules\misc\bgannouncer.lua"/>
