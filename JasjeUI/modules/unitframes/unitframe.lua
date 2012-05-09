@@ -196,6 +196,24 @@ end
 		
         self.Castbar.Text = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
         self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
+		
+		local buffs = self.Buffs
+		local debuffs = self.Debuffs
+		    buffs:ClearAllPoints()
+		    buffs:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 4)
+
+		    debuffs:ClearAllPoints()
+		    debuffs:Point("BOTTOMLEFT", buffs, "TOPLEFT", -30, 2)
+
+		    if buffs or debuffs then
+			    for _, f in pairs({buffs, debuffs}) do
+			    	if not f then return end
+				    f:Size(252, 26)
+				    f.size = 26
+				    f.num = 8
+				    hooksecurefunc(f, "PostCreateIcon", T.SkinAura)
+			    end
+		    end
 	end
 	
 	if unit == "targettarget" then
@@ -255,7 +273,7 @@ end
 	if unit == "focus" then
         local panel = CreateFrame("Frame", nil, self)
 		panel:Size(224,13)
-		panel:Point("TOP", self, "BOTTOM", 0,21)
+		panel:Point("TOP", self, "BOTTOM", 0,18)
 		panel:SetTemplate("")
 		panel:SetFrameLevel(2)
 		panel:SetFrameStrata("MEDIUM")
@@ -272,7 +290,7 @@ end
         self.Health:CreateBorder(true)
 		
 		self:ClearAllPoints()
-		self:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 10)
+		self:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 12)
 
 		self.Name:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		self.Name:ClearAllPoints()
@@ -315,5 +333,19 @@ end
 		
         self.Castbar.Text = T.SetFontString(self.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
         self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 0)
+		
+		local debuffs = self.Debuffs
+			debuffs:ClearAllPoints()
+			debuffs:Point('RIGHT', self, 'LEFT', -4, 3)
+
+			if debuffs then
+				for _, f in pairs({debuffs}) do
+					if not f then return end
+					f:Size(300,37)
+					f.size = 37
+					f.num = 5
+					hooksecurefunc(f, "PostCreateIcon", T.SkinAura)
+				end
+			end
 	end
 end

@@ -8,6 +8,7 @@ TukuiBar5ButtonBottom.text:SetFont(T.SetPixelFont())
 TukuiExitVehicleButtonLeft.text:SetFont(T.SetPixelFont())
 TukuiExitVehicleButtonRight.text:SetFont(T.SetPixelFont())
 
+
 local UpdateActionButtonFont = function(self)
 	local Name = self:GetName()
 	local Count = _G[Name.."Count"]
@@ -26,7 +27,7 @@ hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 
 TukuiShiftBar:ClearAllPoints()
 if (T.myclass == "PALADIN") then
-TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 5, -45)
+TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", -28, -45)
 else
 TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
 end

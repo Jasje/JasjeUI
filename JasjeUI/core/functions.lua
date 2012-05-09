@@ -29,7 +29,12 @@ T.SetDatatextFont = function()
 end
 
 T.SkinAura = function (self, button)
+	button.count:ClearAllPoints()
+	button.count:Point("TOPLEFT", button,1, 5)
 	button.count:SetFont(T.SetPixelFont())
+	
+	button.remaining:ClearAllPoints()
+	button.remaining:Point("CENTER", button,2, -2)
 	button.remaining:SetFont(T.SetPixelFont())
 end
 

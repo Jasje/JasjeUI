@@ -2,7 +2,8 @@
 ## Author: Jasje
 ## Title: |cffD38D01Jasje Config|r
 ## Notes: Some config for Jasjes Edit.
-## Credits: Tukz,Hydra,Shestak
 ## Version: 1.5
+## Credits: Tukz, Haleth, Nils Ruesch
+, Tekkub, Shestak, Ex, ALZA, Oomp, Alleykat, Allez
 
 config.lua
