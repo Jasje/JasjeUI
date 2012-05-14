@@ -14,20 +14,12 @@ local function EditUnitFrame(frame, header)
 	local panel = frame.panel
 	local debuff = frame.Debuffs
 	local raiddebuff = frame.RaidDebuffs
+	local color = RAID_CLASS_COLORS[select(2, UnitClass(frame.unit))]
 
 	local Glamour = C["media"].Glamour
 	local font, fontsize, fontflag = C.media.pixelfont, 8, "OUTLINEMONOCHROME"
 
 	frame:SetBackdropColor(.0,.0,.0,.0)
-	
-	local dbh = health:CreateTexture(nil, "OVERLAY", Healthbg)
-    dbh:SetAllPoints(health)
-    dbh:SetTexture(Glamour)
-    dbh:SetBlendMode("ADD")
-    dbh:SetVertexColor(0,0,0,0)
-    health.DebuffHighlight = dbh
-    health.DebuffHighlightFilter = true
-    health.DebuffHighlightAlpha = 0.2
 
 	-- for layout-specifics, here we edit only 1 layout at time
 	if header == TukuiRaid25 then
@@ -83,6 +75,7 @@ local function EditUnitFrame(frame, header)
 		name:SetParent(health)
 		name:SetFont(font, fontsize, fontflag)
 		frame:Tag(name, '[Tukui:getnamecolor][Tukui:nameshort] [Tukui:dead][Tukui:afk]')
+		frame:HighlightUnit(color.r, color.g, color.b)
 
 		health.Smooth = true
 		
@@ -169,6 +162,8 @@ local function EditUnitFrame(frame, header)
 		health.value:Point("CENTER", health, 1, -5)
 	    health.value:SetFont(font, fontsize, fontflag)
 
+		frame:HighlightUnit(color.r, color.g, color.b)
+		
         power:ClearAllPoints()
 	    power:Height(1)
 	    power:SetBorder()
@@ -193,9 +188,14 @@ local function EditUnitFrame(frame, header)
 
 		health.Smooth = true
 	    power.Smooth = true
-		
-		raiddebuff.time:Kill()
 
+		raiddebuff.count:ClearAllPoints()
+		raiddebuff.count:SetPoint("CENTER",raiddebuff, -6, 6)
+		raiddebuff.count:SetFont(font, fontsize, fontflag)
+		raiddebuff.time:ClearAllPoints()
+		raiddebuff.time:SetPoint("CENTER",raiddebuff, 2, 0)
+		raiddebuff.time:SetFont(font, fontsize, fontflag)
+	  
 		local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
 	    swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
 	    swlicon:SetFrameStrata("BACKGROUND")
@@ -207,7 +207,18 @@ local function EditUnitFrame(frame, header)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 		
 		header:ClearAllPoints()
-		header:Point("TOP", UIParent, "CENTER", 0, -283)
+		header:Point("CENTER", UIParent, "CENTER", -250, 20)
+		
+		--Resurrect Indicator
+	    local Resurrect = CreateFrame('Frame', nil, health)
+    	Resurrect:SetFrameLevel(health:GetFrameLevel() + 1)
+	    Resurrect:Size(20)
+    	Resurrect:SetPoint("CENTER")
+
+	    local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
+	    ResurrectIcon:SetAllPoints()
+	    ResurrectIcon:SetDrawLayer('OVERLAY', 7)
+	    self.ResurrectIcon = ResurrectIcon
 	end
 end
 
@@ -217,6 +228,11 @@ local function EditUnitAttributes(layout)
 	local dpsmax40 = layout:match("Raid40")
 	local healmax15 = layout:match("Healer15")
 	local grid = layout:match("HealerGrid")
+
+	if C.unitframes.gridvertical then
+		point = "TOP"
+		columnAnchorPoint = "LEFT"
+	end
 	
 	-- set your new attributes here, in this example we only resize units, X/Y offset and column spacing to Grid.
 	if dpsmax25 then
@@ -235,6 +251,8 @@ local function EditUnitAttributes(layout)
 		header:SetAttribute("xoffset", 7)
 		header:SetAttribute("yOffset", -5)
 		header:SetAttribute("columnSpacing", T.Scale(5))
+		header:SetAttribute("point", point)
+		header:SetAttribute("columnAnchorPoint", columnAnchorPoint)
 	end
 end
 
