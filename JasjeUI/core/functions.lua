@@ -118,6 +118,25 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 	end	
 end	
 
+hooksecurefunc(T, "UpdateThreat", function(self, event, unit)
+	local threat = UnitThreatSituation(self.unit)
+	if (threat == 3) then
+		if self.Health.backdrop and self.Power.backdrop then
+			self.Health.backdrop:SetBackdropBorderColor(1,0,0,1)
+			self.Power.backdrop:SetBackdropBorderColor(1,0,0,1)
+		else
+			self.Name:SetTextColor(1,0.1,0.1)
+		end
+	else
+		if self.Health.backdrop and self.Power.backdrop then
+			self.Health.backdrop:SetBackdropBorderColor(unpack(C["media"].bordercolor))
+			self.Power.backdrop:SetBackdropBorderColor(unpack(C["media"].bordercolor))
+		else
+			self.Name:SetTextColor(1,1,1)
+		end
+	end
+end)
+
 -- AuraTracker Function
 function updateAuraTrackerTime(self, elapsed)
 	if (self.active) then

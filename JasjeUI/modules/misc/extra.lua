@@ -13,6 +13,8 @@ RaidWarningFrame:ClearAllPoints()
 RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
 
 UIErrorsFrame:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+UIErrorsFrame:ClearAllPoints() 
+UIErrorsFrame:Point("CENTER", UIParent, "CENTER",0, 200)
 UIErrorsFrame:SetShadowOffset(0, 0)
 
 -- remove Leave Queue from arena/battleground
