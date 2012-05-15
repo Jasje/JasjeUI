@@ -755,7 +755,7 @@ ns.Filger_Spells = {
 			Direction = "LEFT",
 			Interval = 2,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, "CENTER", -180, 50 },
+			setPoint = { "CENTER", UIParent, "CENTER", -180, 150 },
 
 			--Rouge
 			--Kidney Shot
@@ -1010,7 +1010,7 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 2,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, "CENTER", 180, 50 },
+			setPoint = { "CENTER", UIParent, "CENTER", 180, 150 },
 
 	        --Druid 
 			--Innervate
