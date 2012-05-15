@@ -39,6 +39,33 @@ T.SkinAura = function (self, button)
 end
 
 local oUF = oUFTukui
+
+local ticks = {}
+function T.HideTicks()
+	for _, tick in pairs(ticks) do
+		tick:Hide()
+	end		
+end
+
+function T.SetCastTicks(frame, numTicks)
+	T.HideTicks()
+	if(numTicks and numTicks > 0 ) then
+		local d = frame:GetWidth() / numTicks
+		for i = 1, numTicks do
+			if not ticks[i] then
+				ticks[i] = frame:CreateTexture(nil, "OVERLAY")
+				ticks[i]:SetTexture(C["media"].Glamour)
+				ticks[i]:SetVertexColor(0, 0, 0)
+				ticks[i]:SetWidth(2)
+				ticks[i]:SetHeight(frame:GetHeight())
+			end
+			ticks[i]:ClearAllPoints()
+			ticks[i]:SetPoint("CENTER", frame, "LEFT", d * i, 0)
+			ticks[i]:Show()
+		end
+	end
+end
+
 -- color castbar
 T.PostCastStart = function(self, unit, name, rank, castid)
 	if unit == "vehicle" then unit = "player" end
@@ -59,6 +86,35 @@ T.PostCastStart = function(self, unit, name, rank, castid)
         else
             self:SetStatusBarColor(unpack(C["castbar"].castbarcolor))
         end
+
+		if(C["castbar"].ticks == true and unit == "player") then
+			local baseTicks = T.ChannelTicks[name]
+			if(baseTicks and T.HastedChannelTicks[name] ) then
+				local tickIncRate = 1 / baseTicks
+				local curHaste = UnitSpellHaste("player") * 0.01
+				local firstTickInc = tickIncRate / 2
+				local bonusTicks = 0
+				if(curHaste >= firstTickInc) then
+					bonusTicks = bonusTicks + 1
+				end
+
+				local x = tonumber(T.Round(firstTickInc + tickIncRate, 2))
+				while curHaste >= x do
+					x = tonumber(T.Round(firstTickInc + (tickIncRate * bonusTicks), 2))
+					if(curHaste >= x) then
+						bonusTicks = bonusTicks + 1
+					end
+				end
+
+				T.SetCastTicks(self, baseTicks + bonusTicks)
+			elseif(baseTicks) then
+				T.SetCastTicks(self, baseTicks)
+			else
+				T.HideTicks()
+			end
+		elseif(unit == "player") then
+			T.HideTicks()
+		end
 	end	
 end	
 

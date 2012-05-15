@@ -48,6 +48,7 @@ C.castbar = {
 	classcolor = true,
 	castbarcolor = {.2, .2, .2,1}, -- color if classcolor = false
 	nointerruptcolor = {1,.2,.2,1}, -- color of casts which can't be interrupted
+	ticks = true,
 }
 
 C.auras = {
