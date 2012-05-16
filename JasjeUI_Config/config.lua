@@ -20,6 +20,7 @@ C.media = {
 	ruRUfontsize = 11,
 	
 	Glamour =  [[Interface\AddOns\JasjeUI\media\textures\Glamour4.tga]],
+	highlight =  [[Interface\AddOns\JasjeUI\media\textures\Highlight.tga]],
 
 	switchlayoutheal = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_heal]], 
 	switchlayoutdd = [[Interface\AddOns\JasjeUI\media\textures\switch_layout_dd]], 

@@ -18,7 +18,7 @@ local function EditUnitFrame(frame, header)
 
 	local Glamour = C["media"].Glamour
 	local font, fontsize, fontflag = C.media.pixelfont, 8, "OUTLINEMONOCHROME"
-
+	
 	frame:SetBackdropColor(.0,.0,.0,.0)
 
 	-- for layout-specifics, here we edit only 1 layout at time
@@ -30,7 +30,6 @@ local function EditUnitFrame(frame, header)
 	    health:CreateBorder(true)
 
 		health.colorDisconnected = false
-		health.colorClass = false
 		health:SetStatusBarColor(.3, .3, .3, 1)
 
 	    health:SetStatusBarColor(.2, .2, .2, 1)
@@ -41,7 +40,6 @@ local function EditUnitFrame(frame, header)
 		name:SetFont(font, fontsize, fontflag)
 
 		health.Smooth = true
-	
 		health.colorClass = true
 		
 	    power:Kill()
@@ -78,6 +76,13 @@ local function EditUnitFrame(frame, header)
 		frame:HighlightUnit(color.r, color.g, color.b)
 
 		health.Smooth = true
+		
+		raiddebuff.count:ClearAllPoints()
+		raiddebuff.count:SetPoint("CENTER",raiddebuff, -6, 6)
+		raiddebuff.count:SetFont(font, fontsize, fontflag)
+		raiddebuff.time:ClearAllPoints()
+		raiddebuff.time:SetPoint("CENTER",raiddebuff, 2, 0)
+		raiddebuff.time:SetFont(font, fontsize, fontflag)
 		
 		-- switch layout
 	    local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
@@ -123,18 +128,23 @@ local function EditUnitFrame(frame, header)
         power.colorClass = true
 	    power.bg.multiplier = 0.1
 		
-        debuff:Kill()
-
 		name:SetParent(health)
 		name:ClearAllPoints()
 		name:SetPoint("TOP", 0, -5)
 		name:SetFont(font, fontsize, fontflag)
 		
-		self:Tag(Name, "[Tukui:getnamecolor][Tukui:namelong]")
+		frame:Tag(Name, "[Tukui:getnamecolor][Tukui:namelong]")
+		frame:HighlightUnit(color.r, color.g, color.b)
 		
 		health.Smooth = true
 	    power.Smooth = true
 		
+		debuff:ClearAllPoints()
+		debuff:Point('LEFT', health, 'RIGHT', 4, 0)
+		debuff:Size(200, 32)
+        debuff.size = 32
+        debuff.num = 3
+
 		local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
 	    swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
 	    swlicon:SetFrameStrata("BACKGROUND")
@@ -144,6 +154,9 @@ local function EditUnitFrame(frame, header)
 	    tex:SetTexture(C.media.switchlayoutheal)
 	    tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT", 2, -2)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
+		
+		header:ClearAllPoints()
+		header:Point("CENTER", UIParent, "CENTER", -500, 20)
 		
 	elseif header == TukuiRaidHealerGrid then
 	    --grid
@@ -162,7 +175,7 @@ local function EditUnitFrame(frame, header)
 		health.value:Point("CENTER", health, 1, -5)
 	    health.value:SetFont(font, fontsize, fontflag)
 
-		frame:HighlightUnit(color.r, color.g, color.b)
+		frame:HighlightUnit(color.r, color.g, color.b)	
 		
         power:ClearAllPoints()
 	    power:Height(1)
@@ -209,16 +222,12 @@ local function EditUnitFrame(frame, header)
 		header:ClearAllPoints()
 		header:Point("CENTER", UIParent, "CENTER", -250, 20)
 		
-		--Resurrect Indicator
-	    local Resurrect = CreateFrame('Frame', nil, health)
-    	Resurrect:SetFrameLevel(health:GetFrameLevel() + 1)
-	    Resurrect:Size(20)
-    	Resurrect:SetPoint("CENTER")
-
-	    local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
-	    ResurrectIcon:SetAllPoints()
-	    ResurrectIcon:SetDrawLayer('OVERLAY', 7)
-	    self.ResurrectIcon = ResurrectIcon
+	-- Resurrect icon
+	self.ResurrectIcon = self.Health:CreateTexture(nil, "OVERLAY")
+	self.ResurrectIcon:SetTexture("Interface\\Icons\\Spell_Holy_Resurrection")
+	self.ResurrectIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+	self.ResurrectIcon:Size(13)
+	self.ResurrectIcon:Point("BOTTOMRIGHT", self.Health, 2, -7)
 	end
 end
 
@@ -235,16 +244,11 @@ local function EditUnitAttributes(layout)
 	end
 	
 	-- set your new attributes here, in this example we only resize units, X/Y offset and column spacing to Grid.
-	if dpsmax25 then
-		-- do your attribute
-	elseif dpsmax40 then
-		-- do your attributes
+    if dpsmax25 or dpsmax40 then
+		header:SetAttribute("yOffset", T.Scale(-7))
 	elseif healmax15 then
-		header:SetAttribute("initial-width", 150)
-		header:SetAttribute("initial-height", 32)
 		header:SetAttribute("xoffset", 7)
-		header:SetAttribute("yOffset", -7)
-		header:SetAttribute("columnSpacing", T.Scale(8))
+		header:SetAttribute("yOffset", -5)
 	elseif grid then
 		header:SetAttribute("initial-width", 68)
 		header:SetAttribute("initial-height", 32)
@@ -267,17 +271,17 @@ local function InitScript()
 	local children
 	local heal = IsAddOnLoaded("Tukui_Raid_Healing")
 	local dps = IsAddOnLoaded("Tukui_Raid")
-	
+
 	-- don't need to load, because we will reload anyway after user select their layout
 	if heal and dps then return end
-	
+
 	local function UpdateRaidUnitSize(frame, header)
 		frame:SetSize(header:GetAttribute("initial-width"), header:GetAttribute("initial-height"))
 	end
 
 	local GetActiveHeader = function()
 		local players = (GetNumPartyMembers() + 1)
-		
+
 		if UnitInRaid("player") then
 			players = GetNumRaidMembers()
 		end
@@ -300,16 +304,16 @@ local function InitScript()
 			end
 		end
 	end
-	
+
 	local function Update(frame, header, event)
 		if (frame and frame.unit) then
 			local isEdited = frame.isEdited
-			
+
 			-- we need to update size of every raid frames if already in raid when we enter world (or /rl)
 			if event == "PLAYER_ENTERING_WORLD" then
 				UpdateRaidUnitSize(frame, header)
 			end
-			
+
 			-- we check for "isEdited" here because we don't want to edit every frame
 			-- every time a member join the raid else it will cause high cpu usage
 			-- and could cause screen freezing
@@ -322,12 +326,12 @@ local function InitScript()
 
 	local function Skin(header, event)
 		children = {header:GetChildren()}
-		
+
 		for _, frame in pairs(children) do
 			Update(frame, header, event)
 		end	
 	end
-	
+
 	local StyleRaidFrames = function(self, event)
 		local header = GetActiveHeader()
 		-- make sure we... catch them all! (I feel pikachu inside me)
@@ -339,7 +343,7 @@ local function InitScript()
 	local function SpawnHeader(name, layout, visibility, ...)
 		EditUnitAttributes(layout)
 	end
-	
+
 	-- this is the function oUF framework use to create and set attributes to headers
 	hooksecurefunc(oUF, "SpawnHeader", SpawnHeader)
 
