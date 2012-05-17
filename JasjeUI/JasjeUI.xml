@@ -12,13 +12,13 @@
 	<Script file="modules\buffs\buffs.lua"/>
 	<Script file="modules\chat\chat.lua"/>
 	<Script file="modules\buffsnotice\buffs.lua"/>
-	<Script file="modules\tooltip\tooltip.lua"/>
 	<Script file="modules\buffsnotice\weapons.lua"/>
 	<Script file="modules\actionbars\cooldowns.lua"/>
 	<Script file="modules\actionbars\actionbars.lua"/>
 	<Script file="modules\panels\panels.lua"/>
 	<Script file="modules\misc\altpowerbar.lua"/>
 	<Script file="modules\misc\threatbar.lua"/>
+	<Script file="modules\tooltip\tooltip.lua"/>
 	
 	<Script file="modules\misc\NCATeamRating.lua"/>
 	<Script file="modules\misc\HatTrick.lua"/>
