@@ -39,9 +39,6 @@ tbottombar:SetFrameStrata("BACKGROUND")
 tbottombar:SetFrameLevel(0)
 tbottombar:SetAlpha(.9)
 tbottombar:CreateShadow("Hydra")
-	
-TukuiTooltipAnchor:ClearAllPoints()
-TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", TukuiInfoRight, 0,-6)
 
 -- killing time
 TukuiMinimapStatsLeft:Kill()

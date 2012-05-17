@@ -2,7 +2,7 @@ local T, C, L = unpack(Tukui)
 if not C["tooltip"].enable then return end
 
 TukuiTooltipAnchor:ClearAllPoints()
-TukuiTooltipAnchor:SetPoint("BOTTOMRIGHT", Chatframe4, "TOPRIGHT", 0, 40)
+TukuiTooltipAnchor:Point("BOTTOMRIGHT", ChatFrame4, "TOPRIGHT", 0, 0)
 
 local hexa = T.StatColor
 local hexb = T.StatColorEnd
