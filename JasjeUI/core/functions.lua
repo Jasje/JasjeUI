@@ -118,21 +118,31 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 	end	
 end	
 
-hooksecurefunc(T, "UpdateThreat", function(self, event, unit)
-	local threat = UnitThreatSituation(self.unit)
-	if (threat == 3) then
-		if self.Health.backdrop and self.Power.backdrop then
-			self.Health.backdrop:SetBackdropBorderColor(1,0,0,1)
-			self.Power.backdrop:SetBackdropBorderColor(1,0,0,1)
-		else
-			self.Name:SetTextColor(1,0.1,0.1)
+-- highlight on raidframes
+hooksecurefunc(T, "PostUpdateHealthRaid", function(health, unit, min, max)
+	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
+		if not UnitIsConnected(unit) then
+			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_offline.."|r")
+		elseif UnitIsDead(unit) then
+			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_dead.."|r")
+		elseif UnitIsGhost(unit) then
+			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_ghost.."|r")
 		end
+		health:SetStatusBarColor(.8, .3, .3) -- Red health if offline/dead/dc'd
 	else
-		if self.Health.backdrop and self.Power.backdrop then
-			self.Health.backdrop:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-			self.Power.backdrop:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-		else
-			self.Name:SetTextColor(1,1,1)
+		if not UnitIsPlayer(unit) and UnitIsFriend(unit, "player") and C["unitframes"].unicolor ~= true then
+			local c = T.oUF_colors.reaction[5]
+			local r, g, b = c[1], c[2], c[3]
+			health:SetStatusBarColor(r, g, b)
+			health.bg:SetTexture(.1, .1, .1)
+		end
+		
+		if C.unitframes.gradienthealth and C.unitframes.unicolor then
+			if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then return end
+			if not health.classcolored then
+				local r, g, b = oUF.ColorGradient(min/max, unpack(C["unitframes"].gradient))
+				health:SetStatusBarColor(r, g, b)
+			end
 		end
 	end
 end)

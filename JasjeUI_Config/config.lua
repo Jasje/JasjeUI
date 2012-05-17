@@ -39,11 +39,20 @@ C.unitframes = {
 	showplayerinparty = true,
 	gridonly = true,
 	gridvertical = true,                           
-	targetpowerpvponly = true,   
+	targetpowerpvponly = true,  
+	enemyhcolor = true,                            
 	showfocustarget = false,   
     classiccombo = false,                           -- display classic combo points (from Tukui 13 or less)
 	movecombobar = false,                            -- display the new combo bar (t14+) from target to player (ROGUE ONLY)
+    gradienthealth = true,                          -- change raid health color based on health percent.
+	    gradient = {                                    -- health gradient color if unicolor is true.
+		    1.0, 0.3, 0.3, -- R, G, B (low HP)
+		    0.6, 0.3, 0.3, -- R, G, B (medium HP)
+		    0.3, 0.3, 0.3, -- R, G, B (high HP)
+	    },
 }
+
+
 
 C.castbar = { 
 	classcolor = true,

@@ -1,6 +1,12 @@
 -- raid editing guide by hydra/tukz
 local T, C, L = unpack(Tukui)
 
+local oUF = oUFTukui or oUF
+
+if not oUF then
+	return
+end
+
 --------------------------------------------------------------
 -- Edit Unit Raid Frames here!
 --------------------------------------------------------------
@@ -27,7 +33,7 @@ local function EditUnitFrame(frame, header)
 	    health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:CreateBorder(true)
+	    health:SetBorder()
 
 		health.colorDisconnected = false
 		health:SetStatusBarColor(.3, .3, .3, 1)
@@ -60,7 +66,7 @@ local function EditUnitFrame(frame, header)
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:CreateBorder(true)
+	    health:SetBorder()
 	
 		health.colorDisconnected = false
 		health.colorClass = false
@@ -100,7 +106,7 @@ local function EditUnitFrame(frame, header)
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:CreateBorder(true)
+	    health:SetBorder()
 		
 		health.colorDisconnected = false
 	    health.colorClass = false
@@ -133,7 +139,8 @@ local function EditUnitFrame(frame, header)
 		name:SetPoint("TOP", 0, -5)
 		name:SetFont(font, fontsize, fontflag)
 		
-		frame:Tag(Name, "[Tukui:getnamecolor][Tukui:namelong]")
+		frame:Tag(name, '[Tukui:getnamecolor][Tukui:nameshort] [Tukui:dead][Tukui:afk]')
+        frame.Name = name
 		frame:HighlightUnit(color.r, color.g, color.b)
 		
 		health.Smooth = true
@@ -144,6 +151,12 @@ local function EditUnitFrame(frame, header)
 		debuff:Size(200, 32)
         debuff.size = 32
         debuff.num = 3
+		
+		if C["unitframes"].raidunitdebuffwatch == true then
+		    health.DebuffHighlightAlpha = 1
+		    health.DebuffHighlightBackdrop = true
+		    health.DebuffHighlightFilter = true
+	    end
 
 		local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
 	    swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
@@ -157,14 +170,14 @@ local function EditUnitFrame(frame, header)
 		
 		header:ClearAllPoints()
 		header:Point("CENTER", UIParent, "CENTER", -500, 20)
-		
+
 	elseif header == TukuiRaidHealerGrid then
 	    --grid
 	    panel:Kill()
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:CreateBorder(true)
+	    health:SetBorder()
 		
 		health.colorDisconnected = false
 	    health.colorClass = false
@@ -175,7 +188,28 @@ local function EditUnitFrame(frame, header)
 		health.value:Point("CENTER", health, 1, -5)
 	    health.value:SetFont(font, fontsize, fontflag)
 
+		if C.unitframes.gradienthealth and C.unitframes.unicolor then
+		frame:HookScript("OnEnter", function(frame) -- Mouseover coloring
+			if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
+			local hover = RAID_CLASS_COLORS[select(2, UnitClass(frame.unit))]
+			if not hover then return end
+			health:SetStatusBarColor(hover.r, hover.g, hover.b)
+		end)
+		
+		frame:HookScript("OnLeave", function(frame)
+			if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
+			local r, g, b = oUF.ColorGradient(UnitHealth(frame.unit)/UnitHealthMax(frame.unit), unpack(C["unitframes"].gradient))
+			health:SetStatusBarColor(r, g, b)
+		end)
+	end
+		
 		frame:HighlightUnit(color.r, color.g, color.b)	
+		
+		if C["unitframes"].raidunitdebuffwatch == true then
+		    frame.DebuffHighlightAlpha = 1
+		    frame.DebuffHighlightBackdrop = true
+		    frame.DebuffHighlightFilter = true
+	    end
 		
         power:ClearAllPoints()
 	    power:Height(1)
@@ -222,12 +256,9 @@ local function EditUnitFrame(frame, header)
 		header:ClearAllPoints()
 		header:Point("CENTER", UIParent, "CENTER", -250, 20)
 		
-	-- Resurrect icon
-	self.ResurrectIcon = self.Health:CreateTexture(nil, "OVERLAY")
-	self.ResurrectIcon:SetTexture("Interface\\Icons\\Spell_Holy_Resurrection")
-	self.ResurrectIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
-	self.ResurrectIcon:Size(13)
-	self.ResurrectIcon:Point("BOTTOMRIGHT", self.Health, 2, -7)
+        frame.ResurrectIcon = frame.Health:CreateTexture(nil, 'OVERLAY')
+        frame.ResurrectIcon:SetPoint("TOP", health, 0, -2)
+        frame.ResurrectIcon:SetSize(16, 16)
 	end
 end
 
@@ -236,8 +267,9 @@ local function EditUnitAttributes(layout)
 	local dpsmax25 = layout:match("Raid25")
 	local dpsmax40 = layout:match("Raid40")
 	local healmax15 = layout:match("Healer15")
+	local healmax40 = layout:match("Healer40")
 	local grid = layout:match("HealerGrid")
-
+	
 	if C.unitframes.gridvertical then
 		point = "TOP"
 		columnAnchorPoint = "LEFT"
@@ -247,14 +279,14 @@ local function EditUnitAttributes(layout)
     if dpsmax25 or dpsmax40 then
 		header:SetAttribute("yOffset", T.Scale(-7))
 	elseif healmax15 then
-		header:SetAttribute("xoffset", 7)
-		header:SetAttribute("yOffset", -5)
+		header:SetAttribute("xoffset", 5)
+		header:SetAttribute("yOffset", -3)
 	elseif grid then
-		header:SetAttribute("initial-width", 68)
-		header:SetAttribute("initial-height", 32)
-		header:SetAttribute("xoffset", 7)
-		header:SetAttribute("yOffset", -5)
-		header:SetAttribute("columnSpacing", T.Scale(5))
+		header:SetAttribute("initial-width", 66)
+		header:SetAttribute("initial-height", 30)
+		header:SetAttribute("xoffset", 2)
+		header:SetAttribute("yOffset", -2)
+		header:SetAttribute("columnSpacing", T.Scale(2))
 		header:SetAttribute("point", point)
 		header:SetAttribute("columnAnchorPoint", columnAnchorPoint)
 	end
