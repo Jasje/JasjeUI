@@ -59,16 +59,27 @@ for _, frame in pairs(units) do
 		
 		self.CombatFeedbackText:Kill()
 		self.Status:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		self.FlashInfo.ManaLevel:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		
 		self.Castbar:ClearAllPoints()
         self.Castbar:SetHeight(T.Scale(25))
         self.Castbar:Width(TukuiBar1:GetWidth() -34)
 		
-		if C.actionbar.jasje then
+	    local Spark = self.Castbar:CreateTexture(nil, "OVERLAY")
+        Spark:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
+        Spark:SetVertexColor(1, 1, 1)
+        Spark:SetBlendMode("ADD")
+        Spark:Width(14) 
+        Spark:Height(self.Castbar:GetHeight() * 2)
+        Spark:Point("LEFT", self.Castbar:GetStatusBarTexture(), "RIGHT", -6, 0)
+
+        self.Castbar.Spark = Spark
+		
+	if C.actionbar.jasje then
 		self.Castbar:Point("BOTTOM", TukuiBar4, "TOP", 15, 4)
-		else
+	else
         self.Castbar:Point("BOTTOM", InvTukuiActionBarBackground, "TOP", 15, 4)
-		end
+	end
 		self.Castbar:SetStatusBarTexture(C["media"].Glamour)
 		
         self.Castbar:CreateBackdrop()
