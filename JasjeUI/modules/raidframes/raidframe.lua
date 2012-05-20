@@ -25,7 +25,7 @@ local function EditUnitFrame(frame, header)
 	local Glamour = C["media"].Glamour
 	local font, fontsize, fontflag = C.media.pixelfont, 8, "OUTLINEMONOCHROME"
 	
-	frame:SetBackdropColor(.0,.0,.0,.0)
+    frame:SetBackdropColor(0,0,0)
 
 	-- for layout-specifics, here we edit only 1 layout at time
 	if header == TukuiRaid25 then
@@ -33,7 +33,7 @@ local function EditUnitFrame(frame, header)
 	    health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:SetBorder()
+	    health:CreateBorder(true)
 
 		health.colorDisconnected = false
 		health:SetStatusBarColor(.3, .3, .3, 1)
@@ -189,20 +189,20 @@ local function EditUnitFrame(frame, header)
 	    health.value:SetFont(font, fontsize, fontflag)
 
 		if C.unitframes.gradienthealth and C.unitframes.unicolor then
-		frame:HookScript("OnEnter", function(frame) -- Mouseover coloring
-			if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
-			local hover = RAID_CLASS_COLORS[select(2, UnitClass(frame.unit))]
-			if not hover then return end
-			health:SetStatusBarColor(hover.r, hover.g, hover.b)
-		end)
+		    frame:HookScript("OnEnter", function(frame) -- Mouseover coloring
+			    if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
+			    local hover = RAID_CLASS_COLORS[select(2, UnitClass(frame.unit))]
+			    if not hover then return end
+		    	health:SetStatusBarColor(hover.r, hover.g, hover.b)
+		    end)
 		
-		frame:HookScript("OnLeave", function(frame)
-			if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
-			local r, g, b = oUF.ColorGradient(UnitHealth(frame.unit)/UnitHealthMax(frame.unit), unpack(C["unitframes"].gradient))
-			health:SetStatusBarColor(r, g, b)
-		end)
-	end
-		
+		    frame:HookScript("OnLeave", function(frame)
+			    if not UnitIsConnected(frame.unit) or UnitIsDead(frame.unit) or UnitIsGhost(frame.unit) then return end
+			    local r, g, b = oUF.ColorGradient(UnitHealth(frame.unit)/UnitHealthMax(frame.unit), unpack(C["unitframes"].gradient))
+			    health:SetStatusBarColor(r, g, b)
+		    end)
+	    end
+
 		frame:HighlightUnit(color.r, color.g, color.b)	
 		
 		if C["unitframes"].raidunitdebuffwatch == true then
@@ -242,7 +242,10 @@ local function EditUnitFrame(frame, header)
 		raiddebuff.time:ClearAllPoints()
 		raiddebuff.time:SetPoint("CENTER",raiddebuff, 2, 0)
 		raiddebuff.time:SetFont(font, fontsize, fontflag)
-	  
+		
+		raiddebuff:ClearAllPoints()
+		raiddebuff:Point("CENTER",health, 0, -5)
+		
 		local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
 	    swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
 	    swlicon:SetFrameStrata("BACKGROUND")
@@ -254,7 +257,7 @@ local function EditUnitFrame(frame, header)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 		
 		header:ClearAllPoints()
-		header:Point("CENTER", UIParent, "CENTER", -250, 20)
+		header:Point("CENTER", UIParent, "CENTER", -300, 40)
 		
         frame.ResurrectIcon = frame.Health:CreateTexture(nil, 'OVERLAY')
         frame.ResurrectIcon:SetPoint("TOP", health, 0, -2)
@@ -272,23 +275,26 @@ local function EditUnitAttributes(layout)
 	
 	if C.unitframes.gridvertical then
 		point = "TOP"
-		columnAnchorPoint = "LEFT"
+		columnAnchorPoint = "RIGHT"
 	end
 	
 	-- set your new attributes here, in this example we only resize units, X/Y offset and column spacing to Grid.
     if dpsmax25 or dpsmax40 then
-		header:SetAttribute("yOffset", T.Scale(-7))
+		header:SetAttribute("yOffset", T.Scale(-5))
 	elseif healmax15 then
 		header:SetAttribute("xoffset", 5)
 		header:SetAttribute("yOffset", -3)
+	elseif healmax40 then	
+			header:SetAttribute("point",  point)
+		header:SetAttribute("columnAnchorPoint", columnAnchorPoint)
 	elseif grid then
-		header:SetAttribute("initial-width", 66)
-		header:SetAttribute("initial-height", 30)
+		header:SetAttribute("initial-width", 60)
+		header:SetAttribute("initial-height", 40)
 		header:SetAttribute("xoffset", 2)
 		header:SetAttribute("yOffset", -2)
 		header:SetAttribute("columnSpacing", T.Scale(2))
-		header:SetAttribute("point", point)
-		header:SetAttribute("columnAnchorPoint", columnAnchorPoint)
+	--	header:SetAttribute("point",  point)
+	--	header:SetAttribute("columnAnchorPoint", columnAnchorPoint)
 	end
 end
 
