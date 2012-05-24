@@ -66,7 +66,7 @@ local function EditUnitFrame(frame, header)
 		health:ClearAllPoints()
 		health:SetAllPoints(frame)
 		health:SetStatusBarTexture(Glamour)
-	    health:SetBorder()
+	    health:CreateBorder(true)
 	
 		health.colorDisconnected = false
 		health.colorClass = false
@@ -83,13 +83,6 @@ local function EditUnitFrame(frame, header)
 
 		health.Smooth = true
 		
-		raiddebuff.count:ClearAllPoints()
-		raiddebuff.count:SetPoint("CENTER",raiddebuff, -6, 6)
-		raiddebuff.count:SetFont(font, fontsize, fontflag)
-		raiddebuff.time:ClearAllPoints()
-		raiddebuff.time:SetPoint("CENTER",raiddebuff, 2, 0)
-		raiddebuff.time:SetFont(font, fontsize, fontflag)
-		
 		-- switch layout
 	    local swlicon = CreateFrame("Frame", "TukuiSwitchLayoutIcon", UIParent)
     	swlicon:CreatePanel("Default", 20, 20, "LEFT", TukuiInfoLeft, "RIGHT", 3, 0)
@@ -100,7 +93,7 @@ local function EditUnitFrame(frame, header)
     	tex:SetTexture(C.media.switchlayoutdd)
     	tex:SetPoint("TOPLEFT", swlicon, "TOPLEFT",  2, -2)
     	tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
-
+		
 	elseif header == TukuiRaidHealer15 then
 	
 		health:ClearAllPoints()
@@ -257,7 +250,7 @@ local function EditUnitFrame(frame, header)
 	    tex:SetPoint("BOTTOMRIGHT", swlicon, "BOTTOMRIGHT", -2, 2)
 		
 		header:ClearAllPoints()
-		header:Point("CENTER", UIParent, "CENTER", -300, 40)
+		header:Point("CENTER", UIParent, "CENTER", -370, 20)
 		
         frame.ResurrectIcon = frame.Health:CreateTexture(nil, 'OVERLAY')
         frame.ResurrectIcon:SetPoint("TOP", health, 0, -2)
@@ -274,7 +267,8 @@ local function EditUnitAttributes(layout)
 	local grid = layout:match("HealerGrid")
 	
 	if C.unitframes.gridvertical then
-		point = "TOP"
+	
+		point = "RIGHT"
 		columnAnchorPoint = "RIGHT"
 	end
 	
