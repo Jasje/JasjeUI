@@ -52,8 +52,6 @@ C.unitframes = {
 	    },
 }
 
-
-
 C.castbar = { 
 	classcolor = true,
 	castbarcolor = {.2, .2, .2,1}, -- color if classcolor = false
@@ -67,6 +65,12 @@ C.auras = {
 
 C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts
 	fontsize = 14,
+}
+
+C.chat = {
+	names = { 
+	    "Jasje", 
+	}, 
 }
 
 C.nameplate = {

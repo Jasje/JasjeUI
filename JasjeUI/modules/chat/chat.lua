@@ -135,3 +135,28 @@ TukuiChat:HookScript( "OnEvent", function( self, event, ... )
 		SetTabStyle( chat )
 	end
 end )
+
+-- play a sound when your name is called in chat
+local chatFind = CreateFrame("Frame")
+chatFind:RegisterEvent("CHAT_MSG_GUILD")
+chatFind:RegisterEvent("CHAT_MSG_BATTLEGROUND")
+chatFind:RegisterEvent("CHAT_MSG_BATTLEGROUND_LEADER")
+chatFind:RegisterEvent("CHAT_MSG_OFFICER")
+chatFind:RegisterEvent("CHAT_MSG_PARTY")
+chatFind:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+chatFind:RegisterEvent("CHAT_MSG_RAID")
+chatFind:RegisterEvent("CHAT_MSG_RAID_LEADER")
+chatFind:RegisterEvent("CHAT_MSG_BN_WHISPER")
+chatFind:RegisterEvent("CHAT_MSG_WHISPER")
+chatFind:RegisterEvent("CHAT_MSG_SAY")
+
+chatFind:SetScript("OnEvent", function(event, msg, sender)
+	sender = strlower(sender)
+
+	for _, v in pairs(C["chat"].names) do
+		if strfind(sender, strlower(UnitName("player"))) or strfind(sender, strlower(v)) then
+			PlaySoundFile("Sound\\Event Sounds\\Wisp\\WispPissed1.wav", 'MASTER')
+			return
+		end
+	end
+end)
