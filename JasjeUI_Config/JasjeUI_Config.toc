@@ -4,6 +4,6 @@
 ## Notes: Some config for Jasjes Edit.
 ## Version: 1.5
 ## Credits: Tukz, Haleth, Nils Ruesch
-, Tekkub, Shestak, Ex, ALZA, Oomp, Alleykat, Allez
+, Tekkub, Shestak, Ex, ALZA, Alleykat, Allez, Ildyria
 
 config.lua

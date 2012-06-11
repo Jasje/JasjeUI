@@ -2,7 +2,7 @@
 ## Author: Jasje
 ## Version: 1.6
 ## Credits: Tukz, Haleth, Nils Ruesch
-, Tekkub, Shestak, Ex, ALZA, Oomp, Alleykat, Allez, Ildyria
+, Tekkub, Shestak, Ex, ALZA, Alleykat, Allez, Ildyria
 ## Title: |cffD38D01Jasje UI|r
 ## Notes: Jasjes custom Edit of Tukui.
 ## RequiredDeps: JasjeUI_Config, Tukui
