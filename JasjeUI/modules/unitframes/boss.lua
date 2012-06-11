@@ -1,87 +1,80 @@
 local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if C.unitframes.enable ~= true then return end
 
--- Boss and Arena
-for i = 1, 4 do
-	self = _G["TukuiBoss"..i]
+    for i = 1, 4 do
+	    local self = _G["TukuiBoss"..i]
 
-	local health = self.Health
-	local power = self.Power
-	local castbar = self.Castbar
+	    -- we dont need too see this
+		    self:SetBackdrop(nil)
+	        self:SetBackdropColor(0, 0, 0)
+        -- health
+			self.Health:Size(205, 18)
+			self.Health:CreateBorder(true)
+			self.Health:SetStatusBarTexture(C["media"].Glamour)
+			self.Health:SetStatusBarColor(.2, .2, .2, 1)
+			self.Health.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		-- killing stuff		
+		    self.shadow:Kill()
+			self.Debuffs:Hide()
+        -- name
+			self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		-- power
+		    self.Power:ClearAllPoints()
+		    self.Power:Size(205, 2)
+		    self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
+			self.Power:SetFrameLevel(4)
+			self.Power:CreateBorder(true)
 
-	-- power
-	power:ClearAllPoints()
-	power:SetAllPoints()
-	power.bg.multiplier = 0.3
+			self.Power.colorTapping = true
+			self.Power.colorClass = false
+			self.Power.bg.multiplier = 0.1				
+			self.Power.colorPower = true
+			self.Power.value:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		-- buff/debuffs
+		    self.Buffs:ClearAllPoints()
+            self.Buffs:Point("TOPRIGHT", self, "TOPLEFT", -5, 2)
 
-	health:ClearAllPoints()
-	health:SetPoint("TOPLEFT", power, "TOPLEFT", 2, -2)
-	health:SetPoint("BOTTOMRIGHT", power, "BOTTOMRIGHT", -2, 2)
-	health:CreateBorder(false, true)
-	health:SetStatusBarColor(.2, .2, .2)
-	health:SetFrameLevel(4)
-	health:CreateShadow()
+		    self.Debuffs:ClearAllPoints()
+		    self.Debuffs:Point('TOPLEFT', self, 'TOPRIGHT', 5, 2)
 
-	health:SetStatusBarColor(.2, .2, .2, 1)
-	health.bg:SetTexture(.6, .6, .6)
-	health.bg:SetVertexColor(0, 0, 0)
+		    if self.Buffs or self.Debuffs then
+			    for _, f in pairs({self.Buffs, self.Debuffs}) do
+				    if not f then return end
+				    f:Size(102, 31)
+				    f.size = 31
+				    f.num = 3
+				    hooksecurefunc(f, "PostCreateIcon", T.SkinAura)
+			    end
+		    end
+        -- castbar
+		    self.Castbar:SetPoint("LEFT", 23, -1)
+		    self.Castbar:SetPoint("RIGHT", 0, -1)
+		    self.Castbar:SetPoint("BOTTOM", 0, -17)
 
-	power.value = T.SetFontString(health, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-	power.value:Point("BOTTOMLEFT", health, "BOTTOMLEFT", 2, 2)
-	power.value:SetShadowColor(0,0,0,0)
-	power.PreUpdate = T.PreUpdatePower
-	power.PostUpdate = T.PostUpdatePower
+		    self.Castbar.time:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		    self.Castbar.time:SetTextColor(1, 1, 1)
 
-	health.value = T.SetFontString(health, C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-	health.value:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", 0, 2)
-	health.value:SetShadowColor(0,0,0,0)
-	health.PostUpdate = T.PostUpdateHealth
---[[
-	local percHP = T.SetFontString(self.Health, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-	percHP:SetPoint("LEFT", self.Health, "LEFT", 5, -0)
-	self:Tag(percHP, "[Tukui:perchp]")
-    self.percHP = percHP
-]]--	
-	-- Unit name on target
-	local Name = self.Name
-	Name:ClearAllPoints()
-	Name:Point("TOPLEFT", health, "TOPLEFT", 2, 0)
-	Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-	
-	castbar:ClearAllPoints()
-	castbar:Point("TOP", self, "BOTTOM", 13, -5)
-	
-	castbar:SetHeight(20)
-	castbar:SetWidth(171)
-	castbar:SetStatusBarTexture(C["media"].Glamour)
+		    self.Castbar.Text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		    self.Castbar.Text:SetTextColor(1, 1, 1)
 
-	castbar.bg:SetTemplate("Transparent")
-	castbar.bg:SetBorder()
-	
-	castbar.button:ClearAllPoints()
-	castbar.button:Height(castbar:GetHeight()+3)
-	castbar.button:Width(castbar:GetHeight()+3)
-    castbar.button:Point("RIGHT", castbar, "LEFT",-4, 0)
-	castbar.button:SetTemplate("Hydra")
+		    self.Castbar.button:ClearAllPoints()
+		    self.Castbar.button:Point("RIGHT", self.Castbar, "LEFT",-5, 0)
 
-	castbar.Text:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-	castbar.Text:SetParent(castbar)
-	castbar.Text:ClearAllPoints()
-	castbar.Text:SetPoint( "LEFT", castbar, "LEFT", 5, 0 )
-	castbar.Text.ClearAllPoints = T.dummy
-	castbar.Text.SetPoint = T.dummy
+		    self.Castbar.bg:SetTemplate("Transparent")
+		    self.Castbar.bg:SetBorder()
+		    self.Castbar.button:SetTemplate("Hydra")
 
-	castbar.CustomTimeText = T.CustomCastTimeText
-	castbar.CustomDelayText = T.CustomCastDelayText
-    castbar.PostCastStart = T.PostCastStart
-    castbar.PostChannelStart = T.PostCastStart
-
-	castbar.time:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-	castbar.time:SetParent(castbar)
-	castbar.time:ClearAllPoints()
-	castbar.time:SetPoint( "RIGHT", castbar, "RIGHT", -5, 0 )
-	castbar.time.ClearAllPoints = T.dummy
-	castbar.time.SetPoint = T.dummy
-end
-TukuiBoss1:ClearAllPoints()
-TukuiBoss1:Point("BOTTOM", TukuiTarget, "TOP", 150, 150)
+			self.Castbar.CustomTimeText = T.CustomCastTimeText
+	        self.Castbar.CustomDelayText = T.CustomCastDelayText
+            self.Castbar.PostCastStart = T.PostCastStart
+            self.Castbar.PostChannelStart = T.PostCastStart
+		-- size
+			self:Size(205, 31)
+			self:ClearAllPoints()
+			
+		if( i == 1 ) then
+		    self:Point("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 250,350)
+	    else
+		    self:SetPoint("BOTTOM", _G["TukuiBoss"..i-1], "TOP", 0, 25)
+		end	
+    end

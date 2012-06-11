@@ -3,33 +3,25 @@ if C.unitframes.enable ~= true then return end
 
     for i = 1, 5 do
 		local self = _G["TukuiArena" .. i]
-		
+
 		-- we dont need too see this
 		    self:SetBackdrop(nil)
 	        self:SetBackdropColor(0, 0, 0)
         -- health
-			self.Health:Size(220, 15)
+			self.Health:Size(205, 18)
 			self.Health:CreateBorder(true)
 			self.Health:SetStatusBarTexture(C["media"].Glamour)
+			self.Health:SetStatusBarColor(.2, .2, .2, 1)
+			self.Health.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		-- killing stuff		
 		    self.shadow:Kill()
-			self.Health.value:Hide()
-			self.Power.value:Hide()
 			self.Debuffs:Hide()
-		-- name
-	        self.Name:ClearAllPoints()
-	        self.Name:Point("RIGHT", self.Health, "RIGHT", -5, 0)
-	        self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-			self.Name:SetJustifyH("LEFT")
-		-- percentage
-			local percHP = T.SetFontString(self.Health, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-	        percHP:SetPoint("LEFT", self.Health, "LEFT", 5, -0)
-	    	self:Tag(percHP, "[Tukui:perchp]")
-		    self.percHP = percHP
+        -- name
+			self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
 		-- power
 		    self.Power:ClearAllPoints()
-		    self.Power:Size(220, 15)
-            self.Power:Point("LEFT", self.Health, "BOTTOMLEFT", 0, -14)
+		    self.Power:Size(205, 2)
+		    self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
 			self.Power:SetFrameLevel(4)
 			self.Power:CreateBorder(true)
 
@@ -37,58 +29,46 @@ if C.unitframes.enable ~= true then return end
 			self.Power.colorClass = false
 			self.Power.bg.multiplier = 0.1				
 			self.Power.colorPower = true
+			self.Power.value:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
         -- castbar
-			self.Castbar:ClearAllPoints()
-		    self.Castbar:Point("TOP", self, "BOTTOM", 17, 8)
-			
-			self.Castbar:SetHeight(27)
-			self.Castbar:SetWidth(268)
-			self.Castbar:SetStatusBarTexture(C["media"].Glamour)
+		    self.Castbar:SetPoint("LEFT", 23, -1)
+		    self.Castbar:SetPoint("RIGHT", 0, -1)
+		    self.Castbar:SetPoint("BOTTOM", 0, -17)
 
-			self.Castbar.bg:SetTemplate("Transparent")
+		    self.Castbar.time:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		    self.Castbar.time:SetTextColor(1, 1, 1)
+
+		    self.Castbar.Text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
+		    self.Castbar.Text:SetTextColor(1, 1, 1)
+
+		    self.Castbar.button:ClearAllPoints()
+		    self.Castbar.button:Point("RIGHT", self.Castbar, "LEFT",-5, 0)
+
+		    self.Castbar.bg:SetTemplate("Transparent")
 		    self.Castbar.bg:SetBorder()
-			
-			self.Castbar.button:ClearAllPoints()
-			self.Castbar.button:Height(self.Castbar:GetHeight()+5)
-		    self.Castbar.button:Width(self.Castbar:GetHeight()+5)
-		    self.Castbar.button:Point("RIGHT", self.Castbar, "LEFT",-4, 0)
 		    self.Castbar.button:SetTemplate("Hydra")
 
-			self.Castbar.Text:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-			self.Castbar.Text:SetParent(self.Castbar)
-			self.Castbar.Text:ClearAllPoints()
-			self.Castbar.Text:SetPoint( "LEFT", self.Castbar, "LEFT", 5, 0 )
-			self.Castbar.Text.ClearAllPoints = T.dummy
-			self.Castbar.Text.SetPoint = T.dummy
-
-		    self.Castbar.CustomTimeText = T.CustomCastTimeText
+			self.Castbar.CustomTimeText = T.CustomCastTimeText
 	        self.Castbar.CustomDelayText = T.CustomCastDelayText
             self.Castbar.PostCastStart = T.PostCastStart
             self.Castbar.PostChannelStart = T.PostCastStart
-			
-			self.Castbar.time:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-			self.Castbar.time:SetParent(self.Castbar)
-			self.Castbar.time:ClearAllPoints()
-			self.Castbar.time:SetPoint( "RIGHT", self.Castbar, "RIGHT", -5, 0 )
-			self.Castbar.time.ClearAllPoints = T.dummy
-			self.Castbar.time.SetPoint = T.dummy
 	    -- trinket
 		    self.Trinketbg:ClearAllPoints()
-		    self.Trinketbg:Size(40)
-		    self.Trinketbg:SetPoint("LEFT", self.Health, "RIGHT", 4, -11)		
+		    self.Trinketbg:Size(31)
+		    self.Trinketbg:Point("TOPLEFT", self, "TOPRIGHT", 5, 2)
             self.Trinket.trinketUseAnnounce = false			
 		-- Auratracker Frame
 		    local AuraTracker = CreateFrame("Frame", nil, self)
-		    AuraTracker:Size(40)
-		    AuraTracker:Point("RIGHT", self.Health, "LEFT", -4, -11)
-		    AuraTracker:SetTemplate("Default")
-		
-	    	AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
-		    AuraTracker.icon:SetAllPoints(AuraTracker)
+		    AuraTracker:Size(31)
+	        AuraTracker:Point("TOPRIGHT", self, "TOPLEFT", -5, 2)
+	        AuraTracker:SetTemplate("Default")
+
+	        AuraTracker.icon = AuraTracker:CreateTexture(nil, "OVERLAY")
+	        AuraTracker.icon:SetAllPoints(AuraTracker)
 		    AuraTracker.icon:Point("TOPLEFT", AuraTracker, 2, -2)
 		    AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
 		    AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
-		
+
 		    AuraTracker.text = T.SetFontString(AuraTracker,  C.media.pixelfont, 16, "OUTLINEMONOCHROME")
 		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
 		    AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
@@ -101,11 +81,12 @@ if C.unitframes.enable ~= true then return end
 		    self:EnableElement('ClassIcon')
 		    self:EnableElement('AuraTracker')
 		-- size
-			self:Size(220, 50)
+			self:Size(205, 31)
 			self:ClearAllPoints()
-		if( i == 1 ) then
-			self:Point("BOTTOM", TukuiTarget, "TOP", 150, 150)
-		else
-			self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
-		end
+
+    	if( i == 1 ) then
+		    self:Point("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 250,350)
+	    else
+		    self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
+		end	
 	end

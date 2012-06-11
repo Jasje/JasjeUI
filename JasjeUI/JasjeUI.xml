@@ -24,11 +24,11 @@
 	<Script file="modules\misc\HatTrick.lua"/>
 	<Script file="modules\misc\InfusionofLight.lua"/>
 	<Script file="modules\misc\alRaidCD.lua"/>
-	<Script file="modules\misc\Flump.lua"/>
 	<Script file="modules\misc\announce.lua"/>
 	<Script file="modules\misc\bgannouncer.lua"/>
 	<Script file="modules\misc\extra.lua"/>
 	<Script file="modules\misc\castbarticks.lua"/>
+	<Script file="modules\misc\DrTracker.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
