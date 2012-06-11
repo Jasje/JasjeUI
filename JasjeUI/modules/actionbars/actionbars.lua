@@ -27,8 +27,10 @@ hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 TukuiShiftBar:ClearAllPoints()
 if (T.myclass == "PALADIN") then
     TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", -28, -45)
-else
+elseif (T.myclass == "DEATHKNIGHT") then 
     TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
+else
+    TukuiShiftBar:SetPoint("TOPLEFT", ChatFrame1, 0, 50)	
 end
 
 if C.actionbar.jasje then
