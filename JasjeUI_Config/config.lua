@@ -69,7 +69,7 @@ C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts
 
 C.chat = {
 	names = { 
-	    "Jasje", 
+	    UnitName("player"), 
 	}, 
 }
 
