@@ -5,7 +5,6 @@ if Tukui then
 	framelist = {
 		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
 		["TukuiPlayer"]	= {"player",34,"TOPRIGHT","TOPLEFT",-5,2,"RIGHT","LEFT",-2,0},
-		["TukuiTarget"]	= {"target",34,"TOPLEFT","TOPRIGHT",5,2,"LEFT","RIGHT",2,0},
 		["TukuiArena1"]	= {"arena1",31,"TOPRIGHT","TOPLEFT",-39,2,"RIGHT","LEFT",-2,0},
 		["TukuiArena2"]	= {"arena2",31,"TOPRIGHT","TOPLEFT",-39,2,"RIGHT","LEFT",-2,0},
 		["TukuiArena3"]	= {"arena3",31,"TOPRIGHT","TOPLEFT",-39,2,"RIGHT","LEFT",-2,0},
