@@ -272,7 +272,9 @@ end
 		self:SetPoint("TOPLEFT", TukuiPlayer, "BOTTOMLEFT", 0, -7)
 
 		self.Name:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-
+		self.Castbar.Time:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")		
+        self.Castbar.Text:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+		
 		self.Health.colorTapping = false
 	    self.Health.colorDisconnected = false
 	    self.Health.colorClass = false
