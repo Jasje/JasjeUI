@@ -60,7 +60,7 @@ C.castbar = {
 }
 
 C.auras = {
-    consolidate = true,
+    consolidate = false,
 }
 
 C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts

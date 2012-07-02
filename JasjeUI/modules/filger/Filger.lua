@@ -293,28 +293,32 @@ ns.Filger_Spells = {
 			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, 56, -90 },
-
+			setPoint = {"CENTER", UIParent, 60, -130},
+			
 			-- Fear
 			{ spellID = 5782, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Howl of Terror
+			{ spellID = 5484, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Death Coil
+			{ spellID = 6789, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Banish
 			{ spellID = 710, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Curse of the Elements
-			{ spellID = 1490, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Curse of Tongues
-			{ spellID = 1714, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Curse of Exhaustion
-			{ spellID = 18223, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Bane of Agony
-			{ spellID = 980, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Bane of Doom
-			{ spellID = 603, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			setPoint = {"CENTER", UIParent, 60, -90},
+
+			-- Haunt
+			{ spellID = 48181, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Unstable Affliction
 			{ spellID = 30108, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Shadow Embrace
-			{ spellID = 32395, size = 37, unitId = "target", caster = "player", filter = "BUFF" },
 			-- Corruption
 			{ spellID = 172, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Bane of Agony
+			{ spellID = 980, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Immolate
 			{ spellID = 348, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
@@ -325,18 +329,18 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", UIParent, -60, -90 },
 			
+			-- Curse of Tongues
+			{ spellID = 1714, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Curse of Exhaustion
+			{ spellID = 18223, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Curse of the Elements
+			{ spellID = 1490, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Curse of Weakness
 			{ spellID = 702, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Haunt
-			{ spellID = 48181, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Bane of Doom
+			{ spellID = 603, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },	
 			-- Seed of Corruption
 			{ spellID = 27243, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Howl of Terror
-			{ spellID = 5484, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Death Coil
-			{ spellID = 6789, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Enslave Demon
-			{ spellID = 1098, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
         {
 			Name = "Cooldown",
