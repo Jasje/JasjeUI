@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 if not C["nameplate"].enable == true then return end
 
@@ -26,7 +26,7 @@ if C["nameplate"].showhealth ~= true then
 	iconSize = 20
 end
 
-local NamePlates = CreateFrame("Frame", "JasjeNameplates", UIParent)
+local NamePlates = CreateFrame("Frame", "TukuiNameplates", UIParent)
 NamePlates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 SetCVar("bloatthreat", 0)
@@ -60,10 +60,6 @@ local PlateBlacklist = {
 
 	--Army of the Dead
 	["Army of the Dead Ghoul"] = true,
-
-	--Hunter Trap
-	["Venomous Snake"] = true,
-	["Viper"] = true,
 }
 
 -- Check Player's Role
@@ -158,7 +154,7 @@ local function UpdateCastbar(frame)
 	if(frame.shield:IsShown()) then
 		frame:SetStatusBarColor(0.78, 0.25, 0.25, 1)
 	end
-end	
+end
 
 --Determine whether or not the cast is Channelled or a Regular cast so we can grab the proper Cast Name
 local function UpdateCastText(frame, curValue)
@@ -427,7 +423,7 @@ local function UpdateThreat(frame, elapsed)
 		if not frame.region:IsShown() then
 			if InCombatLockdown() and frame.isFriendly ~= true then
 				--No Threat
-				if Role == "Tank" then
+				if Role == "TANK" then
 					frame.hp:SetStatusBarColor(badR, badG, badB)
 					frame.hp.hpbg:SetTexture(badR, badG, badB, 0.25)
 				else
@@ -444,7 +440,7 @@ local function UpdateThreat(frame, elapsed)
 			local r, g, b = frame.region:GetVertexColor()
 			if g + b == 0 then
 				--Have Threat
-				if Role == "Tank" then
+				if Role == "TANK" then
 					frame.hp:SetStatusBarColor(goodR, goodG, goodB)
 					frame.hp.hpbg:SetTexture(goodR, goodG, goodB, 0.25)
 				else
@@ -532,9 +528,10 @@ local function HookFrames(...)
 		local frame = select(index, ...)
 		local region = frame:GetRegions()
 		
-		if(not frames[frame] and (frame:GetName() and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture' and region:GetTexture() == OVERLAY) then
+		if(not frames[frame] and (frame:GetName() and not frame.isSkinned and frame:GetName():find("NamePlate%d")) and region and region:GetObjectType() == 'Texture') then
 			SkinObjects(frame)
 			frame.region = region
+			frame.isSkinned = true
 		end
 	end
 end

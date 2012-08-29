@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
+local T, C, L, G = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if C.unitframes.enable ~= true then return end
 
 ---------------------------------------------------------------
@@ -132,7 +132,9 @@ for _, frame in pairs(units) do
 	    self.Reputation:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
 
 	    local repBG = CreateFrame("Frame", nil, self.Reputation)
-	    repBG:CreatePanel("Transparent", self.Reputation:GetWidth(), self.Reputation:GetHeight(), "TOPLEFT", self.Reputation, "TOPLEFT", -2, 2)
+		repBG:Point("TOPLEFT", self.Reputation, "TOPLEFT", -2, 2)
+		repBG:SetTemplate("Transparent")
+		repBG:Size(self.Reputation:GetWidth(), self.Reputation:GetHeight())
 	    repBG:Point("BOTTOMRIGHT", self.Reputation, "BOTTOMRIGHT", 2, -2)
     end
 end

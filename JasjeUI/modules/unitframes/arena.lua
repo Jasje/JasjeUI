@@ -52,11 +52,11 @@ if C.unitframes.enable ~= true then return end
 	        self.Castbar.CustomDelayText = T.CustomCastDelayText
             self.Castbar.PostCastStart = T.PostCastStart
             self.Castbar.PostChannelStart = T.PostCastStart
-	    -- trinket
+	    --[[trinket
 		    self.Trinketbg:ClearAllPoints()
 		    self.Trinketbg:Size(31)
 		    self.Trinketbg:Point("TOPLEFT", self, "TOPRIGHT", 5, 2)
-            self.Trinket.trinketUseAnnounce = false			
+    		self.Trinket.trinketUseAnnounce = false			]]--
 		-- Auratracker Frame
 		    local AuraTracker = CreateFrame("Frame", nil, self)
 		    AuraTracker:Size(31)

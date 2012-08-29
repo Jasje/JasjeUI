@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 T.remindenchants = {
 	ROGUE = {
@@ -87,9 +87,13 @@ local frame = CreateFrame("Frame", "TukuiEnchantsWarningFrame", UIParent)
 frame.icon = frame:CreateTexture(nil, "OVERLAY")
 frame.icon:SetPoint("CENTER")
 if (T.myclass == "ROGUE" or T.myclass =="SHAMAN") then
-	frame:CreatePanel("Default", 40, 40, "CENTER", UIParent, "CENTER", 50, 200)
+	frame:Point("CENTER", UIParent, "CENTER", 50, 200)
+	frame:SetTemplate()
+	frame:Size(40, 40) 
 else
-	frame:CreatePanel("Default", 40, 40, "CENTER", UIParent, "CENTER", 0, 200)
+	frame:Point("CENTER", UIParent, "CENTER", 0, 200)
+	frame:SetTemplate()
+	frame:Size(40, 40) 
 end
 frame.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 frame.icon:Size(36)

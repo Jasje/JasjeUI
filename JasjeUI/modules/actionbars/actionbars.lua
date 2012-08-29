@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 TukuiBar2Button.text:SetFont(T.SetPixelFont())
 TukuiBar3Button.text:SetFont(T.SetPixelFont())
@@ -24,13 +24,13 @@ end
 
 hooksecurefunc("ActionButton_Update", UpdateActionButtonFont)
 
-TukuiShiftBar:ClearAllPoints()
+TukuiStance:ClearAllPoints()
 if (T.myclass == "PALADIN") then
-    TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", -28, -45)
+    TukuiStance:Point('TOP', TukuiPlayer, "BOTTOMRIGHT", -28, -35)
 elseif (T.myclass == "DEATHKNIGHT") then 
-    TukuiShiftBar:SetPoint('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -45)
+    TukuiStance:Point('TOP', TukuiPlayer, "BOTTOMRIGHT", 38, -35)
 else
-    TukuiShiftBar:SetPoint("TOPLEFT", ChatFrame1, 0, 50)	
+    TukuiStance:Point("TOPLEFT", ChatFrame1, 0, 50)	
 end
 
 if C.actionbar.jasje then

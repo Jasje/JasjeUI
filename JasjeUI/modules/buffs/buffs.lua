@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 local buffs = TukuiAurasPlayerBuffs
 local debuffs = TukuiAurasPlayerDebuffs
