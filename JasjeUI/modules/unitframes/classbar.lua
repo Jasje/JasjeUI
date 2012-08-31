@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
+local T, C, L, G = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
 if C.unitframes.enable ~= true then return end
 
 local self = _G["TukuiPlayer"]
@@ -79,40 +79,45 @@ local color = RAID_CLASS_COLORS[T.myclass]
 	            end
 	        end
 
-			if( T.myclass == "WARLOCK" or T.myclass == "PALADIN" ) then
-				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
-				classbar:Width(224)
-				classbar:Height(7)
-				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
-				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
-				classbar:SetTemplate( "Default" )
+		    if(T.myclass == "WARLOCK") then
+				G.UnitFrames.Player.WarlockSpecBars:ClearAllPoints()
+				G.UnitFrames.Player.WarlockSpecBars:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
+				G.UnitFrames.Player.WarlockSpecBars:Size(220, 7)
+				G.UnitFrames.Player.WarlockSpecBars:CreateBackdrop( "Default" )
 
-				if( T.myclass == "WARLOCK" ) then
-					self.SoulShards:SetWidth( classbar:GetWidth() - 4 )
-					self.SoulShards:SetHeight(3)
-					self.SoulShards:ClearAllPoints()
-					self.SoulShards:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
-
-					TukuiPlayer_Shard1:SetStatusBarColor( .58, .5, .78)
-					TukuiPlayer_Shard2:SetStatusBarColor( .58, .5, .78)
-					TukuiPlayer_Shard3:SetStatusBarColor( .58, .5, .78)
-				elseif( T.myclass == "PALADIN" ) then
-					self.HolyPower:SetWidth( classbar:GetWidth() - 4 )
-					self.HolyPower:SetHeight(3)
-					self.HolyPower:ClearAllPoints()
-					self.HolyPower:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
+				for i = 1, 4 do
+				    G.UnitFrames.Player.WarlockSpecBars[i]:SetStatusBarTexture(C["media"].Glamour)
+					G.UnitFrames.Player.WarlockSpecBars[i]:Size(T.Scale(220/ 4),7)
+					if(i == 1) then
+						G.UnitFrames.Player.WarlockSpecBars[i]:SetPoint("LEFT", G.UnitFrames.Player.WarlockSpecBars, "LEFT", 0, 0)
+					else
+						G.UnitFrames.Player.WarlockSpecBars[i]:Point("LEFT", G.UnitFrames.Player.WarlockSpecBars[i -1], "RIGHT", 1, 0)
+					end
 				end
-
-				TukuiPlayer_Shard1:SetHeight(3)
-				TukuiPlayer_Shard1:SetWidth((classbar:GetWidth() - 6) / 3)
-
-				TukuiPlayer_Shard2:SetHeight(3)
-				TukuiPlayer_Shard2:SetWidth((classbar:GetWidth() - 6) / 3)
-
-				TukuiPlayer_Shard3:SetHeight(3)
-				TukuiPlayer_Shard3:SetWidth((classbar:GetWidth() - 6) / 3)
 			end
+			
+	    	if(T.myclass == "PALADIN") then
+				G.UnitFrames.Player.HolyPower:ClearAllPoints()
+				G.UnitFrames.Player.HolyPower:SetPoint("BOTTOM", G.UnitFrames.Player, "TOP", 0, 5)
+				G.UnitFrames.Player.HolyPower:Size(220, 7)
+				G.UnitFrames.Player.HolyPower:CreateBackdrop("Default")
 
+				for i = 1, 5 do
+				    G.UnitFrames.Player.HolyPower[i]:SetStatusBarTexture(C["media"].Glamour)
+					if(i == 5) then
+						G.UnitFrames.Player.HolyPower[i]:Size(T.Scale(220/5)-3.8, 7)
+					else
+						G.UnitFrames.Player.HolyPower[i]:Size(T.Scale(220/5), 7)
+					end
+
+					if(i == 1) then
+						G.UnitFrames.Player.HolyPower[i]:SetPoint("LEFT", G.UnitFrames.Player.HolyPower, "LEFT", 0, 0)
+					else
+						G.UnitFrames.Player.HolyPower[i]:Point("LEFT", G.UnitFrames.Player.HolyPower[i -1], "RIGHT", 1, 0)
+					end
+				end
+			end
+			
 			if( T.myclass == "DEATHKNIGHT" ) then
 				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
 				classbar:Width(224)
@@ -139,67 +144,51 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				end
 			end
 
-	if( T.myclass == "SHAMAN" ) then
-				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
-				classbar:Width(224)
-				classbar:Height(7)
-				classbar:Point("BOTTOM", self.Health, "TOP", 0,4)					
-				classbar:SetBackdropBorderColor(0, 0, 0, 0)
-				classbar:SetTemplate("Default")
+	    	if(T.myclass == "MAGE") then
+		    	G.UnitFrames.Player.ArcaneChargeBar:ClearAllPoints()
+			    G.UnitFrames.Player.ArcaneChargeBar:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
+			    G.UnitFrames.Player.ArcaneChargeBar:Size(233, 7)
+			    G.UnitFrames.Player.ArcaneChargeBar:CreateBackdrop("Default")
 
+			    for i = 1, 6 do
+			    	G.UnitFrames.Player.ArcaneChargeBar[i]:Size(T.Scale(220/6) -1,7)
+				    if(i == 1) then
+					    G.UnitFrames.Player.ArcaneChargeBar[i]:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
+				    else
+					    G.UnitFrames.Player.ArcaneChargeBar[i]:Point("LEFT", G.UnitFrames.Player.ArcaneChargeBar[i -1], "RIGHT", 1, 0)
+				    end
+			    end
+		    end
+			
+		    if(T.myclass == "SHAMAN") then
 				for i = 1, 4 do
-					self.TotemBar[i]:SetWidth((classbar:GetWidth() - 7 ) / 4)
-					self.TotemBar[i]:SetHeight(3)
-					self.TotemBar[i]:ClearAllPoints()
-					self.TotemBar[i]:SetStatusBarTexture(C["media"].Glamour)
+					G.UnitFrames.Player.TotemBar[i]:ClearAllPoints()
+					G.UnitFrames.Player.TotemBar[i]:Size((G.UnitFrames.Player:GetWidth()/5)+.5, 5) -- fuck this! WIP
+					G.UnitFrames.Player.TotemBar[i]:SetStatusBarTexture(C["media"].Glamour)
 
-					if( i == 1 ) then
-						self.TotemBar[i]:Point( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
+					if(i == 1) then
+						G.UnitFrames.Player.TotemBar[i]:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
 					else
-						self.TotemBar[i]:Point( "TOPLEFT", self.TotemBar[i - 1], "TOPRIGHT", 1, 0 )
+						G.UnitFrames.Player.TotemBar[i]:Point( "LEFT", G.UnitFrames.Player.TotemBar[i -1], "RIGHT", 6, 0)
 					end
+					G.UnitFrames.Player.TotemBar[i]:CreateBackdrop("Default")
 				end
 			end
 
-			if( T.myclass == "PRIEST" ) then
-				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
-				classbar:Width(224)
-				classbar:Height(7)
-				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
-				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
-				classbar:SetTemplate( "Default" )
-
-				local Orbs = {}
+		    if(T.myclass == "PRIEST") then
+				G.UnitFrames.Player.ShadowOrbsBar:ClearAllPoints()
+				G.UnitFrames.Player.ShadowOrbsBar:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
+				G.UnitFrames.Player.ShadowOrbsBar:Size(220, 7)
+				G.UnitFrames.Player.ShadowOrbsBar:CreateBackdrop("Default")
 
 				for i = 1, 3 do
-					Orbs[i] = CreateFrame("StatusBar", "Classbar_Power" .. i, classbar)
-					Orbs[i]:SetWidth((classbar:GetWidth() - 6 ) / 3 )
-					Orbs[i]:SetHeight(3)
-					Orbs[i].tex = Orbs[i]:CreateTexture( nil, "OVERLAY")
-					Orbs[i].tex:SetTexture(C["media"].Glamour)
-					Orbs[i].tex:SetVertexColor(color.r, color.g, color.b)
-					Orbs[i].tex:SetAllPoints( Orbs[i] )
-					Orbs[i]:SetOrientation("VERTICAL")
-
-					if( i == 1 ) then
-						Orbs[i]:SetPoint( "LEFT", classbar, "LEFT", 2, 0 )
+					G.UnitFrames.Player.ShadowOrbsBar[i]:Size(T.Scale(220/3), 7)
+					if(i == 1) then
+						G.UnitFrames.Player.ShadowOrbsBar[i]:SetPoint("LEFT", G.UnitFrames.Player.ShadowOrbsBar, "LEFT", 0, 0)
 					else
-						Orbs[i]:SetPoint( "LEFT", Orbs[i - 1], "RIGHT", 1, 0 )
+						G.UnitFrames.Player.ShadowOrbsBar[i]:Point("LEFT", G.UnitFrames.Player.ShadowOrbsBar[i -1], "RIGHT", 1, 0)
 					end
 				end
-
-				local change = CreateFrame("Frame")
-				change:RegisterEvent("PLAYER_ENTERING_WORLD")
-				change:RegisterEvent("UNIT_AURA")
-				change:RegisterEvent("PLAYER_TARGET_CHANGED")
-				change:SetScript("OnEvent", function()
-					count = select( 4, UnitAura( "player", GetSpellInfo(77487)))
-					if(count and count > 0) then
-						for i = 1, count do Orbs[i]:SetAlpha(1)end
-					else
-						for i = 1, 3 do Orbs[i]:SetAlpha(0.2) end
-					end
-				end)
 			end
-		end
+		end	
 	end

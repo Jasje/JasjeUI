@@ -26,7 +26,7 @@ if C["nameplate"].showhealth ~= true then
 	iconSize = 20
 end
 
-local NamePlates = CreateFrame("Frame", "TukuiNameplates", UIParent)
+local NamePlates = CreateFrame("Frame", "JasjeNameplates", UIParent)
 NamePlates:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 
 SetCVar("bloatthreat", 0)
@@ -60,6 +60,10 @@ local PlateBlacklist = {
 
 	--Army of the Dead
 	["Army of the Dead Ghoul"] = true,
+	
+	--Hunter Trap
+	["Venomous Snake"] = true,
+	["Viper"] = true,
 }
 
 -- Check Player's Role

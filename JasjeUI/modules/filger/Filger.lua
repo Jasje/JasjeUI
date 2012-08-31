@@ -99,8 +99,6 @@ ns.Filger_Spells = {
 			-- { spellID = 51562, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Spiritswalkers Grace
 			{ spellID = 79206, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Focused Insight
-			{ spellID = 77796, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -145,12 +143,22 @@ ns.Filger_Spells = {
 			
 			-- Frostfire Bolt aka Glyph of Frostfire
 			{ spellID = 44614, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			--Slow
-			{ spellID = 31589, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			--Innervate
 			{ spellID = 29166, size = 37, unitId = "player", caster = "all", filter = "BUFF"},
 			--Icy Veins
 			{ spellID = 12472, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Ice Barrier
+			{spellID = 11426,  size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Slow
+			{spellID = 31589, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Ignite
+			{spellID = 12654, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Living Bomb
+			{spellID = 44457, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Nether Tempest
+			{spellID = 114923, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Pyroblast
+			{spellID = 11366, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 		},
 		{
 			Name = "Mage Procs",
@@ -159,24 +167,16 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", "UIParent", 219, 15 },
 			
-			--Brain Freeze
-			{ spellID = 57761, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Impact
-			{ spellID = 64343, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			--Missile Barrage
-			{ spellID = 54486, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			--Hot Streak(improved)
-			{ spellID = 44448, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			--Hot Streak
-			{ spellID = 44445, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Deep Freeze
-			{ spellID = 44572, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			--Scorch aka Critical Mass
-			{ spellID = 12873, size = 47, unitId = "target", caster = "all", filter = "DEBUFF" },
-			--Arcane Blast
-			{ spellID = 30451, size = 47, unitId = "player", caster = "player", filter = "DEBUFF" },
-			--Fingers Of Frost
-            { spellID = 83074, size = 47, unitId = "player", caster = "player", filter = "BUFF"},
+			-- Fingers of Frost
+			{spellID = 44544, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Brain Freeze
+			{spellID = 57761, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Arcane Missiles!
+			{spellID = 79683, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Heating Up
+			{spellID = 48107, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Pyroblast!
+			{spellID = 48108, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 	},
 	["PRIEST"] = { -------------------------------------------------------------------------------------------------------- Priest
@@ -187,27 +187,18 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", UIParent, -100, -86},
 
-
-			-- Prayer of Mending
-			{ spellID = 41635, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Guardian Spirit
-			{ spellID = 47788, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Pain Suppression
-			{ spellID = 33206, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+		    -- Power Word: Shield
+			{spellID = 17, size = 36, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Renew
-			{ spellID = 139, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Power Word: Shield
-			{ spellID = 17, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
-		},
-		{
-			Name = "Cooldown",
-			Direction = "LEFT",
-			Interval = 3,
-			Mode = "ICON",
-			setPoint = { "CENTER", UIParent, -55, 5 },
-
-			-- Mind Blast
-			{ spellID = 8092, size = 36, filter = "CD" },
+			{spellID = 139, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Dispersion
+			{spellID = 47585, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Power Infusion
+			{spellID = 10060, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Fear Ward
+			{spellID = 6346, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Borrowed Time
+			{spellID = 59889, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
 		},	
 	    {
 			Name = "Priest Procs",
@@ -217,7 +208,7 @@ ns.Filger_Spells = {
 			setPoint = { "CENTER", UIParent, 106, -85 },
 
 			-- Surge of Light
-			{ spellID = 88688, size = 36, unitId = "player", caster = "all", filter = "BUFF" },
+			{ spellID = 114255, size = 36, unitId = "player", caster = "all", filter = "BUFF" },
 			-- Serendipity
 			{ spellID = 63735, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Shadow Orb
@@ -228,6 +219,18 @@ ns.Filger_Spells = {
 			{ spellID = 81662, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Dispersion
 			{ spellID = 47585, size = 36, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Archangel
+			{spellID = 81700, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Dark Archangel
+			{spellID = 87153, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Glyph of Inner Focus
+			{spellID = 96267, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Prayer of Mending
+			{spellID = 41635, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Fade
+			{spellID = 586, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Holy Walk
+			{spellID = 96219, size = 36, unitID = "player", caster = "player", filter = "BUFF"},
 		},	
 
 		{
@@ -267,24 +270,24 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", "UIParent", -0, -85 },
 
-			--Devious Minds
-			{ spellID = 70840, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Improved Soul Fire
-			{ spellID = 18120, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Molten Core
-			{ spellID = 47247, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Decimation
-			{ spellID = 63158, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Backdraft
-			{ spellID = 47260, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Backlash
-			{ spellID = 34939, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Nether Protection
-			{ spellID = 30301, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Nightfall
-			{ spellID = 18095, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Burning Soul
-			{ spellID = 84254, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 74434, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dark Soul: Knowledge
+			{spellID = 113861, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dark Soul: Misery
+			{spellID = 113860, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dark Soul: Instability
+			{spellID = 113858, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Unending Resolve
+			{spellID = 104773, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Dark Bargain
+			{spellID = 110913, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Twilight Ward
+			{spellID = 6229, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Soul Swap
+			{spellID = 86211, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Burning Rush
+			{spellID = 111400, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -327,14 +330,12 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", UIParent, -60, -90 },
 			
-			-- Curse of Tongues
-			{ spellID = 1714, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
+			-- Curse of Enfeeblement
+			{ spellID = 109466, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Curse of Exhaustion
 			{ spellID = 18223, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Curse of the Elements
 			{ spellID = 1490, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Curse of Weakness
-			{ spellID = 702, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Bane of Doom
 			{ spellID = 603, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },	
 			-- Seed of Corruption
@@ -674,20 +675,20 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", "UIParent", -0, -85 },
 
-			-- Sudden Death
-			{ spellID = 52437, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Slam!
-			{ spellID = 46916, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+		   -- Bloodsurge
+			{spellID = 46916, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sword and Board
-			{ spellID = 50227, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Blood Reserve
-			{ spellID = 64568, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Victorious
-			{ spellID = 32216, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Battle trance
-			{ spellID = 85742, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Incite
-			{ spellID = 86627, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 50227, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Ultimatum
+			{spellID = 122510, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Taste for Blood
+			{spellID = 125831, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Enrage
+			{spellID = 12880, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Meat Cleaver
+			{spellID = 85739, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Rude Interruption
+			{spellID = 86663, size = 47, unitID = "player", caster = "player", filter = "BUFF"},
 		},
         {		
 			Name = "Buffs and Debuffs",
@@ -696,10 +697,30 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", UIParent, -60, -90 },
 			
+		    -- Shield Wall
+			{spellID = 871, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Last Stand
-			{ spellID = 12975, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Shield Wall
-			{ spellID = 871, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 12975, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Enraged Regeneration
+			{spellID = 55694, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shield Block
+			{spellID = 2565, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Shield Barrier
+			{spellID = 112048, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Spell Reflection
+			{spellID = 23920, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Berserker Rage
+			{spellID = 18499, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Bloodbath
+			{spellID = 12292, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Recklesness
+			{spellID = 1719, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Deadly Calm
+			{spellID = 85730, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Sweeping Strikes
+			{spellID = 12328, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Victorious
+			{spellID = 32216, size = 37, unitID = "player", caster = "player", filter = "BUFF"},
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -708,20 +729,16 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", UIParent, 75, -90 },
 
+			-- Colossus Smash
+			{spellID = 86346, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Hamstring
-			{ spellID = 1715, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Improved Hamstring
-			{ spellID = 12668, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Rend
-			{ spellID = 94009, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Sunder Armor
-			{ spellID = 7386, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Thunder Clap
-			{ spellID = 6343, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1715, size = 37, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Demoralizing Shout
-			{ spellID = 1160, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Collosus Smash
-			{ spellID = 86346, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1160, size = 37, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- Weakened Armor
+			{spellID = 113746, size = 37, unitID = "target", caster = "all", filter = "DEBUFF"},
+			-- Weakened Blows
+			{spellID = 115798, size = 37, unitID = "target", caster = "all", filter = "DEBUFF"},
 		},
 		{
 			Name = "COOLDOWN",
@@ -732,10 +749,8 @@ ns.Filger_Spells = {
 			
 			-- Recklesness
 			{ spellID = 1719, size = 65, filter = "CD" },
-			-- Throwdown
-			{ spellID = 85388, size = 65, filter = "CD" },
-			-- Intercept
-			{ spellID = 20252, size = 65, filter = "CD" },
+			-- Intervene
+			{ spellID = 3411, size = 65, filter = "CD" },
 			-- Berserker rage
 			{ spellID = 18499, size = 65, filter = "CD" },	
 			--Last Stand

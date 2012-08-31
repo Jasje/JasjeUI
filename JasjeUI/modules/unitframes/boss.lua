@@ -1,24 +1,23 @@
-local T, C, L = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
+local T, C, L, G = unpack(Tukui) 
 if C.unitframes.enable ~= true then return end
 
     for i = 1, 4 do
 	    local self = _G["TukuiBoss"..i]
 
-	    -- we dont need too see this
 		    self:SetBackdrop(nil)
 	        self:SetBackdropColor(0, 0, 0)
-        -- health
+
 			self.Health:Size(205, 18)
 			self.Health:CreateBorder(true)
 			self.Health:SetStatusBarTexture(C["media"].Glamour)
 			self.Health:SetStatusBarColor(.2, .2, .2, 1)
 			self.Health.value:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-		-- killing stuff		
+	
 		    self.shadow:Kill()
 			self.Debuffs:Hide()
-        -- name
+
 			self.Name:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-		-- power
+
 		    self.Power:ClearAllPoints()
 		    self.Power:Size(205, 2)
 		    self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
@@ -30,7 +29,7 @@ if C.unitframes.enable ~= true then return end
 			self.Power.bg.multiplier = 0.1				
 			self.Power.colorPower = true
 			self.Power.value:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-		-- buff/debuffs
+
 		    self.Buffs:ClearAllPoints()
             self.Buffs:Point("TOPRIGHT", self, "TOPLEFT", -5, 2)
 
@@ -46,7 +45,7 @@ if C.unitframes.enable ~= true then return end
 				    hooksecurefunc(f, "PostCreateIcon", T.SkinAura)
 			    end
 		    end
-        -- castbar
+
 		    self.Castbar:SetPoint("LEFT", 23, -1)
 		    self.Castbar:SetPoint("RIGHT", 0, -1)
 		    self.Castbar:SetPoint("BOTTOM", 0, -17)
@@ -68,7 +67,7 @@ if C.unitframes.enable ~= true then return end
 	        self.Castbar.CustomDelayText = T.CustomCastDelayText
             self.Castbar.PostCastStart = T.PostCastStart
             self.Castbar.PostChannelStart = T.PostCastStart
-		-- size
+
 			self:Size(205, 31)
 			self:ClearAllPoints()
 			
