@@ -1409,13 +1409,13 @@ local function OnEvent(self, event, ...)
 				end
 			elseif data.filter == "BUFF" then
 				spn, _, _ = GetSpellInfo(data.spellID)
-				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitBuff(data.unitId, spn)
+				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(data.unitId, spn)
 				if (name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster])) then
 					table.insert(active[id], { data = data, icon = icon, count = count, duration = duration, expirationTime = expirationTime or start})
 				end
 			elseif data.filter == "DEBUFF" then
 				spn, _, _ = GetSpellInfo(data.spellID)
-				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitDebuff(data.unitId, spn)
+				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(data.unitId, spn)
 				if (name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all" ) or MyUnits[caster])) then
 					table.insert(active[id], { data = data, icon = icon, count = count, duration = duration, expirationTime = expirationTime or start})
 				end
@@ -1435,9 +1435,9 @@ function GetFilgerData(data)
 			print("|cffD38D01WARNING: spellID "..data.spellID.." no longer exists contact Jasje!|r")
 		end
 		if data.filter == "BUFF" then
-			name, rank, _, count, debuffType, duration, expirationTime, caster, isStealable = UnitBuff(data.unitId, spn)
+			name, rank, _, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(data.unitId, spn)
 		elseif data.filter == "DEBUFF" then
-			name, rank, _, count, debuffType, duration, expirationTime, caster, isStealable = UnitDebuff(data.unitId, spn)
+			name, rank, _, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(data.unitId, spn)
 		elseif data.filter == "CD" then
 			start, duration, enabled = GetSpellCooldown(spn)
 		end
