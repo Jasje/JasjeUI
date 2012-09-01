@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
 local _, ns = ...
 
@@ -392,24 +392,23 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "CENTER", "UIParent", -0, -85 },
 
+			-- Buffs
 			-- Eclipse (Lunar)
-			{ spellID = 48518, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			--OLD{spellID = 48518, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Eclipse (Solar)
-			{ spellID = 48517, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			--OLD{spellID = 48517, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Shooting Stars
-			{ spellID = 93400, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Savage Roar
-			{ spellID = 52610, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Survival Instincts
-			{ spellID = 61336, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Tree of Life
-			{ spellID = 33891, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 93400, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Lunar Shower
+			{spellID = 81192, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Nature's Grace
+			{spellID = 16886, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Glyph of Rejuvenation
+			{spellID = 96206, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Clearcasting
-			{ spellID = 16870, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Innervate
-			{ spellID = 29166, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
-			-- Barkskin
-			{ spellID = 22812, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 16870, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Predator's Swiftness
+			{spellID = 69369, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -425,23 +424,25 @@ ns.Filger_Spells = {
 			-- Cyclone
 			{ spellID = 33786, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Moonfire
-			{ spellID = 8921, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 8921, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Sunfire
-			{ spellID = 93402, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Insect Swarm
-			{ spellID = 5570, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 93402, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Rake
-			{ spellID = 1822, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1822, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Rip
-			{ spellID = 1079, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Lacerate
-			{ spellID = 33745, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1079, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Pounce Bleed
-			{ spellID = 9007, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Mangle
-			{ spellID = 33876, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Earth and Moon
-			{ spellID = 48506, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 9007, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Lacerate
+			{spellID = 33745, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Thrash
+			{spellID = 77758, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Skull Bash
+			{spellID = 82365, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Immobilized
+			{spellID = 45334, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Infected Wounds
+			{spellID = 58180, size = 37, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Faerie Fire
 			{ spellID = 770, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 		},
@@ -470,8 +471,6 @@ ns.Filger_Spells = {
 			
 			-- Rapid Fire
 			{ spellID = 3045, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Call of the Wild
-			{ spellID = 53434, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Ready, Set, Aim
 			{ spellID = 82925, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 		},
@@ -529,25 +528,39 @@ ns.Filger_Spells = {
 			setPoint = { "RIGHT", UIParent, "CENTER", -190, -20 },
 
 			-- Sprint
-			{ spellID = 2983, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Cloak of Shadows
-			{ spellID = 31224, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 2983, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Adrenaline Rush
-			{ spellID = 13750, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 13750, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Evasion
-			{ spellID = 5277, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 5277, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Envenom
-			{ spellID = 32645, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 32645, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Overkill
-			{ spellID = 58426, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 58426, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Slice and Dice
-			{ spellID = 5171, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Tricks of the Trade
-			{ spellID = 57934, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
-			-- Turn the Tables
-			{ spellID = 51627, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 5171, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Shadow Dance
+			{spellID = 51713, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Recuperate
-			{ spellID = 73651, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			{spellID = 73651, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Shadowstep
+			{spellID = 36563, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Master of Subtlety
+			{spellID = 31665, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Cloak of Shadows
+			{spellID = 31224, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Vanish
+			{spellID = 1856, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Cheating Death
+			{spellID = 45182, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Blade Flurry
+			{spellID = 13877, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Shallow Insight
+			{spellID = 84745, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Moderate Insight
+			{spellID = 84746, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
+			-- Deep Insight
+			{spellID = 84747, size = 37, unitId = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -556,36 +569,34 @@ ns.Filger_Spells = {
 			Mode = "ICON",
 			setPoint = { "LEFT", UIParent, "CENTER", 190, -20 },
 
-			-- hemo bleed
-			{ spellID = 16511, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Cheap shot
-			{ spellID = 1833, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Kidney shot
-			{ spellID = 408, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Blind
-			{ spellID = 2094, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
-			-- Sap
-			{ spellID = 6770, size = 37, unitId = "target", caster = "all", filter = "DEBUFF" },
 			-- Rupture
-			{ spellID = 1943, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1943, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Garrote
-			{ spellID = 703, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 703, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Gouge
-			{ spellID = 1776, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- Expose Armor
-			{ spellID = 8647, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 1776, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Weakened Armor
+			{spellID = 113746, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Dismantle
-			{ spellID = 51722, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 51722, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Revealing Strike
+			{spellID = 84617, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Vendetta
+			{spellID = 79140, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Hemorrhage
+			{spellID = 16511, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Glyph of Hemorrhage
+			--{spellID = 89775, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			-- Find Weakness
+			{spellID = 91021, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Deadly Poison
-			{ spellID = 2818, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 2818, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Mind-numbing Poison
-			{ spellID = 5760, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 5760, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Crippling Poison
-			{ spellID = 3409, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 3409, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Wound Poison
-			{ spellID = 13218, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
-			-- garrote silence
-			{ spellID = 1330, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
+			{spellID = 8680, size = 37, unitId = "target", caster = "player", filter = "DEBUFF" },
 		},
 		{
 			Name = "Shivable Rage effects",
@@ -608,11 +619,11 @@ ns.Filger_Spells = {
 			-- Berserker Rage *
 			{ spellID = 18499, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
 			-- Wrecking Crew  *
-			{ spellID = 57519, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			{ spellID = 56611, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
 			-- Death Wish  *
 			{ spellID = 12292, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
 			-- Bastion of Defense  *
-			{ spellID = 29594, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
+			{ spellID = 84608, size = 50, unitId = "target", caster = "all", filter = "BUFF" },
         },
 	},	
 	["PALADIN"] = { -------------------------------------------------------------------------------------------------------- Paladin
@@ -1397,13 +1408,13 @@ local function OnEvent(self, event, ...)
 					table.insert(active[id], { data = data, icon = icon, count = count, duration = duration, expirationTime = expirationTime or start, displayName = spn, filgerId = filgerId })
 				end
 			elseif data.filter == "BUFF" then
-				spn = GetSpellInfo(data.spellID)
+				spn, _, _ = GetSpellInfo(data.spellID)
 				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitBuff(data.unitId, spn)
 				if (name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster])) then
 					table.insert(active[id], { data = data, icon = icon, count = count, duration = duration, expirationTime = expirationTime or start})
 				end
 			elseif data.filter == "DEBUFF" then
-				spn = GetSpellInfo(data.spellID)
+				spn, _, _ = GetSpellInfo(data.spellID)
 				name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitDebuff(data.unitId, spn)
 				if (name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all" ) or MyUnits[caster])) then
 					table.insert(active[id], { data = data, icon = icon, count = count, duration = duration, expirationTime = expirationTime or start})
@@ -1421,7 +1432,7 @@ function GetFilgerData(data)
 		filgerId = data.spellID
 		spn, _, icon = GetSpellInfo(data.spellID)
 		if not spn then
-			print("|cffff0000WARNING: spellID "..data.spellID.." no longer exists!|r")
+			print("|cffD38D01WARNING: spellID "..data.spellID.." no longer exists contact Jasje!|r")
 		end
 		if data.filter == "BUFF" then
 			name, rank, _, count, debuffType, duration, expirationTime, caster, isStealable = UnitBuff(data.unitId, spn)

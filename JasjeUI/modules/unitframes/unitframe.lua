@@ -104,38 +104,40 @@ for _, frame in pairs(units) do
 		
 		-- experience bar on player via mouseover for player currently levelling a character
     if T.level ~= MAX_PLAYER_LEVEL then
-        self.Experience:Width(T.InfoLeftRightWidth-4)
-	    self.Experience:Height(1)
-	    self.Experience:ClearAllPoints()
-	    self.Experience:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
-	    self.Experience:SetFrameLevel(12)
-	    self.Experience:SetAlpha(1)
-	    self.Experience:SetStatusBarTexture(C["media"].Glamour)
-	    self.Experience:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
+        G.UnitFrames.Player.Experience:Width(T.InfoLeftRightWidth-4)
+	    G.UnitFrames.Player.Experience:Height(1)
+	    G.UnitFrames.Player.Experience:ClearAllPoints()
+	    G.UnitFrames.Player.Experience:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
+	    G.UnitFrames.Player.Experience:SetFrameLevel(12)
+	    G.UnitFrames.Player.Experience:SetAlpha(1)
+	    G.UnitFrames.Player.Experience:SetStatusBarTexture(C["media"].Glamour)
+	    G.UnitFrames.Player.Experience:HookScript("OnLeave", function(self) G.UnitFrames.Player:SetAlpha(1) end)
 
-	    local xpBG = CreateFrame("Frame", nil, self.Experience)
-	    xpBG:CreatePanel("Transparent", self.Experience:GetWidth(), self.Experience:GetHeight(), "TOPLEFT", self.Experience, "TOPLEFT", -2, 2)
-	    xpBG:Point("BOTTOMRIGHT", self.Experience, "BOTTOMRIGHT", 2, -2)	
+	    local xpBG = CreateFrame("Frame", nil, G.UnitFrames.Player.Experience)
+		xpBG:Point("TOPLEFT", G.UnitFrames.Player.Experience, "TOPLEFT", -2, 2)
+		xpBG:SetTemplate("Transparent")
+		xpBG:Size(G.UnitFrames.Player.Experience:GetWidth(), G.UnitFrames.Player.Experience:GetHeight())
+	    xpBG:Point("BOTTOMRIGHT", G.UnitFrames.Player.Experience, "BOTTOMRIGHT", 2, -2)	
 
-		self.Resting:Kill()
+		G.UnitFrames.Player.Resting:Kill()
     end
 
 -- reputation bar for max level character
     if T.level == MAX_PLAYER_LEVEL then
-	    self.Reputation:Width(T.InfoLeftRightWidth-4)
-	    self.Reputation:Height(1)
-	    self.Reputation:ClearAllPoints()
-	    self.Reputation:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
-	    self.Reputation:SetFrameLevel(10)
-	    self.Reputation:SetAlpha(1)
-	    self.Reputation:SetStatusBarTexture(C["media"].Glamour)
-	    self.Reputation:HookScript("OnLeave", function(self) self:SetAlpha(1) end)
+	    G.UnitFrames.Player.Reputation:Width(T.InfoLeftRightWidth-4)
+	    G.UnitFrames.Player.Reputation:Height(1)
+	    G.UnitFrames.Player.Reputation:ClearAllPoints()
+	    G.UnitFrames.Player.Reputation:Point("BOTTOM", TukuiInfoRight, "BOTTOM", 0, -4)
+	    G.UnitFrames.Player.Reputation:SetFrameLevel(10)
+	    G.UnitFrames.Player.Reputation:SetAlpha(1)
+	    G.UnitFrames.Player.Reputation:SetStatusBarTexture(C["media"].Glamour)
+	    G.UnitFrames.Player.Reputation:HookScript("OnLeave", function(self) G.UnitFrames.Player:SetAlpha(1) end)
 
-	    local repBG = CreateFrame("Frame", nil, self.Reputation)
-		repBG:Point("TOPLEFT", self.Reputation, "TOPLEFT", -2, 2)
+	    local repBG = CreateFrame("Frame", nil, G.UnitFrames.Player.Reputation)
+		repBG:Point("TOPLEFT", G.UnitFrames.Player.Reputation, "TOPLEFT", -2, 2)
 		repBG:SetTemplate("Transparent")
-		repBG:Size(self.Reputation:GetWidth(), self.Reputation:GetHeight())
-	    repBG:Point("BOTTOMRIGHT", self.Reputation, "BOTTOMRIGHT", 2, -2)
+		repBG:Size(G.UnitFrames.Player.Reputation:GetWidth(), G.UnitFrames.Player.Reputation:GetHeight())
+	    repBG:Point("BOTTOMRIGHT", G.UnitFrames.Player.Reputation, "BOTTOMRIGHT", 2, -2)
     end
 end
 	
