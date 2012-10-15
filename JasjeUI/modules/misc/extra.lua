@@ -11,17 +11,16 @@ PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
 RaidWarningFrame:ClearAllPoints() 
 RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
 
-UIErrorsFrame:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
-UIErrorsFrame:ClearAllPoints() 
-UIErrorsFrame:Point("CENTER", UIParent, "CENTER",0, 200)
-UIErrorsFrame:SetShadowOffset(0, 0)
-
--- remove Leave Queue from arena/battleground
+-- mis clicks
+StaticPopupDialogs.RESURRECT.hideOnEscape = nil
+StaticPopupDialogs.PARTY_INVITE.hideOnEscape = nil
+StaticPopupDialogs.PARTY_INVITE_XREALM.hideOnEscape = nil
+StaticPopupDialogs.CONFIRM_SUMMON.hideOnEscape = nil
+StaticPopupDialogs.PET_BATTLE_QUEUE_PROPOSE_MATCH.hideOnEscape = nil
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
--- Enables Launcher to download Mist of Pandaria data files
-if GetCVar("accounttype") ~= "MP" then
-	SetCVar("accounttype", "MP")
-end
+StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
+StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
+
 ----------------------------------------------------------------------------------------
 --	Force readycheck warning
 ----------------------------------------------------------------------------------------
@@ -313,62 +312,64 @@ fDispelAnnounce:SetScript('OnEvent', OnEvent)
 ------------------------------------------------------------------------------------
 local deletedelay, t = 0.5, 0
 local takingOnlyCash = false
-local button, button2, waitForMail, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, copper_to_pretty_money, total_cash
+local button, button2, waitForMail, doNothing, openAll, openAllCash, openMail, lastopened, stopOpening, onEvent, needsToWait, copper_to_pretty_money, total_cash
 local _G = _G
 local baseInboxFrame_OnClick
+function doNothing() end
 
 function openAll()
 	if GetInboxNumItems() == 0 then return end
 	button:SetScript("OnClick", nil)
 	button2:SetScript("OnClick", nil)
 	baseInboxFrame_OnClick = InboxFrame_OnClick
-	InboxFrame_OnClick = function() end
+	InboxFrame_OnClick = doNothing
 	button:RegisterEvent("UI_ERROR_MESSAGE")
 	openMail(GetInboxNumItems())
 end
-
 function openAllCash()
 	takingOnlyCash = true
 	openAll()
 end
-
 function openMail(index)
-	if not InboxFrame:IsVisible() then return stopOpening(hexa.."Need a mailbox."..hexb) end
-	if index == 0 then MiniMapMailFrame:Hide() stopOpening(hexa.."Reached the end."..hexb) return end
+	if not InboxFrame:IsVisible() then return stopOpening(hexa.."Need a mailbox.") end
+	if index == 0 then MiniMapMailFrame:Hide() return stopOpening(hexa.."Reached the end."..hexb) end
 	local _, _, _, _, money, COD, _, numItems = GetInboxHeaderInfo(index)
-	if money > 0 then
+	if not takingOnlyCash then
+		if money > 0 or (numItems and numItems > 0) and COD <= 0 then
+			AutoLootMailItem(index)
+			needsToWait = true
+		end
+	elseif money > 0 then
 		TakeInboxMoney(index)
 		needsToWait = true
 		if total_cash then total_cash = total_cash - money end
-	elseif (not takingOnlyCash) and numItems and (numItems > 0) and COD <= 0 then
-		TakeInboxItem(index)
-		needsToWait = true
 	end
 	local items = GetInboxNumItems()
-	if (numItems and numItems > 1) or (items > 1 and index <= items) then
+	if (numItems and numItems > 0) or (items > 1 and index <= items) then
 		lastopened = index
-		t = 0
 		button:SetScript("OnUpdate", waitForMail)
 	else
-		stopOpening(hexa.."All done."..hexb)
 		MiniMapMailFrame:Hide()
+		stopOpening(hexa.."All done."..hexb)
 	end
 end
-
-function waitForMail(self, elapsed)
-	t = t + elapsed
+function waitForMail(this, arg1)
+	t = t + arg1
 	if (not needsToWait) or (t > deletedelay) then
+		if not InboxFrame:IsVisible() then return stopOpening(hexa.."Need a mailbox."..hexb) end
+		t = 0
 		needsToWait = false
 		button:SetScript("OnUpdate", nil)
+		
 		local _, _, _, _, money, COD, _, numItems = GetInboxHeaderInfo(lastopened)
 		if money > 0 or ((not takingOnlyCash) and COD <= 0 and numItems and (numItems > 0)) then
+			--The lastopened index inbox item still contains stuff we want
 			openMail(lastopened)
 		else
 			openMail(lastopened - 1)
 		end
 	end
 end
-
 function stopOpening(msg, ...)
 	button:SetScript("OnUpdate", nil)
 	button:SetScript("OnClick", openAll)
@@ -379,9 +380,9 @@ function stopOpening(msg, ...)
 	button:UnregisterEvent("UI_ERROR_MESSAGE")
 	takingOnlyCash = false
 	total_cash = nil
+	needsToWait = false
 	if msg then DEFAULT_CHAT_FRAME:AddMessage(hexa.."OpenAll: "..hexb..msg, ...) end
 end
-
 function onEvent(frame, event, arg1, arg2, arg3, arg4)
 	if event == "UI_ERROR_MESSAGE" then
 		if arg1 == ERR_INV_FULL then
@@ -389,7 +390,6 @@ function onEvent(frame, event, arg1, arg2, arg3, arg4)
 		end
 	end
 end
-
 local function makeButton(id, text, w, h, x, y)
 	local button = CreateFrame("Button", id, InboxFrame, "UIPanelButtonTemplate")
 	button:SetWidth(w)
@@ -398,10 +398,10 @@ local function makeButton(id, text, w, h, x, y)
 	button:SetText(text)
 	return button
 end
-button = makeButton("OpenAllButton", ALL, 70, 25, -45, -408)
+button = makeButton("OpenAllButton", "All", 70, 20, -50, -410)
 button:SetScript("OnClick", openAll)
 button:SetScript("OnEvent", onEvent)
-button2 = makeButton("OpenAllButton2", MONEY, 70, 25, 28, -408)
+button2 = makeButton("OpenAllButton2", "Golds", 70, 20, 30, -410)
 button2:SetScript("OnClick", openAllCash)
 
 button:SetScript("OnEnter", function()
@@ -413,18 +413,17 @@ button:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 function copper_to_pretty_money(c)
 	if c > 10000 then
-		return ("%d|cffffd700"..GOLD_AMOUNT_SYMBOL.."|r %d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c/10000, (c/100)%100, c%100)
+		return ("%d|cffffd700g|r%d|cffc7c7cfs|r%d|cffeda55fc|r"):format(c/10000, (c/100)%100, c%100)
 	elseif c > 100 then
-		return ("%d|cffc7c7cf"..SILVER_AMOUNT_SYMBOL.."|r %d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format((c/100)%100, c%100)
+		return ("%d|cffc7c7cfs|r%d|cffeda55fc|r"):format((c/100)%100, c%100)
 	else
-		return ("%d|cffeda55f"..COPPER_AMOUNT_SYMBOL.."|r"):format(c%100)
+		return ("%d|cffeda55fc|r"):format(c%100)
 	end
 end
-
 button2:SetScript("OnEnter", function()
 	if not total_cash then
 		total_cash = 0
-		for index = 0, GetInboxNumItems() do
+		for index=0, GetInboxNumItems() do
 			total_cash = total_cash + select(5, GetInboxHeaderInfo(index))
 		end
 	end
@@ -432,11 +431,10 @@ button2:SetScript("OnEnter", function()
 	GameTooltip:AddLine(copper_to_pretty_money(total_cash), 1, 1, 1)
 	GameTooltip:Show()
 end)
+button2:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
-button2:SetScript("OnLeave", function()	GameTooltip:Hide() end)
-
-T.SkinButton(OpenAllButton)
-T.SkinButton(OpenAllButton2)
+OpenAllButton:SkinButton()
+OpenAllButton2:SkinButton()
 ---------------------------------------------------------------------------------------------------------------------------------
 -- tekKompare by Tekkub found at http://www.wowinterface.com/downloads/info6837-tekKompare.html
 -- only used Hoverlinks
@@ -445,8 +443,7 @@ T.SkinButton(OpenAllButton2)
 local orig1, orig2 = {}, {}
 local GameTooltip = GameTooltip
 
-local linktypes = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true, instancelock = true}
-
+local linktypes = {item = true, enchant = true, spell = true, quest = true, unit = true, talent = true, achievement = true, glyph = true, instancelock = true, currency = true}
 
 local function OnHyperlinkEnter(frame, link, ...)
 	local linktype = link:match("^([^:]+)")
