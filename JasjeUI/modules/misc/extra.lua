@@ -294,8 +294,8 @@ local function OnEvent(self, event, timestamp, eventType, hideCaster, sourceGUID
 		return
 	end
 	-- Print to partychat
-	local numraid = GetNumRaidMembers()
-	if (numraid > 0 and numraid < 6) then
+	local numparty = GetNumGroupMembers()
+	if (numparty > 0 and numparty < 6) then
 		SendChatMessage(events[eventType].msg .. ": " .. select(5, ...), "PARTY")
 	end
 	-- Add to messageframe
