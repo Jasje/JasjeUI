@@ -117,7 +117,7 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 		end
 	end	
 end	
-
+--[[
 -- highlight on raidframes
 hooksecurefunc(T, "PostUpdateHealthRaid", function(health, unit, min, max)
 	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
@@ -146,7 +146,7 @@ hooksecurefunc(T, "PostUpdateHealthRaid", function(health, unit, min, max)
 		end
 	end
 end)
-
+]]--
 -- AuraTracker Function
 function updateAuraTrackerTime(self, elapsed)
 	if (self.active) then
