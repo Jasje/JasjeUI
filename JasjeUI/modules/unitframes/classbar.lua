@@ -7,6 +7,45 @@ local color = RAID_CLASS_COLORS[T.myclass]
 	do
 		if( C["unitframes"].classbar == true ) then
 		
+		    if T.myclass == "MONK" then
+				G.UnitFrames.Player.HarmonyBar:ClearAllPoints()
+				G.UnitFrames.Player.HarmonyBar:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 7)
+				G.UnitFrames.Player.HarmonyBar:Size(220, 7)
+				G.UnitFrames.Player.HarmonyBar:CreateBackdrop("Default")
+
+				local maxChi = UnitPowerMax( "player", SPELL_POWER_LIGHT_FORCE )
+
+				for i = 1, maxChi do
+					if( maxChi == 4 ) then
+						if( i == 4 or i == 3 ) then
+							G.UnitFrames.Player.HarmonyBar[i]:Size((220/4) -1, 7)
+						else
+							G.UnitFrames.Player.HarmonyBar[i]:Size(220/4, 7)
+							G.UnitFrames.Player.HarmonyBar[i]:SetStatusBarTexture(C["media"].Glamour)
+						end
+					elseif( maxChi == 5 ) then
+						if( i == 5 ) then
+							G.UnitFrames.Player.HarmonyBar[i]:Size(T.Scale(220/5) - 1, 7)
+						else
+							G.UnitFrames.Player.HarmonyBar[i]:Size(T.Scale(220/5), 7)
+						end
+					end
+
+					if( i == 1 ) then
+						G.UnitFrames.Player.HarmonyBar[i]:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 7 )
+					else
+						G.UnitFrames.Player.HarmonyBar[i]:Point( "LEFT", G.UnitFrames.Player.HarmonyBar[i - 1], "RIGHT", 1, 0 )
+					end
+				end
+
+				if( C["unitframes"]["showstatuebar"] == true) then
+					G.UnitFrames.Player.Statue:ClearAllPoints()
+					G.UnitFrames.Player.Statue:Size( 233, 2 )
+					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
+					G.UnitFrames.Player.Statue:CreateBackdrop("Default")
+				end
+			end
+		
 		    if T.myclass == "DRUID" then
 			    local DruidManaBackground = self.DruidManaBackground
 				local DruidManaBarStatus = self.DruidMana
@@ -38,6 +77,14 @@ local color = RAID_CLASS_COLORS[T.myclass]
 
 				eclipseBar:CreateBackdrop("Default")
 				eclipseBar.backdrop:CreateShadow("Default")
+				
+				if( C["unitframes"]["showstatuebar"] == true ) then
+					G.UnitFrames.Player.Statue:ClearAllPoints()
+					G.UnitFrames.Player.Statue:Size( 233, 2 )
+					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
+					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
+					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+				end
 			end
 			
         -- combo bar
@@ -77,6 +124,14 @@ local color = RAID_CLASS_COLORS[T.myclass]
 		            TukuiCombo[i]:Point("LEFT", TukuiCombo[i-1], "RIGHT", 0.5, 0)
 		            TukuiCombo[i]:SetWidth(217 / 5)
 	            end
+				
+				if( C["unitframes"]["showstatuebar"] == true ) then
+					G.UnitFrames.Player.Statue:ClearAllPoints()
+					G.UnitFrames.Player.Statue:Size( 233, 2 )
+					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
+					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
+					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+				end
 	        end
 
 		    if(T.myclass == "WARLOCK") then
@@ -93,6 +148,14 @@ local color = RAID_CLASS_COLORS[T.myclass]
 					else
 						G.UnitFrames.Player.WarlockSpecBars[i]:Point("LEFT", G.UnitFrames.Player.WarlockSpecBars[i -1], "RIGHT", 1, 0)
 					end
+				end
+				
+				if( C["unitframes"]["showstatuebar"] == true ) then
+					G.UnitFrames.Player.Statue:ClearAllPoints()
+					G.UnitFrames.Player.Statue:Size( 233, 2 )
+					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
+					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
+					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
 				end
 			end
 			
@@ -141,6 +204,14 @@ local color = RAID_CLASS_COLORS[T.myclass]
 					else
 						self.Runes[i]:Point( "TOPLEFT", self.Runes[i - 1], "TOPRIGHT", 1, 0 )
 					end
+				end
+				
+				if( C["unitframes"]["showstatuebar"] == true ) then
+					G.UnitFrames.Player.Statue:ClearAllPoints()
+					G.UnitFrames.Player.Statue:Size( 233, 2 )
+					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
+					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
+					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
 				end
 			end
 
