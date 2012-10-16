@@ -8,7 +8,8 @@ local T, C, L, G = unpack(Tukui)
 ]]--
 
 Filger_Settings = {
-	configmode = true,
+	config_mode = false,
+	max_test_icon = 5,
 }
 
 Filger_Spells = {
@@ -55,11 +56,13 @@ Filger_Spells = {
 			Position = { "CENTER", UIParent, 110, -40 },
 
 			-- Necrotic Strike
-			--{ spellID = 73975, unitID = "target", caster = "player", filter = "DEBUFF" },
+			{ spellID = 73975, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Blood Plague
 			{ spellID = 55078, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Fever
 			{ spellID = 55095, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Soul Reaper 
+			{ spellID = 130736, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
 		{
 			Name = "COOLDOWN",
@@ -739,6 +742,55 @@ Filger_Spells = {
 			{ spellID = 87138, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Hand of Light 
 			{ spellID = 90174, unitID = "player", caster = "player", filter = "BUFF" },
+		},
+	},
+	["MONK"] = { -------------------------------------------------------------------------------------------------------- Monk
+		{ -- Not finished
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "CENTER", UIParent, -110, -40 },
+
+			-- Crackling Jade Lightning
+			{ spellID = 117952, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Blackout Kick
+			{ spellID = 100784, unitID = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "CENTER", UIParent, -110, -40 },
+			
+			-- Serpent's Zeal
+			{ spellID = 127722, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Vital Mists
+			{ spellID = 118674, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Brewing: Mana Tea
+			{ spellID = 123766, unitID = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "UP",
+			Interval = 3,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "CENTER", UIParent, 110, -40 },
+			
+			-- Renewing Mist
+			{ spellID = 119611, unitID = "target", caster = "player", filter = "BUFF" },
+			-- Soothing Mist
+			{ spellID = 115175, unitID = "target", caster = "player", filter = "BUFF" },
+			-- Enveloping Mist
+			{ spellID = 132120, unitID = "target", caster = "player", filter = "BUFF" },
+
 		},
 	},
 	["WARRIOR"] = {  -------------------------------------------------------------------------------------------------------- Warrior
