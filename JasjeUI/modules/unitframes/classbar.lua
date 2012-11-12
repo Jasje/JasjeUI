@@ -40,9 +40,8 @@ local color = RAID_CLASS_COLORS[T.myclass]
 
 				if( C["unitframes"]["showstatuebar"] == true) then
 					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size( 233, 2 )
-					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
-					G.UnitFrames.Player.Statue:CreateBackdrop("Default")
+					G.UnitFrames.Player.Statue:Size(220, 5 )
+					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 			end
 		
@@ -80,10 +79,8 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				
 				if( C["unitframes"]["showstatuebar"] == true ) then
 					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size( 233, 2 )
-					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
-					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
-					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+					G.UnitFrames.Player.Statue:Size(220, 5 )
+					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 			end
 			
@@ -127,10 +124,8 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				
 				if( C["unitframes"]["showstatuebar"] == true ) then
 					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size( 233, 2 )
-					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
-					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
-					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+					G.UnitFrames.Player.Statue:Size(220, 5 )
+					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 	        end
 
@@ -152,10 +147,8 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				
 				if( C["unitframes"]["showstatuebar"] == true ) then
 					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size( 233, 2 )
-					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
-					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
-					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+					G.UnitFrames.Player.Statue:Size(220, 5 )
+					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 			end
 			
@@ -208,10 +201,8 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				
 				if( C["unitframes"]["showstatuebar"] == true ) then
 					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size( 233, 2 )
-					G.UnitFrames.Player.Statue:Point( "TOPRIGHT", G.UnitFrames.Player.Power, "BOTTOMRIGHT", 0, -7 )
-					G.UnitFrames.Player.Statue:CreateBackdrop( "Default" )
-					G.UnitFrames.Player.Statue.backdrop:CreateShadow( "Default" )
+					G.UnitFrames.Player.Statue:Size(220, 5 )
+					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 			end
 
@@ -219,7 +210,6 @@ local color = RAID_CLASS_COLORS[T.myclass]
 		    	G.UnitFrames.Player.ArcaneChargeBar:ClearAllPoints()
 			    G.UnitFrames.Player.ArcaneChargeBar:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
 			    G.UnitFrames.Player.ArcaneChargeBar:Size(233, 7)
-			    G.UnitFrames.Player.ArcaneChargeBar:CreateBackdrop("Default")
 
 			    for i = 1, 6 do
 			    	G.UnitFrames.Player.ArcaneChargeBar[i]:Size(T.Scale(220/6) -1,7)

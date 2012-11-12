@@ -39,6 +39,6 @@
 	<Script file="modules\unitframes\unitframe.lua"/>
 	<Script file="modules\unitframes\arena.lua"/>
 	<Script file="modules\unitframes\boss.lua"/>
-	<Script file="modules\raidframes\raidframe.lua"/>
+	<Script file="modules\raidframes\raid.lua"/>
 
 </Ui>

@@ -27,6 +27,8 @@ Filger_Spells = {
 			{ spellID = 51124, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Freezing Fog
 			{ spellID = 59052, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Blood Charge
+			{ spellID = 114851, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -41,7 +43,7 @@ Filger_Spells = {
 			{ spellID = 49222, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Surge of Victory
 			{ spellID = 102432, unitID = "player", caster = "player", filter = "BUFF" },
-			--Lichborne
+			-- Lichborne
 			{ spellID = 49039, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Summon Gargoyle
 			{ spellID = 61777, unitID = "target", caster = "player", filter = "DEBUFF" },

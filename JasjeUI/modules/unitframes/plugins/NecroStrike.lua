@@ -1,6 +1,6 @@
 -- Jasjes fix for NecroticStrke
 -- http://www.wowinterface.com/downloads/info20457-WorkingoUF_NecroStrike.html
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 local oUF = oUFTukui
 
 if not oUF then return end

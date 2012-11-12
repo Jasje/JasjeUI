@@ -350,6 +350,9 @@ end
 		
         G.UnitFrames.Focus.Castbar.Text = T.SetFontString(G.UnitFrames.Focus.Castbar, C.media.pixelfont, 8, "OUTLINEMONOCHROME")
         G.UnitFrames.Focus.Castbar.Text:Point("LEFT", G.UnitFrames.Focus.Castbar, "LEFT", 4, 0)
+		
+		G.UnitFrames.Focus.Debuffs:ClearAllPoints()
+		G.UnitFrames.Focus.Debuffs:Point('RIGHT', G.UnitFrames.Focus, 'LEFT', -5, 2)
 
 		for _, f in pairs({G.UnitFrames.Focus.Debuffs}) do
 			if not f then return end

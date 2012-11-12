@@ -6,7 +6,7 @@ if C.unitframes.enable ~= true then return end
 
 		-- we dont need too see this
 		    self:SetBackdrop(nil)
-	        self:SetBackdropColor(0, 0, 0)
+	        self:SetBackdropColor(0, 0, 0)																																													  
         -- health
 			self.Health:Size(205, 18)
 			self.Health:CreateBorder(true)
@@ -52,11 +52,27 @@ if C.unitframes.enable ~= true then return end
 	        self.Castbar.CustomDelayText = T.CustomCastDelayText
             self.Castbar.PostCastStart = T.PostCastStart
             self.Castbar.PostChannelStart = T.PostCastStart
-	    --[[trinket
-		    self.Trinketbg:ClearAllPoints()
-		    self.Trinketbg:Size(31)
-		    self.Trinketbg:Point("TOPLEFT", self, "TOPRIGHT", 5, 2)
-    		self.Trinket.trinketUseAnnounce = false			]]--
+			
+	    -- Trinket
+		    self.Trinket :ClearAllPoints()
+		    self.Trinket :Size(27)
+		    self.Trinket:Point("TOPLEFT", self, "TOPRIGHT", 5, 2)
+    		--self.Trinket.trinketUseAnnounce = false	
+			
+			self.PVPSpecIcon:ClearAllPoints()
+            self.PVPSpecIcon:SetTemplate("Default")
+	 		self.PVPSpecIcon:Size(27)
+			self.PVPSpecIcon:Point("TOPLEFT", self, "TOPRIGHT", 38, 2)
+
+			for i = 1, 5 do
+		        local Frame = _G["TukuiPrepArena"..i]
+		        local Spec = Frame.SpecClass
+				local SpecH = Frame.Health
+
+		       Spec:SetFont(C.media.pixelfont, 16, "OUTLINEMONOCHROME") 
+			   SpecH:SetStatusBarTexture(C["media"].Glamour)
+	        end
+			
 		-- Auratracker Frame
 		    local AuraTracker = CreateFrame("Frame", nil, self)
 		    AuraTracker:Size(31)
@@ -71,7 +87,7 @@ if C.unitframes.enable ~= true then return end
 
 		    AuraTracker.text = T.SetFontString(AuraTracker,  C.media.pixelfont, 16, "OUTLINEMONOCHROME")
 		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
-		    AuraTracker:SetScript("OnUpdate", updateAuraTrackerTime)
+		    AuraTracker:SetScript("OnUpdate", UpdateAuraTrackerTime)
 		    self.AuraTracker = AuraTracker
 		-- ClassIcon			
 		    local class = AuraTracker:CreateTexture(nil, "ARTWORK")

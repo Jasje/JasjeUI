@@ -117,36 +117,7 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 		end
 	end	
 end	
---[[
--- highlight on raidframes
-hooksecurefunc(T, "PostUpdateHealthRaid", function(health, unit, min, max)
-	if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then
-		if not UnitIsConnected(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_offline.."|r")
-		elseif UnitIsDead(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_dead.."|r")
-		elseif UnitIsGhost(unit) then
-			health.value:SetText("|cffD7BEA5"..L.unitframes_ouf_ghost.."|r")
-		end
-		health:SetStatusBarColor(.8, .3, .3) -- Red health if offline/dead/dc'd
-	else
-		if not UnitIsPlayer(unit) and UnitIsFriend(unit, "player") and C["unitframes"].unicolor ~= true then
-			local c = T.oUF_colors.reaction[5]
-			local r, g, b = c[1], c[2], c[3]
-			health:SetStatusBarColor(r, g, b)
-			health.bg:SetTexture(.1, .1, .1)
-		end
-		
-		if C.unitframes.gradienthealth and C.unitframes.unicolor then
-			if not UnitIsConnected(unit) or UnitIsDead(unit) or UnitIsGhost(unit) then return end
-			if not health.classcolored then
-				local r, g, b = oUF.ColorGradient(min/max, unpack(C["unitframes"].gradient))
-				health:SetStatusBarColor(r, g, b)
-			end
-		end
-	end
-end)
-]]--
+
 -- AuraTracker Function
 function updateAuraTrackerTime(self, elapsed)
 	if (self.active) then
