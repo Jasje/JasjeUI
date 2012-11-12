@@ -1,4 +1,4 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 -- Config start
 local anchor = "BOTTOM"
 local x, y = -307, 48
@@ -125,9 +125,9 @@ end
 
 local OnMouseDown = function(self, button)
 	if button == "LeftButton" then
-		if GetRealNumRaidMembers() > 0 then
+		if IsInRaid() then
 			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "RAID")
-		elseif GetRealNumPartyMembers() > 0 and not UnitInRaid("player") then
+		elseif IsInGroup() then
 			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "PARTY")
 		else
 			SendChatMessage(sformat("Cooldown - %s [%s] %s", self.left:GetText(), self.spell, self.right:GetText()), "SAY")
