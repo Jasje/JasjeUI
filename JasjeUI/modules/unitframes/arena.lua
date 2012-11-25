@@ -69,7 +69,7 @@ if C.unitframes.enable ~= true then return end
 		        local Spec = Frame.SpecClass
 				local SpecH = Frame.Health
 
-		       Spec:SetFont(C.media.pixelfont, 16, "OUTLINEMONOCHROME") 
+		       Spec:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME") 
 			   SpecH:SetStatusBarTexture(C["media"].Glamour)
 	        end
 			
