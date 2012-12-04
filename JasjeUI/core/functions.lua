@@ -119,20 +119,18 @@ T.PostCastStart = function(self, unit, name, rank, castid)
 end	
 
 -- AuraTracker Function
-function updateAuraTrackerTime(self, elapsed)
-	if (self.active) then
+T.AuraTrackerTime = function(self, elapsed)
+	if self.active then
 		self.timeleft = self.timeleft - elapsed
-
-		if (self.timeleft <= 5) then
+		if self.timeleft <= 5 then
 			self.text:SetTextColor(1, 0, 0)
 		else
 			self.text:SetTextColor(1, 1, 1)
 		end
-		
-		if (self.timeleft <= 0) then
+		if self.timeleft <= 0 then
 			self.icon:SetTexture("")
 			self.text:SetText("")
-		end	
+		end
 		self.text:SetFormattedText("%.1f", self.timeleft)
 	end
 end

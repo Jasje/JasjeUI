@@ -33,7 +33,7 @@ if C.unitframes.enable ~= true then return end
         -- castbar
 			self.Castbar:ClearAllPoints()
 			self.Castbar:SetHeight(20)
-			self.Castbar:Point("RIGHT", self, "RIGHT", -150, -0)
+			self.Castbar:Point("RIGHT", self, "RIGHT", -265, 3)
 			self.Castbar:CreateBackdrop("Default")
 
 			self.Castbar.bg:Kill()
@@ -74,7 +74,6 @@ if C.unitframes.enable ~= true then return end
             self.PVPSpecIcon:SetTemplate("Default")
 	 		self.PVPSpecIcon:Size(37)
 			self.PVPSpecIcon:Point("TOPLEFT", self, "TOPRIGHT", 5, 0)
-			--self.PVPSpecIcon.backdrop(nil)
 
 			for i = 1, 5 do
 		        local Frame = _G["TukuiPrepArena"..i]
@@ -97,17 +96,17 @@ if C.unitframes.enable ~= true then return end
 		    AuraTracker.icon:Point("BOTTOMRIGHT", AuraTracker, -2, 2)
 		    AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
 
-		    AuraTracker.text = T.SetFontString(AuraTracker,  C.media.pixelfont, 16, "OUTLINEMONOCHROME")
+		    AuraTracker.text = T.SetFontString(AuraTracker, C.media.pixelfont, 14, "OUTLINEMONOCHROME")
 		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
-		    AuraTracker:SetScript("OnUpdate", UpdateAuraTrackerTime)
+		    AuraTracker:SetScript("OnUpdate", T.AuraTrackerTime)
 		    self.AuraTracker = AuraTracker
 		-- ClassIcon			
 		    local class = AuraTracker:CreateTexture(nil, "ARTWORK")
 		    class:SetAllPoints(AuraTracker.icon)
 		    self.ClassIcon = class
 
-		    --self:EnableElement('ClassIcon')
-		    --self:EnableElement('AuraTracker')
+		    self:EnableElement('ClassIcon')
+		    self:EnableElement('AuraTracker')
 		-- size
 			self:Size(205, 41)
 			self:ClearAllPoints()
