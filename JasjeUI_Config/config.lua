@@ -67,6 +67,10 @@ C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts
 	fontsize = 14,
 }
 
+C.Filger = {   -- if you disable filger Blizzards loseofcontrol will be enabled
+	enable = true,
+}
+
 C.chat = {
 	names = { 
 	    UnitName("player"), 

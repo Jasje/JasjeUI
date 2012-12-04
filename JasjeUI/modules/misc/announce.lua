@@ -14,16 +14,16 @@ drinking_announce:SetScript("OnEvent", function(self, event, ...)
 	if not (event == "UNIT_SPELLCAST_SUCCEEDED" and GetZonePVPInfo() == "arena") then return end
 
 	local unit, spellName, spellrank, spelline, spellID = ...
-	if UnitIsEnemy("player", unit) and (spellID == 80167 or spellID == 94468 or spellID == 43183 or spellID == 57073 or spellName == "Drinking") then
+	if UnitIsEnemy("player", unit) and (spellID == 81923 or spellName == "Drinking") then
 		if GetRealNumRaidMembers() > 0 then
 			SendChatMessage(UnitName(unit).." is drinking.", "RAID")
-			--PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
+			PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
 		elseif GetRealNumPartyMembers() > 0 and not UnitInRaid("player") then
 			SendChatMessage(UnitName(unit).." is drinking.", "PARTY")
-			--PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
+			PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
 		else
 			SendChatMessage(UnitName(unit).." is drinking.", "SAY")
-			--PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
+			PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\Drinking.mp3", "Master")
 		end
 	end
 end)

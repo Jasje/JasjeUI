@@ -8,15 +8,14 @@ SubZoneTextString:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
 PVPInfoTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMETHINOUTLINE")
 PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
 
-RaidWarningFrame:ClearAllPoints() 
-RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 290)
+--RaidWarningFrame:ClearAllPoints() 
+--RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 0)
 
 -- mis clicks
 StaticPopupDialogs.RESURRECT.hideOnEscape = nil
 StaticPopupDialogs.PARTY_INVITE.hideOnEscape = nil
 StaticPopupDialogs.PARTY_INVITE_XREALM.hideOnEscape = nil
 StaticPopupDialogs.CONFIRM_SUMMON.hideOnEscape = nil
-StaticPopupDialogs.PET_BATTLE_QUEUE_PROPOSE_MATCH.hideOnEscape = nil
 StaticPopupDialogs.CONFIRM_BATTLEFIELD_ENTRY.button2 = nil
 StaticPopupDialogs.ADDON_ACTION_FORBIDDEN.button1 = nil
 StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
@@ -30,6 +29,14 @@ local ShowReadyCheckHook = function(self, initiator, timeLeft)
 	end
 end
 hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
+
+----------------------------------------------------------------------------------------
+--	Honor shown in tooltip
+----------------------------------------------------------------------------------------
+PVPFrameCurrency:HookScript("OnEnter", function()
+	GameTooltip:AddLine(HONORABLE_KILLS..": |cffffffff"..GetStatistic(588))
+	GameTooltip:Show()
+end)
 
 ----------------------------------------------------------------------------------------
 --	Force other warning

@@ -8,7 +8,7 @@ if C.unitframes.enable ~= true then return end
 		    self:SetBackdrop(nil)
 	        self:SetBackdropColor(0, 0, 0)																																													  
         -- health
-			self.Health:Size(205, 18)
+			self.Health:Size(205, 30)
 			self.Health:CreateBorder(true)
 			self.Health:SetStatusBarTexture(C["media"].Glamour)
 			self.Health:SetStatusBarColor(.2, .2, .2, 1)
@@ -21,7 +21,7 @@ if C.unitframes.enable ~= true then return end
 		-- power
 		    self.Power:ClearAllPoints()
 		    self.Power:Size(205, 2)
-		    self.Power:Point("TOP", self.Health, "BOTTOM", 0, -7)
+		    self.Power:Point("TOP", self.Health, "BOTTOM", 0, -5)
 			self.Power:SetFrameLevel(4)
 			self.Power:CreateBorder(true)
 
@@ -31,38 +31,50 @@ if C.unitframes.enable ~= true then return end
 			self.Power.colorPower = true
 			self.Power.value:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
         -- castbar
-		    self.Castbar:SetPoint("LEFT", 23, -1)
-		    self.Castbar:SetPoint("RIGHT", 0, -1)
-		    self.Castbar:SetPoint("BOTTOM", 0, -17)
+			self.Castbar:ClearAllPoints()
+			self.Castbar:SetHeight(20)
+			self.Castbar:Point("RIGHT", self, "RIGHT", -150, -0)
+			self.Castbar:CreateBackdrop("Default")
 
-		    self.Castbar.time:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-		    self.Castbar.time:SetTextColor(1, 1, 1)
+			self.Castbar.bg:Kill()
 
-		    self.Castbar.Text:SetFont(C.media.pixelfont, 8, "MONOCHROMEOUTLINE")
-		    self.Castbar.Text:SetTextColor(1, 1, 1)
+			self.Castbar.bg = self.Castbar:CreateTexture(nil, "BORDER")
+			self.Castbar.bg:SetAllPoints(self.Castbar)
+			self.Castbar.bg:SetTexture(C["media"].Glamour)
+			self.Castbar.bg:SetVertexColor(0.05, 0.05, 0.05)
 
-		    self.Castbar.button:ClearAllPoints()
-		    self.Castbar.button:Point("RIGHT", self.Castbar, "LEFT",-5, 0)
+			self.Castbar.Time:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+			self.Castbar.Time:Point("RIGHT", self.Castbar, "RIGHT", -4, 1)
 
-		    self.Castbar.bg:SetTemplate("Transparent")
-		    self.Castbar.bg:SetBorder()
-		    self.Castbar.button:SetTemplate("Hydra")
+			self.Castbar.Text:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
+			self.Castbar.Text:Point("LEFT", self.Castbar, "LEFT", 4, 1)
 
-			self.Castbar.CustomTimeText = T.CustomCastTimeText
-	        self.Castbar.CustomDelayText = T.CustomCastDelayText
-            self.Castbar.PostCastStart = T.PostCastStart
-            self.Castbar.PostChannelStart = T.PostCastStart
+			self.Castbar.PostCastStart = T.PostCastStart
+			self.Castbar.PostChannelStart = T.PostCastStart
+
+			if(C["unitframes"].cbicons == true) then
+     			self.Castbar:Width(173)
+
+				self.Castbar.button:ClearAllPoints()
+				self.Castbar.button:SetPoint("RIGHT", self.Castbar, "LEFT", -5, 0)
+				self.Castbar.button:Size(24)
+			else
+				self.Castbar:Width(200)
+
+				self.Castbar.button:Kill()
+			end
 			
 	    -- Trinket
-		    self.Trinket :ClearAllPoints()
-		    self.Trinket :Size(27)
-		    self.Trinket:Point("TOPLEFT", self, "TOPRIGHT", 5, 2)
+		    self.Trinket:ClearAllPoints()
+		    self.Trinket:Size(37)
+		    self.Trinket:Point("LEFT", self.PVPSpecIcon, "RIGHT", 6, 0)
     		--self.Trinket.trinketUseAnnounce = false	
 			
 			self.PVPSpecIcon:ClearAllPoints()
             self.PVPSpecIcon:SetTemplate("Default")
-	 		self.PVPSpecIcon:Size(27)
-			self.PVPSpecIcon:Point("TOPLEFT", self, "TOPRIGHT", 38, 2)
+	 		self.PVPSpecIcon:Size(37)
+			self.PVPSpecIcon:Point("TOPLEFT", self, "TOPRIGHT", 5, 0)
+			--self.PVPSpecIcon.backdrop(nil)
 
 			for i = 1, 5 do
 		        local Frame = _G["TukuiPrepArena"..i]
@@ -75,7 +87,7 @@ if C.unitframes.enable ~= true then return end
 			
 		-- Auratracker Frame
 		    local AuraTracker = CreateFrame("Frame", nil, self)
-		    AuraTracker:Size(31)
+		    AuraTracker:Size(41)
 	        AuraTracker:Point("TOPRIGHT", self, "TOPLEFT", -5, 2)
 	        AuraTracker:SetTemplate("Default")
 
@@ -94,15 +106,15 @@ if C.unitframes.enable ~= true then return end
 		    class:SetAllPoints(AuraTracker.icon)
 		    self.ClassIcon = class
 
-		    self:EnableElement('ClassIcon')
-		    self:EnableElement('AuraTracker')
+		    --self:EnableElement('ClassIcon')
+		    --self:EnableElement('AuraTracker')
 		-- size
-			self:Size(205, 31)
+			self:Size(205, 41)
 			self:ClearAllPoints()
 
     	if( i == 1 ) then
-		    self:Point("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 250,350)
+		    self:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -200, -300)
 	    else
-		    self:SetPoint("BOTTOM", _G["TukuiArena"..i-1], "TOP", 0, 25)
+		    self:SetPoint("TOP", _G["TukuiArena"..i-1], "BOTTOM", 0, -25)
 		end	
 	end

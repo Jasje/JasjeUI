@@ -1,4 +1,6 @@
 local T, C, L, G = unpack(Tukui)
+
+if not C["Filger"].enable == true then return end
 --[[
 	
 	Filger
@@ -1158,30 +1160,6 @@ Filger_Spells = {
 			{spellID = 87194, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Mind Flay
 			{spellID = 15407, unitID = "player", caster = "all", filter = "DEBUFF" },
-
-			-- Rogue
-			-- Kidney Shot
-			{spellID = 408, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Cheap Shot
-			{spellID = 1833, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Sap
-			{spellID = 6770, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Blind
-			{spellID = 2094, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Gouge
-			{spellID = 1776, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Garrote - Silence
-			{spellID = 1330, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Smoke Bomb
-			{spellID = 76577, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Dismantle
-			{spellID = 51722, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Deadly Throw
-			{spellID = 26679, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Crippling Poison
-			{spellID = 3409, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Mind-numbing Poison
-			{spellID = 5760, unitID = "player", caster = "all", filter = "DEBUFF" },
 
 			-- Shaman
 			-- Hex
