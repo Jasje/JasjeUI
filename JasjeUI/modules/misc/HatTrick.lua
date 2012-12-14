@@ -1,3 +1,5 @@
+local T, C, L, G = unpack(Tukui)
+
 -- addon by Tekkub 
 -- http://www.wowinterface.com/downloads/info6958-HatTrick.html
 local GameTooltip = GameTooltip

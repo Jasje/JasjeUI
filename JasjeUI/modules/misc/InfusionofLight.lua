@@ -1,7 +1,7 @@
-local T, C, L = unpack(Tukui)
+local T, C, L, G = unpack(Tukui)
 
+if(T.myclass ~= "PALADIN") then return end
 --[[
-
 http://www.wowinterface.com/downloads/info19542-InfusionofLight.html#info
 ]]
 local IoL_ButtonPrefix = IsAddOnLoaded("Bartender4") and "BT4Button" or "ActionButton"
@@ -22,7 +22,7 @@ IoL:SetScript("OnUpdate", function(self, elapsed)
 	end
 end)
 function IoL_HasFullHolyPower()
-	return UnitPower("player", SPELL_POWER_HOLY_POWER) == 3
+	return UnitPower("player", SPELL_POWER_HOLY_POWER) == 5 -- 
 end
 function IoL_HasAura(aura)
 	if aura ~= nil then

@@ -76,12 +76,6 @@ local color = RAID_CLASS_COLORS[T.myclass]
 
 				eclipseBar:CreateBackdrop("Default")
 				eclipseBar.backdrop:CreateShadow("Default")
-				
-				if( C["unitframes"]["showstatuebar"] == true ) then
-					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size(220, 5 )
-					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
-				end
 			end
 			
         -- combo bar
@@ -121,13 +115,7 @@ local color = RAID_CLASS_COLORS[T.myclass]
 		            TukuiCombo[i]:Point("LEFT", TukuiCombo[i-1], "RIGHT", 0.5, 0)
 		            TukuiCombo[i]:SetWidth(217 / 5)
 	            end
-				
-				if( C["unitframes"]["showstatuebar"] == true ) then
-					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size(220, 5 )
-					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
-				end
-	        end
+			end
 
 		    if(T.myclass == "WARLOCK") then
 				G.UnitFrames.Player.WarlockSpecBars:ClearAllPoints()
@@ -143,12 +131,6 @@ local color = RAID_CLASS_COLORS[T.myclass]
 					else
 						G.UnitFrames.Player.WarlockSpecBars[i]:Point("LEFT", G.UnitFrames.Player.WarlockSpecBars[i -1], "RIGHT", 1, 0)
 					end
-				end
-				
-				if( C["unitframes"]["showstatuebar"] == true ) then
-					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size(220, 5 )
-					G.UnitFrames.Player.Statue:Point( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 19)
 				end
 			end
 			

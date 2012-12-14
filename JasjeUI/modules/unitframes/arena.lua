@@ -97,7 +97,7 @@ if C.unitframes.enable ~= true then return end
 		    AuraTracker.icon:SetTexCoord(0.07,0.93,0.07,0.93)
 
 		    AuraTracker.text = T.SetFontString(AuraTracker, C.media.pixelfont, 14, "OUTLINEMONOCHROME")
-		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, 0)
+		    AuraTracker.text:SetPoint("CENTER", AuraTracker, 0, -1)
 		    AuraTracker:SetScript("OnUpdate", T.AuraTrackerTime)
 		    self.AuraTracker = AuraTracker
 		-- ClassIcon			
