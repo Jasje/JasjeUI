@@ -740,8 +740,8 @@ Filger_Spells = {
 
 			-- Infusion of Light
 			{ spellID = 54149, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Crusader
-			--{ spellID = 94686, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Glyph of Denounce
+			{ spellID = 115654, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Art of War
 			{ spellID = 87138, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Hand of Light 

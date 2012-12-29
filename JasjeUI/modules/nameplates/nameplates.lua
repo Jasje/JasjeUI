@@ -2,8 +2,6 @@ local T, C, L, G = unpack(Tukui)
 
 if not C["nameplate"].enable == true then return end
 
-TukuiNameplates:Kill()
-
 local TEXTURE = C["media"].Glamour
 local FONT = C["nameplate"].font
 local FONTSIZE = C["nameplate"].fontsize
