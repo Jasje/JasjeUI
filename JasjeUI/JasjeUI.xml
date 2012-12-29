@@ -28,7 +28,7 @@
 	<Script file="modules\misc\bgannouncer.lua"/>
 	<Script file="modules\misc\extra.lua"/>
 	<Script file="modules\misc\castbarticks.lua"/>
-	<Script file="modules\misc\DrTracker.lua"/>
+	<Script file="modules\misc\MoveFrames.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
@@ -39,6 +39,5 @@
 	<Script file="modules\unitframes\unitframe.lua"/>
 	<Script file="modules\unitframes\arena.lua"/>
 	<Script file="modules\unitframes\boss.lua"/>
-	<Script file="modules\raidframes\raid.lua"/>
 
 </Ui>
