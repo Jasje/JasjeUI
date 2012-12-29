@@ -139,6 +139,13 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				G.UnitFrames.Player.HolyPower:SetPoint("BOTTOM", G.UnitFrames.Player, "TOP", 0, 5)
 				G.UnitFrames.Player.HolyPower:Size(220, 7)
 				G.UnitFrames.Player.HolyPower:CreateBackdrop("Default")
+				
+				local maxHolyPower
+				if(T.level == MAX_PLAYER_LEVEL) then
+					maxHolyPower = 5
+				else
+					maxHolyPower = 3
+				end
 
 				for i = 1, 5 do
 				    G.UnitFrames.Player.HolyPower[i]:SetStatusBarTexture(C["media"].Glamour)
