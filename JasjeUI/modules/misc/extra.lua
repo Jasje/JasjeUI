@@ -31,14 +31,6 @@ end
 hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
 
 ----------------------------------------------------------------------------------------
---	Honor shown in tooltip
-----------------------------------------------------------------------------------------
-PVPFrameCurrency:HookScript("OnEnter", function()
-	GameTooltip:AddLine(HONORABLE_KILLS..": |cffffffff"..GetStatistic(588))
-	GameTooltip:Show()
-end)
-
-----------------------------------------------------------------------------------------
 --	Force other warning
 ----------------------------------------------------------------------------------------
 local ForceWarning = CreateFrame("Frame")

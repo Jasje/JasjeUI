@@ -11,14 +11,16 @@ IoL:SetScript("OnUpdate", function(self, elapsed)
 		IoL_Glow('Word of Glory')
 		IoL_Glow('Light of Dawn')
 		IoL_Glow('Shield of the Righteous')
+		IoL_Glow("Templar's Verdict")
 	else
 		IoL_Dim('Word of Glory')
 		IoL_Dim('Light of Dawn')
 		IoL_Dim('Shield of the Righteous')
+		IoL_Dim("Templar's Verdict")
 	end
 end)
 function IoL_HasFullHolyPower()
-	return UnitPower("player", SPELL_POWER_HOLY_POWER) == 3-- 
+	return UnitPower("player", SPELL_POWER_HOLY_POWER) == 3
 end
 function IoL_HasAura(aura)
 	if aura ~= nil then

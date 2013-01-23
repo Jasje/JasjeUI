@@ -304,6 +304,8 @@ Filger_Spells = {
 
 			-- Burning Soul
 			{spellID = 74434, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Molten Core
+			{spellID = 122351, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Dark Soul: Knowledge
 			{spellID = 113861, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Dark Soul: Misery
@@ -334,7 +336,7 @@ Filger_Spells = {
 			{ spellID = 5782, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Howl of Terror
 			{ spellID = 5484, unitID = "target", caster = "player", filter = "DEBUFF" },
-			-- Death Coil
+			-- Mortal Coil
 			{ spellID = 6789, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Banish
 			{ spellID = 710, unitID = "target", caster = "all", filter = "DEBUFF" },
@@ -375,7 +377,9 @@ Filger_Spells = {
 			-- Curse of the Elements
 			{ spellID = 1490, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Bane of Doom
-			{ spellID = 603, unitID = "target", caster = "player", filter = "DEBUFF" },	
+			{ spellID = 603, unitID = "target", caster = "player", filter = "DEBUFF" },
+            -- doom			
+			{ spellID = 124913, unitID = "target", caster = "player", filter = "DEBUFF" },	
 			-- Seed of Corruption
 			{ spellID = 27243, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
