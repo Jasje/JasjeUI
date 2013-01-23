@@ -17,10 +17,6 @@ T.remindbuffs = {
 		6117, -- mage armor
 		30482, -- molten armor
 	},
-	WARLOCK = {
-		28176, -- fel armor
-		687, -- demon armor
-	},
 	SHAMAN = {
 		52127, -- water shield
 		324, -- lightning shield
