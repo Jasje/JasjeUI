@@ -134,3 +134,26 @@ T.AuraTrackerTime = function(self, elapsed)
 		self.text:SetFormattedText("%.1f", self.timeleft)
 	end
 end
+
+-- needed to see sacred shields
+    local buffs = {}
+
+	if (T.buffids[T.myclass]) then
+		for key, value in pairs(T.buffids[T.myclass]) do
+			tinsert(buffs, value)
+		end
+	end
+	
+	do
+		T.buffids = {
+			PALADIN = {
+				{53563, "TOPRIGHT", {0.7, 0.3, 0.7}},	 -- Beacon of Light
+				{1022, "BOTTOMRIGHT", {0.2, 0.2, 1}, true},	-- Hand of Protection
+				{1044, "BOTTOMRIGHT", {0.89, 0.45, 0}, true},	-- Hand of Freedom
+				{1038, "BOTTOMRIGHT", {0.93, 0.75, 0}, true},	-- Hand of Salvation
+				{6940, "BOTTOMRIGHT", {0.89, 0.1, 0.1}, true},	-- Hand of Sacrifice
+				
+				{20925, "BOTTOMLEFT", {0.81, 0.85, 0.1}, true},	-- Sacred Shield
+			},
+		}
+	end
