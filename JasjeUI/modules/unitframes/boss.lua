@@ -7,7 +7,7 @@ if C.unitframes.enable ~= true then return end
 		    self:SetBackdrop(nil)
 	        self:SetBackdropColor(0, 0, 0)
 
-			self.Health:Size(205, 18)
+			self.Health:Size(205, 30)
 			self.Health:CreateBorder(true)
 			self.Health:SetStatusBarTexture(C["media"].Glamour)
 			self.Health:SetStatusBarColor(.2, .2, .2, 1)
@@ -39,8 +39,8 @@ if C.unitframes.enable ~= true then return end
 		    if self.Buffs or self.Debuffs then
 			    for _, f in pairs({self.Buffs, self.Debuffs}) do
 				    if not f then return end
-				    f:Size(102, 31)
-				    f.size = 31
+				    f:Size(102, 41)
+				    f.size = 41
 				    f.num = 3
 				    hooksecurefunc(f, "PostCreateIcon", T.SkinAura)
 			    end
@@ -68,7 +68,7 @@ if C.unitframes.enable ~= true then return end
             self.Castbar.PostCastStart = T.PostCastStart
             self.Castbar.PostChannelStart = T.PostCastStart
 
-			self:Size(205, 31)
+			self:Size(205, 41)
 			self:ClearAllPoints()
 			
 		if( i == 1 ) then

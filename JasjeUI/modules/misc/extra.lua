@@ -25,7 +25,7 @@ StaticPopupDialogs.TOO_MANY_LUA_ERRORS.button1 = nil
 ----------------------------------------------------------------------------------------
 local ShowReadyCheckHook = function(self, initiator, timeLeft)
 	if initiator ~= "player" then
-		PlaySound("LEVELUPSOUND", "master")
+		PlaySound("LEVELUPSOUND", "MASTER")
 	end
 end
 hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
@@ -39,9 +39,9 @@ ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
 ForceWarning:RegisterEvent("PARTY_INVITE_REQUEST")
 ForceWarning:SetScript("OnEvent", function(self, event)
 	if event == "UPDATE_BATTLEFIELD_STATUS" and StaticPopup_Visible("CONFIRM_BATTLEFIELD_ENTRY") then
-		PlaySound("LEVELUPSOUND", "master")
+		PlaySound("LEVELUPSOUND", "MASTER")
 	elseif event == "LFG_PROPOSAL_SHOW" or event == "PARTY_INVITE_REQUEST" then
-		PlaySound("LEVELUPSOUND", "master")
+		PlaySound("LEVELUPSOUND", "MASTER")
 	end
 end)
 
@@ -296,7 +296,7 @@ local function OnEvent(self, event, timestamp, eventType, hideCaster, sourceGUID
 	local numparty = GetNumGroupMembers()
 	if (numparty > 0 and numparty < 6) then
 		SendChatMessage(events[eventType].msg .. ": " .. select(5, ...), "PARTY")
-	end
+    end
 	-- Add to messageframe
 	dispelMessages:AddMessage("|cff" .. events[eventType].color .. events[eventType].msg .. ":|r " .. select(5, ...))
 end

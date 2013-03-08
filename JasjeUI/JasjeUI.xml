@@ -30,6 +30,7 @@
 	<Script file="modules\misc\castbarticks.lua"/>
 	<Script file="modules\misc\MoveFrames.lua"/>
 	<Script file="modules\misc\EnhancedFriendsList.lua"/>
+	<Script file="modules\misc\default_stuff.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
