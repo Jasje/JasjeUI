@@ -11,7 +11,7 @@ if not C["Filger"].enable == true then return end
 
 Filger_Settings = {
 	config_mode = false,
-	max_test_icon = 5,
+	max_test_icon = 7,
 }
 
 Filger_Spells = {
@@ -31,6 +31,8 @@ Filger_Spells = {
 			{ spellID = 59052, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Blood Charge
 			{ spellID = 114851, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Relenless Grip 4pc pvp
+			{ spellID = 131547, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -43,6 +45,8 @@ Filger_Spells = {
 
 			-- Bone Shield
 			{ spellID = 49222, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Scent of Blood
+			{ spellID = 49509, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Surge of Victory
 			{ spellID = 102432, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Lichborne
@@ -322,6 +326,8 @@ Filger_Spells = {
 			{spellID = 86211, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Burning Rush
 			{spellID = 111400, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Backdraft
+			{spellID = 117896, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
@@ -760,45 +766,57 @@ Filger_Spells = {
 			Mode = "ICON",
 			Alpha = 1,
 			IconSize = 47,
-			Position = { "CENTER", UIParent, -110, -40 },
-
-			-- Crackling Jade Lightning
-			{ spellID = 117952, unitID = "target", caster = "player", filter = "DEBUFF" },
-			-- Blackout Kick
-			{ spellID = 100784, unitID = "target", caster = "player", filter = "DEBUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			Alpha = 1,
-			IconSize = 47,
-			Position = { "CENTER", UIParent, -110, -40 },
-			
-			-- Serpent's Zeal
-			{ spellID = 127722, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Vital Mists
-			{ spellID = 118674, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Brewing: Mana Tea
-			{ spellID = 123766, unitID = "player", caster = "player", filter = "BUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			Alpha = 1,
-			IconSize = 47,
 			Position = { "CENTER", UIParent, 110, -40 },
-			
+
+			-- Shuffle
+			{spellID = 115307, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Vital Mists
+			{spellID = 118674, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Renewing Mist
 			{ spellID = 119611, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Soothing Mist
 			{ spellID = 115175, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Enveloping Mist
 			{ spellID = 132120, unitID = "target", caster = "player", filter = "BUFF" },
-
+			
+		},
+		{
+			Name = "Buffs and Debuffs",
+			Direction = "RIGHT",
+			Interval = 3,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "LEFT", TukuiPlayer,"RIGHT", 5, 2},
+			
+			-- Serpent's Zeal
+			{ spellID = 127722, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Brewing: Mana Tea
+			{ spellID = 123766, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Tiger Power
+			{ spellID = 125359, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Blackout Kick
+			{ spellID = 100784, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Disable
+			{ spellID = 116095, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Crackling Jade Lightning
+			{ spellID = 117952, unitID = "target", caster = "player", filter = "DEBUFF" },
+		},
+		{
+			Name = "Procs",
+			Direction = "DOWN",
+			Interval = 3,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "CENTER", "UIParent", -0, -85 },
+			
+			-- Combo Breaker: Blackout Kick
+			{spellID = 116768, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Combo Breaker: Tiger Palm
+			{spellID = 118864, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Power Guard
+			{spellID = 118636, unitID = "player", caster = "player", filter = "BUFF"},
 		},
 	},
 	["WARRIOR"] = {  -------------------------------------------------------------------------------------------------------- Warrior
@@ -1301,6 +1319,29 @@ local MyUnits = {player = true, vehicle = true, pet = true}
 local class = select(2, UnitClass("player"))
 local classcolor = RAID_CLASS_COLORS[class]
 
+function Filger:TooltipOnEnter()
+	if self.spellID > 20 then
+		local str = "spell:%s"
+		local BadTotems = {
+			[8076] = 8075,
+			[8972] = 8071,
+			[5677] = 5675,
+		}
+		GameTooltip:ClearLines()
+		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT", 0, 3)
+		if BadTotems[self.spell] then
+			GameTooltip:SetHyperlink(format(str, BadTotems[self.spellID]))
+		else
+			GameTooltip:SetHyperlink(format(str, self.spellID))
+		end
+		GameTooltip:Show()
+	end
+end
+
+function Filger:TooltipOnLeave()
+	GameTooltip:Hide()
+end
+
 function Filger:UnitBuff(unitID, inSpellID, spn, absID)
 	if absID then
 		for i = 1, 40, 1 do
@@ -1537,6 +1578,11 @@ function Filger:DisplayActives()
 			bar:SetScript("OnUpdate", nil)
 		end
 		bar.spellID = value.spid
+		if C["Filger"].show_tooltip then
+			bar:EnableMouse(true)
+			bar:SetScript("OnEnter", Filger.TooltipOnEnter)
+			bar:SetScript("OnLeave", Filger.TooltipOnLeave)
+		end
 		bar:SetWidth(self.IconSize or 37)
 		bar:SetHeight(self.IconSize or 37)
 		bar:SetAlpha(value.data.opacity or 1)
@@ -1708,7 +1754,7 @@ if Filger_Spells and Filger_Spells[class] then
 		end
 
 		if #data == 0 then
-			print("")
+			print("|cffff0000WARNING: section ["..data.Name.."] is empty! Report this to Jasje.|r")
 			table.insert(idx, i)
 		end
 	end
