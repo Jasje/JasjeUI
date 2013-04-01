@@ -1,5 +1,5 @@
 local T, C, L, G = unpack(Tukui)
-
+-- renimder to self http://www.wowhead.com/spell=115921/legacy-of-the-emperor#comments:id=1648358
 T.remindbuffs = {
 	PRIEST = {
 		588, -- inner fire
@@ -21,6 +21,12 @@ T.remindbuffs = {
 		52127, -- water shield
 		324, -- lightning shield
 		974, -- earth shield
+	},
+	MONK = {
+		117666, -- Legacy of the Emperor
+		20217, -- Blessing of Kings
+		90363, -- Embrace of the Shale Spider
+		1126, -- Mark of the Wild
 	},
 	WARRIOR = {
 		469, -- commanding Shout

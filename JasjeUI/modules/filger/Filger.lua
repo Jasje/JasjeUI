@@ -83,6 +83,8 @@ Filger_Spells = {
 
 			--Death Grip
 			{ spellID = 49576, filter = "CD" },	
+			-- Conversion
+			{ spellID = 119975, unitID = "player", caster = "player", filter = "BUFF" },
 		},
         {		
 			Name = "Pet",
@@ -342,6 +344,8 @@ Filger_Spells = {
 			{ spellID = 5782, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Howl of Terror
 			{ spellID = 5484, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Blood Horror
+			{ spellID = 111397, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Mortal Coil
 			{ spellID = 6789, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Banish
@@ -801,6 +805,8 @@ Filger_Spells = {
 			{ spellID = 116095, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Crackling Jade Lightning
 			{ spellID = 117952, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Healing Spehere
+			{ spellID = 124458, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Procs",
@@ -1328,7 +1334,7 @@ function Filger:TooltipOnEnter()
 			[5677] = 5675,
 		}
 		GameTooltip:ClearLines()
-		GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT", 0, 3)
+		GameTooltip:SetOwner(ChatFrame4, "ANCHOR_TOPRIGHT", 0, 0)
 		if BadTotems[self.spell] then
 			GameTooltip:SetHyperlink(format(str, BadTotems[self.spellID]))
 		else

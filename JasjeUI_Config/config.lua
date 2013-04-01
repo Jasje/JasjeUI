@@ -69,6 +69,7 @@ C.tooltip = {   -- added to correct healthtext's size with cyrillic fonts
 
 C.Filger = {   -- if you disable filger Blizzards loseofcontrol will be enabled
 	enable = true,
+	show_tooltip = true,
 }
 
 C.chat = {

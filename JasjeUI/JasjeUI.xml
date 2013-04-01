@@ -12,7 +12,6 @@
 	<Script file="modules\buffs\buffs.lua"/>
 	<Script file="modules\chat\chat.lua"/>
 	<Script file="modules\buffsnotice\buffs.lua"/>
-	<Script file="modules\buffsnotice\weapons.lua"/>
 	<Script file="modules\actionbars\cooldowns.lua"/>
 	<Script file="modules\actionbars\actionbars.lua"/>
 	<Script file="modules\panels\panels.lua"/>
@@ -31,6 +30,7 @@
 	<Script file="modules\misc\MoveFrames.lua"/>
 	<Script file="modules\misc\EnhancedFriendsList.lua"/>
 	<Script file="modules\misc\default_stuff.lua"/>
+	<Script file="modules\misc\HabeebIt.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>
