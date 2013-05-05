@@ -1,52 +1,39 @@
-local T, C, L, G = unpack(Tukui) -- Import: T - functions, constants, variables; C - config; L - locales
+local T, C, L, G = unpack(Tukui) 
 if C.unitframes.enable ~= true then return end
 
 local self = _G["TukuiPlayer"]
 local color = RAID_CLASS_COLORS[T.myclass]
 	
-	do
-		if( C["unitframes"].classbar == true ) then
-		
-            if T.myclass == "MONK" then
+do
+	if(C["unitframes"].classbar == true) then
+	
+		if T.myclass == "MONK" then
+			G.UnitFrames.Player.HarmonyBar:ClearAllPoints()
+			G.UnitFrames.Player.HarmonyBar:SetPoint("BOTTOM", G.UnitFrames.Player, "TOP", 0, 5)
+			G.UnitFrames.Player.HarmonyBar:Size(220,11)
+			G.UnitFrames.Player.HarmonyBar:CreateBackdrop("Default")
 
-				G.UnitFrames.Player.HarmonyBar:ClearAllPoints()
-				G.UnitFrames.Player.HarmonyBar:SetPoint("BOTTOM", G.UnitFrames.Player, "TOP", 0, 5)
-				G.UnitFrames.Player.HarmonyBar:Size(220,11)
-				G.UnitFrames.Player.HarmonyBar:CreateBackdrop("Default")
-
-				local maxChi = UnitPowerMax( "player", SPELL_POWER_CHI )
-
-				for i = 1, maxChi do
-					if( maxChi == 4 ) then
-						if( i == 4 or i == 3 ) then
-							G.UnitFrames.Player.HarmonyBar[i]:Size((220/4) -1, 11)
-						else
-							G.UnitFrames.Player.HarmonyBar[i]:Size(220/4,11)
-						end
-						G.UnitFrames.Player.HarmonyBar[i].width = G.UnitFrames.Player.HarmonyBar[i]:GetWidth()
-					elseif( maxChi == 5 ) then
-						if( i == 5 ) then
-							G.UnitFrames.Player.HarmonyBar[i]:Size(T.Scale(220/5)-3.8,11)
-						else
-							G.UnitFrames.Player.HarmonyBar[i]:Size(T.Scale(220/5), 11)
-						end
-						G.UnitFrames.Player.HarmonyBar[i].width = G.UnitFrames.Player.HarmonyBar[i]:GetWidth()
-					end
-					
-					if( i == 1 ) then
-						G.UnitFrames.Player.HarmonyBar[i]:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player.HarmonyBar, "BOTTOMLEFT", 0, 0 )
-					else
-						G.UnitFrames.Player.HarmonyBar[i]:Point( "LEFT", G.UnitFrames.Player.HarmonyBar[i - 1], "RIGHT", 1, 0 )
-					end
+			for i = 1, 5 do
+				G.UnitFrames.Player.HarmonyBar[i]:SetSize((216/5),11)
+				G.UnitFrames.Player.HarmonyBar[i]:SetStatusBarTexture(C["media"].Glamour)
+				G.UnitFrames.Player.HarmonyBar[i]:SetStatusBarColor(color.r, color.g, color.b)
+				G.UnitFrames.Player.HarmonyBar[i]:ClearAllPoints()
+				
+				if(i == 1) then
+					G.UnitFrames.Player.HarmonyBar[i]:Point("BOTTOMLEFT", G.UnitFrames.Player.HarmonyBar, "BOTTOMLEFT", 0, 0)
+				else
+					G.UnitFrames.Player.HarmonyBar[i]:Point("LEFT", G.UnitFrames.Player.HarmonyBar[i-1], "RIGHT", 1, 0)
 				end
+			end
 
-				if( C["unitframes"]["showstatuebar"] == true ) then
-					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size(125, 29.3)
-					G.UnitFrames.Player.Statue:SetTemplate()
-					G.UnitFrames.Player.Statue:Point("TOPLEFT", G.UnitFrames.Player, "BOTTOMLEFT", -1, 1)
-				end
-            end
+			if(C["unitframes"]["showstatuebar"] == true) then
+				G.UnitFrames.Player.Statue:ClearAllPoints()
+				G.UnitFrames.Player.Statue:Size(115, 23)
+				G.UnitFrames.Player.Statue:SetTemplate()
+				G.UnitFrames.Player.Statue:Point("TOPRIGHT", G.UnitFrames.Player, "BOTTOMRIGHT", 2, -5)
+			end
+		end
+
 		
 		    if T.myclass == "DRUID" then
 			    local DruidManaBackground = self.DruidManaBackground
@@ -153,9 +140,9 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				for i = 1, 5 do
 				    G.UnitFrames.Player.HolyPower[i]:SetStatusBarTexture(C["media"].Glamour)
 					if(i == 5) then
-						G.UnitFrames.Player.HolyPower[i]:Size(T.Scale(220/5)-3.8, 7)
+						G.UnitFrames.Player.HolyPower[i]:SetSize((216/5), 7)
 					else
-						G.UnitFrames.Player.HolyPower[i]:Size(T.Scale(220/5), 7)
+						G.UnitFrames.Player.HolyPower[i]:SetSize((216/5), 7)
 					end
 
 					if(i == 1) then
@@ -166,38 +153,38 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				end
 			end
 			
-			if( T.myclass == "DEATHKNIGHT" ) then
-				local classbar = CreateFrame( "Frame", "Classbar", UIParent )
+			if(T.myclass == "DEATHKNIGHT") then
+				local classbar = CreateFrame("Frame", "Classbar", UIParent)
 				classbar:Width(224)
-				classbar:Height(10)
-				classbar:Point( "BOTTOM", TukuiPlayer, "TOP", 0, 5 )
-				classbar:SetBackdropBorderColor( 0, 0, 0, 0 )
-				classbar:SetTemplate( "Default" )
+				classbar:Height(15)
+				classbar:Point("BOTTOM", TukuiPlayer, "TOP", 0, 5)
+				classbar:SetBackdropBorderColor(0, 0, 0, 0)
+				classbar:SetTemplate("Default")
 
 				self.Runes:SetWidth(classbar:GetWidth() - 4)
-				self.Runes:SetHeight(6)
+				self.Runes:SetHeight(11)
 				self.Runes:ClearAllPoints()
-				self.Runes:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2 )
+				self.Runes:SetPoint( "TOPLEFT", classbar, "TOPLEFT", 2, -2)
 
 				for i = 1, 6 do
-					self.Runes[i]:SetHeight(6)
-					self.Runes[i]:SetWidth((classbar:GetWidth() - 9 ) / 6)
+					self.Runes[i]:SetHeight(11)
+					self.Runes[i]:SetWidth((classbar:GetWidth() -9) / 6)
 					self.Runes[i]:SetStatusBarTexture(C["media"].Glamour)
 
-					if( i == 1 ) then
-						self.Runes[i]:Point( "BOTTOMLEFT", classbar, "BOTTOMLEFT", 2, 2 )
+					if(i == 1) then
+						self.Runes[i]:Point("BOTTOMLEFT", classbar, "BOTTOMLEFT", 2, 2)
 					else
-						self.Runes[i]:Point( "TOPLEFT", self.Runes[i - 1], "TOPRIGHT", 1, 0 )
+						self.Runes[i]:Point("TOPLEFT", self.Runes[i-1], "TOPRIGHT", 1, 0)
 					end
 				end
 				
-				if( C["unitframes"]["showstatuebar"] == true ) then
-					G.UnitFrames.Player.Statue:ClearAllPoints()
-					G.UnitFrames.Player.Statue:Size(125, 29.3)
-					G.UnitFrames.Player.Statue:SetTemplate()
-					G.UnitFrames.Player.Statue:Point("TOPLEFT", G.UnitFrames.Player, "BOTTOMLEFT", -1, 1)
-				end
+			if(C["unitframes"]["showstatuebar"] == true) then
+				G.UnitFrames.Player.Statue:ClearAllPoints()
+				G.UnitFrames.Player.Statue:Size(115, 23)
+				G.UnitFrames.Player.Statue:SetTemplate()
+				G.UnitFrames.Player.Statue:Point("TOPRIGHT", G.UnitFrames.Player, "BOTTOMRIGHT", 2, -25)
 			end
+		end
 	
 	    	if(T.myclass == "MAGE") then
 		    	G.UnitFrames.Player.ArcaneChargeBar:ClearAllPoints()
@@ -205,7 +192,7 @@ local color = RAID_CLASS_COLORS[T.myclass]
 			    G.UnitFrames.Player.ArcaneChargeBar:Size(233, 7)
 
 			    for i = 1, 6 do
-			    	G.UnitFrames.Player.ArcaneChargeBar[i]:Size(T.Scale(220/6) -1,7)
+			    	G.UnitFrames.Player.ArcaneChargeBar[i]:SetSize((216/6),7)
 				    if(i == 1) then
 					    G.UnitFrames.Player.ArcaneChargeBar[i]:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
 				    else
@@ -217,13 +204,14 @@ local color = RAID_CLASS_COLORS[T.myclass]
 		    if(T.myclass == "SHAMAN") then
 				for i = 1, 4 do
 					G.UnitFrames.Player.TotemBar[i]:ClearAllPoints()
-					G.UnitFrames.Player.TotemBar[i]:Size((G.UnitFrames.Player:GetWidth()/5)+.5, 5) -- fuck this! WIP
+					G.UnitFrames.Player.TotemBar[i]:Width(60)
+					G.UnitFrames.Player.TotemBar[i]:Height(20)
 					G.UnitFrames.Player.TotemBar[i]:SetStatusBarTexture(C["media"].Glamour)
 
 					if(i == 1) then
-						G.UnitFrames.Player.TotemBar[i]:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
+						G.UnitFrames.Player.TotemBar[i]:SetPoint("LEFT", G.UnitFrames.Player, "RIGHT", 8.5, 15)
 					else
-						G.UnitFrames.Player.TotemBar[i]:Point( "LEFT", G.UnitFrames.Player.TotemBar[i -1], "RIGHT", 6, 0)
+						G.UnitFrames.Player.TotemBar[i]:Point( "LEFT", G.UnitFrames.Player.TotemBar[i -1], "RIGHT", 8, 0)
 					end
 					G.UnitFrames.Player.TotemBar[i]:CreateBackdrop("Default")
 				end
@@ -236,7 +224,7 @@ local color = RAID_CLASS_COLORS[T.myclass]
 				G.UnitFrames.Player.ShadowOrbsBar:CreateBackdrop("Default")
 
 				for i = 1, 3 do
-					G.UnitFrames.Player.ShadowOrbsBar[i]:Size(T.Scale(220/3), 7)
+					G.UnitFrames.Player.ShadowOrbsBar[i]:SetSize((220/3), 7)
 					if(i == 1) then
 						G.UnitFrames.Player.ShadowOrbsBar[i]:SetPoint("LEFT", G.UnitFrames.Player.ShadowOrbsBar, "LEFT", 0, 0)
 					else

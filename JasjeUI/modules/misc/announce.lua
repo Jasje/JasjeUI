@@ -28,19 +28,18 @@ local SuccessfulInterruptAnnouncer = CreateFrame("Frame")
 SuccessfulInterruptAnnouncer:RegisterEvent("PLAYER_LOGIN")
 SuccessfulInterruptAnnouncer:SetScript("OnEvent", OnEvent)
 
--- drink announce for arenaby duffed
-local function Update(self, event, ...)
-	if event == "UNIT_SPELLCAST_SUCCEEDED" then
-		local unit, spellName, spellrank, spelline, spellID = ...
-		if GetZonePVPInfo() == "arena" then
-			if UnitIsEnemy("player", unit) and (spellID == 80167 or spellID == 94468 or spellID == 43183 or spellID == 57073 or spellName == "Drinking") then
-				SendChatMessage(UnitName(unit).." is drinking.", "PARTY")
-				PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\81923.mp3", "MASTER")
-			end
-		end
-	end
-end
 
-local drinking_announce = CreateFrame("Frame")
-drinking_announce:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-drinking_announce:SetScript("OnEvent", Update)
+----------------------------------------------------------------------------------------
+--	Announce enemy drinking in arena(by Duffed)
+----------------------------------------------------------------------------------------
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+frame:SetScript("OnEvent", function(self, event, ...)
+	if not (event == "UNIT_SPELLCAST_SUCCEEDED" and GetZonePVPInfo() == "arena") then return end
+
+	local unit, _, _, _, spellID = ...
+	if UnitIsEnemy("player", unit) and (spellID == 118358 or spellID == 104270) then
+			SendChatMessage(UnitName(unit).." is drinking.", "PARTY")
+			PlaySoundFile("Interface\\Addons\\Tukui_SpellAlert\\sounds\\81923.mp3", "MASTER")
+	end
+end)

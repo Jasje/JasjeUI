@@ -135,7 +135,7 @@ T.AuraTrackerTime = function(self, elapsed)
 	end
 end
 
--- needed to see sacred shields
+-- needed to see sacred shields and monk shizzle
     local buffs = {}
 
 	if (T.buffids[T.myclass]) then
@@ -154,6 +154,12 @@ end
 				{6940, "BOTTOMRIGHT", {0.89, 0.1, 0.1}, true},	-- Hand of Sacrifice
 				
 				{20925, "BOTTOMLEFT", {0.81, 0.85, 0.1}, true},	-- Sacred Shield
+			},
+			MONK = {
+				{119611, "TOPLEFT", {0.8, 0.4, 0.8}},	 --Renewing Mist
+				{116849, "TOPRIGHT", {0.2, 0.8, 0.2}},	 -- Life Cocoon
+				{124682, "BOTTOMLEFT", {0.4, 0.8, 0.2}}, -- Enveloping Mist
+				{124081, "BOTTOMRIGHT", {0.7, 0.4, 0}}, -- Zen Sphere
 			},
 		}
 	end

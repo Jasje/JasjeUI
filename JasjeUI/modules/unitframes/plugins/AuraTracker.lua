@@ -8,7 +8,7 @@ local function GetAuras()
 	return {
 		-- Crowd Controls
 		-- Death Knight
-		[GetSpellInfo(47481)] = 4,	-- Gnaw (Ghoul)
+		[GetSpellInfo(91800)] = 4,	-- Gnaw (Ghoul)
 		[GetSpellInfo(91797)] = 4,	-- Monstrous Blow (Mutated Ghoul)
 		[GetSpellInfo(108194)] = 4,	-- Asphyxiate
 		[GetSpellInfo(115001)] = 4,	-- Remorseless Winter
@@ -20,6 +20,7 @@ local function GetAuras()
 		[GetSpellInfo(22570)] = 4,	-- Maim
 		[GetSpellInfo(9005)] = 4,	-- Pounce
 		[GetSpellInfo(99)] = 4,		-- Disorienting Roar
+		[GetSpellInfo(113004)] = 4,	-- Intimidating Roar
 		-- Hunter
 		[GetSpellInfo(24394)] = 4,	-- Intimidation
 		[GetSpellInfo(117526)] = 4,	-- Binding Shot
@@ -27,6 +28,7 @@ local function GetAuras()
 		[GetSpellInfo(19503)] = 4,	-- Scatter Shot
 		[GetSpellInfo(19386)] = 4,	-- Wyvern Sting
 		[GetSpellInfo(90337)] = 4,	-- Bad Manner (Monkey)
+		[GetSpellInfo(126246)] = 4,	-- Lullaby (Crane)
 		-- Mage
 		[GetSpellInfo(44572)] = 4,	-- Deep Freeze
 		[GetSpellInfo(118)] = 4,	-- Polymorph
@@ -34,11 +36,11 @@ local function GetAuras()
 		[GetSpellInfo(31661)] = 4,	-- Dragon's Breath
 		[GetSpellInfo(118271)] = 4,	-- Combustion Impact
 		-- Monk
-		[GetSpellInfo(120086)] = 4,	-- Fists of Fury
-		[GetSpellInfo(119381)] = 4,	-- Leg Sweep
 		[GetSpellInfo(115078)] = 4,	-- Paralysis
-		[GetSpellInfo(119392)] = 4,	-- Charging Ox Wave
+		[GetSpellInfo(119381)] = 4,	-- Leg Sweep
+		[GetSpellInfo(120086)] = 4,	-- Fists of Fury
 		[GetSpellInfo(122242)] = 4,	-- Clash
+		[GetSpellInfo(119392)] = 4,	-- Charging Ox Wave
 		-- Paladin
 		[GetSpellInfo(853)] = 4,	-- Hammer of Justice
 		[GetSpellInfo(105593)] = 4,	-- Fist of Justice
@@ -69,7 +71,7 @@ local function GetAuras()
 		[GetSpellInfo(115268)] = 4,	-- Mesmerize (Shivarra)
 		-- Warrior
 		[GetSpellInfo(132169)] = 4,	-- Storm Bolt
-		[GetSpellInfo(46968)] = 4,	-- Shockwave
+		[GetSpellInfo(132168)] = 4,	-- Shockwave
 		[GetSpellInfo(5246)] = 4,	-- Intimidating Shout
 
 		-- Silences
@@ -84,7 +86,6 @@ local function GetAuras()
 		[GetSpellInfo(1330)] = 4,	-- Garrote - Silence
 		[GetSpellInfo(24259)] = 4,	-- Spell Lock (Felhunter)
 		[GetSpellInfo(115782)] = 4,	-- Optical Blast (Observer)
-		[GetSpellInfo(18498)] = 4,	-- Gag Order (Warrior glyph)
 
 		-- Roots
 		[GetSpellInfo(96294)] = 3,	-- Chains of Ice
@@ -96,7 +97,7 @@ local function GetAuras()
 		[GetSpellInfo(4167)] = 3,	-- Web (Spider)
 		[GetSpellInfo(54706)] = 3,	-- Venom Web Spray (Silithid)
 		[GetSpellInfo(90327)] = 3,	-- Lock Jaw (Dog)
-		[GetSpellInfo(128405)] = 3,	-- Narrow Escape
+		[GetSpellInfo(136634)] = 3,	-- Narrow Escape
 		[GetSpellInfo(122)] = 3,	-- Frost Nova
 		[GetSpellInfo(33395)] = 3,	-- Freeze (Pet)
 		[GetSpellInfo(111340)] = 3,	-- Ice Ward
@@ -112,6 +113,7 @@ local function GetAuras()
 		[GetSpellInfo(45438)] = 2,	-- Ice Block
 		[GetSpellInfo(642)] = 2,	-- Divine Shield
 		[GetSpellInfo(46924)] = 2,	-- Bladestorm
+		[GetSpellInfo(118038)] = 2,	-- Die by the Sword
 
 		-- Disarms
 		[GetSpellInfo(50541)] = 1,	-- Clench (Scorpid)

@@ -28,7 +28,7 @@ C.media = {
 	warningsound = [[Interface\AddOns\JasjeUI\media\sound\warning.mp3]], 
 	
 	bordercolor = {.2,.2,.2,1}, 
-	datatextcolor1 = {.5,.5,.5,1},	
+	datatextcolor1 = {.5,.5,.5,1},
 }
 
 C.unitframes = {
@@ -114,6 +114,15 @@ C.datatext = {
 
 C.merchant = {
 	autorepair = false,                              
+}
+
+C.highlight = {
+    Enable = true,
+	OriginalStyle = true,          -- Set to true for Blizzards original Proc highlight.
+	FlashEntireButton = false,           -- Set to true to make the entire button to flash.
+	FlashButtonBorder = false,           -- Set to true to make the button border flash.
+	FlashBorderSize = 3,           -- Set the size of the border to flash, if FlashBorder is enabled.
+	FlashBorderColor  = {1, 1, 0},  -- Color of flash border                     
 }
 
     -- pet action icons

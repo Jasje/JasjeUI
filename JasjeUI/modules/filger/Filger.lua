@@ -104,6 +104,20 @@ Filger_Spells = {
 	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
 		{
 			Name = "Shaman Procs",
+			Direction = "DOWN",
+			Interval = 4,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 47,
+			Position = { "CENTER", "UIParent", -0, -85 },
+			
+			-- Clearcasting
+			{ spellID = 16246, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Lava Surge
+			{ spellID = 77762, unitID = "player", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Shaman Procs",
 			Direction = "LEFT",
 			Interval = 3,
 			Mode = "ICON",
@@ -111,30 +125,24 @@ Filger_Spells = {
 			IconSize = 37,
 			Position = { "RIGHT", UIParent, "CENTER", -190, -20 },
 
-			-- Maelstorm Weapon
-			{ spellID = 53817, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Shamanistic Rage
 			{ spellID = 30823, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Clearcasting
-			{ spellID = 16246, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Tidal Waves
-			-- { spellID = 51562, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Spiritswalkers Grace
 			{ spellID = 79206, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Lightning SHield
+			{ spellID = 324, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
 			Direction = "RIGHT",
-			Interval = 3,
+			Interval = 9,
 			Mode = "ICON",
 			Alpha = 1,
-			IconSize = 37,
-			Position = { "LEFT", UIParent, "CENTER", 190, -20 },
+			IconSize = 60,
+			Position = { "LEFT", UIParent, "CENTER", -133, -234},
 
 			-- Hex
 			{ spellID = 51514, unitID = "target", caster = "all", filter = "DEBUFF" },
-			-- Storm Strike
-			{ spellID = 17364, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Earth Shock
 			{ spellID = 8042, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Shock
@@ -212,25 +220,19 @@ Filger_Spells = {
 	["PRIEST"] = { -------------------------------------------------------------------------------------------------------- Priest
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "LEFT",
-			Interval = 3,
+			Direction = "DOWN",
+			Interval = 4,
 			Mode = "ICON",
 			Alpha = 1,
-			IconSize = 36,
-			Position = { "CENTER", UIParent, -100, -86},
+			IconSize = 47,
+			Position = { "CENTER", "UIParent", -0, -85 },
 
-		    -- Power Word: Shield
-			{spellID = 17, unitID = "player", caster = "all", filter = "BUFF"},
-			-- Renew
-			{spellID = 139, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Dispersion
-			{spellID = 47585, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Power Infusion
-			{spellID = 10060, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fear Ward
-			{spellID = 6346, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Borrowed Time
-			{spellID = 59889, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Divine insight
+			{spellID = 124430, unitID = "player", caster = "player", filter = "BUFF"},			
+			-- Fade
+			{spellID = 586, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Surge of Darkness
+			{spellID = 87160, unitID = "player", caster = "player", filter = "BUFF"},
 		},	
 	    {
 			Name = "Priest Procs",
@@ -245,26 +247,26 @@ Filger_Spells = {
 			{ spellID = 114255, unitID = "player", caster = "all", filter = "BUFF" },
 			-- Serendipity
 			{ spellID = 63735, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Shadow Orb
-			{ spellID = 77487, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Archangel
 			{ spellID = 81700, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Evangelism
 			{ spellID = 81662, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Dispersion
-			{ spellID = 47585, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Archangel
-			{spellID = 81700, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Dark Archangel
 			{spellID = 87153, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Glyph of Inner Focus
 			{spellID = 96267, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Prayer of Mending
 			{spellID = 41635, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Fade
-			{spellID = 586, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Holy Walk
 			{spellID = 96219, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Borrowed Time
+			{spellID = 59889, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Dispersion
+			{spellID = 47585, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Power Infusion
+			{spellID = 10060, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Fear Ward
+			{spellID = 6346, unitID = "player", caster = "player", filter = "BUFF"},
 		},	
 
 		{
@@ -280,12 +282,6 @@ Filger_Spells = {
 			{ spellID = 9484, unitID = "target", caster = "all", filter = "DEBUFF" },
 			-- Psychic Scream
 			{ spellID = 8122, unitID = "target", caster = "all", filter = "DEBUFF" },
-			-- Shadow Word: Pain
-			--{ spellID = 589, unitID = "target", caster = "player", filter = "DEBUFF" },
-			-- Devouring Plague
-			--{ spellID = 2944, unitID = "target", caster = "player", filter = "DEBUFF" },
-			-- Vampiric Touch
-			--{ spellID = 34914, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Prayer of Mending
 			{ spellID = 41635, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Guardian Spirit
@@ -296,6 +292,22 @@ Filger_Spells = {
 			{ spellID = 17, unitID = "target", caster = "player", filter = "BUFF" },
 			-- Renew
 			{ spellID = 139, unitID = "target", caster = "player", filter = "BUFF" },
+		},
+		{
+			Name = "Debuff",
+			Direction = "RIGHT",
+			Interval = 10,
+			Mode = "ICON",
+			Alpha = 1,
+			IconSize = 65,
+			Position = { "LEFT", UIParent, "CENTER", -100, -284},
+			
+			-- Shadow Word: Pain
+			{ spellID = 589, unitID = "target", caster = "player", filter = "DEBUFF" },
+		    -- Devouring Plague
+			{ spellID = 2944, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Vampiric Touch
+			{ spellID = 34914, unitID = "target", caster = "player", filter = "DEBUFF" },	
 		},
 	},
 	["WARLOCK"] = { -------------------------------------------------------------------------------------------------------- Warlock
@@ -950,7 +962,7 @@ Filger_Spells = {
 			--Sap
             { spellID = 6770, unitID = "player", caster = "all", filter = "DEBUFF" },			
 			--Smoke Bomb
-            { spellID = 76577, unitID = "player", caster = "all", filter = "DEBUFF" },		
+            { spellID = 88611, unitID = "player", caster = "all", filter = "DEBUFF" },		
 			--Garrote - Silence
             { spellID = 1330, unitID = "player", caster = "all", filter = "DEBUFF" },		
 			--Dismantle
@@ -959,14 +971,20 @@ Filger_Spells = {
             { spellID = 3409, unitID = "player", caster = "all", filter = "DEBUFF" },		
 			--Deadly Throw
             { spellID = 26679, unitID = "player", caster = "all", filter = "DEBUFF" },
-            --Smoke Bomb			
-            { spellID = 76577, unitID = "player", caster = "all", filter = "DEBUFF" },	
+			-- Gouge
+            { spellID = 1776, unitID = "player", caster = "all", filter = "DEBUFF" },	
+			--Paralysis (Paralytic Poison)
+            { spellID = 113953, unitID = "player", caster = "all", filter = "DEBUFF" },
+            -- Partial Paralysis			
+            { spellID = 115197, unitID = "player", caster = "all", filter = "DEBUFF" },	
 
 			--Paladin 
 			--Hammer of Justice
 		    { spellID = 853, unitID = "player", caster = "all", filter = "DEBUFF" },
-			--Seal of Justice
-            { spellID = 20170, unitID = "player", caster = "all", filter = "DEBUFF" },	
+			-- Blinding Light
+		    { spellID = 105421, unitID = "player", caster = "all", filter = "DEBUFF" },
+			-- Blinding Light (Glyph of Blinding Light)
+		    { spellID = 115752, unitID = "player", caster = "all", filter = "DEBUFF" },	
 			--Repentance
 	        { spellID = 20066, unitID = "player", caster = "all", filter = "DEBUFF" },			
 			--Holy Wrath
@@ -1005,6 +1023,8 @@ Filger_Spells = {
 			{ spellID = 120, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Slow
 			{ spellID = 31589, unitID = "player", caster = "all", filter = "DEBUFF" },
+			-- Frost Bomb
+			{ spellID = 113092, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Frostbolt
 			{ spellID = 116, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Frostfire Bolt
@@ -1014,7 +1034,7 @@ Filger_Spells = {
 
 			-- Monk
 			--Fists of Fury
-			{ spellID = 113656, unitID = "player", caster = "all", filter = "DEBUFF" },
+			{ spellID = 120086, unitID = "player", caster = "all", filter = "DEBUFF" },
 			--Paralysis
 			{ spellID = 115078, unitID = "player", caster = "all", filter = "DEBUFF" },
 			--Charging Ox Wave
@@ -1039,8 +1059,8 @@ Filger_Spells = {
 			{ spellID = 45524, unitID = "player", caster = "all", filter = "DEBUFF" },
 			--Chilblains
 			{ spellID = 50435, unitID = "player", caster = "all", filter = "DEBUFF" },
-			--Desecration
-			--MOP{ spellID = 55741, unitID = "player", caster = "all", filter = "DEBUFF" },	
+			--Desecrated Ground
+			{ spellID = 115018, unitID = "player", caster = "all", filter = "DEBUFF" },	
         
 		    --Druid
 			--Cyclone
@@ -1178,10 +1198,14 @@ Filger_Spells = {
 			-- Priest
 			-- Psychic Horror
 			{spellID = 64044, unitID = "player", caster = "all", filter = "DEBUFF" },
-			-- Dominate Mind
-			{spellID = 605, unitID = "player", caster = "all", filter = "DEBUFF" },
+			-- Psychic Horror(disarm)
+			{spellID = 64058, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Psychic Scream
 			{spellID = 8122, unitID = "player", caster = "all", filter = "DEBUFF" },
+			--Psychic Terror (Psyfiend)
+			{spellID = 113792, unitID = "player", caster = "all", filter = "DEBUFF" },
+			-- Dominate Mind
+			{spellID = 605, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Silence
 			{spellID = 15487, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Glyph of Mind Blast
@@ -1204,6 +1228,8 @@ Filger_Spells = {
 			{spellID = 8034, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Thunderstorm
 			{spellID = 51490, unitID = "player", caster = "all", filter = "DEBUFF" },
+			-- Static Charge (Capacitor Totem)
+			{spellID = 118905, unitID = "player", caster = "all", filter = "DEBUFF" },
 
 			-- Warlock
 			-- Shadowfury
@@ -1230,8 +1256,6 @@ Filger_Spells = {
 			{spellID = 18223, unitID = "player", caster = "all", filter = "DEBUFF" },
 
 			-- Warrior
-			-- Throwdown
-			--MOP{spellID = 85388, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Shockwave
 			{spellID = 46968, unitID = "player", caster = "all", filter = "DEBUFF" },
 			-- Charge Stun
@@ -1268,6 +1292,8 @@ Filger_Spells = {
 			--Warrior 
 			--Spell Reflection
 			{ spellID = 23920, unitID = "target", caster = "all", filter = "BUFF" },
+			-- Mass Spell Reflection
+			{ spellID = 114028, unitID = "target", caster = "all", filter = "BUFF" },
 
 			--Paladin 
 			--Divine Shield
@@ -1308,12 +1334,6 @@ Filger_Spells = {
 			--Monk
 			--Touch of Karma
 			{ spellID = 125174,  unitID = "target", caster = "all", filter = "BUFF" },
-			--Fists of Fury
-			{ spellID = 113656,  unitID = "target", caster = "all", filter = "BUFF" },
-			--Paralysis
-			{ spellID = 115078,  unitID = "target", caster = "all", filter = "BUFF" },
-			--Charging Ox Wave
-			{ spellID = 119392,  unitID = "target", caster = "all", filter = "BUFF" },
 			
 		},
 	},
