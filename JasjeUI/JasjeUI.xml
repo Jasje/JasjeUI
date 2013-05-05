@@ -31,6 +31,8 @@
 	<Script file="modules\misc\EnhancedFriendsList.lua"/>
 	<Script file="modules\misc\default_stuff.lua"/>
 	<Script file="modules\misc\HabeebIt.lua"/>
+	<Script file="modules\misc\OneClickEnchantScroll.lua"/>
+	<Script file="modules\misc\Tukui_ActionHighlight.lua"/>
 
     <Script file="modules\unitframes\plugins\AuraTracker.lua"/>
 	<Script file="modules\unitframes\plugins\ClassIcons.lua"/>

@@ -1,0 +1,8 @@
+## Interface: 50200
+## Title: Sinaris raid layout Thanks hobo
+## Notes: Raid layout for party and raid, Healer mode.
+## Version: 1.5.6
+## Author: Sinaris
+## RequiredDeps: JasjeUI_Config, JasjeUI, Tukui
+
+Raid_Healing.lua
