@@ -1,5 +1,8 @@
 local T, C, L = unpack(Tukui)
 
+T.SetDefaultActionButtonCooldownFont = C["media"].pixelfont2 
+T.SetDefaultActionButtonCooldownFontSize = 26 
+
 local hexa = T.StatColor
 local hexb = T.StatColorEnd
 -- zonetext

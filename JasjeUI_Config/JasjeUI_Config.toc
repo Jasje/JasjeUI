@@ -1,4 +1,4 @@
-## Interface: 50200
+## Interface: 50300
 ## Author: Jasje
 ## Title: |cffD38D01Jasje Config|r
 ## Notes: Some config for Jasjes Edit.

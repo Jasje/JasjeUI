@@ -854,7 +854,7 @@ Filger_Spells = {
 			-- Ultimatum
 			{spellID = 122510, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Taste for Blood
-			{spellID = 125831, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 56636, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Enrage
 			{spellID = 12880, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Meat Cleaver
@@ -864,12 +864,12 @@ Filger_Spells = {
 		},
         {		
 			Name = "Buffs and Debuffs",
-			Direction = "LEFT",
-			Interval = 4,
+			Direction = "RIGHT",
+			Interval = 3,
 			Mode = "ICON",
 			Alpha = 1,
-			IconSize = 37,
-			Position = { "CENTER", UIParent, -60, -90 },
+			IconSize = 47,
+			Position = { "LEFT", TukuiPlayer,"RIGHT", 5, 2},
 			
 		    -- Shield Wall
 			{spellID = 871, unitID = "player", caster = "player", filter = "BUFF"},
@@ -889,8 +889,6 @@ Filger_Spells = {
 			{spellID = 12292, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Recklesness
 			{spellID = 1719, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Deadly Calm
-			{spellID = 85730, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Sweeping Strikes
 			{spellID = 12328, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Victorious
@@ -898,12 +896,12 @@ Filger_Spells = {
 		},
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 4,
+			Direction = "RIGHT",
+			Interval = 3,
 			Mode = "ICON",
 			Alpha = 1,
 			IconSize = 37,
-			Position = { "CENTER", UIParent, 75, -90 },
+			Position = { "LEFT", TukuiPlayer,"RIGHT", 40, 50},
 
 			-- Colossus Smash
 			{spellID = 86346, unitID = "target", caster = "player", filter = "DEBUFF"},
@@ -914,31 +912,7 @@ Filger_Spells = {
 			-- Weakened Armor
 			{spellID = 113746, unitID = "target", caster = "all", filter = "DEBUFF"},
 			-- Weakened Blows
-			{spellID = 115798, unitID = "target", caster = "all", filter = "DEBUFF"},
-		},
-		{
-			Name = "COOLDOWN",
-			Direction = "RIGHT",
-			Interval = 10,
-			Mode = "ICON",
-			Alpha = 1,
-			IconSize = 65,
-			Position = { "LEFT", UIParent, "CENTER", -100, -400},
-			
-			-- Recklesness
-			{ spellID = 1719, filter = "CD" },
-			-- Intervene
-			{ spellID = 3411, filter = "CD" },
-			-- Berserker rage
-			{ spellID = 18499, filter = "CD" },	
-			--Last Stand
-			{ spellID = 12975, filter = "CD" },		
-			-- Taunt
-			{ spellID = 355, filter = "CD" },		
-			-- Commanding Shout
-			{ spellID = 469, filter = "CD" },	
-           -- Heroic Leap			
-			{ spellID = 6544, filter = "CD" },		
+			{spellID = 115798, unitID = "target", caster = "all", filter = "DEBUFF"},	
 		},
     },		
 -----------------------------------------------------------------------------------------------------------------------
