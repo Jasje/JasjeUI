@@ -161,5 +161,11 @@ end
 				{124682, "BOTTOMLEFT", {0.4, 0.8, 0.2}}, -- Enveloping Mist
 				{124081, "BOTTOMRIGHT", {0.7, 0.4, 0}}, -- Zen Sphere
 			},
+			PRIEST = {
+				{33076, "TOPLEFT", {0.8, 0.4, 0.8}},	 -- PoM
+				{6788, "TOPRIGHT", {0.2, 0.8, 0.2}},	 -- Weakend Soul
+				{139, "BOTTOMLEFT", {0.4, 0.8, 0.2}}, -- Renew
+				--{124081, "BOTTOMRIGHT", {0.7, 0.4, 0}}, -- Zen Sphere
+			},
 		}
 	end

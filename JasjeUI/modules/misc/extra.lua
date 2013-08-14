@@ -5,11 +5,6 @@ T.SetDefaultActionButtonCooldownFontSize = 26
 
 local hexa = T.StatColor
 local hexb = T.StatColorEnd
--- zonetext
-ZoneTextString:SetFont(C.media.pixelfont, 15, "MONOCHROMEOUTLINE")
-SubZoneTextString:SetFont(C.media.pixelfont, 12, "MONOCHROMEOUTLINE")
-PVPInfoTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMETHINOUTLINE")
-PVPArenaTextString:SetFont(C.media.pixelfont, 10, "MONOCHROMEOUTLINE")
 
 --RaidWarningFrame:ClearAllPoints() 
 --RaidWarningFrame:SetPoint("CENTER", UIParent, "CENTER",0, 0)
@@ -29,7 +24,7 @@ PetBattleQueueReadyFrame.hideOnEscape = nil
 ----------------------------------------------------------------------------------------
 local ShowReadyCheckHook = function(self, initiator, timeLeft)
 	if initiator ~= "player" then
-		PlaySound("LEVELUPSOUND", "MASTER")
+		PlaySound("ReadyCheck", "Master")
 	end
 end
 hooksecurefunc("ShowReadyCheck", ShowReadyCheckHook)
@@ -43,9 +38,9 @@ ForceWarning:RegisterEvent("LFG_PROPOSAL_SHOW")
 ForceWarning:RegisterEvent("PARTY_INVITE_REQUEST")
 ForceWarning:SetScript("OnEvent", function(self, event)
 	if event == "UPDATE_BATTLEFIELD_STATUS" and StaticPopup_Visible("CONFIRM_BATTLEFIELD_ENTRY") then
-		PlaySound("LEVELUPSOUND", "MASTER")
+		PlaySound("ReadyCheck", "Master")
 	elseif event == "LFG_PROPOSAL_SHOW" or event == "PARTY_INVITE_REQUEST" then
-		PlaySound("LEVELUPSOUND", "MASTER")
+		PlaySound("ReadyCheck", "Master")
 	end
 end)
 

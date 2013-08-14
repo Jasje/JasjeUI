@@ -6,7 +6,7 @@ T.remindbuffs = {
 		73413, -- inner will
 	},
 	HUNTER = {
-		13165, -- hawk
+		109260, -- hawk
 		5118, -- cheetah
 		13159, -- pack
 		20043, -- wild
@@ -32,7 +32,7 @@ T.remindbuffs = {
 		469, -- commanding Shout
 		6673, -- battle Shout
 		93435, -- roar of courage (hunter pet)
-		57330, -- horn of Winter
+		--57330, -- horn of Winter
 		21562, -- fortitude
 	},
 	DEATHKNIGHT = {

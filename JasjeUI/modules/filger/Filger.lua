@@ -30,47 +30,33 @@ Filger_Spells = {
 			-- Freezing Fog
 			{ spellID = 59052, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Blood Charge
-			{ spellID = 114851, unitID = "player", caster = "player", filter = "BUFF" },
+			--{ spellID = 114851, unitID = "player", caster = "player", filter = "BUFF" },
 			-- Relenless Grip 4pc pvp
 			{ spellID = 131547, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 		{
 			Name = "Buffs and Debuffs",
-			Direction = "UP",
+			Direction = "RIGHT",
 			Interval = 3,
 			Mode = "ICON",
 			Alpha = 1,
 			IconSize = 47,
-			Position = { "CENTER", UIParent, -110, -40 },
-
-			-- Bone Shield
-			{ spellID = 49222, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Scent of Blood
-			{ spellID = 49509, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Surge of Victory
-			{ spellID = 102432, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Lichborne
-			{ spellID = 49039, unitID = "player", caster = "player", filter = "BUFF" },
-			-- Summon Gargoyle
-			{ spellID = 61777, unitID = "target", caster = "player", filter = "DEBUFF" },
-		},
-		{
-			Name = "Buffs and Debuffs",
-			Direction = "UP",
-			Interval = 3,
-			Mode = "ICON",
-			Alpha = 1,
-			IconSize = 47,
-			Position = { "CENTER", UIParent, 110, -40 },
+			Position = { "BOTTOM", TukuiTarget, "TOP", -75, 125},
 
 			-- Necrotic Strike
 			{ spellID = 73975, unitID = "target", caster = "player", filter = "DEBUFF" },
-			-- Blood Plague
-			{ spellID = 55078, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Fever
 			{ spellID = 55095, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Blood Plague
+			{ spellID = 55078, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Soul Reaper 
 			{ spellID = 130736, unitID = "target", caster = "player", filter = "DEBUFF" },
+            -- Gnaw (Ghoul)
+			{spellID = 91800, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Monstrous Blow (Mutated Ghoul)
+			{spellID = 91797, unitID = "target", caster = "player", filter = "DEBUFF"},
+			-- Shambling Rush (Mutated Ghoul)
+			{spellID = 91802, unitID = "target", caster = "player", filter = "DEBUFF"},
 		},
 		{
 			Name = "COOLDOWN",
@@ -84,21 +70,31 @@ Filger_Spells = {
 			--Death Grip
 			{ spellID = 49576, filter = "CD" },	
 			-- Conversion
-			{ spellID = 119975, unitID = "player", caster = "player", filter = "BUFF" },
+			{ spellID = 119975, unitID = "player", caster = "player", filter = "BUFF" },		
+			-- Lichborne
+			{ spellID = 49039, unitID = "player", caster = "player", filter = "BUFF" },
 		},
         {		
-			Name = "Pet",
-			Direction = "LEFT",
-			Interval = 4,
+			Name = "Pet and important buffs",
+			Direction = "RIGHT",
+			Interval = 3,
 			Mode = "ICON",
 			Alpha = 1,
-			IconSize = 60,
-			Position = { "LEFT", TukuiPet, "RIGHT", -80, -45},
+			IconSize = 47,
+			Position = { "LEFT", TukuiPlayer,"RIGHT", 5, 2},
 			
 			--Shadow infusion
 			{ spellID = 91342, unitID = "pet", caster = "player", filter = "BUFF" },
 			-- Dark Transformation
 			{ spellID = 63560, unitID = "pet", caster = "player", filter = "BUFF" },
+			-- Bone Shield
+			{ spellID = 49222, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Scent of Blood
+			{ spellID = 49509, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Surge of Victory
+			{ spellID = 102432, unitID = "player", caster = "player", filter = "BUFF" },
+			-- Summon Gargoyle
+			{ spellID = 61777, unitID = "target", caster = "player", filter = "DEBUFF" },
 		},
 	},
 	["SHAMAN"] = { -------------------------------------------------------------------------------------------------------- Shaman
@@ -149,6 +145,8 @@ Filger_Spells = {
 			{ spellID = 8056, unitID = "target", caster = "player", filter = "DEBUFF" },
 			-- Flame Shock
 			{ spellID = 8050, unitID = "target", caster = "player", filter = "DEBUFF" },
+			-- Elemental Blast
+			{ spellID = 118522, unitID = "player", caster = "player", filter = "BUFF" },
 		},
 	},	
 	 ["MAGE"] = { -------------------------------------------------------------------------------------------------------- Mage
@@ -926,7 +924,7 @@ Filger_Spells = {
 			Mode = "ICON",
 			Alpha = 1,
 			IconSize = 70,
-			Position = { "CENTER", UIParent, "CENTER", -180, 150 },
+			Position = { "CENTER", UIParent, "CENTER", -180, 200},
 
 			--Rouge
 			--Kidney Shot
@@ -1257,7 +1255,7 @@ Filger_Spells = {
 			Mode = "ICON",
 			Alpha = 1,
 			IconSize = 70,
-			Position = { "CENTER", UIParent, "CENTER", 180, 150 },
+			Position = { "CENTER", UIParent, "CENTER", 180, 200},
 
 	        --Druid 
 			--Innervate

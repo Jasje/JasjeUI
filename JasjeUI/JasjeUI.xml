@@ -4,7 +4,6 @@
 	<Script file="core\install.lua"/>
     <Script file="medias\media.lua"/>
 
-	<Script file="modules\nameplates\nameplates.lua"/>
 	<Script file="modules\datatext\datatext.lua"/>
 	
 	<Script file="modules\filger\Filger.lua"/>

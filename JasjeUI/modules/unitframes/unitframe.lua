@@ -277,7 +277,7 @@ end
         G.UnitFrames.Focus.Health:CreateBorder(true)
 		
 		G.UnitFrames.Focus:ClearAllPoints()
-		G.UnitFrames.Focus:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 12)
+		G.UnitFrames.Focus:SetPoint("BOTTOMLEFT", TukuiPlayer, "TOPLEFT", 0, 17)
 
 		G.UnitFrames.Focus.Name:SetFont(C.media.pixelfont, 8, "OUTLINEMONOCHROME")
 		G.UnitFrames.Focus.Name:ClearAllPoints()

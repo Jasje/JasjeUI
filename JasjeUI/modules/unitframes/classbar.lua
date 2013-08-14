@@ -152,6 +152,15 @@ do
 					end
 				end
 			end
+			if(T.myclass == "WARRIOR") then
+				if(C["unitframes"]["showstatuebar"] == true) then
+				    G.UnitFrames.Player.Statue:ClearAllPoints()
+				    G.UnitFrames.Player.Statue:Size(115, 23)
+				    G.UnitFrames.Player.Statue:SetTemplate()
+				    G.UnitFrames.Player.Statue:Point("TOPRIGHT", G.UnitFrames.Player, "BOTTOMRIGHT", 2, -25)
+			    end
+	 		end
+			
 			
 			if(T.myclass == "DEATHKNIGHT") then
 				local classbar = CreateFrame("Frame", "Classbar", UIParent)
@@ -185,21 +194,6 @@ do
 				G.UnitFrames.Player.Statue:Point("TOPRIGHT", G.UnitFrames.Player, "BOTTOMRIGHT", 2, -25)
 			end
 		end
-	
-	    	if(T.myclass == "MAGE") then
-		    	G.UnitFrames.Player.ArcaneChargeBar:ClearAllPoints()
-			    G.UnitFrames.Player.ArcaneChargeBar:SetPoint( "BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
-			    G.UnitFrames.Player.ArcaneChargeBar:Size(233, 7)
-
-			    for i = 1, 6 do
-			    	G.UnitFrames.Player.ArcaneChargeBar[i]:SetSize((216/6),7)
-				    if(i == 1) then
-					    G.UnitFrames.Player.ArcaneChargeBar[i]:SetPoint("BOTTOMLEFT", G.UnitFrames.Player, "TOPLEFT", 0, 5)
-				    else
-					    G.UnitFrames.Player.ArcaneChargeBar[i]:Point("LEFT", G.UnitFrames.Player.ArcaneChargeBar[i -1], "RIGHT", 1, 0)
-				    end
-			    end
-		    end
 			
 		    if(T.myclass == "SHAMAN") then
 				for i = 1, 4 do

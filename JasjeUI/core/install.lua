@@ -10,7 +10,7 @@ SetCVar("autoLootDefault", 1)
 end)
 CVarJasje:RegisterEvent("PLAYER_LOGIN")
 
-
+--[[
 if C["Filger"].enable then
 	SetCVar("lossOfControl", 0)
 	InterfaceOptionsCombatPanelLossOfControl:Kill()
@@ -20,3 +20,4 @@ if C["Filger"].enable then
 	InterfaceOptionsCombatPanelLossOfControlDisarmDropDown:Kill()
 	InterfaceOptionsCombatPanelLossOfControlRootDropDown:Kill()
 end
+]]--
