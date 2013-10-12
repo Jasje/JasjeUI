@@ -1,7 +1,7 @@
 local T, C, L, G = unpack(Tukui)
 -- Config start
-local anchor = "BOTTOM"
-local x, y = -307, 48
+local anchor = "LEFT"
+local x, y = 15, -300
 local width, height = 200, 15
 local spacing = 3
 local icon_size = 15

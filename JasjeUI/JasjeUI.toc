@@ -1,6 +1,6 @@
-## Interface: 50300
+## Interface: 50400
 ## Author: Jasje
-## Version: 2.1
+## Version: 2.2
 ## Credits: Tukz, Haleth, Nils Ruesch
 , Tekkub, Shestak, Ex, ALZA, Alleykat, Allez, Ildyria,  grimgaw
 ## Title: |cffD38D01Jasje UI|r
